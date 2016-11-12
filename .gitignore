@@ -1,0 +1,17 @@
+build/
+
+#npm
+npm-debug.log
+
+.orig
+.DS_STORE
+
+# config
+.idea/
+.bowerrc
+.npmrc
+.project
+.settings
+.project
+.gradle
+.log

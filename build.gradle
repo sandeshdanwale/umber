@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()        
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-serving-web-content'
+    version =  '0.1.0'
+}
+
+jar {
+    baseName = 'gs-accessing-data-mongodb'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+bootRepackage.enabled = true;
+bootRun.enabled = true;
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources", "src/main/web"]
+        }
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.apache.cxf:cxf-rt-frontend-jaxws:3.0.1")
+    compile("org.apache.cxf:cxf-rt-transports-http:3.0.1")
+    compile("com.xebia:jackson-lombok:1.0") //project lombok json support
+	compile 'io.reactivex:rxjava:1.2.2'
+  	compile("org.projectlombok:lombok:1.16.6")
+
+    testCompile("junit:junit")
+}

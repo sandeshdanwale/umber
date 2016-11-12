@@ -1,0 +1,65 @@
+@import '../node_modules/@angular/material/core/theming/theming';
+@import '../node_modules@angular/material/core/theming/palette';
+@import '../node_modules/@angular/material/core/core';
+@import '../node_modules/@angular/material/button/button-theme';
+@import '../node_modules/@angular/material/button-toggle/button-toggle-theme';
+@import '../node_modules/@angular/material/card/card-theme';
+@import '../node_modules/@angular/material/checkbox/checkbox-theme';
+@import '../node_modules/@angular/material/grid-list/grid-list-theme';
+@import '../node_modules/@angular/material/icon/icon-theme';
+@import '../node_modules/@angular/material/input/input-theme';
+@import '../node_modules/@angular/material/list/list-theme';
+@import '../node_modules/@angular/material/menu/menu-theme';
+@import '../node_modules/@angular/material/progress-bar/progress-bar-theme';
+@import '../node_modules/@angular/material/progress-circle/progress-circle-theme';
+@import '../node_modules/@angular/material/radio/radio-theme';
+@import '../node_modules/@angular/material/sidenav/sidenav-theme';
+@import '../node_modules/@angular/material/slide-toggle/slide-toggle-theme';
+@import '../node_modules/@angular/material/slider/slider-theme';
+@import '../node_modules/@angular/material/tabs/tabs-theme';
+@import '../node_modules/@angular/material/toolbar/toolbar-theme';
+@import '../node_modules/@angular/material/tooltip/tooltip-theme';
+
+// NOTE: Theming is currently experimental and not yet publically released!
+
+@include md-core();
+
+// Mixin that captures themes for all of the components we use in our app.
+@mixin m2-app-components($theme) {
+ @include md-button-theme($theme);
+ @include md-button-toggle-theme($theme);
+ @include md-card-theme($theme);
+ @include md-checkbox-theme($theme);
+ @include md-grid-list-theme($theme);
+ @include md-icon-theme($theme);
+ @include md-input-theme($theme);
+ @include md-list-theme($theme);
+ @include md-menu-theme($theme);
+ @include md-progress-bar-theme($theme);
+ @include md-progress-circle-theme($theme);
+ @include md-radio-theme($theme);
+ @include md-sidenav-theme($theme);
+ @include md-slide-toggle-theme($theme);
+ @include md-slider-theme($theme);
+ @include md-tabs-theme($theme);
+ @include md-toolbar-theme($theme);
+ @include md-tooltip-theme($theme);
+}
+
+$primary: md-palette($md-deep-purple);
+$accent:  md-palette($md-amber, A200, A100, A400);
+$warn:    md-palette($md-red);
+
+$theme: md-light-theme($primary, $accent, $warn);
+
+@include m2-app-components($theme);
+
+.m2app-dark {
+  $dark-primary: md-palette($md-pink, 700, 500, 900);
+  $dark-accent:  md-palette($md-blue-grey, A200, A100, A400);
+  $dark-warn:    md-palette($md-deep-orange);
+
+  $dark-theme: md-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include m2-app-components($dark-theme);
+}

@@ -1,0 +1,7 @@
+<div class="main-menu">
+	<div class="controls">
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" (click)="setMode(action)" class="btn btn-default" *ngFor="let action of actions" [ngClass]="{'selected': cacheService.mode == action}">{{action}}</button>
+		</div>
+	</div>
+</div>

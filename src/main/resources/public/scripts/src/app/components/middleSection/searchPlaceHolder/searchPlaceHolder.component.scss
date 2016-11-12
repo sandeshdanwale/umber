@@ -1,0 +1,20 @@
+.search-place-holder {
+	.controls {
+		left: 30%;
+		position: relative;
+		margin-top: 20px;
+		height: 45px;
+		width: 600px;
+		.input-group {
+			.form-control {
+				height: 45px;
+			}
+			.input-group-addon {
+				color: #fff;
+			    background: rgba(0, 116, 228, 0.75);
+			    border: solid #fff;
+			    border-width: 1px;
+			}
+		}
+	}
+}
