@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'propertyCard',
@@ -7,10 +7,10 @@ import {Component} from '@angular/core';
 })
 export class PropertyCardComponent {
 
-	preference = {};
+	@Input() property;
+
 	constructor(
   	) {
-  		
   	}
 
   	public ngOnInit() {

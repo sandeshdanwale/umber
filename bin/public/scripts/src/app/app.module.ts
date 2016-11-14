@@ -7,6 +7,9 @@ import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/navbar/nav.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { PropertyCardCarouselComponent } from './components/bottomSection/property/propertyCardCarousel/propertyCardCarousel.component';
+import { PropertyCardComponent } from './components/bottomSection/property/propertyCard/propertyCard.component';
+
 
 import { HttpService } from './services/http.service'
 import { UserPreferenceService } from './services/userPreference.service'
@@ -15,7 +18,8 @@ import { UserPreferenceService } from './services/userPreference.service'
   declarations: [
     AppComponent,
     NavComponent,
-    BannerComponent
+    BannerComponent,
+    PropertyCardCarouselComponent
   ],
   imports: [
     BrowserModule,
