@@ -8,8 +8,9 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#00000000', GradientType=0);
     background-repeat: repeat-x;
     margin-top: -7px;
-    background-color: #7E4E20;
+    background-color: transparent;
     height: 52px;
+    font-size: 15px;
   .menu {
     a {
       margin-right: 5px;
@@ -22,13 +23,14 @@
     }
     li {
       &:hover {
-        color: #BFB285;
+        color: rgba(0, 116, 228, 0.75);
       }
       a {
         color: white;
-        &:hover, &:focus {
+        text-transform: uppercase;
+        &:hover, &:focus, &.selected {
           background-color: transparent;
-          color: #BFB285;
+          color: rgba(0, 116, 228, 0.75);
         }
       }
     }
@@ -43,9 +45,9 @@
         a {
           color: #311813;
           font-weight: 500;
-          &:hover, &:focus {
+          &:hover, &:focus, &.selected {
             background-color: transparent;
-            color: #BFB285;
+            color: rgba(0, 116, 228, 0.75);
             font-weight: 500;
           }
         }
@@ -55,7 +57,6 @@
 
   .download {
   	display: block;
-    left: 45%;
     position: relative;
     margin-top: -5px;
   }

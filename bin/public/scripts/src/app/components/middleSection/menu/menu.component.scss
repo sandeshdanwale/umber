@@ -1,0 +1,31 @@
+.main-menu {
+  margin-top: 100px;
+  .controls {
+    display: inline-block;
+    position: relative;
+    .btn-group {
+      .btn {
+        background: rgba(0,0,0,.5);
+        color: #fff;
+        border: solid rgba(255,255,255,.75);
+        border-width: 1px;
+        height: 45px;
+        width: 200px;
+        text-align: center;
+        position: static;
+        left: auto;
+        font-size: 16px;
+        font-weight: 200;
+        &:focus, &:active:focus, &.active:focus, &.focus, &:active.focus, &.active.focus {
+          outline: none;
+        }
+        &.selected {
+          color: #fff;
+          background: rgba(0,116,228,.75);
+          border: solid #fff;
+          border-width: 1px;
+        }
+      }
+    }
+  }
+}

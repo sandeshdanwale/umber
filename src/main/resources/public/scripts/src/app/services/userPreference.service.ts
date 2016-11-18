@@ -52,19 +52,7 @@ export class UserPreferenceService {
     	    data = res.json();
             return data;
         } catch (e) {
-            return {
-                primaryLocations: [
-                    "Mumbai",
-                    "Pune",
-                    "Bangalore",
-                    "Hyderabad"
-                ],
-                secondaryLocations: [
-                    "Nashik",
-                    "Delhi"
-                ],
-                selectedLocation: "Pune"
-            };
+            return {"primaryLocations":[{"locationId":{"registrationId":"1"},"rank":1,"name":"mumbai","primary":true},{"locationId":{"registrationId":"9"},"rank":9,"name":"pune","primary":true},{"locationId":{"registrationId":"3"},"rank":3,"name":"bangalore","primary":true},{"locationId":{"registrationId":"5"},"rank":5,"name":"hyderabad","primary":true}],"secondaryLocations":[{"locationId":{"registrationId":"26"},"rank":26,"name":"nashik","primary":false},{"locationId":{"registrationId":"2"},"rank":2,"name":"delhi","primary":false}],"selectedLocation":{"locationId":{"registrationId":"9"},"rank":9,"name":"pune","primary":true}};
         }
     	
   	}
@@ -79,20 +67,6 @@ export class UserPreferenceService {
 	      errMsg = error.message ? error.message : error.toString();
 	    }
 	    console.error(errMsg);
-	    //return Observable.throw(errMsg);
-	    let preference = {
-    		mainCities: [
-    			"Mumbai",
-    			"Pune",
-    			"Bangalore",
-    			"Hyderabad"
-    		],
-    		additionalCities: [
-    			"Nashik",
-    			"Delhi"
-    		],
-    		selectedCity: "Pune"
-    	}
-    	Observable.throw(preference);
+    	return Observable.throw(errMsg);
   	}
 }

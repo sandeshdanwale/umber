@@ -2,13 +2,13 @@ package com.umber.world.housing.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.umber.world.housing.domain.Location;
+import com.umber.world.housing.domain.aggregate.LocationId;
+
 import java.util.List;
 
-/**
- * Location Repository.
- */
-public interface LocationRepository extends MongoRepository<Location, Long> {
+public interface LocationRepository extends MongoRepository<Location, LocationId> {
 
     List<Location> findAll();
+    Location findByLocationId(LocationId locationId);
 }
 

@@ -3,6 +3,9 @@ package com.umber.world.housing.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.data.annotation.PersistenceConstructor;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -10,18 +13,14 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode
 @ToString
-public class Preference implements Serializable {
+@AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 
-	public Preference(List<String> primaryLocations, List<String> secondaryLocations, String selectedLocation) {
-		// TODO Auto-generated constructor stub
-		this.primaryLocations = primaryLocations;
-		this.secondaryLocations = secondaryLocations;
-		this.selectedLocation = selectedLocation;
-	}
-	private static final long serialVersionUID = -887391449558606307L;
+public class Preference implements Serializable {
 	
-    public List<String> primaryLocations;
-    public List<String> secondaryLocations;
-    public String selectedLocation;
+	private static final long serialVersionUID = 2158948254248065825L;
+	
+    public List<Location> primaryLocations;
+    public List<Location> secondaryLocations;
+    public Location selectedLocation;
 }
 

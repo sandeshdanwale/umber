@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {UserPreferenceService} from '../../services/userPreference.service'
 
 @Component({
-	selector: 'nav-bar',
+	selector: 'navbar',
 	templateUrl: 'nav.component.html',
 	styleUrls: ['nav.component.scss']
 })
