@@ -15,6 +15,9 @@ import { PropertyCardComponent } from './components/bottomSection/property/prope
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
 import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component'
+import { SearchOverlayComponent } from './components/search/searchOverlay/searchOverlay.component'
+import { SearchBoxComponent } from './components/search/searchBox/searchBox.component'
+
 
 import { HttpService } from './services/http.service';
 import { UserPreferenceService } from './services/userPreference.service';
@@ -34,7 +37,9 @@ import { CacheService } from './services/cache.service';
     PropertyCardComponent,
     MenuComponent,
     SearchPlaceHolderComponent,
-    FeaturedHeadingComponent
+    FeaturedHeadingComponent,
+    SearchOverlayComponent,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,
