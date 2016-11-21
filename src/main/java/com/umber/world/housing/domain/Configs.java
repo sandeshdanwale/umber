@@ -10,7 +10,7 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.umber.world.housing.domain.aggregate.Config;
-import com.umber.world.housing.domain.aggregate.PropertyId;
+import com.umber.world.housing.jackson.PropertyId;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

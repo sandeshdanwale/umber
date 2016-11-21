@@ -1,4 +1,4 @@
-package com.umber.world.housing.domain.aggregate;
+package com.umber.world.housing.jackson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

@@ -7,7 +7,7 @@ import org.springframework.data.annotation.AccessType.Type;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.umber.world.housing.domain.aggregate.LocationId;
+import com.umber.world.housing.jackson.LocationId;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

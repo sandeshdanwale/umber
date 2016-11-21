@@ -1,0 +1,25 @@
+db.developer.insert({"_id":{registrationId: '100'}, name: 'mahindra lifespaces', address: [{type: 'HOME', 'line1': 'ravet', city: 'pune', state: 'maharashtra', postalCode: '411035', country: 'india'}]})
+
+db.developer.insert({"_id":{registrationId: '101'}, name: 'matoshree infrastructure', address: [{type: 'HOME', 'line1': 'thane', city: 'mumbai', state: 'maharashtra', postalCode: '422035', country: 'india'}]})
+
+
+
+db.property.insert({"_id":{registrationId: '200'}, name: 'ekadanta sankul', address: [{type: 'HOME', 'line1': 'thane', city: 'mumbai', state: 'maharashtra', postalCode: '422035', country: 'india'}], description: 'luxury apartment', developerId: {registrationId: '100'}})
+
+db.property.insert({"_id":{registrationId: '201'}, name: 'shiva sankul', address: [{type: 'HOME', 'line1': 'thane', city: 'mumbai', state: 'maharashtra', postalCode: '422035', country: 'india'}], description: 'luxury apartment', developerId: {registrationId: '100'}})
+
+db.property.insert({"_id":{registrationId: '222'}, name: 'nature paradise', address: [{type: 'HOME', 'line1': 'ravet', city: 'pune', state: 'maharashtra', postalCode: '411035', country: 'india'}], description: 'luxury apartment', developerId: {registrationId: '101'}})
+
+db.property.insert({"_id":{registrationId: '223'}, name: 'tularam sankul', address: [{type: 'HOME', 'line1': 'ravet', city: 'pune', state: 'maharashtra', postalCode: '411035', country: 'india'}], description: 'luxury apartment', developerId: {registrationId: '101'}})
+
+
+
+db.configs.insert({configs: [{type: 'rowhouse', 'sqft': 2000, quantity: 10, posession: new Date(), basePrice: 6000000}, {type: '1bhk', 'sqft': 800, quantity: 10, posession: new Date(), basePrice: 2000000}, {type: '2bhk', 'sqft': 1200, quantity: 10, posession: new Date(), basePrice: 4000000}, {type: '3bhk', 'sqft': 1600, quantity: 10, posession: new Date(), basePrice: 3000000}], propertyId: {registrationId: '200'}})
+
+db.configs.insert({configs: [{type: '1bhk', 'sqft': 800, quantity: 10, posession: new Date(), basePrice: 2000000}, {type: '2bhk', 'sqft': 1200, quantity: 10, posession: new Date(), basePrice: 4000000}, {type: '3bhk', 'sqft': 1600, quantity: 10, posession: new Date(), basePrice: 3000000}], propertyId: {registrationId: '201'}})
+
+db.configs.insert({configs: [{type: '1bhk', 'sqft': 800, quantity: 10, posession: new Date(), basePrice: 2000000}, {type: '2bhk', 'sqft': 1200, quantity: 10, posession: new Date(), basePrice: 4000000}], propertyId: {registrationId: '222'}})
+
+db.configs.insert({configs: [{type: 'rowhouse', 'sqft': 1800, quantity: 10, posession: new Date(), basePrice: 6000000}, {type: '1bhk', 'sqft': 800, quantity: 10, posession: new Date(), basePrice: 2000000}, {type: '2bhk', 'sqft': 1200, quantity: 10, posession: new Date(), basePrice: 4000000}, {type: '3bhk', 'sqft': 1600, quantity: 10, posession: new Date(), basePrice: 3000000}], propertyId: {registrationId: '223'}})
+
+

@@ -1,15 +1,21 @@
 package com.umber.world.housing.config;
 
 
+import java.util.List;
+
 import org.springframework.context.ApplicationListener;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.resource.VersionResourceResolver;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Configuration
@@ -20,6 +26,12 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Appl
     public void addViewControllers(ViewControllerRegistry registry) {
     	registry.addViewController("/").setViewName("index");    	 
     	registry.addViewController("/index").setViewName("index");
+	}
+	
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		ObjectMapper mapper = Jackson2ObjectMapperBuilder.json().defaultViewInclusion(true).build();
+		converters.add(new MappingJackson2HttpMessageConverter(mapper));
 	}
     
 	@Override

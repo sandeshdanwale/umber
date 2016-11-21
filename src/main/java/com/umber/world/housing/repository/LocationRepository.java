@@ -2,7 +2,7 @@ package com.umber.world.housing.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.umber.world.housing.domain.Location;
-import com.umber.world.housing.domain.aggregate.LocationId;
+import com.umber.world.housing.jackson.LocationId;
 
 import java.util.List;
 

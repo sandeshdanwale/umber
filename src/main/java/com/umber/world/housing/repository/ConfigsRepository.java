@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.umber.world.housing.domain.Configs;
-import com.umber.world.housing.domain.aggregate.PropertyId;
+import com.umber.world.housing.jackson.PropertyId;
 
 /**
  * Location Repository.
