@@ -42,6 +42,10 @@ repositories {
 		       
     }
 
+springBoot {
+    executable = true
+}
+
 bootRepackage.enabled = true;
 bootRun.enabled = true;
 
