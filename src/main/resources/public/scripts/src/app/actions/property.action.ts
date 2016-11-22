@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Property } from '../models/aggregate/property.model';
-import { type } from '../../util';
+import { type } from '../util';
 
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Property] Load Success'),

@@ -27724,8 +27724,8 @@ var UserPreferenceService = (function () {
         //return new Promise<void>((resolve, reject) => {
         var url = this.BASE_URL + "/userPreference?userId=null";
         return this.http.get(url)
-            .map(this.extractData)
-            .catch(this.handleError);
+            .map(this.extractData);
+        //.catch(this.handleError);
         /*.subscribe(res => {
             let preference;
             try {
@@ -27751,13 +27751,12 @@ var UserPreferenceService = (function () {
     };
     UserPreferenceService.prototype.extractData = function (res) {
         var data;
-        try {
-            data = res.json();
-            return data;
-        }
-        catch (e) {
-            return { "primaryLocations": [{ "locationId": { "registrationId": "1" }, "rank": 1, "name": "mumbai", "primary": true }, { "locationId": { "registrationId": "9" }, "rank": 9, "name": "pune", "primary": true }, { "locationId": { "registrationId": "3" }, "rank": 3, "name": "bangalore", "primary": true }, { "locationId": { "registrationId": "5" }, "rank": 5, "name": "hyderabad", "primary": true }], "secondaryLocations": [{ "locationId": { "registrationId": "26" }, "rank": 26, "name": "nashik", "primary": false }, { "locationId": { "registrationId": "2" }, "rank": 2, "name": "delhi", "primary": false }], "selectedLocation": { "locationId": { "registrationId": "9" }, "rank": 9, "name": "pune", "primary": true } };
-        }
+        // try {
+        //  data = res.json();
+        //     return data;
+        // } catch (e) {
+        return { "primaryLocations": [{ "locationId": { "registrationId": "1" }, "rank": 1, "name": "mumbai", "primary": true }, { "locationId": { "registrationId": "9" }, "rank": 9, "name": "pune", "primary": true }, { "locationId": { "registrationId": "3" }, "rank": 3, "name": "bangalore", "primary": true }, { "locationId": { "registrationId": "5" }, "rank": 5, "name": "hyderabad", "primary": true }], "secondaryLocations": [{ "locationId": { "registrationId": "26" }, "rank": 26, "name": "nashik", "primary": false }, { "locationId": { "registrationId": "2" }, "rank": 2, "name": "delhi", "primary": false }], "selectedLocation": { "locationId": { "registrationId": "9" }, "rank": 9, "name": "pune", "primary": true } };
+        //}
     };
     UserPreferenceService.prototype.handleError = function (error) {
         var errMsg;
@@ -66939,7 +66938,7 @@ module.exports = "<banner></banner>\n<overlappingSection></overlappingSection>"
 /* 718 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"home-page-banner\">\n\t<navbar></navbar>\n\t<menu-bar></menu-bar>\n\t<search-place-holder></search-place-holder>\n\t<featured-heading></featured-heading>\n\t<overlappingSection></overlappingSection>\n</div>"
+module.exports = "<div class=\"home-page-banner\">\n\t<navbar></navbar>\n\t<menu-bar></menu-bar>\n\t<search-place-holder></search-place-holder>\n\t<featured-heading></featured-heading>\n</div>"
 
 /***/ },
 /* 719 */

@@ -14,7 +14,19 @@ export class LocationId implements AggregateId {
   }
 }
 
-export class PorpertyId implements AggregateId {
+export class DetailId implements AggregateId {
+  public identifier: number;
+
+  constructor(id: number) {
+    this.identifier = id;
+  }
+
+  public asString(): string {
+    return this.identifier.toString();
+  }
+}
+
+export class PropertyId implements AggregateId {
 
   public identifier: number;
 

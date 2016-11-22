@@ -1,18 +1,18 @@
 import { Action } from '@ngrx/store';
-import { Developer } from '../models/aggregate/developer.model';
+import { Ui } from '../models/aggregate/ui.model';
 import { type } from '../util';
 
 export const ActionTypes = {
-  LOAD_SUCCESS: type('[Developer] Load Success'),
-  EVENT: type('[Developer] Event'),
-  COMMAND: type('[Developer] Command'),
-  UPDATE: type('[Developer] Update')
+  LOAD_SUCCESS: type('[Ui] Load Success'),
+  EVENT: type('[Ui] Event'),
+  COMMAND: type('[Ui] Command'),
+  UPDATE: type('[Ui] Update')
 };
 
 export class LoadSuccessAction implements Action {
   type = ActionTypes.LOAD_SUCCESS;
 
-  constructor(public payload: Developer[]) {
+  constructor(public payload: Ui[]) {
 
   }
 }
@@ -20,7 +20,7 @@ export class LoadSuccessAction implements Action {
 export class EventAction implements Action {
   type = ActionTypes.EVENT;
 
-  constructor(public payload: Developer[]) {
+  constructor(public payload: Ui[]) {
 
   }
 }
@@ -28,7 +28,7 @@ export class EventAction implements Action {
 export class CommandAction implements Action {
   type = ActionTypes.COMMAND;
 
-  constructor(public payload: Developer[]) {
+  constructor(public payload: Ui[]) {
 
   }
 }
@@ -36,7 +36,7 @@ export class CommandAction implements Action {
 export class UpdateAction implements Action {
   type = ActionTypes.UPDATE;
 
-  constructor(public payload: Developer[]) {
+  constructor(public payload: Ui[]) {
 
   }
 }

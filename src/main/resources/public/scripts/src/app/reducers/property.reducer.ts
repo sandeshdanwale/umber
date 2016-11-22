@@ -1,10 +1,10 @@
-import { Developer } from '../models/aggregate/property.model';
+import { Property } from '../models/aggregate/property.model';
 import * as property from '../actions/property.action';
 import { Observable } from 'rxjs';
 
 export interface State {
   loaded: boolean;
-  entities: Location[];
+  entities: Property[];
 };
 
 const initialState: State = {
@@ -25,7 +25,3 @@ export function reducer(state = initialState, action: property.Actions): State {
   }
 
 };
-
-export function getPropertyEntities(state$: Observable<State>) {
-  return state$.select(state => state.entities);
-}

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Location } from '../models/aggregate/location.model';
-import { type } from '../../util';
+import { type } from '../util';
 
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Location] Load Success'),

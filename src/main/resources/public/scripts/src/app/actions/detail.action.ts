@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Detail } from '../models/aggregate/detail.model';
-import { type } from '../../util';
+import { type } from '../util';
 
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Detail] Load Success'),

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 export interface State {
   loaded: boolean;
-  entities: Location[];
+  entities: Detail[];
 };
 
 const initialState: State = {
@@ -25,7 +25,3 @@ export function reducer(state = initialState, action: detail.Actions): State {
   }
 
 };
-
-export function getDetailEntities(state$: Observable<State>) {
-  return state$.select(state => state.entities);
-}

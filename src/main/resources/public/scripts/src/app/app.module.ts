@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
+import { DBModule, Database } from '@ngrx/db';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/navbar/nav.component';
@@ -18,7 +20,7 @@ import { FeaturedHeadingComponent } from './components/middleSection/featuredHea
 import { SearchOverlayComponent } from './components/search/searchOverlay/searchOverlay.component'
 import { SearchBoxComponent } from './components/search/searchBox/searchBox.component'
 
-
+import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
 import { UserPreferenceService } from './services/userPreference.service';
 import { DeveloperService } from './services/developer.service';
@@ -45,7 +47,8 @@ import { CacheService } from './services/cache.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    StoreModule.provideStore(reducer)
   ],
   providers: [HttpService, UserPreferenceService, DeveloperService, CacheService, PropertyService],
   bootstrap: [AppComponent]
