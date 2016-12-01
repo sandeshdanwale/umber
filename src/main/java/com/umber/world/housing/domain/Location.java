@@ -28,5 +28,6 @@ public class Location implements Serializable {
     public Integer rank;
     public String name;
     public Boolean primary;
+    public Boolean featured;
     
 }

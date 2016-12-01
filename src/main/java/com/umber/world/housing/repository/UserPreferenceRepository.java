@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.umber.world.housing.domain.UserPreference;
 
 /**
- * Location Repository.
+ * User Preference Repository.
  */
 public interface UserPreferenceRepository extends MongoRepository<UserPreference, Long> {
 

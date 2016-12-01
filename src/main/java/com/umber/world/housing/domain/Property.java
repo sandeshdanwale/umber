@@ -32,6 +32,7 @@ public class Property implements Serializable {
 	public String name;
 	public String description;
 	public Set<Address> addresses;
+	public Boolean featured;
     
 }
 

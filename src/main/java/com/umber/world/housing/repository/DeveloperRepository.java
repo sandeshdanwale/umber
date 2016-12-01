@@ -6,12 +6,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.umber.world.housing.domain.aggregate.DeveloperId;
 import com.umber.world.housing.domain.Developer;
-import com.umber.world.housing.domain.Property;
 
 public interface DeveloperRepository extends MongoRepository<Developer, DeveloperId> {
 
     List<Developer> findAll();
-    Property findByDeveloperId(DeveloperId developerId);
+    Developer findByDeveloperId(DeveloperId developerId);
+    List<Developer> findByFeatured(Boolean featured);
     
 }
 

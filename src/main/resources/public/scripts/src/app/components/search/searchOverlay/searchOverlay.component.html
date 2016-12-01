@@ -1,5 +1,7 @@
-<div class="search-overlay">
+<div class="search-overlay" [ngClass]="{'displayNone': !isSearchOverlayOpen()}">
+	<i class="fa fa-times fa-lg close-search-overlay" (click)="closeSearchOverlay()" aria-hidden="true"></i>
 	<div class="search-container">
 		<search-box></search-box>
+		<result-container></result-container>
 	</div>
 </div>

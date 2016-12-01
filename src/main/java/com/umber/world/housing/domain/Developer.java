@@ -28,6 +28,7 @@ public class Developer implements Serializable {
     public DeveloperId developerId;
 	public String name;
 	public String description;
+	public Boolean featured;
 	public Set<Address> addresses;
     
 }

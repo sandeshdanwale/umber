@@ -74,7 +74,8 @@ dependencies {
     compile("org.apache.cxf:cxf-rt-transports-http:3.0.1")
     compile("com.xebia:jackson-lombok:1.0") //project lombok json support
   	compile("org.projectlombok:lombok:1.16.6")
-  	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.5")
+  	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.6")
+	compile("com.fasterxml.jackson.module:jackson-module-parameter-names:2.6.6")
   	compile("io.reactivex:rxjava:1.2.2")
 
     testCompile("junit:junit")

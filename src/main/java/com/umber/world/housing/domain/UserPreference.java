@@ -13,6 +13,8 @@ import com.umber.world.housing.jackson.LocationId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @AccessType(Type.FIELD)
@@ -20,6 +22,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @Document
+@Getter
+@Setter
 @AllArgsConstructor(onConstructor = @__(@PersistenceConstructor))
 public class UserPreference implements Serializable {
 	

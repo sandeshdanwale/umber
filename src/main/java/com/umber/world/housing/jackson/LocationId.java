@@ -10,6 +10,8 @@ import com.umber.world.housing.domain.aggregate.AggregateId;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
 import org.springframework.data.annotation.PersistenceConstructor;
 
 @Getter
@@ -17,6 +19,7 @@ import org.springframework.data.annotation.PersistenceConstructor;
 @JsonSerialize
 @JsonDeserialize
 @EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = false)
 public final class LocationId extends AggregateId{
 
 	private static final long serialVersionUID = -925210535511442453L;
@@ -24,10 +27,5 @@ public final class LocationId extends AggregateId{
 	@NotNull
 	@Valid
 	private final String registrationId;
-
-	@Override
-	public String toString() {
-		return registrationId;
-	}
 
 }

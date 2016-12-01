@@ -1,6 +1,7 @@
 package com.umber.world.housing.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.umber.world.housing.domain.Location;
 import com.umber.world.housing.jackson.LocationId;
 import com.umber.world.housing.jackson.View;
 
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @ToString
 public final class UmberLocation implements  Serializable {
 	
-	private static final long serialVersionUID = 6796088788624484437L;
+	private static final long serialVersionUID = -2532035355651155142L;
 
 	@JsonView(View.Render.class)
     private LocationId locationId;
@@ -26,6 +27,17 @@ public final class UmberLocation implements  Serializable {
     
     @JsonView(View.Render.class)
     private Boolean primary;
+    
+    @JsonView(View.Render.class)
+    private Boolean featured;
+    
+    public UmberLocation(Location location) {
+    	this.locationId = location.locationId;
+    	this.name = location.name;
+    	this.rank = location.rank;
+    	this.primary = location.primary;
+    	this.featured = location.featured;
+    }
 
 }
 

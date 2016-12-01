@@ -11,6 +11,7 @@ public interface PropertyRepository extends MongoRepository<Property, PropertyId
 
     List<Property> findAll();
     Property findByPropertyId(PropertyId propertyId);
+    List<Property> findByFeatured(Boolean featured);
     
 }
 

@@ -24,4 +24,8 @@ export function reducer(state = initialState, action: property.Actions): State {
       return state;
   }
 
-};
+}
+
+export function getPropertyEntities(state$: Observable<State>) {
+  return state$.select(state => state.entities);
+}

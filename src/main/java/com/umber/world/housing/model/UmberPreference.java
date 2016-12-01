@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public final class UmberPreference implements Serializable {
 	
-	private static final long serialVersionUID = -6291427391956422170L;
+	private static final long serialVersionUID = -1054348482419559666L;
 
 	@JsonView(View.Details.class)
 	private String userId;

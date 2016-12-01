@@ -1,0 +1,6 @@
+<div class="property-list">
+	<div class="category-header">{{header}}</div>
+	<div class="list">
+		<div *ngFor="let property of (properties | async)">{{property.name}}</div>
+	</div>
+</div>

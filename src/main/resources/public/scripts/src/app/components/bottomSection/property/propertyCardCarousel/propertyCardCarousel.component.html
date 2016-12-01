@@ -1,5 +1,5 @@
 <div class="property-card-carousel">
-	<div *ngFor="let property of featuredProperties">
+	<div *ngFor="let property of featuredProperties | async">
 		<propertyCard [property]="property"></propertyCard>
 	</div>
 </div>
