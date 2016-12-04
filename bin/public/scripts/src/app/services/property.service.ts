@@ -1,5 +1,9 @@
 import {Injectable, Component} from '@angular/core'
+import { Store } from '@ngrx/store';
 import {HttpService} from './http.service'
+import { Http, URLSearchParams } from '@angular/http';
+import * as fromRoot from '../reducers';
+import {Property} from '../models/aggregate/property.model';
 import {Observable} from 'rxjs/Observable';
 import {Response} from '@angular/http';
 
@@ -7,35 +11,30 @@ import {Response} from '@angular/http';
 export class PropertyService {
 
 	BASE_URL: string = location.hostname === 'localhost' ? '' : '';
-
+    property: Observable<Property[]>;
     constructor(
-        private http: HttpService
+        private http: HttpService,
+        private store: Store<fromRoot.State>
     ) {
-        
+        this.property = store.let(fromRoot.getPropertyEntities);
+    }
+
+    public getPropertyDetails(id: string): Observable<any> {
+        let url: string = `${this.BASE_URL}/property/details/${id}`; 
+        return this.http.get(url)
+                .map(this.extractData)
     }
 
     public getFeaturedProperties(): Observable<any> {
 
 
-        let url: string = `${this.BASE_URL}/userPreference`; 
-        //featuredProperties;
+        let url: string = `${this.BASE_URL}/property/featuredProperties`; 
         return this.http.get(url)
         		.map(this.extractData)
                 //.catch(this.handleError);
     }
 
     private extractData(res: Response) {
-        return [{
-                    propertyName: "shiv",
-                    desc: "Largest and only backward integrated real estate player in the country, Sobha Limited is a big name in the construction industry ..."
-                }, {
-                    propertyName: "mahindra",
-                    desc: "Largest and only backward integrated real estate player in the country, Sobha Limited is a big name in the construction industry ..."
-                }, {
-                    propertyName: "sobha",
-                    desc: "Largest and only backward integrated real estate player in the country, Sobha Limited is a big name in the construction industry ..."
-                }]
-        /*
         let data;
         try {
     	    data = res.json();
@@ -52,7 +51,6 @@ export class PropertyService {
                     desc: "Largest and only backward integrated real estate player in the country, Sobha Limited is a big name in the construction industry ..."
                 }]
         }
-    	*/
   	}
 
   	private handleError (error: Response | any) {

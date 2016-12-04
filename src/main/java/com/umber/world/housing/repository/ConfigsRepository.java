@@ -12,7 +12,7 @@ import com.umber.world.housing.jackson.PropertyId;
  */
 public interface ConfigsRepository extends MongoRepository<Configs, String> {
 
-    List<Configs> findByPropertyId(PropertyId propertyId);
+    Configs findByPropertyId(PropertyId propertyId);
     
 }
 

@@ -1,25 +1,38 @@
 import {Injectable, Component} from '@angular/core'
 import {HttpService} from './http.service'
 import {Observable} from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
+import {Developer} from '../models/aggregate/developer.model';
 import {Response} from '@angular/http';
 
 @Injectable()
 export class DeveloperService {
 
 	BASE_URL: string = location.hostname === 'localhost' ? '' : '';
-
+    developer: Observable<Developer[]>;
     constructor(
-        private http: HttpService
+        private http: HttpService,
+        private store: Store<fromRoot.State>
     ) {
-        
+        this.developer = store.let(fromRoot.getDeveloperEntities);
     }
 
     public getTopDevelopers(): Observable<any> {
 
 
-        let url: string = `${this.BASE_URL}/topDevelopers`;
+        let url: string = `${this.BASE_URL}/developer/topDevelopers`;
         return this.http.get(url)
         		.map(this.extractData)
+                .catch(this.handleError);
+    }
+
+    public getFeaturedDevelopers(): Observable<any> {
+
+
+        let url: string = `${this.BASE_URL}/developer/featuredDevelopers`;
+        return this.http.get(url)
+                .map(this.extractData)
                 .catch(this.handleError);
     }
 

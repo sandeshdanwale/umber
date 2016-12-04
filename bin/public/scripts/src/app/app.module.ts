@@ -19,12 +19,25 @@ import { SearchPlaceHolderComponent } from './components/middleSection/searchPla
 import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component'
 import { SearchOverlayComponent } from './components/search/searchOverlay/searchOverlay.component'
 import { SearchBoxComponent } from './components/search/searchBox/searchBox.component'
+import { ModalsComponent } from './modals/modals.component';
+import { ResultContainerComponent } from './components/search/result/resultContainer/resultContainer.component';
+import { ResultDetailsComponent } from './components/search/result/details/resultDetails/resultDetails.component';
+import { ResultListComponent } from './components/search/result/list/resultList/resultList.component';
+import { LocationListComponent } from './components/search/result/list/locationList/locationList.component';
+import { DeveloperListComponent } from './components/search/result/list/developerList/developerList.component';
+import { PropertyListComponent } from './components/search/result/list/propertyList/propertyList.component';
+import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
+import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
+import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
 
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
 import { UserPreferenceService } from './services/userPreference.service';
 import { DeveloperService } from './services/developer.service';
 import { PropertyService } from './services/property.service';
+import { LocationService } from './services/location.service';
+import { UiService } from './services/ui.service';
+import { AggregationService } from './services/aggregation.service';
 import { CacheService } from './services/cache.service';
 
 @NgModule({
@@ -41,7 +54,17 @@ import { CacheService } from './services/cache.service';
     SearchPlaceHolderComponent,
     FeaturedHeadingComponent,
     SearchOverlayComponent,
-    SearchBoxComponent
+    SearchBoxComponent,
+    ModalsComponent,
+    ResultContainerComponent,
+    ResultDetailsComponent,
+    ResultListComponent,
+    DeveloperListComponent,
+    PropertyListComponent,
+    LocationListComponent,
+    PropertyDetailsComponent,
+    LocationDetailsComponent,
+    DeveloperDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +73,8 @@ import { CacheService } from './services/cache.service';
     MaterialModule.forRoot(),
     StoreModule.provideStore(reducer)
   ],
-  providers: [HttpService, UserPreferenceService, DeveloperService, CacheService, PropertyService],
+  providers: [HttpService, UserPreferenceService, DeveloperService, LocationService,
+  AggregationService, CacheService, PropertyService, UiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

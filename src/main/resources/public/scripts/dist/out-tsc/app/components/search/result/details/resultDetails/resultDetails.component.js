@@ -7,12 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SearchDetailPanel } from '../../../../../models/aggregate/ui.model';
 export var ResultDetailsComponent = (function () {
     function ResultDetailsComponent() {
     }
     ResultDetailsComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        Input(), 
+        __metadata('design:type', SearchDetailPanel)
+    ], ResultDetailsComponent.prototype, "activeSearchDetailPanel", void 0);
     ResultDetailsComponent = __decorate([
         Component({
             selector: 'result-details',

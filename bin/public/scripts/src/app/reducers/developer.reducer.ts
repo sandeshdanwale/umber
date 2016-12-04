@@ -14,6 +14,12 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: developer.Actions): State {
   switch (action.type) {
+    case developer.ActionTypes.LOAD:
+      console.log('STORE:umber.developer/DEVELOPER_LOADED');
+      return {
+        loaded: true,
+        entities: action.payload
+      };
     case developer.ActionTypes.LOAD_SUCCESS:
       console.log('STORE:umber.developer/DEVELOPER_LOADED');
       return {
@@ -24,4 +30,8 @@ export function reducer(state = initialState, action: developer.Actions): State 
       return state;
   }
 
-};
+}
+
+export function getDeveloperEntities(state$: Observable<State>) {
+  return state$.select(state => state.entities);
+}

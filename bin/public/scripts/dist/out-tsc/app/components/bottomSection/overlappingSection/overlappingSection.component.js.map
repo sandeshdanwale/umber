@@ -1,0 +1,1 @@
+{"version":3,"file":"overlappingSection.component.js","sourceRoot":"","sources":["overlappingSection.component.ts"],"names":[],"mappings":";;;;;;;;;OAAO,EAAC,SAAS,EAAC,MAAM,eAAe;AAOvC;IAEC;IAGE,CAAC;IAEM,8CAAQ,GAAf;IACA,CAAC;IAbJ;QAAC,SAAS,CAAC;YACV,QAAQ,EAAE,oBAAoB;YAC9B,WAAW,EAAE,mCAAmC;YAChD,SAAS,EAAE,CAAC,mCAAmC,CAAC;SAChD,CAAC;;mCAAA;IAUF,kCAAC;AAAD,CAAC,AATD,IASC"}

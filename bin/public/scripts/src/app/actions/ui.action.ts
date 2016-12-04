@@ -1,26 +1,26 @@
 import { Action } from '@ngrx/store';
-import { Ui } from '../models/aggregate/ui.model';
+import { Panel} from '../models/aggregate/ui.model';
 import { type } from '../util';
 
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Ui] Load Success'),
-  EVENT: type('[Ui] Event'),
+  LOAD: type('[Ui] Load'),
   COMMAND: type('[Ui] Command'),
-  UPDATE: type('[Ui] Update')
+  PANEL: type('[UI] Panel')
 };
 
 export class LoadSuccessAction implements Action {
   type = ActionTypes.LOAD_SUCCESS;
 
-  constructor(public payload: Ui[]) {
+  constructor(public payload: Array<Panel>) {
 
   }
 }
 
-export class EventAction implements Action {
-  type = ActionTypes.EVENT;
+export class LoadAction implements Action {
+  type = ActionTypes.LOAD;
 
-  constructor(public payload: Ui[]) {
+  constructor(public payload: Array<Panel>) {
 
   }
 }
@@ -28,17 +28,17 @@ export class EventAction implements Action {
 export class CommandAction implements Action {
   type = ActionTypes.COMMAND;
 
-  constructor(public payload: Ui[]) {
+  constructor(public payload: Array<Panel>) {
 
   }
 }
 
-export class UpdateAction implements Action {
-  type = ActionTypes.UPDATE;
+export class PanelAction implements Action {
+  type = ActionTypes.PANEL;
 
-  constructor(public payload: Ui[]) {
+  constructor(public payload: Array<Panel>) {
 
   }
 }
 
-export type Actions = LoadSuccessAction | EventAction | CommandAction | UpdateAction;
+export type Actions = LoadSuccessAction | LoadAction | CommandAction | PanelAction;

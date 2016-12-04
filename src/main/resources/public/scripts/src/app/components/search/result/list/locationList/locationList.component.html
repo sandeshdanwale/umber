@@ -1,6 +1,6 @@
 <div class="location-list">
 	<div class="category-header">{{header}}</div>
 	<div class="list">
-		<div *ngFor="let location of (locations | async)">{{location.name}}</div>
+		<div class="list-item" *ngFor="let location of locations">{{location.name}}</div>
 	</div>
 </div>

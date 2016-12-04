@@ -9,7 +9,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@EqualsAndHashCode(of = "locationId")
+@EqualsAndHashCode(of = "id")
 @Getter
 @ToString
 public final class UmberLocation implements  Serializable {
@@ -17,7 +17,7 @@ public final class UmberLocation implements  Serializable {
 	private static final long serialVersionUID = -2532035355651155142L;
 
 	@JsonView(View.Render.class)
-    private LocationId locationId;
+    private LocationId id;
 
     @JsonView(View.Details.class)
     private Integer rank;
@@ -32,7 +32,7 @@ public final class UmberLocation implements  Serializable {
     private Boolean featured;
     
     public UmberLocation(Location location) {
-    	this.locationId = location.locationId;
+    	this.id = location.locationId;
     	this.name = location.name;
     	this.rank = location.rank;
     	this.primary = location.primary;

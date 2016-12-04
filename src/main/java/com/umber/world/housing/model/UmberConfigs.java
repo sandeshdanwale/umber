@@ -1,7 +1,9 @@
 package com.umber.world.housing.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.umber.world.housing.domain.Configs;
 import com.umber.world.housing.domain.aggregate.Config;
+import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.jackson.View;
 
 import lombok.*;
@@ -20,9 +22,15 @@ public final class UmberConfigs implements  Serializable {
     private String configId;
 
     @JsonView(View.Details.class)
-    private String propertyId;
+    private PropertyId propertyId;
 
     @JsonView(View.Render.class)
     private List<Config> configs;
+    
+    public UmberConfigs(Configs configs) {
+    	this.configId = configs.id;
+    	this.propertyId = configs.propertyId;
+    	this.configs = configs.configs;
+    }
 
 }

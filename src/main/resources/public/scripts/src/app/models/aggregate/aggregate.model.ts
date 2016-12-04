@@ -3,52 +3,52 @@ export interface AggregateId {
 }
 
 export class LocationId implements AggregateId {
-  public identifier: number;
+  public registrationId: string;
 
-  constructor(id: number) {
-    this.identifier = id;
+  constructor(registrationId: string) {
+    this.registrationId = registrationId;
   }
 
   public asString(): string {
-    return this.identifier.toString();
+    return this.registrationId.toString();
   }
 }
 
 export class DetailId implements AggregateId {
-  public identifier: number;
+  public registrationId: string;
 
-  constructor(id: number) {
-    this.identifier = id;
+  constructor(registrationId: string) {
+    this.registrationId = registrationId;
   }
 
   public asString(): string {
-    return this.identifier.toString();
+    return this.registrationId.toString();
   }
 }
 
 export class PropertyId implements AggregateId {
 
-  public identifier: number;
+  public registrationId: string;
 
-  constructor(id: number) {
-    this.identifier = id;
+  constructor(registrationId: string) {
+    this.registrationId = registrationId;
   }
 
   public asString(): string {
-    return this.identifier.toString();
+    return this.registrationId.toString();
   }
 }
 
 export class DeveloperId implements AggregateId {
 
-  public identifier: number;
+  public registrationId: string;
 
-  constructor(id: number) {
-    this.identifier = id;
+  constructor(registrationId: string) {
+    this.registrationId = registrationId;
   }
 
   public asString(): string {
-    return this.identifier.toString();
+    return this.registrationId.toString();
   }
 }
 

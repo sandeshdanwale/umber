@@ -10,16 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { HttpService } from './http.service';
+import { PropertyService } from './property.service';
 import * as fromRoot from '../reducers';
 import * as ui from '../actions/ui.action';
-import { Panel } from '../models/aggregate/ui.model';
+import * as property from '../actions/property.action';
+import { Panel, SearchDetailPanel } from '../models/aggregate/ui.model';
 export var UiService = (function () {
-    function UiService(http, store) {
+    function UiService(http, propertyService, store) {
         this.http = http;
+        this.propertyService = propertyService;
         this.store = store;
         this.BASE_URL = location.hostname === 'localhost' ? '' : '';
         this.activePanels = store.let(fromRoot.getActivePanels);
+        this.activeSearchDetailPanel = store.let(fromRoot.getActiveSearchDetailPanel);
     }
+    UiService.prototype.updateSearchDetailPanel = function (id, context) {
+        var _this = this;
+        if (context === 'property') {
+            this.propertyService.getPropertyDetails(id)
+                .subscribe(function (data) {
+                var searchDetailPanel = new SearchDetailPanel('property', data.id.identifier);
+                _this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+                _this.store.dispatch(new property.UpdatePropertyDetail(data));
+            });
+        }
+    };
     UiService.prototype.loadSearchOverlay = function () {
         var activePanels = [];
         activePanels.push(new Panel('main'));
@@ -33,7 +48,7 @@ export var UiService = (function () {
     };
     UiService = __decorate([
         Injectable(), 
-        __metadata('design:paramtypes', [HttpService, Store])
+        __metadata('design:paramtypes', [HttpService, PropertyService, Store])
     ], UiService);
     return UiService;
 }());

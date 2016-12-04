@@ -1,3 +1,21 @@
 .search-box {
-	
+	input {
+	    zoom: 150%;
+	    border-bottom-color: grey;
+	    border-bottom-style: solid;
+	    border-bottom-width: 1px;
+	    color: black;
+	    border-top: none;
+	    box-shadow: none;
+	    border-left: none;
+	    border-bottom-right-radius: 0px;
+	    border-bottom-left-radius: 0px;
+	    font-weight: 600;
+	    font-size: 20px;
+	}
+	.input-group-addon {
+		background: rgba(0, 116, 228, 0.75);
+	    padding-left: 30px;
+	    padding-right: 30px;
+	}
 }

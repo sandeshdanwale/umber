@@ -26,6 +26,9 @@ import { ResultListComponent } from './components/search/result/list/resultList/
 import { LocationListComponent } from './components/search/result/list/locationList/locationList.component';
 import { DeveloperListComponent } from './components/search/result/list/developerList/developerList.component';
 import { PropertyListComponent } from './components/search/result/list/propertyList/propertyList.component';
+import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
+import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
+import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
 
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
@@ -58,7 +61,10 @@ import { CacheService } from './services/cache.service';
     ResultListComponent,
     DeveloperListComponent,
     PropertyListComponent,
-    LocationListComponent
+    LocationListComponent,
+    PropertyDetailsComponent,
+    LocationDetailsComponent,
+    DeveloperDetailsComponent
   ],
   imports: [
     BrowserModule,

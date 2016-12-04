@@ -1,4 +1,7 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import { UiService } from '../../../services/ui.service';
+import { Panel } from '../../../models/aggregate/ui.model';
 
 @Component({
 	selector: 'search-place-holder',
@@ -7,11 +10,15 @@ import {Component} from '@angular/core';
 })
 export class SearchPlaceHolderComponent {
 
-	constructor(
-  	) {
-  	}
+	activePanels: Observable<Panel[]>;
 
-  	public ngOnInit() {
+  constructor(
+    private uiService: UiService
+    ) {
+      this.activePanels = this.uiService.activePanels;
+    }
 
+  	public OpenSearchOverlay() {
+  		this.uiService.loadSearchOverlay();
   	}
 }

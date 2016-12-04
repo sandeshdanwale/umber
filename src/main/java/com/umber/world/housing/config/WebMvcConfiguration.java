@@ -75,10 +75,10 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Appl
 	    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 	        converters.add(mappingJackson2HttpMessageConverter);
 	    }
-	    
+	    /*
 	    @Override
 	    public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
 	        returnValueHandlers.add(new SingleReturnValueHandler());
 	    }
-
+	     */
 }

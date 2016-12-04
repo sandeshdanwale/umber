@@ -1,6 +1,7 @@
 import { Property } from '../models/aggregate/property.model';
 import * as property from '../actions/property.action';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 
 export interface State {
   loaded: boolean;
@@ -19,6 +20,12 @@ export function reducer(state = initialState, action: property.Actions): State {
       return {
         loaded: true,
         entities: action.payload
+      };
+    case property.ActionTypes.UPDATE_PROPERTY_DETAIL:
+      console.log('STORE:umber.property/UPDATE_PROPERTY_DETAIL');
+      return {
+        loaded: true,
+        entities: _.differenceBy(state.entities, [action.payload], (p) => p.id.registrationId).concat(action.payload)
       };
     default:
       return state;

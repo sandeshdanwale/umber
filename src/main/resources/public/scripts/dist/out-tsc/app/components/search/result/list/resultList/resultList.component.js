@@ -8,8 +8,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { PropertyService } from '../../../../../services/property.service';
 export var ResultListComponent = (function () {
-    function ResultListComponent() {
+    function ResultListComponent(propertyService) {
+        this.propertyService = propertyService;
+        this.properties = this.propertyService.property;
+        this.locations = this.propertyService.property;
+        this.developers = this.propertyService.property;
     }
     ResultListComponent.prototype.ngOnInit = function () {
     };
@@ -19,7 +24,7 @@ export var ResultListComponent = (function () {
             templateUrl: 'resultList.component.html',
             styleUrls: ['resultList.component.scss']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [PropertyService])
     ], ResultListComponent);
     return ResultListComponent;
 }());

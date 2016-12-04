@@ -4,9 +4,8 @@ import { type } from '../util';
 
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Developer] Load Success'),
-  EVENT: type('[Developer] Event'),
-  COMMAND: type('[Developer] Command'),
-  UPDATE: type('[Developer] Update')
+  LOAD: type('[Developer] Load'),
+  COMMAND: type('[Developer] Command')
 };
 
 export class LoadSuccessAction implements Action {
@@ -17,8 +16,8 @@ export class LoadSuccessAction implements Action {
   }
 }
 
-export class EventAction implements Action {
-  type = ActionTypes.EVENT;
+export class LoadAction implements Action {
+  type = ActionTypes.LOAD;
 
   constructor(public payload: Developer[]) {
 
@@ -33,12 +32,4 @@ export class CommandAction implements Action {
   }
 }
 
-export class UpdateAction implements Action {
-  type = ActionTypes.UPDATE;
-
-  constructor(public payload: Developer[]) {
-
-  }
-}
-
-export type Actions = LoadSuccessAction | EventAction | CommandAction | UpdateAction;
+export type Actions = LoadSuccessAction | LoadAction | CommandAction;

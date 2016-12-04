@@ -29,6 +29,13 @@ import { SearchBoxComponent } from './components/search/searchBox/searchBox.comp
 import { ModalsComponent } from './modals/modals.component';
 import { ResultContainerComponent } from './components/search/result/resultContainer/resultContainer.component';
 import { ResultDetailsComponent } from './components/search/result/details/resultDetails/resultDetails.component';
+import { ResultListComponent } from './components/search/result/list/resultList/resultList.component';
+import { LocationListComponent } from './components/search/result/list/locationList/locationList.component';
+import { DeveloperListComponent } from './components/search/result/list/developerList/developerList.component';
+import { PropertyListComponent } from './components/search/result/list/propertyList/propertyList.component';
+import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
+import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
+import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
 import { UserPreferenceService } from './services/userPreference.service';
@@ -59,7 +66,14 @@ export var AppModule = (function () {
                 SearchBoxComponent,
                 ModalsComponent,
                 ResultContainerComponent,
-                ResultDetailsComponent
+                ResultDetailsComponent,
+                ResultListComponent,
+                DeveloperListComponent,
+                PropertyListComponent,
+                LocationListComponent,
+                PropertyDetailsComponent,
+                LocationDetailsComponent,
+                DeveloperDetailsComponent
             ],
             imports: [
                 BrowserModule,

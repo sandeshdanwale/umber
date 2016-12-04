@@ -14,8 +14,8 @@ import org.springframework.data.annotation.PersistenceConstructor;
 
 @Getter
 @RequiredArgsConstructor(onConstructor = @__(@PersistenceConstructor))
-@JsonSerialize(using = PropertyIdSerializer.class)
-@JsonDeserialize(using = PropertyIdDeserializer.class)
+@JsonSerialize
+@JsonDeserialize
 @EqualsAndHashCode(callSuper = false)
 public final class PropertyId extends AggregateId{
 

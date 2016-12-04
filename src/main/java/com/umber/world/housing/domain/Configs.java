@@ -1,7 +1,7 @@
 package com.umber.world.housing.domain;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.data.annotation.AccessType;
 import org.springframework.data.annotation.AccessType.Type;
@@ -28,10 +28,10 @@ public class Configs implements Serializable {
 	private static final long serialVersionUID = -7623551129914768993L;
 
 	@Id
-	private String id;
+	public String id;
     
-	private PropertyId propertyId;
-	private Set<Config> configs;
+	public PropertyId propertyId;
+	public List<Config> configs;
     
     
 }

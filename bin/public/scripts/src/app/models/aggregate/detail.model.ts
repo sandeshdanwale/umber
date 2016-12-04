@@ -1,10 +1,10 @@
-import { DetailId, AggregateRoot } from './aggregate-id.model';
+import { LocationId, AggregateRoot, Address } from './aggregate.model';
 
-export class Detail implements AggregateRoot<DetailId> {
-  id: DetailId;
+export class Detail implements AggregateRoot<LocationId> {
+  id: LocationId;
 
   constructor(data: any) {
-    this.id = new DetailId(data.id);
+    this.id = new LocationId(data.id);
   }
 
 }

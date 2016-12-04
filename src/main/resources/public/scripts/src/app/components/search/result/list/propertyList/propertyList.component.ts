@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
-import { PropertyService } from '../../../../../services/property.service';
-import { Observable } from 'rxjs/Observable';
+import { Component, Input } from '@angular/core';
+import { UiService } from '../../../../../services/ui.service';
 import { Property } from '../../../../../models/aggregate/property.model';
 
 @Component({
@@ -9,17 +8,21 @@ import { Property } from '../../../../../models/aggregate/property.model';
 	styleUrls: ['propertyList.component.scss']
 })
 export class PropertyListComponent {
-
 	
-	properties: Observable<Property[]>;
+	@Input() properties: Property[];
 	header: string;
+  context: string;
 	constructor(
-		private propertyService: PropertyService
+    private uiService: UiService
   	) {
-  		this.properties = this.propertyService.property;
   		this.header = "Featured Properties";
+      this.context = 'property';
   	}
 
   	public ngOnInit() {
+  	}
+
+  	public updatePropertyDetailPanel(property: Property) {
+  		this.uiService.updateSearchDetailPanel(property.id.registrationId, this.context);
   	}
 }

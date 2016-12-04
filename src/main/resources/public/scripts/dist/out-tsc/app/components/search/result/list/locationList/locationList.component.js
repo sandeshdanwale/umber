@@ -7,12 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 export var LocationListComponent = (function () {
     function LocationListComponent() {
+        this.header = "Popular Localities";
+        this.context = 'location';
     }
     LocationListComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], LocationListComponent.prototype, "locations", void 0);
     LocationListComponent = __decorate([
         Component({
             selector: 'location-list',

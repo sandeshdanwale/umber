@@ -5,7 +5,8 @@ import { type } from '../util';
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Property] Load Success'),
   LOAD: type('[Property] Load'),
-  COMMAND: type('[Property] Command')
+  COMMAND: type('[Property] Command'),
+  UPDATE_PROPERTY_DETAIL: type('[Property] Update Property Detail')
 };
 
 export class LoadSuccessAction implements Action {
@@ -24,6 +25,14 @@ export class LoadAction implements Action {
   }
 }
 
+export class UpdatePropertyDetail implements Action {
+  type = ActionTypes.UPDATE_PROPERTY_DETAIL;
+
+  constructor(public payload: Property) {
+
+  }
+}
+
 export class CommandAction implements Action {
   type = ActionTypes.COMMAND;
 
@@ -32,4 +41,4 @@ export class CommandAction implements Action {
   }
 }
 
-export type Actions = LoadSuccessAction | LoadAction | CommandAction;
+export type Actions = LoadSuccessAction | LoadAction | CommandAction | UpdatePropertyDetail;

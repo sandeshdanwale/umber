@@ -24,4 +24,8 @@ export function reducer(state = initialState, action: location.Actions): State {
       return state;
   }
 
-};
+}
+
+export function getLocationEntities(state$: Observable<State>) {
+  return state$.select(state => state.entities);
+}

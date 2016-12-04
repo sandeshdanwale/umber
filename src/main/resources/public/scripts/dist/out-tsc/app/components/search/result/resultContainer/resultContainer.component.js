@@ -8,18 +8,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { UiService } from '../../../../services/ui.service';
 export var ResultContainerComponent = (function () {
-    function ResultContainerComponent() {
+    function ResultContainerComponent(uiService) {
+        this.uiService = uiService;
+        this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
     }
-    ResultContainerComponent.prototype.ngOnInit = function () {
-    };
     ResultContainerComponent = __decorate([
         Component({
             selector: 'result-container',
             templateUrl: 'resultContainer.component.html',
             styleUrls: ['resultContainer.component.scss']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [UiService])
     ], ResultContainerComponent);
     return ResultContainerComponent;
 }());

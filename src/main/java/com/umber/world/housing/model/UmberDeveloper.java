@@ -11,7 +11,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@EqualsAndHashCode(of = "developerId")
+@EqualsAndHashCode(of = "id")
 @Getter
 @ToString
 public final class UmberDeveloper implements  Serializable {
@@ -19,7 +19,7 @@ public final class UmberDeveloper implements  Serializable {
 	private static final long serialVersionUID = 1287016213393448863L;
 
 	@JsonView(View.Render.class)
-    private DeveloperId developerId;
+    private DeveloperId id;
 
     @JsonView(View.Details.class)
     private String name;
@@ -34,7 +34,7 @@ public final class UmberDeveloper implements  Serializable {
     private Set<Address> addresses;
     
     public UmberDeveloper(Developer developer) {
-    	this.developerId = developer.developerId;
+    	this.id = developer.developerId;
     	this.name = developer.name;
     	this.description = developer.description;
     	this.featured = developer.featured;

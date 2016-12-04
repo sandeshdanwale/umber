@@ -4,6 +4,13 @@ export var Panel = (function () {
     }
     return Panel;
 }());
+export var SearchDetailPanel = (function () {
+    function SearchDetailPanel(name, entityId) {
+        this.name = name;
+        this.entityId = entityId;
+    }
+    return SearchDetailPanel;
+}());
 /*
 export class Ui implements IUi{
     panels: Array<Panel>;

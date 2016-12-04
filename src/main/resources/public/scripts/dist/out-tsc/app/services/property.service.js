@@ -19,6 +19,11 @@ export var PropertyService = (function () {
         this.BASE_URL = location.hostname === 'localhost' ? '' : '';
         this.property = store.let(fromRoot.getPropertyEntities);
     }
+    PropertyService.prototype.getPropertyDetails = function (id) {
+        var url = this.BASE_URL + "/property/details/" + id;
+        return this.http.get(url)
+            .map(this.extractData);
+    };
     PropertyService.prototype.getFeaturedProperties = function () {
         var url = this.BASE_URL + "/property/featuredProperties";
         return this.http.get(url)
