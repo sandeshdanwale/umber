@@ -1,0 +1,34 @@
+db.developer.createIndex(
+	{
+    	name: "text",
+    	address: "text"
+    },
+    { 
+    	name: "DeveloperTextIndex"
+	}
+)
+
+db.location.createIndex(
+	{
+    	name: "text"
+    },
+    {
+    	name: "LocationTextIndex"
+	}
+)
+db.property.createIndex(
+	{
+    	name: "text",
+    	address: "text"
+    },
+    { 
+    	name: "PropertyTextIndex"
+	}
+)
+db.developer.find( { $text: { 
+	$search: "coffee" ,
+    $language: "en",
+    $caseSensitive: false,
+    $diacriticSensitive: false
+	} 
+} )

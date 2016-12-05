@@ -1,6 +1,6 @@
 <div class="location-list">
 	<div class="category-header">{{header}}</div>
 	<div class="list">
-		<div class="list-item" *ngFor="let location of locations">{{location.name}}</div>
+		<div class="list-item" *ngFor="let location of locations" (mouseover)="updateLocationDetailPanel(location)" (click)="updateLocationDetailPanel(location)">{{location.name}}</div>
 	</div>
 </div>

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.umber.world.housing.domain.aggregate.DeveloperId;
+import com.umber.world.housing.jackson.LocationId;
 import com.umber.world.housing.model.UmberDeveloper;
+import com.umber.world.housing.model.UmberLocation;
 import com.umber.world.housing.repository.DeveloperRepository;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +29,13 @@ public class DeveloperServiceImpl implements DeveloperService {
 						.collect(Collectors.toList()));
 		return umberDevelopers.subscribeOn(Schedulers.io());
 				
+	}
+	
+	@Override
+	public Single<UmberDeveloper> findDetailsByDeveloperId(DeveloperId developerId) {
+		return Single.just(developerRepository.findByDeveloperId(developerId))
+				.map(l -> new UmberDeveloper(l))
+				.subscribeOn(Schedulers.io());
 	}
 
 	@Override

@@ -11,5 +11,6 @@ public interface DeveloperService {
 	
 	Single<List<UmberDeveloper>> findAll();
     Single<UmberDeveloper> findByDeveloperId(DeveloperId developerId);
+    Single<UmberDeveloper> findDetailsByDeveloperId(DeveloperId developerId);
     Single<List<UmberDeveloper>> findByFeatured(Boolean featured);
 }

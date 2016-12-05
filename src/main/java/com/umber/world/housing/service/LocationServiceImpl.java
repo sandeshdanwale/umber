@@ -6,8 +6,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.umber.world.housing.domain.Configs;
+import com.umber.world.housing.domain.Property;
 import com.umber.world.housing.jackson.LocationId;
+import com.umber.world.housing.jackson.PropertyId;
+import com.umber.world.housing.model.UmberConfigs;
 import com.umber.world.housing.model.UmberLocation;
+import com.umber.world.housing.model.UmberProperty;
 import com.umber.world.housing.repository.LocationRepository;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +32,13 @@ public class LocationServiceImpl implements LocationService {
 						.collect(Collectors.toList()));
 		return umberLocations.subscribeOn(Schedulers.io());
 				
+	}
+	
+	@Override
+	public Single<UmberLocation> findDetailsByLocationId(LocationId locationId) {
+		return Single.just(locationRepository.findByLocationId(locationId))
+				.map(l -> new UmberLocation(l))
+				.subscribeOn(Schedulers.io());
 	}
 
 	@Override

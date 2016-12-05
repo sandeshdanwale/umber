@@ -11,6 +11,7 @@ public interface LocationService {
 	
 	Single<List<UmberLocation>> findAll();
     Single<UmberLocation> findByLocationId(LocationId locationId);
+    Single<UmberLocation> findDetailsByLocationId(LocationId locationId);
     Single<List<UmberLocation>> findByFeatured(Boolean featured);
 }
 

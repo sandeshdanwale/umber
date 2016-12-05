@@ -30,6 +30,8 @@ import { PropertyDetailsComponent } from './components/search/result/details/pro
 import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
 import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
 
+import { OrderByPipe } from './pipes/orderBy.pipe';
+
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
 import { UserPreferenceService } from './services/userPreference.service';
@@ -64,7 +66,8 @@ import { CacheService } from './services/cache.service';
     LocationListComponent,
     PropertyDetailsComponent,
     LocationDetailsComponent,
-    DeveloperDetailsComponent
+    DeveloperDetailsComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
