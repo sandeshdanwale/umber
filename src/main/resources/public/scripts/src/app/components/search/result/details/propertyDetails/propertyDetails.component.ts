@@ -39,7 +39,9 @@ export class PropertyDetailsComponent implements OnInit {
 
     private getDisplayAddress() {
       let address = _.head(_.filter(this.property.addresses, (p) => p.type.toString() === 'HOME'));
-      if (address) {
+      return address.city;
+
+      /*if (address) {
         let lines = '';
         lines = !address.line1 ? lines : lines ? lines + ', ' + address.line1 : address.line1;
         lines = !address.line2 ? lines : lines ? lines + ', ' + address.line2 : address.line2;
@@ -48,6 +50,6 @@ export class PropertyDetailsComponent implements OnInit {
         let txt = lines + ', ' + address.city + ', ' + address.state;
         return txt.length > 35 ? txt.slice(0, 35) + ' ...' : txt;
       }
-      return '';
+      return '';*/
     }
 }
