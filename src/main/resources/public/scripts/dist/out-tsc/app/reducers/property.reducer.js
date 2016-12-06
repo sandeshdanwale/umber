@@ -18,7 +18,7 @@ export function reducer(state, action) {
             console.log('STORE:umber.property/UPDATE_PROPERTY_DETAIL');
             return {
                 loaded: true,
-                entities: _.differenceBy(state.entities, action.payload, function (p) { return p.id.registrationId; }).concat(action.payload)
+                entities: _.differenceBy(state.entities, [action.payload], function (p) { return p.id.registrationId; }).concat(action.payload)
             };
         default:
             return state;

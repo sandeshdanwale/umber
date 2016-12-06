@@ -1,8 +1,18 @@
 <div class="property-details">
-	<div class="property-img"></div>
+	<div class="property-img" [style.background-image]="style"></div>
 	<div class="property-info">
 		<div class="property-title">{{property && property.name}}</div>
-		<div class="property-config">{{property && property.description}}</div>
-		<div class="property-location">{{property && property.address}}</div>
+		<div class="property-developer">
+			<span>{{"By "}}</span>
+			<span class="developer-name">{{property && property.developerName}}</span>
+		</div>
+		<div class="property-configs">
+			<span *ngIf="config['1bhk']">{{"1, "}}</span>
+			<span *ngIf="config['2bhk']">{{"2, "}}</span>
+			<span *ngIf="config['3bhk']">{{"3, "}}</span>
+			<span>{{" Apatrments}}</span>
+			<span *ngIf="config['rowhouse']">{{", Row Houses"}}</span>
+		</div>
+		<div class="property-location">{{displayAddress}}</div>
 	</div>
 </div>

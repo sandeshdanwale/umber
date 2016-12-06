@@ -7,12 +7,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SearchDetailPanel } from '../../../../../models/aggregate/ui.model';
+import * as _ from 'lodash';
 export var LocationDetailsComponent = (function () {
     function LocationDetailsComponent() {
     }
     LocationDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log(this.locations);
+        this.location = _.head(_.filter(this.locations, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
     };
+    LocationDetailsComponent.prototype.ngOnChanges = function () {
+        var _this = this;
+        console.log('changes');
+        this.location = _.head(_.filter(this.locations, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+    };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], LocationDetailsComponent.prototype, "locations", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', SearchDetailPanel)
+    ], LocationDetailsComponent.prototype, "activeSearchDetailPanel", void 0);
     LocationDetailsComponent = __decorate([
         Component({
             selector: 'location-details',

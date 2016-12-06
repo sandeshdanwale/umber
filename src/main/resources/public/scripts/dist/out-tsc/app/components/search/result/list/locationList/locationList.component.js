@@ -8,12 +8,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, Input } from '@angular/core';
+import { UiService } from '../../../../../services/ui.service';
 export var LocationListComponent = (function () {
-    function LocationListComponent() {
+    function LocationListComponent(uiService) {
+        this.uiService = uiService;
         this.header = "Popular Localities";
         this.context = 'location';
     }
     LocationListComponent.prototype.ngOnInit = function () {
+    };
+    LocationListComponent.prototype.updateLocationDetailPanel = function (location) {
+        this.uiService.updateSearchDetailPanel(location.id.registrationId, this.context);
     };
     __decorate([
         Input(), 
@@ -25,7 +30,7 @@ export var LocationListComponent = (function () {
             templateUrl: 'locationList.component.html',
             styleUrls: ['locationList.component.scss']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [UiService])
     ], LocationListComponent);
     return LocationListComponent;
 }());

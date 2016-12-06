@@ -7,12 +7,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SearchDetailPanel } from '../../../../../models/aggregate/ui.model';
+import * as _ from 'lodash';
 export var DeveloperDetailsComponent = (function () {
     function DeveloperDetailsComponent() {
     }
     DeveloperDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log(this.developers);
+        this.developer = _.head(_.filter(this.developers, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
     };
+    DeveloperDetailsComponent.prototype.ngOnChanges = function () {
+        var _this = this;
+        console.log('changes');
+        this.developer = _.head(_.filter(this.developers, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+    };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], DeveloperDetailsComponent.prototype, "developers", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', SearchDetailPanel)
+    ], DeveloperDetailsComponent.prototype, "activeSearchDetailPanel", void 0);
     DeveloperDetailsComponent = __decorate([
         Component({
             selector: 'developer-details',

@@ -13,11 +13,24 @@ export var ResultDetailsComponent = (function () {
     function ResultDetailsComponent() {
     }
     ResultDetailsComponent.prototype.ngOnInit = function () {
+        console.log('resultdetails');
     };
     __decorate([
         Input(), 
         __metadata('design:type', SearchDetailPanel)
     ], ResultDetailsComponent.prototype, "activeSearchDetailPanel", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultDetailsComponent.prototype, "properties", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultDetailsComponent.prototype, "locations", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultDetailsComponent.prototype, "developers", void 0);
     ResultDetailsComponent = __decorate([
         Component({
             selector: 'result-details',

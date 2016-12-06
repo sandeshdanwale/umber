@@ -1,2 +1,24 @@
 .property-details {
+	.property-img {
+		width: 100%;
+		height: 250px;
+	}
+	.property-title {
+		margin-top: 10px;
+		font-weight: 600;
+		margin-top: 5px;
+		width: 203px;
+		font-size: 18px;
+		text-align: left;
+		text-transform: uppercase;
+	}
+	.property-info {
+		.property-location, .property-developer, .developer-name {
+			margin-top: 10px;
+			color: grey;
+    		font-size: 14px;
+			text-align: left;
+		    text-transform: capitalize;
+		}
+	}
 }

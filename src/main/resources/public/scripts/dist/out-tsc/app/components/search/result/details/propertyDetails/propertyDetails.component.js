@@ -7,12 +7,42 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SearchDetailPanel } from '../../../../../models/aggregate/ui.model';
+import * as _ from 'lodash';
 export var PropertyDetailsComponent = (function () {
     function PropertyDetailsComponent() {
     }
     PropertyDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log(this.properties);
+        this.property = _.head(_.filter(this.properties, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+        this.address =
+            this.style = 'url(/assets/images/logo.jpg)';
     };
+    PropertyDetailsComponent.prototype.ngOnChanges = function () {
+        var _this = this;
+        console.log('changes');
+        this.property = _.head(_.filter(this.properties, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+        this.address = _.head(_.filter(this.property.addresses, function (p) { return p.type.toString() === 'HOME'; }));
+        this.style = 'url(/assets/images/logo.jpg)';
+    };
+    PropertyDetailsComponent.prototype.getDisplayAddress = function () {
+        var address = _.head(_.filter(this.property.addresses, function (p) { return p.type.toString() === 'HOME'; }));
+        if (address) {
+            var lines = '';
+            lines = lines ? lines + ' ' + address.line1 : address.line1;
+            lines = lines ? lines + ' ' + address.line1 : address.line1;
+        }
+    };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], PropertyDetailsComponent.prototype, "properties", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', SearchDetailPanel)
+    ], PropertyDetailsComponent.prototype, "activeSearchDetailPanel", void 0);
     PropertyDetailsComponent = __decorate([
         Component({
             selector: 'property-details',

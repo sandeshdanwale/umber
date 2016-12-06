@@ -9,9 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { UiService } from '../../../../services/ui.service';
+import { PropertyService } from '../../../../services/property.service';
+import { LocationService } from '../../../../services/location.service';
+import { DeveloperService } from '../../../../services/developer.service';
 export var ResultContainerComponent = (function () {
-    function ResultContainerComponent(uiService) {
+    function ResultContainerComponent(propertyService, locationService, developerService, uiService) {
+        this.propertyService = propertyService;
+        this.locationService = locationService;
+        this.developerService = developerService;
         this.uiService = uiService;
+        this.properties = this.propertyService.property;
+        this.locations = this.locationService.location;
+        this.developers = this.developerService.developer;
         this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
     }
     ResultContainerComponent = __decorate([
@@ -20,7 +29,7 @@ export var ResultContainerComponent = (function () {
             templateUrl: 'resultContainer.component.html',
             styleUrls: ['resultContainer.component.scss']
         }), 
-        __metadata('design:paramtypes', [UiService])
+        __metadata('design:paramtypes', [PropertyService, LocationService, DeveloperService, UiService])
     ], ResultContainerComponent);
     return ResultContainerComponent;
 }());

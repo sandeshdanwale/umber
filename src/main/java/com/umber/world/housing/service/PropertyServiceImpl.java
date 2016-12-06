@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 import com.umber.world.housing.model.UmberConfigs;
 import com.umber.world.housing.model.UmberAmenities;
 import com.umber.world.housing.domain.Configs;
+import com.umber.world.housing.domain.Developer;
 import com.umber.world.housing.domain.Property;
 import com.umber.world.housing.domain.aggregate.Config;
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
 import com.umber.world.housing.repository.AmenitiesRepository;
 import com.umber.world.housing.repository.ConfigsRepository;
+import com.umber.world.housing.repository.DeveloperRepository;
 import com.umber.world.housing.repository.PropertyRepository;
 
 import lombok.AllArgsConstructor;
@@ -29,12 +31,13 @@ public class PropertyServiceImpl implements PropertyService {
 	private PropertyRepository propertyRepository;
 	private ConfigsRepository configsRepository;
 	private AmenitiesRepository amenitiesRepository;
+	private DeveloperRepository developerRepository;
 
 	@Override
 	public Single<List<UmberProperty>> findAll() {
 		
 		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findAll()
-				.stream().map(d -> new UmberProperty(d, null, null))
+				.stream().map(d -> new UmberProperty(d))
 						.collect(Collectors.toList()));
 		return umberProperties.subscribeOn(Schedulers.io());
 				
@@ -46,7 +49,8 @@ public class PropertyServiceImpl implements PropertyService {
 		Single<Configs> configs = Single.just(configsRepository.findByPropertyId(propertyId));
 		return Single.zip(property, configs, (p, c) -> {
 			UmberConfigs u = new UmberConfigs(c);
-			return new UmberProperty(p, u, null);
+			Developer developer = developerRepository.findByDeveloperId(p.developerId);
+			return new UmberProperty(p, u, null, developer.getName());
 		}).subscribeOn(Schedulers.io());
 	}
 
@@ -73,13 +77,13 @@ public class PropertyServiceImpl implements PropertyService {
 	*/
 	@Override
 	public Single<UmberProperty> findByPropertyId(PropertyId propertyId) {
-		return Single.just(new UmberProperty(propertyRepository.findByPropertyId(propertyId), null, null));
+		return Single.just(new UmberProperty(propertyRepository.findByPropertyId(propertyId)));
 	}
 
 	@Override
 	public Single<List<UmberProperty>> findByFeatured(Boolean featured) {
 		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByFeatured(featured)
-				.stream().map(d -> new UmberProperty(d, null, null))
+				.stream().map(d -> new UmberProperty(d))
 						.collect(Collectors.toList()));
 		return umberProperties.subscribeOn(Schedulers.io());
 	}

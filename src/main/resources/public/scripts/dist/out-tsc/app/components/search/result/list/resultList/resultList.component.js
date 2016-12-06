@@ -7,24 +7,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { PropertyService } from '../../../../../services/property.service';
+import { Component, Input } from '@angular/core';
 export var ResultListComponent = (function () {
-    function ResultListComponent(propertyService) {
-        this.propertyService = propertyService;
-        this.properties = this.propertyService.property;
-        this.locations = this.propertyService.property;
-        this.developers = this.propertyService.property;
+    function ResultListComponent() {
     }
     ResultListComponent.prototype.ngOnInit = function () {
+        console.log('list');
     };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultListComponent.prototype, "properties", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultListComponent.prototype, "locations", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultListComponent.prototype, "developers", void 0);
     ResultListComponent = __decorate([
         Component({
             selector: 'result-list',
             templateUrl: 'resultList.component.html',
             styleUrls: ['resultList.component.scss']
         }), 
-        __metadata('design:paramtypes', [PropertyService])
+        __metadata('design:paramtypes', [])
     ], ResultListComponent);
     return ResultListComponent;
 }());

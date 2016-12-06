@@ -1,0 +1,219 @@
+Collections that need data
+
+customer
+developer
+location
+property
+configs
+
+Location - 
+
+{
+	"_id" : {
+		"registrationId" : "1"
+	},
+	"rank" : 1,
+	"name" : "mumbai",
+	"primary" : true,
+	"featured" : true
+}
+
+
+Developer - 
+{
+	"_id" : {
+		"registrationId" : "100" 
+	},
+	"name" : "mahindra lifespaces",
+	"address" : [
+		{
+			"type" : "HOME",
+			"line1" : "ravet",
+			"city" : "pune",
+			"state" : "maharashtra",
+			"postalCode" : "411035",
+			"country" : "india"
+		}
+	],
+	"featured" : true
+}
+
+Property - 
+{
+	"_id" : {
+		"registrationId" : "200"
+	},
+	"name" : "ekadanta sankul",
+	"description" : "Largest and only backward integrated real estate player in the country, a big name in the construction industry ...",
+	"developerId" : {
+		"registrationId" : "100"
+	},
+	"addresses" : [
+		{
+			"type" : "HOME",
+			"line1" : "thane",
+			"city" : "mumbai",
+			"state" : "maharashtra",
+			"postalCode" : "422035",
+			"country" : "india"
+		}
+	],
+	"featured" : true
+}
+
+Configs - 
+{
+	"configs" : [
+		{
+			"type" : "rowhouse",
+			"sqft" : 2000,
+			"quantity" : 10,
+			"posession" : ISODate("2016-11-18T04:43:25.156Z"),
+			"basePrice" : 6000000
+		},
+		{
+			"type" : "1bhk",
+			"sqft" : 800,
+			"quantity" : 10,
+			"posession" : ISODate("2016-11-18T04:43:25.156Z"),
+			"basePrice" : 2000000
+		},
+		{
+			"type" : "2bhk",
+			"sqft" : 1200,
+			"quantity" : 10,
+			"posession" : ISODate("2016-11-18T04:43:25.156Z"),
+			"basePrice" : 4000000
+		},
+		{
+			"type" : "3bhk",
+			"sqft" : 1600,
+			"quantity" : 10,
+			"posession" : ISODate("2016-11-18T04:43:25.156Z"),
+			"basePrice" : 3000000
+		}
+	],
+	"propertyId" : {
+		"registrationId" : "200"
+	}
+}
+
+Amenities - 
+{
+	"propertyId" : {
+		"registrationId" : "200"
+	},
+	amenities: [
+		{
+			type: 'project',
+			features: [
+				{
+					entity: 'landscapedGarden',
+					specification: true
+				},
+				{
+					entity: 'lift',
+					specification: true
+				}
+			]
+
+		},
+		{
+			type: 'flat',
+			features: [
+				{
+					entity: 'window',
+					specification: 'life size'
+				}
+			]
+
+		},
+		{
+			type: 'floorings',
+			features: [
+				{
+					entity: 'balcony',
+					specification: 'standard'
+				},
+				{
+					entity: 'kitchen',
+					specification: 'vitrified tiles'
+				},
+				{
+					entity: 'living',
+					specification: 'vitrified tiles'
+				},
+				{
+					entity: 'dinning',
+					specification: 'vitrified tiles'
+				},
+				{
+					entity: 'masterBedroom',
+					specification: 'vitrified tiles'
+				},
+				{
+					entity: 'otherBedroom',
+					specification: 'vitrified tiles'
+				},
+				{
+					entity: 'toilet',
+					specification: 'anti skid tiles'
+				}
+			]
+
+		},
+		{
+			type: 'fittings',
+			features: [
+				{
+					entity: 'doors',
+					specification: 'laminated'
+				},
+				{
+					entity: 'electrical',
+					specification: 'standard'
+				},
+				{
+					entity: 'kitchen',
+					specification: 'granite'
+				},
+				{
+					entity: 'window',
+					specification: 'powder coat'
+				},
+				{
+					entity: 'toilet',
+					specification: 'cp'
+				},
+				{
+					entity: 'others',
+					specification: 'standard'
+				}
+			]
+
+		},
+		{
+			type: 'walls',
+			features: [
+				{
+					entity: 'exterior',
+					specification: 'weather shield'
+				},
+				{
+					entity: 'interior',
+					specification: 'obd'
+				},
+				{
+					entity: 'kitchen',
+					specification: 'standard'
+				},
+				{
+					entity: 'toilet',
+					specification: 'standard'
+				}
+			]
+
+		}
+	]
+}
+

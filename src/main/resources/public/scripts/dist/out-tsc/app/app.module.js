@@ -36,6 +36,7 @@ import { PropertyListComponent } from './components/search/result/list/propertyL
 import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
 import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
 import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
+import { OrderByPipe } from './pipes/orderBy.pipe';
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
 import { UserPreferenceService } from './services/userPreference.service';
@@ -73,7 +74,8 @@ export var AppModule = (function () {
                 LocationListComponent,
                 PropertyDetailsComponent,
                 LocationDetailsComponent,
-                DeveloperDetailsComponent
+                DeveloperDetailsComponent,
+                OrderByPipe
             ],
             imports: [
                 BrowserModule,
