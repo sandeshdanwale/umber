@@ -1,14 +1,20 @@
 <div class="property-details">
 	<div class="property-img" [style.background-image]="style"></div>
-	<div class="property-info">
-		<div class="property-title">{{property && property.name}}</div>
+	<div class="property-info-left">
+		<div class="property-title">{{displayPropertyName}}</div>
 		<div class="property-developer">
 			<span>{{"By "}}</span>
-			<span class="developer-name">{{property && property.developerName}}</span>
+			<span class="developer-name">{{displayDeveloperName}}</span>
 		</div>
 		<div class="property-configs">
-			
+			<span>{{displayConfigs}}</span>
 		</div>
 		<div class="property-location">{{displayAddress}}</div>
+	</div>
+	<div class="property-info-right">
+		<div class="property-price">
+			<i class="fa fa-inr" aria-hidden="true"></i>
+			<span class="price">{{displayPrice}}</span>
+		</div> 
 	</div>
 </div>

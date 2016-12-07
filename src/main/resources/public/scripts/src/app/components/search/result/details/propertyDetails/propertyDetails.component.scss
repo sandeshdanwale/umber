@@ -12,13 +12,20 @@
 		text-align: left;
 		text-transform: uppercase;
 	}
-	.property-info {
-		.property-location, .property-developer, .developer-name {
+	.property-info-left {
+		float: left;
+    	width: 70%;
+		.property-location, .property-developer, .developer-name, .property-configs {
 			margin-top: 10px;
 			color: grey;
     		font-size: 14px;
 			text-align: left;
 		    text-transform: capitalize;
 		}
+	}
+	.property-info-right {
+		float: right;
+    	width: 30%;
+    	margin-top: 10px;
 	}
 }

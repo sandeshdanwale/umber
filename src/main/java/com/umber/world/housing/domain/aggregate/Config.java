@@ -17,7 +17,7 @@ public class Config implements Serializable {
 	private Integer sqft;
 	private Integer quantity;
 	private LocalDateTime posession;
-	private Double BasePrice;
+	private Double basePrice;
     
 }
 
