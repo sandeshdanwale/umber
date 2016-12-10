@@ -7,19 +7,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { UiService } from '../../../../../services/ui.service';
 export var PropertyListComponent = (function () {
-    function PropertyListComponent() {
+    function PropertyListComponent(uiService) {
+        this.uiService = uiService;
+        this.header = "Featured Properties";
+        this.context = 'property';
     }
     PropertyListComponent.prototype.ngOnInit = function () {
     };
+    PropertyListComponent.prototype.updatePropertyDetailPanel = function (property) {
+        this.uiService.updateSearchDetailPanel(property.id.registrationId, this.context);
+    };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], PropertyListComponent.prototype, "properties", void 0);
     PropertyListComponent = __decorate([
         Component({
             selector: 'property-list',
             templateUrl: 'propertyList.component.html',
             styleUrls: ['propertyList.component.scss']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [UiService])
     ], PropertyListComponent);
     return PropertyListComponent;
 }());

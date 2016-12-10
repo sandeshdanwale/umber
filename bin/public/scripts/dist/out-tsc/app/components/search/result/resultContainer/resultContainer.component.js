@@ -8,18 +8,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { UiService } from '../../../../services/ui.service';
+import { PropertyService } from '../../../../services/property.service';
+import { LocationService } from '../../../../services/location.service';
+import { DeveloperService } from '../../../../services/developer.service';
 export var ResultContainerComponent = (function () {
-    function ResultContainerComponent() {
+    function ResultContainerComponent(propertyService, locationService, developerService, uiService) {
+        this.propertyService = propertyService;
+        this.locationService = locationService;
+        this.developerService = developerService;
+        this.uiService = uiService;
+        this.properties = this.propertyService.property;
+        this.locations = this.locationService.location;
+        this.developers = this.developerService.developer;
+        this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
     }
-    ResultContainerComponent.prototype.ngOnInit = function () {
-    };
     ResultContainerComponent = __decorate([
         Component({
             selector: 'result-container',
             templateUrl: 'resultContainer.component.html',
             styleUrls: ['resultContainer.component.scss']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [PropertyService, LocationService, DeveloperService, UiService])
     ], ResultContainerComponent);
     return ResultContainerComponent;
 }());

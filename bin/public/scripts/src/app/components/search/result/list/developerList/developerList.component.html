@@ -1,6 +1,6 @@
 <div class="developer-list">
 	<div class="category-header">{{header}}</div>
 	<div class="list">
-		<div class="list-item"  *ngFor="let developer of (developers | async)">{{developer.name}}</div>
+		<div class="list-item"  *ngFor="let developer of developers" (mouseover)="updateDeveloperDetailPanel(developer)" (click)="updateDeveloperDetailPanel(developer)">{{developer.name}}</div>
 	</div>
 </div>

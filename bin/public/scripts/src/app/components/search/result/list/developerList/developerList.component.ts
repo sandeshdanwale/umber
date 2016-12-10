@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
-import { DeveloperService } from '../../../../../services/developer.service';
-import { Observable } from 'rxjs/Observable';
+import { Component, Input } from '@angular/core';
+import { UiService } from '../../../../../services/ui.service';
 import { Developer } from '../../../../../models/aggregate/developer.model';
 
 @Component({
@@ -10,15 +9,20 @@ import { Developer } from '../../../../../models/aggregate/developer.model';
 })
 export class DeveloperListComponent {
 
-	developers: Observable<Developer[]>;
+	@Input() developers: Developer[];
 	header: string;
+	context: string;
 	constructor(
-		private developerService: DeveloperService
+		private uiService: UiService
   	) {
-  		this.developers = this.developerService.developer;
   		this.header = "Top Developers";
+  		this.context = "developer";
   	}
 
   	public ngOnInit() {
+  	}
+
+  	public updateDeveloperDetailPanel(developer: Developer) {
+  		this.uiService.updateSearchDetailPanel(developer.id.registrationId, this.context);
   	}
 }

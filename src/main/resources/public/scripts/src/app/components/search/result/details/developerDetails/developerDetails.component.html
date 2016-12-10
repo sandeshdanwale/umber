@@ -2,4 +2,9 @@
 	<div class="developer-info">
 		<div class="developer-name">{{developer && developer.name}}</div>
 	</div>
+	<div class="properties">
+		<div *ngFor="let property of setProperties; let propertyIndex = index">
+			<property-card-small class="property-pos{{propertyIndex}}" [property]="property" style="display:block"></property-card-small>
+		</div>
+	</div>
 </div>

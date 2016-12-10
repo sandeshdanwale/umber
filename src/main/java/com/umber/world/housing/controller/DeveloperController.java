@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.umber.world.housing.domain.Developer;
-import com.umber.world.housing.domain.aggregate.DeveloperId;
-import com.umber.world.housing.jackson.LocationId;
+import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.model.UmberDeveloper;
-import com.umber.world.housing.model.UmberLocation;
+import com.umber.world.housing.model.UmberDeveloperWords;
 import com.umber.world.housing.service.DeveloperService;
+import com.umber.world.housing.service.DeveloperWordsService;
 
 import rx.Single;
 
@@ -22,6 +21,9 @@ public class DeveloperController {
 	
 	@Autowired
 	private DeveloperService developerService;
+	
+	@Autowired
+	private DeveloperWordsService developerWordsService;
 	
 	
 	@RequestMapping(value={"/", "", "/featuredDevelopers"})
@@ -36,6 +38,15 @@ public class DeveloperController {
 	@RequestMapping(value={"/details/{id}"})
     public Single<UmberDeveloper> getPropertyDetails(@PathVariable String id) {
 		return developerService.findDetailsByDeveloperId(new DeveloperId(id))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/{id}"})
+    public Single<List<UmberDeveloperWords>> findByIdStartsWith(@PathVariable String id) {
+		return developerWordsService.findByDeveloperIdStartsWith(id)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

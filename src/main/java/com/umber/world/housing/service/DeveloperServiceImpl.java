@@ -6,10 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.umber.world.housing.domain.aggregate.DeveloperId;
-import com.umber.world.housing.jackson.LocationId;
+import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.model.UmberDeveloper;
-import com.umber.world.housing.model.UmberLocation;
 import com.umber.world.housing.repository.DeveloperRepository;
 
 import lombok.AllArgsConstructor;

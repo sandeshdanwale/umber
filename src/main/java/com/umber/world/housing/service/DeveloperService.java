@@ -2,7 +2,7 @@ package com.umber.world.housing.service;
 
 import java.util.List;
 
-import com.umber.world.housing.domain.aggregate.DeveloperId;
+import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.model.UmberDeveloper;
 
 import rx.Single;

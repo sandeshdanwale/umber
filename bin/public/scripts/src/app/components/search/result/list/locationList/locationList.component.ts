@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { LocationService } from '../../../../../services/location.service';
-import { Observable } from 'rxjs/Observable';
+import { Component, Input } from '@angular/core';
+import { UiService } from '../../../../../services/ui.service';
 import { Location } from '../../../../../models/aggregate/location.model';
 
 @Component({
@@ -10,15 +9,20 @@ import { Location } from '../../../../../models/aggregate/location.model';
 })
 export class LocationListComponent {
 
-	locations: Observable<Location[]>;
+	@Input() locations: Location[];
 	header: string;
+	context: string;
 	constructor(
-		private locationService: LocationService
+		private uiService: UiService
   	) {
-  		this.locations = this.locationService.location;
   		this.header = "Popular Localities";
+  		this.context = 'location';
   	}
 
   	public ngOnInit() {
+  	}
+
+  	public updateLocationDetailPanel(location: Location) {
+  		this.uiService.updateSearchDetailPanel(location.id.registrationId, this.context);
   	}
 }

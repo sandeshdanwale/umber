@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.umber.world.housing.domain.aggregate.Address;
-import com.umber.world.housing.domain.aggregate.DeveloperId;
+import com.umber.world.housing.jackson.DeveloperId;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

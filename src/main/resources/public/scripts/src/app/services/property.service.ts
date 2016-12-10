@@ -19,6 +19,12 @@ export class PropertyService {
         this.property = store.let(fromRoot.getPropertyEntities);
     }
 
+    public getProperties(searchString: string): Observable<any> {
+        let url: string = `${this.BASE_URL}/property/search/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
     public getPropertyDetails(id: string): Observable<any> {
         let url: string = `${this.BASE_URL}/property/details/${id}`; 
         return this.http.get(url)

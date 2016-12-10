@@ -11,9 +11,11 @@ import { NavComponent } from './components/navbar/nav.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { OverlappingSectionComponent } from './components/bottomSection/overlappingSection/overlappingSection.component';
 import { DeveloperCardCarouselComponent } from './components/bottomSection/developer/developerCardCarousel/developerCardCarousel.component';
-import { DeveloperCardComponent } from './components/bottomSection/developer/developerCard/developerCard.component';
+import { DeveloperCardComponent } from './components/shared/developerCard/developerCard.component';
 import { PropertyCardCarouselComponent } from './components/bottomSection/property/propertyCardCarousel/propertyCardCarousel.component';
-import { PropertyCardComponent } from './components/bottomSection/property/propertyCard/propertyCard.component';
+import { PropertyCardComponent } from './components/shared/propertyCard/propertyCard.component';
+import { DeveloperCardSmallComponent } from './components/shared/developerCardSmall/developerCardSmall.component';
+
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
 import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component'
@@ -29,6 +31,8 @@ import { PropertyListComponent } from './components/search/result/list/propertyL
 import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
 import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
 import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
+
+import { OrderByPipe } from './pipes/orderBy.pipe';
 
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
@@ -64,7 +68,9 @@ import { CacheService } from './services/cache.service';
     LocationListComponent,
     PropertyDetailsComponent,
     LocationDetailsComponent,
-    DeveloperDetailsComponent
+    DeveloperDetailsComponent,
+    DeveloperCardSmallComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

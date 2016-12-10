@@ -3,7 +3,8 @@ export var ActionTypes = {
     LOAD_SUCCESS: type('[Ui] Load Success'),
     LOAD: type('[Ui] Load'),
     COMMAND: type('[Ui] Command'),
-    PANEL: type('[UI] Panel')
+    PANEL: type('[UI] Panel'),
+    UPDATE_SEARCH_DETAIL: type('[UI] Update Search Detail')
 };
 export var LoadSuccessAction = (function () {
     function LoadSuccessAction(payload) {
@@ -11,6 +12,13 @@ export var LoadSuccessAction = (function () {
         this.type = ActionTypes.LOAD_SUCCESS;
     }
     return LoadSuccessAction;
+}());
+export var UpdateSearchDetail = (function () {
+    function UpdateSearchDetail(payload) {
+        this.payload = payload;
+        this.type = ActionTypes.UPDATE_SEARCH_DETAIL;
+    }
+    return UpdateSearchDetail;
 }());
 export var LoadAction = (function () {
     function LoadAction(payload) {

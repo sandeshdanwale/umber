@@ -254,8 +254,9 @@ db.property.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'property',
                 name: document.name,
-                id: document._id})
+                propertyId: document._id})
               }
             )
           }
@@ -276,8 +277,9 @@ db.property.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'property',
                 name: document.name,
-                id: document._id})
+                propertyId: document._id})
               }
             )
           }
@@ -298,8 +300,9 @@ db.property.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'property',
                 name: document.name,
-                id: document._id})
+                propertyId: document._id})
               }
             )
           }
@@ -320,8 +323,9 @@ db.property.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'property',
                 name: document.name,
-                id: document._id})
+                propertyId: document._id})
               }
             )
           }
@@ -342,8 +346,9 @@ db.property.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'property',
                 name: document.name,
-                id: document._id})
+                propertyId: document._id})
               }
             )
           }
@@ -365,8 +370,9 @@ db.property.mapReduce(
             return
           }
           emit(cleaned,{
+          type: 'property',
           name: document.name,
-          id: document._id})
+          propertyId: document._id})
         }
       ) 
     //}
@@ -434,7 +440,7 @@ db.property.mapReduce(
 
       },
     // Our result are written to a collection called "words"
-    out: "propertywords"
+    out: "propertyWords"
   }
 )
 
@@ -469,8 +475,9 @@ db.location.mapReduce(
             return
           }
           emit(cleaned,{
+          type: 'location',
           name: document.name,
-          id: document._id})
+          locationId: document._id})
         }
       ) 
     //}
@@ -538,7 +545,7 @@ db.location.mapReduce(
 
       },
     // Our result are written to a collection called "words"
-    out: "locationwords"
+    out: "locationWords"
   }
 )
 
@@ -587,8 +594,9 @@ db.developer.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'developer',
                 name: document.name,
-                id: document._id})
+                developerId: document._id})
               }
             )
           }
@@ -609,8 +617,9 @@ db.developer.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'developer',
                 name: document.name,
-                id: document._id})
+                developerId: document._id})
               }
             )
           }
@@ -631,8 +640,9 @@ db.developer.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'developer',
                 name: document.name,
-                id: document._id})
+                developerId: document._id})
               }
             )
           }
@@ -653,8 +663,9 @@ db.developer.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'developer',
                 name: document.name,
-                id: document._id})
+                developerId: document._id})
               }
             )
           }
@@ -675,8 +686,9 @@ db.developer.mapReduce(
                   return
                 }
                 emit(cleaned,{
+                type: 'developer',
                 name: document.name,
-                id: document._id})
+                developerId: document._id})
               }
             )
           }
@@ -698,8 +710,9 @@ db.developer.mapReduce(
             return
           }
           emit(cleaned,{
+          type: 'developer',
           name: document.name,
-          id: document._id})
+          developerId: document._id})
         }
       ) 
     //}
@@ -767,6 +780,14 @@ db.developer.mapReduce(
 
       },
     // Our result are written to a collection called "words"
-    out: "developerwords"
+    out: "developerWords"
   }
 )
+
+db.location.insertMany([
+{ "_id" : { "registrationId" : "1" }, "rank" : 1, "name" : "mumbai", "primary" : true, "featured" : true },
+{ "_id" : { "registrationId" : "9" }, "rank" : 9, "name" : "pune", "primary" : true, "featured" : true},
+{ "_id" : { "registrationId" : "3" }, "rank" : 3, "name" : "bangalore", "primary" : true, "featured" : true },
+{ "_id" : { "registrationId" : "5" }, "rank" : 5, "name" : "hyderabad", "primary" : true, "featured" : true },
+{ "_id" : { "registrationId" : "26" }, "rank" : 26, "name" : "nashik", "primary" : false },
+{ "_id" : { "registrationId" : "2" }, "rank" : 2, "name" : "delhi", "primary" : false }])

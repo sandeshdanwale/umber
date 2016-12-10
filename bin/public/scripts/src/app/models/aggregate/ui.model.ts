@@ -8,6 +8,18 @@ export class Panel {
 		this.name = name;
 	}
 }
+
+export class SearchDetailPanel {
+	name: string;
+	entityId: string;
+	constructor (
+		name: string,
+		entityId: string
+	) {
+		this.name = name;
+		this.entityId = entityId;
+	}
+}
 /*
 export class Ui implements IUi{
 	panels: Array<Panel>;

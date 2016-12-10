@@ -7,20 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.umber.world.housing.model.UmberConfigs;
-import com.umber.world.housing.model.UmberAmenities;
 import com.umber.world.housing.domain.Configs;
 import com.umber.world.housing.domain.Developer;
 import com.umber.world.housing.domain.Property;
-import com.umber.world.housing.domain.aggregate.Config;
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
-import com.umber.world.housing.repository.AmenitiesRepository;
 import com.umber.world.housing.repository.ConfigsRepository;
 import com.umber.world.housing.repository.DeveloperRepository;
 import com.umber.world.housing.repository.PropertyRepository;
 
 import lombok.AllArgsConstructor;
-import rx.Observable;
 import rx.Single;
 import rx.schedulers.Schedulers;
 
@@ -30,7 +26,7 @@ public class PropertyServiceImpl implements PropertyService {
 	
 	private PropertyRepository propertyRepository;
 	private ConfigsRepository configsRepository;
-	private AmenitiesRepository amenitiesRepository;
+	//private AmenitiesRepository amenitiesRepository;
 	private DeveloperRepository developerRepository;
 
 	@Override

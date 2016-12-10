@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { UiService } from '../../../../../services/ui.service';
 import { Location } from '../../../../../models/aggregate/location.model';
 
@@ -7,7 +7,7 @@ import { Location } from '../../../../../models/aggregate/location.model';
 	templateUrl: 'locationList.component.html',
 	styleUrls: ['locationList.component.scss']
 })
-export class LocationListComponent {
+export class LocationListComponent implements OnInit, OnChanges {
 
 	@Input() locations: Location[];
 	header: string;
@@ -21,6 +21,10 @@ export class LocationListComponent {
 
   	public ngOnInit() {
   	}
+
+    public ngOnChanges(changes) {
+      console.log(changes)
+    }
 
   	public updateLocationDetailPanel(location: Location) {
   		this.uiService.updateSearchDetailPanel(location.id.registrationId, this.context);

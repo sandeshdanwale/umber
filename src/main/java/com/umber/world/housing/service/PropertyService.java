@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
-
-import rx.Observable;
 import rx.Single;
 
 

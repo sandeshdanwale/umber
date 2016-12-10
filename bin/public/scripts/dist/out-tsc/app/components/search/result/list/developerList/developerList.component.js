@@ -7,19 +7,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { UiService } from '../../../../../services/ui.service';
 export var DeveloperListComponent = (function () {
-    function DeveloperListComponent() {
+    function DeveloperListComponent(uiService) {
+        this.uiService = uiService;
+        this.header = "Top Developers";
+        this.context = "developer";
     }
     DeveloperListComponent.prototype.ngOnInit = function () {
     };
+    DeveloperListComponent.prototype.updateDeveloperDetailPanel = function (developer) {
+        this.uiService.updateSearchDetailPanel(developer.id.registrationId, this.context);
+    };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], DeveloperListComponent.prototype, "developers", void 0);
     DeveloperListComponent = __decorate([
         Component({
             selector: 'developer-list',
             templateUrl: 'developerList.component.html',
             styleUrls: ['developerList.component.scss']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [UiService])
     ], DeveloperListComponent);
     return DeveloperListComponent;
 }());

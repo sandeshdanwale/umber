@@ -18,6 +18,12 @@ export class DeveloperService {
         this.developer = store.let(fromRoot.getDeveloperEntities);
     }
 
+    public getDevelopers(searchString: string): Observable<any> {
+        let url: string = `${this.BASE_URL}/developer/search/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
     public getDeveloperDetails(id: string): Observable<any> {
         let url: string = `${this.BASE_URL}/developer/details/${id}`; 
         return this.http.get(url)

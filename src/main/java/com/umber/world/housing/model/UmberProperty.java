@@ -3,7 +3,7 @@ package com.umber.world.housing.model;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.umber.world.housing.domain.Property;
 import com.umber.world.housing.domain.aggregate.Address;
-import com.umber.world.housing.domain.aggregate.DeveloperId;
+import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.jackson.View;
 

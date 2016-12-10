@@ -1,8 +1,8 @@
 <div class="result-container">
 	<div class="search-result-list">
-		<result-list></result-list>
+		<result-list [properties]="properties | async" [developers]="developers | async" [locations]="locations | async"></result-list>
 	</div>
 	<div  class="search-result-details">
-		<result-details></result-details>
+		<result-details [activeSearchDetailPanel]="activeSearchDetailPanel | async" [properties]="properties | async" [developers]="developers | async" [locations]="locations | async"></result-details>
 	</div>
 </div>

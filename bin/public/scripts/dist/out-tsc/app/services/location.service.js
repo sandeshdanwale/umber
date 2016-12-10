@@ -19,6 +19,11 @@ export var LocationService = (function () {
         this.BASE_URL = location.hostname === 'localhost' ? '' : '';
         this.location = store.let(fromRoot.getLocationEntities);
     }
+    LocationService.prototype.getLocationDetails = function (id) {
+        var url = this.BASE_URL + "/location/details/" + id;
+        return this.http.get(url)
+            .map(this.extractData);
+    };
     LocationService.prototype.getFeaturedLocations = function () {
         var url = this.BASE_URL + "/location/featuredLocations";
         return this.http.get(url)

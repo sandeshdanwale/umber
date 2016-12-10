@@ -1,4 +1,5 @@
 import * as property from '../actions/property.action';
+import * as _ from 'lodash';
 ;
 var initialState = {
     loaded: false,
@@ -12,6 +13,12 @@ export function reducer(state, action) {
             return {
                 loaded: true,
                 entities: action.payload
+            };
+        case property.ActionTypes.UPDATE_PROPERTY_DETAIL:
+            console.log('STORE:umber.property/UPDATE_PROPERTY_DETAIL');
+            return {
+                loaded: true,
+                entities: _.differenceBy(state.entities, [action.payload], function (p) { return p.id.registrationId; }).concat(action.payload)
             };
         default:
             return state;

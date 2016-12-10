@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UiService } from '../../../../services/ui.service';
 import { SearchDetailPanel } from '../../../../models/aggregate/ui.model';
@@ -14,7 +14,7 @@ import { DeveloperService } from '../../../../services/developer.service';
 	templateUrl: 'resultContainer.component.html',
 	styleUrls: ['resultContainer.component.scss']
 })
-export class ResultContainerComponent {
+export class ResultContainerComponent implements OnChanges{
 
 	activeSearchDetailPanel: Observable<SearchDetailPanel>;
 	properties: Observable<Property[]>;
@@ -31,4 +31,12 @@ export class ResultContainerComponent {
   		this.developers = this.developerService.developer;
   		this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
   	}
+
+  	public ngOnChanges() {
+  		this.properties = this.propertyService.property;
+  		this.locations = this.locationService.location;
+  		this.developers = this.developerService.developer;
+  		this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
+  	}
+
 }

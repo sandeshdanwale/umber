@@ -42,18 +42,20 @@ export class UiService {
     }
 
     public updateEntityPanel(id: string, context: string, data: any) {
-        if (context === 'property') {
-            let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('property', data.id.registrationId); 
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
-            this.store.dispatch(new property.UpdatePropertyDetail(data));
-        }
-        if (context === 'developer') {
-            let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId); 
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
-        }
-        if (context === 'location') {
-            let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('location', data.id.registrationId); 
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+        if (data && data.id) {
+            if (context === 'property') {
+                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('property', data.id.registrationId); 
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+                this.store.dispatch(new property.UpdatePropertyDetail(data));
+            }
+            if (context === 'developer') {
+                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId); 
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+            }
+            if (context === 'location') {
+                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('location', data.id.registrationId); 
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+            }
         }
     }
 

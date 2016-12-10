@@ -19,6 +19,12 @@ export class LocationService {
         this.location = store.let(fromRoot.getLocationEntities);
     }
 
+    public getLocations(searchString: string): Observable<any> {
+        let url: string = `${this.BASE_URL}/location/search/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
     public getLocationDetails(id: string): Observable<any> {
         let url: string = `${this.BASE_URL}/location/details/${id}`; 
         return this.http.get(url)

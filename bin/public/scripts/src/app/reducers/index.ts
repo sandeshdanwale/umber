@@ -60,6 +60,7 @@ export const getDeveloperEntities = compose(fromDeveloper.getDeveloperEntities, 
 export const getPropertyEntities = compose(fromProperty.getPropertyEntities, getPropertyState);
 export const getLocationEntities = compose(fromLocation.getLocationEntities, getLocationState);
 export const getActivePanels = compose(fromUi.getActivePanels, getUiState);
+export const getActiveSearchDetailPanel = compose(fromUi.getActiveSearchDetailPanel, getUiState);
 /*
 export const getEquipmentSnapshots = compose(fromEquipment.getEquipmentSnapshots, getEquipmentState);
 export const getEquipmentLoaded = compose(fromEquipment.getLoaded, getEquipmentState);

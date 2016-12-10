@@ -5,6 +5,7 @@ export class Property implements AggregateRoot<PropertyId> {
    	
    	id: PropertyId;
    	developerId: DeveloperId;
+   	developerName: string;
 	name: string;
 	description: string;
 	featured: boolean;
@@ -12,10 +13,11 @@ export class Property implements AggregateRoot<PropertyId> {
 	configs: Configs;
   
 	constructor(data: any) {
-	    this.id = new PropertyId(data.id);
+	    this.id = new PropertyId(data.propertyId);
 	    this.name = data.name;
 	    this.description = data.description;
 	    this.featured = data.featured;
+	    this.developerName = data.developerName;
 	    for (let address in data.addresses) {
 	    	this.addresses.push(new Address(address));
 	    }

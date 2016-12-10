@@ -1,0 +1,12 @@
+.developer-card-small {
+	width: 100px;
+	text-transform: capitalize;
+	.developer-logo {
+		width: 70px;
+	    height: 64px;
+	    margin-left: 13px;
+	    background-size: cover;
+	    background-position: center;
+	    border: 1px solid rgba(0,0,0,.1);
+	}
+}

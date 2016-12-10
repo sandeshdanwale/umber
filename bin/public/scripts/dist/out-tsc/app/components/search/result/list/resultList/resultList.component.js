@@ -7,12 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 export var ResultListComponent = (function () {
     function ResultListComponent() {
     }
     ResultListComponent.prototype.ngOnInit = function () {
+        console.log('list');
     };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultListComponent.prototype, "properties", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultListComponent.prototype, "locations", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultListComponent.prototype, "developers", void 0);
     ResultListComponent = __decorate([
         Component({
             selector: 'result-list',

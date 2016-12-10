@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
+import com.umber.world.housing.model.UmberPropertyWords;
 import com.umber.world.housing.service.PropertyService;
+import com.umber.world.housing.service.PropertyWordsService;
 
-import rx.Observable;
 import rx.Single;
 
 @RestController
@@ -20,6 +21,9 @@ public class PropertyController {
 	
 	@Autowired
 	private PropertyService propertyService;
+	
+	@Autowired
+	private PropertyWordsService propertyWordsService;
 	
 	
 	@RequestMapping(value={"/", ""})
@@ -43,6 +47,15 @@ public class PropertyController {
 	@RequestMapping(value={"/details/{id}"})
     public Single<UmberProperty> getPropertyDetails(@PathVariable String id) {
 		return propertyService.findDetailsByPropertyId(new PropertyId(id))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/{id}"})
+    public Single<List<UmberPropertyWords>> findByIdStartsWith(@PathVariable String id) {
+		return propertyWordsService.findByDeveloperIdStartsWith(id)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

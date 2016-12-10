@@ -1,36 +1,36 @@
 export var LocationId = (function () {
-    function LocationId(id) {
-        this.identifier = id;
+    function LocationId(registrationId) {
+        this.registrationId = registrationId;
     }
     LocationId.prototype.asString = function () {
-        return this.identifier.toString();
+        return this.registrationId.toString();
     };
     return LocationId;
 }());
 export var DetailId = (function () {
-    function DetailId(id) {
-        this.identifier = id;
+    function DetailId(registrationId) {
+        this.registrationId = registrationId;
     }
     DetailId.prototype.asString = function () {
-        return this.identifier.toString();
+        return this.registrationId.toString();
     };
     return DetailId;
 }());
 export var PropertyId = (function () {
-    function PropertyId(id) {
-        this.identifier = id;
+    function PropertyId(registrationId) {
+        this.registrationId = registrationId;
     }
     PropertyId.prototype.asString = function () {
-        return this.identifier.toString();
+        return this.registrationId.toString();
     };
     return PropertyId;
 }());
 export var DeveloperId = (function () {
-    function DeveloperId(id) {
-        this.identifier = id;
+    function DeveloperId(registrationId) {
+        this.registrationId = registrationId;
     }
     DeveloperId.prototype.asString = function () {
-        return this.identifier.toString();
+        return this.registrationId.toString();
     };
     return DeveloperId;
 }());

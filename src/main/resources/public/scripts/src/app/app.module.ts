@@ -11,9 +11,13 @@ import { NavComponent } from './components/navbar/nav.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { OverlappingSectionComponent } from './components/bottomSection/overlappingSection/overlappingSection.component';
 import { DeveloperCardCarouselComponent } from './components/bottomSection/developer/developerCardCarousel/developerCardCarousel.component';
-import { DeveloperCardComponent } from './components/bottomSection/developer/developerCard/developerCard.component';
+import { DeveloperCardComponent } from './components/shared/developerCard/developerCard.component';
 import { PropertyCardCarouselComponent } from './components/bottomSection/property/propertyCardCarousel/propertyCardCarousel.component';
-import { PropertyCardComponent } from './components/bottomSection/property/propertyCard/propertyCard.component';
+import { PropertyCardComponent } from './components/shared/propertyCard/propertyCard.component';
+import { PropertyCardSmallComponent } from './components/shared/propertyCardSmall/propertyCardSmall.component';
+import { PropertyCardMediumComponent } from './components/shared/propertyCardMedium/propertyCardMedium.component';
+import { DeveloperCardSmallComponent } from './components/shared/developerCardSmall/developerCardSmall.component';
+
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
 import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component'
@@ -67,6 +71,9 @@ import { CacheService } from './services/cache.service';
     PropertyDetailsComponent,
     LocationDetailsComponent,
     DeveloperDetailsComponent,
+    DeveloperCardSmallComponent,
+    PropertyCardSmallComponent,
+    PropertyCardMediumComponent,
     OrderByPipe
   ],
   imports: [
