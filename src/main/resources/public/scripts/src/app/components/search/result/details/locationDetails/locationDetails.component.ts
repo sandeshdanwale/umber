@@ -25,19 +25,13 @@ export class LocationDetailsComponent {
 
   	ngOnInit() {
   		console.log(this.locations)
-  		this.location = this.locations ? _.head(_.filter(this.locations, (p) => {
-        let id = p.id ? p.id.registrationId : p.locationId ? p.locationId.registrationId : '';
-        return id === this.activeSearchDetailPanel.entityId;
-      })) : null;
+  		this.location = _.head(_.filter(this.locations, (p) => p.id.registrationId === this.activeSearchDetailPanel.entityId));
       this.initDisplayLocation(this.location);
   	}
 
   	ngOnChanges() {
   		console.log('changes')
-  		this.location = this.locations ? _.head(_.filter(this.locations, (p) => {
-        let id = p.id ? p.id.registrationId : p.locationId ? p.locationId.registrationId : '';
-        return id === this.activeSearchDetailPanel.entityId;
-      })) : null;
+  		this.location = _.head(_.filter(this.locations, (p) => p.id.registrationId === this.activeSearchDetailPanel.entityId));
       this.initDisplayLocation(this.location);
   	}
 

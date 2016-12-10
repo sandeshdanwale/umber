@@ -21,17 +21,11 @@ export class PropertyDetailsComponent implements OnInit {
 
   	ngOnInit() {
   		console.log(this.properties)
-  		this.property = this.properties ? _.head(_.filter(this.properties, (p) => {
-        let id = p.id ? p.id.registrationId : p.propertyId ? p.propertyId.registrationId : '';
-        return id === this.activeSearchDetailPanel.entityId;
-      })) : null;
+  		this.property = this.properties ? _.head(_.filter(this.properties, (p) => p.id.registrationId === this.activeSearchDetailPanel.entityId)) : null;
   	}
 
   	ngOnChanges() {
-  		this.property = this.properties ? _.head(_.filter(this.properties, (p) => {
-        let id = p.id ? p.id.registrationId : p.propertyId ? p.propertyId.registrationId : '';
-        return id === this.activeSearchDetailPanel.entityId;
-      })) : null;
+  		this.property = this.properties ? _.head(_.filter(this.properties, (p) => p.id.registrationId === this.activeSearchDetailPanel.entityId)) : null;
   	}
 
 }

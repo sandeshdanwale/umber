@@ -13,6 +13,7 @@ import * as ui from '../../../actions/ui.action';
 import * as fromRoot from '../../../reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
 	selector: 'search-box',
@@ -44,9 +45,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
 	      .map(function (e: any) {
 	        return e.target.value;
 	      })
-	      /*.filter(function (text) {
-	        return text.length > 2;
-	      })*/
+	      .filter(function (text) {
+	        return text.length >= 1;
+	      })
 	      .debounce(function (x) { return Observable.timer(10); })
 	      .distinctUntilChanged();
 
@@ -54,9 +55,21 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
 
 	    searcher.subscribe(
 	       ([developers, properties, locations]) => {
-	       	let _developers = developers.map((d) => d.value.documents).map((v) => v[0]);
-	    	let _properties = properties.map((p) => p.value.documents).map((v) => v[0]);
-	    	let _locations = locations.map((l) => l.value.documents).map((v) => v[0]);
+	       	let _developers = developers
+	       							.map((d) => d.value.documents)
+	       							.map((d) => d[0])
+	       							.map((d) => _.merge(d, {id: d.developerId}))
+	       							.map((d) => _.omit(d, 'developerId'));
+	    	let _properties = properties
+	    							.map((d) => d.value.documents)
+	       							.map((d) => d[0])
+	       							.map((d) => _.merge(d, {id: d.propertyId}))
+	       							.map((d) => _.omit(d, 'propertyId'));
+	    	let _locations = locations
+	    							.map((d) => d.value.documents)
+	       							.map((d) => d[0])
+	       							.map((d) => _.merge(d, {id: d.locationId}))
+	       							.map((d) => _.omit(d, 'locationId'));
 	        this.store.dispatch(new developer.LoadSuccessAction(_developers));
         	this.store.dispatch(new property.LoadSuccessAction(_properties));
         	this.store.dispatch(new location.LoadSuccessAction(_locations));
