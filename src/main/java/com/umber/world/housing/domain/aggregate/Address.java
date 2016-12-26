@@ -6,6 +6,9 @@ import lombok.Value;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
+import com.umber.world.housing.jackson.CityId;
+import com.umber.world.housing.jackson.LandmarkId;
+
 @Value
 @AllArgsConstructor(onConstructor=@__(@PersistenceConstructor))
 public class Address implements Serializable {
@@ -15,7 +18,8 @@ public class Address implements Serializable {
     private String line1;
     private String line2;
     private String line3;
-    private String city;
+    private CityId cityId;
+    private LandmarkId landmarkId;
     private String state;
     private String postalCode;
     private String country;

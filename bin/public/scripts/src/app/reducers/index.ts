@@ -1,32 +1,35 @@
 import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers, ActionReducer } from '@ngrx/store';
-import * as fromLocation from './location.reducer';
+import * as fromCity from './city.reducer';
 import * as fromDeveloper from './developer.reducer';
 import * as fromProperty from './property.reducer';
 import * as fromDetail from './detail.reducer';
 import * as fromUi from './ui.reducer';
+import * as fromUser from './user.reducer';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { Location } from '../models/aggregate/location.model';
+import { City } from '../models/aggregate/city.model';
 import { Developer } from '../models/aggregate/developer.model';
 import { Property } from '../models/aggregate/property.model';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
 export interface State {
-  location: fromLocation.State,
+  city: fromCity.State,
   developer: fromDeveloper.State,
   property: fromProperty.State,
   detail: fromDetail.State,
-  ui: fromUi.State
+  ui: fromUi.State,
+  user: fromUser.State
 };
 
 const reducers = {
-  location: fromLocation.reducer,
+  city: fromCity.reducer,
   developer: fromDeveloper.reducer,
   property: fromProperty.reducer,
   detail: fromDetail.reducer,
-  ui: fromUi.reducer
+  ui: fromUi.reducer,
+  user: fromUser.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -44,8 +47,8 @@ export function getDeveloperState(state$: Observable<State>) {
   return state$.select(state => state.developer);
 }
 
-export function getLocationState(state$: Observable<State>) {
-  return state$.select(state => state.location);
+export function getCityState(state$: Observable<State>) {
+  return state$.select(state => state.city);
 }
 
 export function getPropertyState(state$: Observable<State>) {
@@ -56,9 +59,14 @@ export function getUiState(state$: Observable<State>) {
   return state$.select(state => state.ui);
 }
 
+export function getUserState(state$: Observable<State>) {
+  return state$.select(state => state.user);
+}
+
 export const getDeveloperEntities = compose(fromDeveloper.getDeveloperEntities, getDeveloperState);
 export const getPropertyEntities = compose(fromProperty.getPropertyEntities, getPropertyState);
-export const getLocationEntities = compose(fromLocation.getLocationEntities, getLocationState);
+export const getCityEntities = compose(fromCity.getCityEntities, getCityState);
+export const getUserEntities = compose(fromUser.getUserEntities, getUserState);
 export const getActivePanels = compose(fromUi.getActivePanels, getUiState);
 export const getActiveSearchDetailPanel = compose(fromUi.getActiveSearchDetailPanel, getUiState);
 /*

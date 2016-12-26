@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.model.UmberDeveloper;
-import com.umber.world.housing.model.UmberDeveloperWords;
 import com.umber.world.housing.service.DeveloperService;
-import com.umber.world.housing.service.DeveloperWordsService;
 
 import rx.Single;
 
@@ -22,13 +22,18 @@ public class DeveloperController {
 	@Autowired
 	private DeveloperService developerService;
 	
-	@Autowired
-	private DeveloperWordsService developerWordsService;
-	
-	
 	@RequestMapping(value={"/", "", "/featuredDevelopers"})
     public Single<List<UmberDeveloper>> featuredProperties() {
 		return developerService.findByFeatured(true)
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Developer Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/featuredDevelopersByCity"})
+    public Single<List<UmberDeveloper>> featuredPropertiesByCity(@RequestParam(value="cityId", required=true) String cityId) {
+		return developerService.findByFeaturedAndCity(true, new CityId(cityId))
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Developer Query Service API {} failed :: {} ");
                     return null;
@@ -44,9 +49,9 @@ public class DeveloperController {
                 });
     }
 	
-	@RequestMapping(value={"/search/{id}"})
-    public Single<List<UmberDeveloperWords>> findByIdStartsWith(@PathVariable String id) {
-		return developerWordsService.findByDeveloperIdStartsWith(id)
+	@RequestMapping(value={"/search/{id}/{name}"})
+    public Single<List<UmberDeveloper>> findByCityAndByNameStartsWith(@PathVariable String id, @PathVariable String name) {
+		return developerService.findByCityAndByNameStartsWith(new CityId(id), name)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

@@ -1,40 +1,45 @@
-import {Injectable, Component} from '@angular/core'
+import { Injectable, Component } from '@angular/core'
 import { Store } from '@ngrx/store';
-import {HttpService} from './http.service'
+import { HttpService } from './http.service'
 import { Http, URLSearchParams } from '@angular/http';
 import * as fromRoot from '../reducers';
-import {Property} from '../models/aggregate/property.model';
-import {Observable} from 'rxjs/Observable';
-import {Response} from '@angular/http';
+import { Property } from '../models/aggregate/property.model';
+import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
 
 @Injectable()
 export class PropertyService {
 
 	BASE_URL: string = location.hostname === 'localhost' ? '' : '';
     property: Observable<Property[]>;
+    defaultProperty: Observable<Property[]>;
     constructor(
         private http: HttpService,
         private store: Store<fromRoot.State>
     ) {
         this.property = store.let(fromRoot.getPropertyEntities);
+        this.defaultProperty = store.let(fromRoot.getDefaultPropertyEntities);
     }
 
-    public getProperties(searchString: string): Observable<any> {
-        let url: string = `${this.BASE_URL}/property/search/${searchString}`; 
+    public getProperties(cityId: string, searchString: string): Observable<Property[]> {
+        if (!searchString) {
+            return this.getFeaturedProperties(cityId);
+        }
+        let url: string = `${this.BASE_URL}/property/search/${cityId}/${searchString}`; 
         return this.http.get(url)
                 .map(this.extractData)
     }
 
-    public getPropertyDetails(id: string): Observable<any> {
+    public getPropertyDetails(id: string): Observable<Property> {
         let url: string = `${this.BASE_URL}/property/details/${id}`; 
         return this.http.get(url)
                 .map(this.extractData)
     }
 
-    public getFeaturedProperties(): Observable<any> {
+    public getFeaturedProperties(cityId: string): Observable<Property[]> {
 
 
-        let url: string = `${this.BASE_URL}/property/featuredProperties`; 
+        let url: string = `${this.BASE_URL}/property/featuredPropertiesByCity?cityId=${cityId}`; 
         return this.http.get(url)
         		.map(this.extractData)
                 //.catch(this.handleError);

@@ -16,11 +16,13 @@
 		margin-top: 10px;
 	}
 	.properties {
-		.property-pos0 {
-			float: left;
+		display: flex;
+		flex-wrap: wrap;
+		& > div {
+			width: 50%;
 		}
-		.property-pos1 {
-			float: right;
+		property-card-very-small {
+			width: 90%;
 		}
 	}
 }

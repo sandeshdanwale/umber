@@ -12,7 +12,7 @@ export class MenuComponent {
 	constructor(
     private cacheService: CacheService
   	) {
-  		this.actions = ["Buy", "Sell", "Rent"];
+  		this.actions = ["Buy", "Rent"];
   	}
 
   	public ngOnInit() {

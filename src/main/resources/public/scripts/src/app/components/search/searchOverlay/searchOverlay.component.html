@@ -1,7 +1,7 @@
 <div class="search-overlay" [ngClass]="{'displayNone': !isSearchOverlayOpen()}">
 	<i class="fa fa-times fa-lg close-search-overlay" (click)="closeSearchOverlay()" aria-hidden="true"></i>
 	<div class="search-container">
-		<search-box></search-box>
-		<result-container></result-container>
+		<search-box (searchString)="searchString($event, srcString)" [user]="user"></search-box>
+		<result-container [searchString]="searchStr" [activePanels]="activePanels"></result-container>
 	</div>
 </div>

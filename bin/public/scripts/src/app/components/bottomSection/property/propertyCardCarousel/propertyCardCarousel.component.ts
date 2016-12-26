@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PropertyService } from '../../../../services/property.service';
-import {Observable} from 'rxjs/Observable';
-import {Property} from '../../../../models/aggregate/property.model';
+import { Observable } from 'rxjs/Observable';
+import { Property } from '../../../../models/aggregate/property.model';
 
 @Component({
 	selector: 'propertyCardCarousel',

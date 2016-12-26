@@ -20,6 +20,14 @@ export var DeveloperService = (function () {
         this.BASE_URL = location.hostname === 'localhost' ? '' : '';
         this.developer = store.let(fromRoot.getDeveloperEntities);
     }
+    DeveloperService.prototype.getDevelopers = function (cityId, searchString) {
+        if (!searchString) {
+            return this.getFeaturedDevelopers(cityId);
+        }
+        var url = this.BASE_URL + "/developer/search/" + cityId + "/" + searchString;
+        return this.http.get(url)
+            .map(this.extractData);
+    };
     DeveloperService.prototype.getDeveloperDetails = function (id) {
         var url = this.BASE_URL + "/developer/details/" + id;
         return this.http.get(url)
@@ -31,8 +39,8 @@ export var DeveloperService = (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
-    DeveloperService.prototype.getFeaturedDevelopers = function () {
-        var url = this.BASE_URL + "/developer/featuredDevelopers";
+    DeveloperService.prototype.getFeaturedDevelopers = function (cityId) {
+        var url = this.BASE_URL + "/developer/featuredDevelopersByCity?cityId=" + cityId;
         return this.http.get(url)
             .map(this.extractData)
             .catch(this.handleError);

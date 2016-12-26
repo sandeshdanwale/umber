@@ -15,4 +15,14 @@
 	.properties {
 		margin-top: 10px;
 	}
+	.properties {
+		display: flex;
+		flex-wrap: wrap;
+		& > div {
+			width: 50%;
+		}
+		property-card-very-small {
+			width: 90%;
+		}
+	}
 }

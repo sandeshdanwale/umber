@@ -1,11 +1,11 @@
-import {Injectable, Component} from '@angular/core'
+import { Injectable, Component } from '@angular/core'
 import { Store } from '@ngrx/store';
-import {HttpService} from './http.service'
+import { HttpService } from './http.service'
 import { Http, URLSearchParams } from '@angular/http';
 import * as fromRoot from '../reducers';
-import {Property} from '../models/aggregate/property.model';
-import {Observable} from 'rxjs/Observable';
-import {Response} from '@angular/http';
+import { Property } from '../models/aggregate/property.model';
+import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
 
 @Injectable()
 export class PropertyService {
@@ -17,6 +17,12 @@ export class PropertyService {
         private store: Store<fromRoot.State>
     ) {
         this.property = store.let(fromRoot.getPropertyEntities);
+    }
+
+    public getProperties(searchString: string): Observable<any> {
+        let url: string = `${this.BASE_URL}/property/search/9/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
     }
 
     public getPropertyDetails(id: string): Observable<any> {

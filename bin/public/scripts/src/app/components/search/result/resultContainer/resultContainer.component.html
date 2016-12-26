@@ -1,8 +1,5 @@
 <div class="result-container">
-	<div class="search-result-list">
-		<result-list [properties]="properties | async" [developers]="developers | async" [locations]="locations | async"></result-list>
-	</div>
-	<div  class="search-result-details">
-		<result-details [activeSearchDetailPanel]="activeSearchDetailPanel | async" [properties]="properties | async" [developers]="developers | async" [locations]="locations | async"></result-details>
-	</div>
+	<result-list *ngIf="!isResultDetailListActive" class="search-result-list" [properties]="properties | async" [developers]="developers | async" [cities]="cities | async"></result-list>
+	<result-details *ngIf="!isResultDetailListActive" class="search-result-details" [activeSearchDetailPanel]="activeSearchDetailPanel | async" [properties]="properties | async" [developers]="developers | async" [cities]="cities | async"></result-details>
+	<result-detail-list *ngIf="isResultDetailListActive" [properties]="properties | async"></result-detail-list>
 </div>

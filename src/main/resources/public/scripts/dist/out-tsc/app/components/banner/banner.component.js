@@ -8,9 +8,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { CityService } from '../../services/city.service';
 export var BannerComponent = (function () {
-    function BannerComponent() {
-        this.preference = {};
+    function BannerComponent(userService, cityService) {
+        this.userService = userService;
+        this.cityService = cityService;
+        this.cities = this.cityService.city;
+        this.user = this.userService.user;
     }
     BannerComponent.prototype.ngOnInit = function () {
     };
@@ -20,7 +25,7 @@ export var BannerComponent = (function () {
             templateUrl: 'banner.component.html',
             styleUrls: ['banner.component.scss']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [UserService, CityService])
     ], BannerComponent);
     return BannerComponent;
 }());

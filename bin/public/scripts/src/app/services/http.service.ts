@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 
 /*
 * Minerva wrapper for Angular's HTTP service to add headers for common requests.

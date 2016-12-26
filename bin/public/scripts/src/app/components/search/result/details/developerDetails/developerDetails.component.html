@@ -3,5 +3,8 @@
 		<div class="developer-name">{{developer && developer.name}}</div>
 	</div>
 	<div class="properties">
+		<div *ngFor="let property of setProperties; let propertyIndex = index">
+			<property-card-very-small class="property-pos{{propertyIndex}}" [property]="property" style="display:block"></property-card-very-small>
+		</div>
 	</div>
 </div>

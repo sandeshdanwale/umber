@@ -1,0 +1,32 @@
+.property-card {
+    display: flex;
+    flex-wrap: wrap;
+    height: 250px;
+    .property-img {
+        width: 30%;
+        height: 150px;
+    }
+    .property-title {
+        margin-top: 10px;
+        font-weight: 600;
+        margin-top: 5px;
+        width: 203px;
+        font-size: 18px;
+        text-align: left;
+        text-transform: uppercase;
+    }
+    .property-info-left {
+        width: 30%;
+        .property-city, .property-developer, .developer-name, .property-configs {
+            margin-top: 10px;
+            color: grey;
+            font-size: 14px;
+            text-align: left;
+            text-transform: capitalize;
+        }
+    }
+    .property-info-right {
+        width: 30%;
+        margin-left: 25px;
+    }
+}

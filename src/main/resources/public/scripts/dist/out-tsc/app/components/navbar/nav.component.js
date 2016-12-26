@@ -7,29 +7,64 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { UserPreferenceService } from '../../services/userPreference.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/aggregate/user.model';
+import * as _ from 'lodash';
 export var NavComponent = (function () {
-    function NavComponent(userPreferenceService) {
-        this.userPreferenceService = userPreferenceService;
-        this.preference = {};
+    function NavComponent(userService) {
+        this.userService = userService;
+        this.userCity = new EventEmitter();
+        this.isOpen = false;
+        this.isOpen = false;
     }
     NavComponent.prototype.ngOnInit = function () {
+        if (this.user && this.cities && this.cities.length) {
+            this.primaryCities =
+                _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, function (city) { return city && city.primary; })), function (city) { return city && city.name; }), 0, 4);
+            this.secondaryCities = _.difference(this.cities, this.primaryCities);
+            this.selectedCity = this.user.preference.city;
+        }
+    };
+    NavComponent.prototype.ngOnChanges = function () {
+        if (this.user && this.cities && this.cities.length) {
+            this.primaryCities =
+                _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, function (city) { return city && city.primary; })), function (city) { return city && city.name; }), 0, 4);
+            this.secondaryCities = _.difference(this.cities, this.primaryCities);
+            this.selectedCity = this.user.preference.city;
+        }
+    };
+    NavComponent.prototype.toggleDropdown = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.isOpen = !this.isOpen;
+    };
+    NavComponent.prototype.setCity = function ($event, city) {
         var _this = this;
-        this.userPreferenceService.getUserPreferences(null)
-            .subscribe(function (preference) {
-            _this.preference = preference;
-        }, function (preference) {
-            _this.preference = preference;
+        this.userService.setCity(this.user, city)
+            .subscribe(function (data) {
+            _this.userService.updateUserPreference(data);
         });
     };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], NavComponent.prototype, "cities", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', User)
+    ], NavComponent.prototype, "user", void 0);
+    __decorate([
+        Output(), 
+        __metadata('design:type', Object)
+    ], NavComponent.prototype, "userCity", void 0);
     NavComponent = __decorate([
         Component({
             selector: 'navbar',
             templateUrl: 'nav.component.html',
             styleUrls: ['nav.component.scss']
         }), 
-        __metadata('design:paramtypes', [UserPreferenceService])
+        __metadata('design:paramtypes', [UserService])
     ], NavComponent);
     return NavComponent;
 }());

@@ -1,10 +1,10 @@
-import {Injectable, Component} from '@angular/core'
-import {HttpService} from './http.service'
-import {Observable} from 'rxjs/Observable';
+import { Injectable, Component } from '@angular/core'
+import { HttpService } from './http.service'
+import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
-import {Developer} from '../models/aggregate/developer.model';
-import {Response} from '@angular/http';
+import { Developer } from '../models/aggregate/developer.model';
+import { Response } from '@angular/http';
 
 @Injectable()
 export class DeveloperService {
@@ -16,6 +16,12 @@ export class DeveloperService {
         private store: Store<fromRoot.State>
     ) {
         this.developer = store.let(fromRoot.getDeveloperEntities);
+    }
+
+    public getDevelopers(searchString: string): Observable<any> {
+        let url: string = `${this.BASE_URL}/developer/search/9/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
     }
 
     public getDeveloperDetails(id: string): Observable<any> {

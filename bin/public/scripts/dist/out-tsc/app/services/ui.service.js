@@ -40,18 +40,20 @@ export var UiService = (function () {
         }
     };
     UiService.prototype.updateEntityPanel = function (id, context, data) {
-        if (context === 'property') {
-            var searchDetailPanel = new SearchDetailPanel('property', data.id.registrationId);
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
-            this.store.dispatch(new property.UpdatePropertyDetail(data));
-        }
-        if (context === 'developer') {
-            var searchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId);
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
-        }
-        if (context === 'location') {
-            var searchDetailPanel = new SearchDetailPanel('location', data.id.registrationId);
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+        if (data && data.id) {
+            if (context === 'property') {
+                var searchDetailPanel = new SearchDetailPanel('property', data.id.registrationId);
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+                this.store.dispatch(new property.UpdatePropertyDetail(data));
+            }
+            if (context === 'developer') {
+                var searchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId);
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+            }
+            if (context === 'location') {
+                var searchDetailPanel = new SearchDetailPanel('location', data.id.registrationId);
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+            }
         }
     };
     UiService.prototype.updateSearchDetailPanel = function (id, context) {
@@ -62,6 +64,19 @@ export var UiService = (function () {
         });
     };
     UiService.prototype.loadSearchOverlay = function () {
+        var activePanels = [];
+        activePanels.push(new Panel('main'));
+        activePanels.push(new Panel('searchOverlay'));
+        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    };
+    UiService.prototype.loadSearchDetailList = function () {
+        var activePanels = [];
+        activePanels.push(new Panel('main'));
+        activePanels.push(new Panel('searchOverlay'));
+        activePanels.push(new Panel('searchDetailList'));
+        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    };
+    UiService.prototype.closeSearchDetailList = function () {
         var activePanels = [];
         activePanels.push(new Panel('main'));
         activePanels.push(new Panel('searchOverlay'));

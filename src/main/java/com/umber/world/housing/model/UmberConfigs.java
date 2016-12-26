@@ -32,5 +32,8 @@ public final class UmberConfigs implements  Serializable {
     	this.propertyId = configs.propertyId;
     	this.configs = configs.configs;
     }
+    
+    public UmberConfigs() {
+    }
 
 }

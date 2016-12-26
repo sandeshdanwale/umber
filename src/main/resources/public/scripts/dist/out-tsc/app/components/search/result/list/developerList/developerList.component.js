@@ -7,30 +7,52 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { UiService } from '../../../../../services/ui.service';
 export var DeveloperListComponent = (function () {
-    function DeveloperListComponent(uiService) {
+    function DeveloperListComponent(uiService, cd) {
         this.uiService = uiService;
+        this.cd = cd;
         this.header = "Top Developers";
         this.context = "developer";
     }
     DeveloperListComponent.prototype.ngOnInit = function () {
     };
     DeveloperListComponent.prototype.updateDeveloperDetailPanel = function (developer) {
-        this.uiService.updateSearchDetailPanel(developer.id.registrationId, this.context);
+        if (developer) {
+            this.uiService.updateSearchDetailPanel(developer.id.registrationId, this.context);
+        }
+    };
+    DeveloperListComponent.prototype.getHighlightText = function (developer) {
+        console.log('getHighlightText');
+        if (!developer || !developer.name || !this.searchString)
+            return '';
+        return developer.name.slice(0, this.searchString.length);
+    };
+    DeveloperListComponent.prototype.getNormalText = function (developer) {
+        if (!developer || !developer.name)
+            return '';
+        if (!this.searchString)
+            return this.uiService.capitalize(developer.name);
+        var str = developer.name.slice(this.searchString.length, developer.name.length);
+        return this.uiService.format(str);
     };
     __decorate([
         Input(), 
         __metadata('design:type', Array)
     ], DeveloperListComponent.prototype, "developers", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', String)
+    ], DeveloperListComponent.prototype, "searchString", void 0);
     DeveloperListComponent = __decorate([
         Component({
             selector: 'developer-list',
             templateUrl: 'developerList.component.html',
-            styleUrls: ['developerList.component.scss']
+            styleUrls: ['developerList.component.scss'],
+            changeDetection: ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [UiService])
+        __metadata('design:paramtypes', [UiService, ChangeDetectorRef])
     ], DeveloperListComponent);
     return DeveloperListComponent;
 }());

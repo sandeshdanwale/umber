@@ -1,0 +1,9 @@
+<div class="landmark-list">
+	<div class="category-header">{{header}}</div>
+	<div class="list">
+		<div class="list-item" *ngFor="let landmark of landmarks" (mouseover)="updateLandmarkDetailPanel(landmark)" (click)="updateLandmarkDetailPanel(landmark)">
+			<span class="highlight">{{getHighlightText(landmark)}}</span>
+			<span>{{getNormalText(landmark)}}</span>
+		</div>
+	</div>
+</div>

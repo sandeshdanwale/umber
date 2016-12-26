@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import './rxjs-operators';
-import {AggregationService} from './services/aggregation.service';
+import { AggregationService } from './services/aggregation.service';
 
 @Component({
   selector: 'app-root',
@@ -19,4 +19,9 @@ export class AppComponent {
 	public ngOnInit() {
 		this.aggregationService.load();
 	}
+
+	closeSearchOverlay() {
+		console.log('here I am')
+	}
+	
 }

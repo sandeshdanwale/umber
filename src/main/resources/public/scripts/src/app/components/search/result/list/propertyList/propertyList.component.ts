@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { UiService } from '../../../../../services/ui.service';
 import { Property } from '../../../../../models/aggregate/property.model';
-import { OrderByPipe } from '../../../../../pipes/orderBy.pipe';
+import { OrderByPipe } from '../../../../../pipes/generic.pipe';
 
 @Component({
 	selector: 'property-list',
@@ -11,6 +11,8 @@ import { OrderByPipe } from '../../../../../pipes/orderBy.pipe';
 export class PropertyListComponent {
 	
 	@Input() properties: Property[];
+  @Input() searchString: string;
+  
 	header: string;
   context: string;
 	constructor(
@@ -24,6 +26,20 @@ export class PropertyListComponent {
   	}
 
   	public updatePropertyDetailPanel(property: Property) {
-  		this.uiService.updateSearchDetailPanel(property.id.registrationId, this.context);
-  	}
+      if (property) {
+  		  this.uiService.updateSearchDetailPanel(property.id.registrationId, this.context);
+  	  }
+    }
+
+    public getHighlightText(property: Property): string {
+      if (!property || !property.name || !this.searchString) return '';
+      return property.name.slice(0, this.searchString.length);
+    }
+
+    public getNormalText(property: Property): string {
+      if (!property || !property.name) return '';
+      if (!this.searchString) return this.uiService.capitalize(property.name);
+      let str = property.name.slice(this.searchString.length, property.name.length);
+      return this.uiService.format(str);
+    }
 }

@@ -18,12 +18,31 @@ export var PropertyListComponent = (function () {
     PropertyListComponent.prototype.ngOnInit = function () {
     };
     PropertyListComponent.prototype.updatePropertyDetailPanel = function (property) {
-        this.uiService.updateSearchDetailPanel(property.id.registrationId, this.context);
+        if (property) {
+            this.uiService.updateSearchDetailPanel(property.id.registrationId, this.context);
+        }
+    };
+    PropertyListComponent.prototype.getHighlightText = function (property) {
+        if (!property || !property.name || !this.searchString)
+            return '';
+        return property.name.slice(0, this.searchString.length);
+    };
+    PropertyListComponent.prototype.getNormalText = function (property) {
+        if (!property || !property.name)
+            return '';
+        if (!this.searchString)
+            return this.uiService.capitalize(property.name);
+        var str = property.name.slice(this.searchString.length, property.name.length);
+        return this.uiService.format(str);
     };
     __decorate([
         Input(), 
         __metadata('design:type', Array)
     ], PropertyListComponent.prototype, "properties", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', String)
+    ], PropertyListComponent.prototype, "searchString", void 0);
     PropertyListComponent = __decorate([
         Component({
             selector: 'property-list',

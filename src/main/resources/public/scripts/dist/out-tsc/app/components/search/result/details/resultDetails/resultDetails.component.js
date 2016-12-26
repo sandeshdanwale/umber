@@ -26,7 +26,7 @@ export var ResultDetailsComponent = (function () {
     __decorate([
         Input(), 
         __metadata('design:type', Array)
-    ], ResultDetailsComponent.prototype, "locations", void 0);
+    ], ResultDetailsComponent.prototype, "landmarks", void 0);
     __decorate([
         Input(), 
         __metadata('design:type', Array)

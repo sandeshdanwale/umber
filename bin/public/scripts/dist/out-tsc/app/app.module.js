@@ -18,9 +18,14 @@ import { NavComponent } from './components/navbar/nav.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { OverlappingSectionComponent } from './components/bottomSection/overlappingSection/overlappingSection.component';
 import { DeveloperCardCarouselComponent } from './components/bottomSection/developer/developerCardCarousel/developerCardCarousel.component';
-import { DeveloperCardComponent } from './components/bottomSection/developer/developerCard/developerCard.component';
+import { DeveloperCardComponent } from './components/shared/developerCard/developerCard.component';
 import { PropertyCardCarouselComponent } from './components/bottomSection/property/propertyCardCarousel/propertyCardCarousel.component';
-import { PropertyCardComponent } from './components/bottomSection/property/propertyCard/propertyCard.component';
+import { PropertyCardComponent } from './components/shared/propertyCard/propertyCard.component';
+import { PropertyCardSmallComponent } from './components/shared/propertyCardSmall/propertyCardSmall.component';
+import { PropertyCardMediumComponent } from './components/shared/propertyCardMedium/propertyCardMedium.component';
+import { DeveloperCardSmallComponent } from './components/shared/developerCardSmall/developerCardSmall.component';
+import { PropertyCardVsmallComponent } from './components/shared/propertyCardVsmall/propertyCardVsmall.component';
+import { PropertyCardHorizontalComponent } from './components/shared/propertyCardHorizontal/propertyCardHorizontal.component';
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
 import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component';
@@ -36,6 +41,8 @@ import { PropertyListComponent } from './components/search/result/list/propertyL
 import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
 import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
 import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
+import { ResultDetailListComponent } from './components/search/result/detailList/resultDetailList/resultDetailList.component';
+import { PropertyDetailListComponent } from './components/search/result/detailList/propertyDetailList/propertyDetailList.component';
 import { OrderByPipe } from './pipes/orderBy.pipe';
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
@@ -75,6 +82,13 @@ export var AppModule = (function () {
                 PropertyDetailsComponent,
                 LocationDetailsComponent,
                 DeveloperDetailsComponent,
+                ResultDetailListComponent,
+                PropertyDetailListComponent,
+                DeveloperCardSmallComponent,
+                PropertyCardSmallComponent,
+                PropertyCardMediumComponent,
+                PropertyCardVsmallComponent,
+                PropertyCardHorizontalComponent,
                 OrderByPipe
             ],
             imports: [

@@ -1,0 +1,17 @@
+<div class="city-details">
+	<div class="city-info">
+			<div class="city-name">{{displayCity.name}}</div>
+			<div class="city-properties">
+				<span class="count">{{displayCity.propertyCount}}</span>
+				<span class="label">PROJECTS</span>
+			</div>
+	</div>
+	<div class="top-developers">
+		<div class="header">Top Developers</div>
+		<div class="developer-carousel">
+			<div *ngFor="let developer of topDevelopers">
+				<developerCardSmall [developer]="developer"></developerCardSmall>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,6 +1,41 @@
-.home-page-banner {
-    height: 70vh;
-    width: 100vw;
+@media screen and (max-device-width: 540px) {
+	.home-page-banner {
+		height: 100vh;
+		width: 100vw;
+	}
+	featured-heading {
+		display: none;
+	}
+}
+
+@media screen and (max-device-width: 780px) {
+	navbar {
+		display: none;
+	}
+}
+
+@media screen and (min-device-width: 780px) {
+	navbar-small {
+		display: none;
+	}
+}
+
+@media screen and (min-device-width: 540px) {
+	.home-page-banner {
+		height: 70vh;
+		width: 100vw;
+	}
+}
+
+.bottom-section {
+	height: 50vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.home-page-banner {   
     position: relative;
     background-color: #34495e;
     background-image: url(/assets/images/buy.jpg);

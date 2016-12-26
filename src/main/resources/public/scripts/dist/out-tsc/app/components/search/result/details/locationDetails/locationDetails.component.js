@@ -12,21 +12,36 @@ import { SearchDetailPanel } from '../../../../../models/aggregate/ui.model';
 import * as _ from 'lodash';
 export var LocationDetailsComponent = (function () {
     function LocationDetailsComponent() {
+        this.displayLocation = {};
     }
     LocationDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log(this.locations);
         this.location = _.head(_.filter(this.locations, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+        this.initDisplayLocation(this.location);
     };
     LocationDetailsComponent.prototype.ngOnChanges = function () {
         var _this = this;
         console.log('changes');
         this.location = _.head(_.filter(this.locations, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+        this.initDisplayLocation(this.location);
+    };
+    LocationDetailsComponent.prototype.initDisplayLocation = function (location) {
+        if (location) {
+            this.displayLocation.name = this.location.name;
+            this.displayLocation.propertyCount = 50; //this.location.propertyCount;
+            this.displayLocation.topDevelopers;
+            this.topDevelopers = this.developers.slice(0, 5);
+        }
     };
     __decorate([
         Input(), 
         __metadata('design:type', Array)
     ], LocationDetailsComponent.prototype, "locations", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], LocationDetailsComponent.prototype, "developers", void 0);
     __decorate([
         Input(), 
         __metadata('design:type', SearchDetailPanel)

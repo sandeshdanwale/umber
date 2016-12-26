@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
-import com.umber.world.housing.model.UmberPropertyWords;
 import com.umber.world.housing.service.PropertyService;
-import com.umber.world.housing.service.PropertyWordsService;
 
 import rx.Single;
 
@@ -22,11 +22,7 @@ public class PropertyController {
 	@Autowired
 	private PropertyService propertyService;
 	
-	@Autowired
-	private PropertyWordsService propertyWordsService;
-	
-	
-	@RequestMapping(value={"/", ""})
+	@RequestMapping(value={"/", "", "/featuredProperties"})
     public Single<List<UmberProperty>> featuredProperties() {
 		return propertyService.findByFeatured(true)
 				.onErrorReturn(error -> {
@@ -35,7 +31,16 @@ public class PropertyController {
                 });
     }
 	
-	@RequestMapping(value={"/featuredProperties"})
+	@RequestMapping(value={"/featuredPropertiesByCity"})
+    public Single<List<UmberProperty>> featuredPropertiesByCity(@RequestParam(value="cityId", required=true) String cityId) {
+		return propertyService.findByFeaturedAndCity(true, new CityId(cityId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+
+	@RequestMapping(value={"/all"})
     public Single<List<UmberProperty>> findAll() {
 		return propertyService.findAll()
 				.onErrorReturn(error -> {
@@ -53,9 +58,9 @@ public class PropertyController {
                 });
     }
 	
-	@RequestMapping(value={"/search/{id}"})
-    public Single<List<UmberPropertyWords>> findByIdStartsWith(@PathVariable String id) {
-		return propertyWordsService.findByDeveloperIdStartsWith(id)
+	@RequestMapping(value={"/search/{id}/{name}"})
+    public Single<List<UmberProperty>> findByIdStartsWith(@PathVariable String id, @PathVariable String name) {
+		return propertyService.findByCityAndByNameStartsWith(new CityId(id), name)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

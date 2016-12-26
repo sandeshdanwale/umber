@@ -18,14 +18,23 @@ export var PropertyService = (function () {
         this.store = store;
         this.BASE_URL = location.hostname === 'localhost' ? '' : '';
         this.property = store.let(fromRoot.getPropertyEntities);
+        this.defaultProperty = store.let(fromRoot.getDefaultPropertyEntities);
     }
+    PropertyService.prototype.getProperties = function (cityId, searchString) {
+        if (!searchString) {
+            return this.getFeaturedProperties(cityId);
+        }
+        var url = this.BASE_URL + "/property/search/" + cityId + "/" + searchString;
+        return this.http.get(url)
+            .map(this.extractData);
+    };
     PropertyService.prototype.getPropertyDetails = function (id) {
         var url = this.BASE_URL + "/property/details/" + id;
         return this.http.get(url)
             .map(this.extractData);
     };
-    PropertyService.prototype.getFeaturedProperties = function () {
-        var url = this.BASE_URL + "/property/featuredProperties";
+    PropertyService.prototype.getFeaturedProperties = function (cityId) {
+        var url = this.BASE_URL + "/property/featuredPropertiesByCity?cityId=" + cityId;
         return this.http.get(url)
             .map(this.extractData);
         //.catch(this.handleError);

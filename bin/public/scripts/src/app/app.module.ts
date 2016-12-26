@@ -14,7 +14,11 @@ import { DeveloperCardCarouselComponent } from './components/bottomSection/devel
 import { DeveloperCardComponent } from './components/shared/developerCard/developerCard.component';
 import { PropertyCardCarouselComponent } from './components/bottomSection/property/propertyCardCarousel/propertyCardCarousel.component';
 import { PropertyCardComponent } from './components/shared/propertyCard/propertyCard.component';
+import { PropertyCardSmallComponent } from './components/shared/propertyCardSmall/propertyCardSmall.component';
+import { PropertyCardMediumComponent } from './components/shared/propertyCardMedium/propertyCardMedium.component';
 import { DeveloperCardSmallComponent } from './components/shared/developerCardSmall/developerCardSmall.component';
+import { PropertyCardVsmallComponent } from './components/shared/propertyCardVsmall/propertyCardVsmall.component';
+import { PropertyCardHorizontalComponent } from './components/shared/propertyCardHorizontal/propertyCardHorizontal.component';
 
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
@@ -25,21 +29,23 @@ import { ModalsComponent } from './modals/modals.component';
 import { ResultContainerComponent } from './components/search/result/resultContainer/resultContainer.component';
 import { ResultDetailsComponent } from './components/search/result/details/resultDetails/resultDetails.component';
 import { ResultListComponent } from './components/search/result/list/resultList/resultList.component';
-import { LocationListComponent } from './components/search/result/list/locationList/locationList.component';
+import { CityListComponent } from './components/search/result/list/cityList/cityList.component';
 import { DeveloperListComponent } from './components/search/result/list/developerList/developerList.component';
 import { PropertyListComponent } from './components/search/result/list/propertyList/propertyList.component';
 import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
-import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
+import { CityDetailsComponent } from './components/search/result/details/cityDetails/cityDetails.component';
 import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
+import { ResultDetailListComponent } from './components/search/result/detailList/resultDetailList/resultDetailList.component';
+import { PropertyDetailListComponent } from './components/search/result/detailList/propertyDetailList/propertyDetailList.component';
 
 import { OrderByPipe } from './pipes/orderBy.pipe';
 
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
-import { UserPreferenceService } from './services/userPreference.service';
+import { UserService } from './services/user.service';
 import { DeveloperService } from './services/developer.service';
 import { PropertyService } from './services/property.service';
-import { LocationService } from './services/location.service';
+import { CityService } from './services/city.service';
 import { UiService } from './services/ui.service';
 import { AggregationService } from './services/aggregation.service';
 import { CacheService } from './services/cache.service';
@@ -65,11 +71,17 @@ import { CacheService } from './services/cache.service';
     ResultListComponent,
     DeveloperListComponent,
     PropertyListComponent,
-    LocationListComponent,
+    CityListComponent,
     PropertyDetailsComponent,
-    LocationDetailsComponent,
+    CityDetailsComponent,
     DeveloperDetailsComponent,
+    ResultDetailListComponent,
+    PropertyDetailListComponent,
     DeveloperCardSmallComponent,
+    PropertyCardSmallComponent,
+    PropertyCardMediumComponent,
+    PropertyCardVsmallComponent,
+    PropertyCardHorizontalComponent,
     OrderByPipe
   ],
   imports: [
@@ -79,7 +91,7 @@ import { CacheService } from './services/cache.service';
     MaterialModule.forRoot(),
     StoreModule.provideStore(reducer)
   ],
-  providers: [HttpService, UserPreferenceService, DeveloperService, LocationService,
+  providers: [HttpService, UserService, DeveloperService, CityService,
   AggregationService, CacheService, PropertyService, UiService],
   bootstrap: [AppComponent]
 })

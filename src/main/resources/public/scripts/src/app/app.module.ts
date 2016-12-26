@@ -8,6 +8,7 @@ import { DBModule, Database } from '@ngrx/db';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/navbar/nav.component';
+import { NavSmallComponent } from './components/navbarSmall/navSmall.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { OverlappingSectionComponent } from './components/bottomSection/overlappingSection/overlappingSection.component';
 import { DeveloperCardCarouselComponent } from './components/bottomSection/developer/developerCardCarousel/developerCardCarousel.component';
@@ -17,6 +18,8 @@ import { PropertyCardComponent } from './components/shared/propertyCard/property
 import { PropertyCardSmallComponent } from './components/shared/propertyCardSmall/propertyCardSmall.component';
 import { PropertyCardMediumComponent } from './components/shared/propertyCardMedium/propertyCardMedium.component';
 import { DeveloperCardSmallComponent } from './components/shared/developerCardSmall/developerCardSmall.component';
+import { PropertyCardVsmallComponent } from './components/shared/propertyCardVsmall/propertyCardVsmall.component';
+import { PropertyCardHorizontalComponent } from './components/shared/propertyCardHorizontal/propertyCardHorizontal.component';
 
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
@@ -27,22 +30,27 @@ import { ModalsComponent } from './modals/modals.component';
 import { ResultContainerComponent } from './components/search/result/resultContainer/resultContainer.component';
 import { ResultDetailsComponent } from './components/search/result/details/resultDetails/resultDetails.component';
 import { ResultListComponent } from './components/search/result/list/resultList/resultList.component';
-import { LocationListComponent } from './components/search/result/list/locationList/locationList.component';
+import { CityListComponent } from './components/search/result/list/cityList/cityList.component';
+import { LandmarkListComponent } from './components/search/result/list/landmarkList/landmarkList.component';
 import { DeveloperListComponent } from './components/search/result/list/developerList/developerList.component';
 import { PropertyListComponent } from './components/search/result/list/propertyList/propertyList.component';
 import { PropertyDetailsComponent } from './components/search/result/details/propertyDetails/propertyDetails.component';
-import { LocationDetailsComponent } from './components/search/result/details/locationDetails/locationDetails.component';
+import { CityDetailsComponent } from './components/search/result/details/cityDetails/cityDetails.component';
 import { DeveloperDetailsComponent } from './components/search/result/details/developerDetails/developerDetails.component';
+import { ResultDetailListComponent } from './components/search/result/detailList/resultDetailList/resultDetailList.component';
+import { PropertyDetailListComponent } from './components/search/result/detailList/propertyDetailList/propertyDetailList.component';
+import { LandmarkDetailsComponent } from './components/search/result/details/landmarkDetails/landmarkDetails.component';
 
-import { OrderByPipe } from './pipes/orderBy.pipe';
+import { OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe } from './pipes/generic.pipe';
 
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
-import { UserPreferenceService } from './services/userPreference.service';
+import { UserService } from './services/user.service';
 import { DeveloperService } from './services/developer.service';
 import { PropertyService } from './services/property.service';
-import { LocationService } from './services/location.service';
+import { CityService } from './services/city.service';
 import { UiService } from './services/ui.service';
+import { LandmarkService } from './services/landmark.service';
 import { AggregationService } from './services/aggregation.service';
 import { CacheService } from './services/cache.service';
 
@@ -50,6 +58,7 @@ import { CacheService } from './services/cache.service';
   declarations: [
     AppComponent,
     NavComponent,
+    NavSmallComponent,
     BannerComponent,
     OverlappingSectionComponent,
     DeveloperCardCarouselComponent,
@@ -67,14 +76,20 @@ import { CacheService } from './services/cache.service';
     ResultListComponent,
     DeveloperListComponent,
     PropertyListComponent,
-    LocationListComponent,
+    LandmarkListComponent,
+    CityListComponent,
     PropertyDetailsComponent,
-    LocationDetailsComponent,
+    CityDetailsComponent,
     DeveloperDetailsComponent,
+    LandmarkDetailsComponent,
+    ResultDetailListComponent,
+    PropertyDetailListComponent,
     DeveloperCardSmallComponent,
     PropertyCardSmallComponent,
     PropertyCardMediumComponent,
-    OrderByPipe
+    PropertyCardVsmallComponent,
+    PropertyCardHorizontalComponent,
+    OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe
   ],
   imports: [
     BrowserModule,
@@ -83,7 +98,7 @@ import { CacheService } from './services/cache.service';
     MaterialModule.forRoot(),
     StoreModule.provideStore(reducer)
   ],
-  providers: [HttpService, UserPreferenceService, DeveloperService, LocationService,
+  providers: [HttpService, UserService, DeveloperService, CityService, LandmarkService, 
   AggregationService, CacheService, PropertyService, UiService],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,14 @@
 .search-box {
+	@media screen and (max-device-width: 780px) {
+    	input {
+    		font-size: 1.5vw;
+    	}
+    }
+    @media screen and (min-device-width: 780px) {
+    	input {
+    		font-size: 20px;
+    	}
+    }
 	input {
 	    zoom: 150%;
 	    border-bottom-color: grey;
@@ -11,10 +21,9 @@
 	    border-bottom-right-radius: 0px;
 	    border-bottom-left-radius: 0px;
 	    font-weight: 600;
-	    font-size: 20px;
 	}
 	.input-group-addon {
-		background: rgba(0, 116, 228, 0.75);
+		background: rgba(255, 126, 66, 0.65);
 	    padding-left: 30px;
 	    padding-right: 30px;
 	}

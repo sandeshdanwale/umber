@@ -17,6 +17,9 @@ export var LocationListComponent = (function () {
     }
     LocationListComponent.prototype.ngOnInit = function () {
     };
+    LocationListComponent.prototype.ngOnChanges = function (changes) {
+        console.log(changes);
+    };
     LocationListComponent.prototype.updateLocationDetailPanel = function (location) {
         this.uiService.updateSearchDetailPanel(location.id.registrationId, this.context);
     };

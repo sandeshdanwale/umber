@@ -2,13 +2,37 @@ export interface AggregateId {
   asString(): string;
 }
 
-export class LocationId implements AggregateId {
+export class CityId implements AggregateId {
   public registrationId: string;
 
   constructor(registrationId: string) {
     this.registrationId = registrationId;
   }
+  
+  public asString(): string {
+    return this.registrationId.toString();
+  }
+}
 
+export class LandmarkId implements AggregateId {
+  public registrationId: string;
+
+  constructor(registrationId: string) {
+    this.registrationId = registrationId;
+  }
+  
+  public asString(): string {
+    return this.registrationId.toString();
+  }
+}
+
+export class UserId implements AggregateId {
+  public registrationId: string;
+
+  constructor(registrationId: string) {
+    this.registrationId = registrationId;
+  }
+  
   public asString(): string {
     return this.registrationId.toString();
   }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.model.UmberDeveloper;
 import com.umber.world.housing.repository.DeveloperRepository;
@@ -47,6 +48,23 @@ public class DeveloperServiceImpl implements DeveloperService {
 				.stream().map(d -> new UmberDeveloper(d))
 						.collect(Collectors.toList()));
 		return umberDevelopers.subscribeOn(Schedulers.io());
+	}
+	
+	@Override
+	public Single<List<UmberDeveloper>> findByFeaturedAndCity(Boolean featured, CityId cityId) {
+		Single<List<UmberDeveloper>> umberDevelopers = Single.just(developerRepository.findByFeatured(featured)
+				.stream().map(d -> new UmberDeveloper(d))
+						.collect(Collectors.toList()));
+		return umberDevelopers.subscribeOn(Schedulers.io());
+	}
+	
+	@Override
+	public Single<List<UmberDeveloper>> findByCityAndByNameStartsWith(CityId cityId, String name) {
+		Single<List<UmberDeveloper>> umberDeveloper = Single.just(developerRepository.findByCityAndByNameStartsWith(cityId, name)
+				.stream().map(d -> new UmberDeveloper(d))
+						.collect(Collectors.toList()));
+		return umberDeveloper.subscribeOn(Schedulers.io());
+				
 	}
 
 }

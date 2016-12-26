@@ -2,25 +2,22 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="#">BRAND</a>
-
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left center-menu">
-        <li *ngFor="let location of preference.primaryLocations"><a  [ngClass]="{'selected': location.name === preference.selectedLocation.name}" href="#">{{location.name}}</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select Another City <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li *ngFor="let location of preference.secondaryLocations"><a href="#">{{location.name}}</a></li>
-            </ul>
+        <li *ngFor="let city of primaryCities; let i = index;">
+          <a *ngIf="city"  [ngClass]="{'selected': selectedCity && city.name === selectedCity.name, 'other': i !== 0}" href="#" (click)="setCity($event, city)">{{city.name}}</a>
+        </li>
+        <li class="dropdown" [ngClass]="{'open': isOpen}" (click)="toggleDropdown($event)">
+          <a href="#" id="dropdownMenuButton" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select Another City <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li *ngFor="let city of secondaryCities">
+              <a *ngIf="city" href="#" (click)="setCity($event, city)">{{city.name}}</a>
+            </li>
+          </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

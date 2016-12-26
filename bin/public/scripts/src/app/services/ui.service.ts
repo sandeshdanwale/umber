@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { HttpService } from './http.service'
 import { PropertyService } from './property.service';
 import { DeveloperService } from './developer.service';
-import { LocationService } from './location.service';
+import { CityService } from './city.service';
 import { Http, URLSearchParams } from '@angular/http';
 import * as fromRoot from '../reducers';
 import * as ui from '../actions/ui.action';
@@ -22,7 +22,7 @@ export class UiService {
         private http: HttpService,
         private propertyService: PropertyService,
         private developerService: DeveloperService,
-        private locationService: LocationService,
+        private cityService: CityService,
         private store: Store<fromRoot.State>
     ) {
         this.activePanels = store.let(fromRoot.getActivePanels);
@@ -36,24 +36,26 @@ export class UiService {
         if (context === 'developer') {
             return this.developerService.getDeveloperDetails(id);
         }
-        if (context === 'location') {
-            return this.locationService.getLocationDetails(id);
+        if (context === 'city') {
+            return this.cityService.getCityDetails(id);
         }
     }
 
     public updateEntityPanel(id: string, context: string, data: any) {
-        if (context === 'property') {
-            let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('property', data.id.registrationId); 
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
-            this.store.dispatch(new property.UpdatePropertyDetail(data));
-        }
-        if (context === 'developer') {
-            let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId); 
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
-        }
-        if (context === 'location') {
-            let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('location', data.id.registrationId); 
-            this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+        if (data && data.id) {
+            if (context === 'property') {
+                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('property', data.id.registrationId); 
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+                this.store.dispatch(new property.UpdatePropertyDetail(data));
+            }
+            if (context === 'developer') {
+                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId); 
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+            }
+            if (context === 'city') {
+                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('city', data.id.registrationId); 
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
+            }
         }
     }
 
@@ -67,6 +69,21 @@ export class UiService {
     
 
     public loadSearchOverlay() {
+        let activePanels: Array<Panel> = [];
+        activePanels.push(new Panel('main'));
+        activePanels.push(new Panel('searchOverlay'));
+        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    }
+
+    public loadSearchDetailList() {
+        let activePanels: Array<Panel> = [];
+        activePanels.push(new Panel('main'));
+        activePanels.push(new Panel('searchOverlay'));
+        activePanels.push(new Panel('searchDetailList'));
+        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    }
+
+    public closeSearchDetailList() {
         let activePanels: Array<Panel> = [];
         activePanels.push(new Panel('main'));
         activePanels.push(new Panel('searchOverlay'));

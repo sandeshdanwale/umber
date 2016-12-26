@@ -23,14 +23,14 @@
     }
     li {
       &:hover {
-        color: rgba(0, 116, 228, 0.75);
+        color: rgba(255, 126, 66, 1);
       }
       a {
         color: white;
         text-transform: uppercase;
         &:hover, &:focus, &.selected {
           background-color: transparent;
-          color: rgba(0, 116, 228, 0.75);
+          color: rgba(255, 126, 66, 1);
         }
       }
     }
@@ -43,15 +43,21 @@
           background-color: transparent;
         }
         a {
-          color: #311813;
+          color: white;
           font-weight: 500;
           &:hover, &:focus, &.selected {
             background-color: transparent;
-            color: rgba(0, 116, 228, 0.75);
+            color: rgba(255, 126, 66, 1);
             font-weight: 500;
           }
         }
       }
+    }
+    .dropdown-menu {
+      height: 200px;
+      overflow-y: scroll;
+      width: 200px;
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
 

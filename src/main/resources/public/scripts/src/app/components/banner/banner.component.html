@@ -1,6 +1,9 @@
 <div class="home-page-banner">
-	<navbar></navbar>
-	<menu-bar></menu-bar>
-	<search-place-holder></search-place-holder>
-	<featured-heading></featured-heading>
+	<navbar [cities]="cities | async" [user]="user | async"></navbar>
+	<navbar-small [cities]="cities | async" [user]="user | async"></navbar-small>
+	<div class="bottom-section">
+		<menu-bar></menu-bar>
+		<search-place-holder></search-place-holder>
+		<featured-heading></featured-heading>
+	</div>
 </div>

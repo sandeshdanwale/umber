@@ -17,6 +17,9 @@ export var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         this.aggregationService.load();
     };
+    AppComponent.prototype.closeSearchOverlay = function () {
+        console.log('here I am');
+    };
     AppComponent = __decorate([
         Component({
             selector: 'app-root',

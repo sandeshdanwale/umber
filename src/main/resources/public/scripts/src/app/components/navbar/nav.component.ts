@@ -1,5 +1,8 @@
-import {Component} from '@angular/core';
-import {UserPreferenceService} from '../../services/userPreference.service'
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { City } from '../../models/aggregate/city.model';
+import { User } from '../../models/aggregate/user.model';
+import * as _ from 'lodash';
 
 @Component({
 	selector: 'navbar',
@@ -8,19 +11,50 @@ import {UserPreferenceService} from '../../services/userPreference.service'
 })
 export class NavComponent {
 
-	preference = {};
+  @Input() cities: City[];
+  @Input() user: User;
+  @Output() userCity = new EventEmitter();
+
+	private primaryCities: City[];
+  private secondaryCities: City[];
+  private selectedCity: City;
+  private isOpen: boolean = false;
+
 	constructor(
-		private userPreferenceService: UserPreferenceService
+		  private userService: UserService
   	) {
-  		
+  		this.isOpen = false;
   	}
 
   	public ngOnInit() {
-  		this.userPreferenceService.getUserPreferences(null)
-            .subscribe(preference => {
-            	this.preference = preference;
-            }, preference => {
-            	this.preference = preference;
-            })
+      if (this.user && this.cities && this.cities.length) {
+        this.primaryCities = 
+          _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, (city) => city && city.primary)), (city) => city && city.name), 0, 4);
+        this.secondaryCities = _.difference(this.cities, this.primaryCities);
+        this.selectedCity = this.user.preference.city;
+      }
   	}
+
+    public ngOnChanges() {
+      if (this.user && this.cities && this.cities.length) {
+        this.primaryCities = 
+          _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, (city) => city && city.primary)), (city) => city && city.name), 0, 4);
+        this.secondaryCities = _.difference(this.cities, this.primaryCities);
+        this.selectedCity = this.user.preference.city;
+      }
+    }
+
+    private toggleDropdown($event: MouseEvent): void {
+      $event.preventDefault();
+      $event.stopPropagation();
+      this.isOpen = !this.isOpen;
+    }
+
+    private setCity($event: MouseEvent, city: City): void {
+      this.userService.setCity(this.user, city)
+        .subscribe(data => {
+          this.userService.updateUserPreference(data);
+        })
+    }
+
 }

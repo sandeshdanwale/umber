@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Property } from '../../../../../models/aggregate/property.model';
-import { Location } from '../../../../../models/aggregate/location.model';
+import { City } from '../../../../../models/aggregate/city.model';
+import { Landmark } from '../../../../../models/aggregate/landmark.model';
 import { Developer } from '../../../../../models/aggregate/developer.model';
 
 @Component({
@@ -12,8 +13,9 @@ import { Developer } from '../../../../../models/aggregate/developer.model';
 export class ResultListComponent {
 
 	@Input() properties: Property[];
-	@Input() locations: Location[];
+	@Input() landmarks: Landmark[];
 	@Input() developers: Developer[];
+	@Input() searchString: string;
 	constructor(
   	) {
   	}

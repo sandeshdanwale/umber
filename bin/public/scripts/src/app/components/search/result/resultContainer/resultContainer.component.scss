@@ -1,13 +1,15 @@
 .result-container {
 	padding-top: 50px;
 	.search-result-list {
-		width: 40%;
-		display: inline-block;
+		width: 60%;
+		display: flex;
+		flex-wrap: wrap;
 		float: left;
 	}	
 	.search-result-details {
-		display: inline-block;
-    	width: 57%;
+		display: flex;
+		flex-wrap: wrap;
+    	width: 40%;
     	margin-left: 2%;
 	}
 }

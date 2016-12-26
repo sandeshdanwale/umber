@@ -1,5 +1,5 @@
 <div class="result-details">
-	<location-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'location'" [locations]="locations" [activeSearchDetailPanel]="activeSearchDetailPanel"></location-details>
-	<developer-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'developer'" [developers]="developers" [activeSearchDetailPanel]="activeSearchDetailPanel"></developer-details>
+	<city-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'city'" [cities]="cities" [activeSearchDetailPanel]="activeSearchDetailPanel" [developers]="developers"></city-details>
+	<developer-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'developer'" [developers]="developers" [activeSearchDetailPanel]="activeSearchDetailPanel" [properties]="properties"></developer-details>
 	<property-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'property'" [properties]="properties" [activeSearchDetailPanel]="activeSearchDetailPanel"></property-details>
 </div>

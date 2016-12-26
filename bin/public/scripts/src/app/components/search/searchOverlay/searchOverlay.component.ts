@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy, HostListener} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import { UiService } from '../../../services/ui.service';
 import { Panel } from '../../../models/aggregate/ui.model';
@@ -12,14 +12,12 @@ import * as _ from 'lodash';
 })
 export class SearchOverlayComponent {
 
-	//activePanels: Observable<Panel[]>;
 
   @Input() activePanels: Panel[];
 
 	constructor(
     private uiService: UiService
     ) {
-      //this.activePanels = this.uiService.activePanels;
     }
 
     ngOnInit() {
@@ -29,6 +27,13 @@ export class SearchOverlayComponent {
   	public closeSearchOverlay() {
   		this.uiService.closeSearchOverlay();
   	}
+
+    @HostListener('document:keydown', ['$event'])
+    handleKeyboardEvent(kbdEvent: KeyboardEvent) { 
+      if (kbdEvent.key === 'Escape') {
+        this.closeSearchOverlay();
+      }
+    }
 
     public isSearchOverlayOpen(): any {
       let overlay = _.head(_.filter(this.activePanels, (p) => p.name === 'searchOverlay'));

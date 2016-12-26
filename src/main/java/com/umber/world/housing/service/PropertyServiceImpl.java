@@ -10,6 +10,7 @@ import com.umber.world.housing.model.UmberConfigs;
 import com.umber.world.housing.domain.Configs;
 import com.umber.world.housing.domain.Developer;
 import com.umber.world.housing.domain.Property;
+import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
 import com.umber.world.housing.repository.ConfigsRepository;
@@ -44,7 +45,10 @@ public class PropertyServiceImpl implements PropertyService {
 		Single<Property> property = Single.just(propertyRepository.findByPropertyId(propertyId));
 		Single<Configs> configs = Single.just(configsRepository.findByPropertyId(propertyId));
 		return Single.zip(property, configs, (p, c) -> {
-			UmberConfigs u = new UmberConfigs(c);
+			UmberConfigs u = null;
+			if (c != null) {
+				u = new UmberConfigs(c);
+			}
 			Developer developer = developerRepository.findByDeveloperId(p.developerId);
 			return new UmberProperty(p, u, null, developer.getName());
 		}).subscribeOn(Schedulers.io());
@@ -82,6 +86,23 @@ public class PropertyServiceImpl implements PropertyService {
 				.stream().map(d -> new UmberProperty(d))
 						.collect(Collectors.toList()));
 		return umberProperties.subscribeOn(Schedulers.io());
+	}
+	
+	@Override
+	public Single<List<UmberProperty>> findByFeaturedAndCity(Boolean featured, CityId cityId) {
+		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByFeaturedAndCityId(featured, cityId)
+				.stream().map(d -> new UmberProperty(d))
+						.collect(Collectors.toList()));
+		return umberProperties.subscribeOn(Schedulers.io());
+	}
+	
+	@Override
+	public Single<List<UmberProperty>> findByCityAndByNameStartsWith(CityId cityId, String name) {
+		Single<List<UmberProperty>> umberProperty = Single.just(propertyRepository.findByCityAndByNameStartsWith(cityId, name)
+				.stream().map(d -> new UmberProperty(d))
+						.collect(Collectors.toList()));
+		return umberProperty.subscribeOn(Schedulers.io());
+				
 	}
 
 }

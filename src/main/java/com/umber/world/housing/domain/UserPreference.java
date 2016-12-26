@@ -8,7 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.umber.world.housing.jackson.LocationId;
+import com.umber.world.housing.jackson.CityId;
+import com.umber.world.housing.jackson.UserId;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +33,6 @@ public class UserPreference implements Serializable {
 	@Id
     public String id;
 	
-    public String userId;
-    public LocationId selectedLocation;
+    public UserId userId;
+    public CityId cityId;
 }

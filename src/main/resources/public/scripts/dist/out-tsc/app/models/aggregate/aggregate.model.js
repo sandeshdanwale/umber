@@ -1,11 +1,29 @@
-export var LocationId = (function () {
-    function LocationId(registrationId) {
+export var CityId = (function () {
+    function CityId(registrationId) {
         this.registrationId = registrationId;
     }
-    LocationId.prototype.asString = function () {
+    CityId.prototype.asString = function () {
         return this.registrationId.toString();
     };
-    return LocationId;
+    return CityId;
+}());
+export var LandmarkId = (function () {
+    function LandmarkId(registrationId) {
+        this.registrationId = registrationId;
+    }
+    LandmarkId.prototype.asString = function () {
+        return this.registrationId.toString();
+    };
+    return LandmarkId;
+}());
+export var UserId = (function () {
+    function UserId(registrationId) {
+        this.registrationId = registrationId;
+    }
+    UserId.prototype.asString = function () {
+        return this.registrationId.toString();
+    };
+    return UserId;
 }());
 export var DetailId = (function () {
     function DetailId(registrationId) {

@@ -221,21 +221,12 @@ Amenities -
 
 
 db.property.mapReduce(
-  // Map function
   function() {
 
-    // We need to save this in a local var as per scoping problems
     var document = this;
 
-    // You need to expand this according to your needs
     var stopwords = ["the","this","and","or"];
 
-    //for(var prop in document) {
-
-      // We are only interested in strings and explicitly not in _id
-      //if(prop === "_id" || (prop !== 'name' && prop !== 'addresses')) {
-        //continue
-      //}
       for (var i = 0; i < document.addresses.length; i++) {
           if (document.addresses[i].city) {
             document.addresses[i].city.split(" ").forEach(
@@ -256,6 +247,7 @@ db.property.mapReduce(
                 emit(cleaned,{
                 type: 'property',
                 name: document.name,
+                city: document.addresses[i].city,
                 propertyId: document._id})
               }
             )
@@ -279,6 +271,7 @@ db.property.mapReduce(
                 emit(cleaned,{
                 type: 'property',
                 name: document.name,
+                city: document.addresses[i].city,
                 propertyId: document._id})
               }
             )
@@ -302,6 +295,7 @@ db.property.mapReduce(
                 emit(cleaned,{
                 type: 'property',
                 name: document.name,
+                city: document.addresses[i].city,
                 propertyId: document._id})
               }
             )
@@ -325,6 +319,7 @@ db.property.mapReduce(
                 emit(cleaned,{
                 type: 'property',
                 name: document.name,
+                city: document.addresses[i].city,
                 propertyId: document._id})
               }
             )
@@ -348,6 +343,7 @@ db.property.mapReduce(
                 emit(cleaned,{
                 type: 'property',
                 name: document.name,
+                city: document.addresses[i].city,
                 propertyId: document._id})
               }
             )
@@ -369,9 +365,16 @@ db.property.mapReduce(
           ) {
             return
           }
+          var city;
+          for (var i = 0; i < document.addresses.length; i++) {
+            if (document.addresses[i].city && document.addresses[i].type === "HOME") {
+              city = document.addresses[0].city;
+            }
+          }
           emit(cleaned,{
           type: 'property',
           name: document.name,
+          city: city,
           propertyId: document._id})
         }
       ) 
@@ -435,6 +438,7 @@ db.property.mapReduce(
         } else {
           finalValue.documents.push(reducedValue)
         }
+        finalValue.city = "pune";
         // We have sanitized our data, now we can return it        
         return finalValue
 
@@ -477,6 +481,7 @@ db.location.mapReduce(
           emit(cleaned,{
           type: 'location',
           name: document.name,
+          city: document.name,
           locationId: document._id})
         }
       ) 
@@ -596,6 +601,7 @@ db.developer.mapReduce(
                 emit(cleaned,{
                 type: 'developer',
                 name: document.name,
+                city: document.addresses[i].city,
                 developerId: document._id})
               }
             )
@@ -619,6 +625,7 @@ db.developer.mapReduce(
                 emit(cleaned,{
                 type: 'developer',
                 name: document.name,
+                city: document.addresses[i].city,
                 developerId: document._id})
               }
             )
@@ -642,6 +649,7 @@ db.developer.mapReduce(
                 emit(cleaned,{
                 type: 'developer',
                 name: document.name,
+                city: document.addresses[i].city,
                 developerId: document._id})
               }
             )
@@ -665,6 +673,7 @@ db.developer.mapReduce(
                 emit(cleaned,{
                 type: 'developer',
                 name: document.name,
+                city: document.addresses[i].city,
                 developerId: document._id})
               }
             )
@@ -688,6 +697,7 @@ db.developer.mapReduce(
                 emit(cleaned,{
                 type: 'developer',
                 name: document.name,
+                city: document.addresses[i].city,
                 developerId: document._id})
               }
             )
@@ -709,9 +719,16 @@ db.developer.mapReduce(
           ) {
             return
           }
+          var city;
+          for (var i = 0; i < document.addresses.length; i++) {
+            if (document.addresses[i].city && document.addresses[i].type === "HOME") {
+              city = document.addresses[0].city;
+            }
+          }
           emit(cleaned,{
           type: 'developer',
           name: document.name,
+          city: city,
           developerId: document._id})
         }
       ) 
@@ -784,10 +801,107 @@ db.developer.mapReduce(
   }
 )
 
-db.location.insertMany([
+
+
+
+
+
+
+db.city.insertMany([
 { "_id" : { "registrationId" : "1" }, "rank" : 1, "name" : "mumbai", "primary" : true, "featured" : true },
 { "_id" : { "registrationId" : "9" }, "rank" : 9, "name" : "pune", "primary" : true, "featured" : true},
 { "_id" : { "registrationId" : "3" }, "rank" : 3, "name" : "bangalore", "primary" : true, "featured" : true },
 { "_id" : { "registrationId" : "5" }, "rank" : 5, "name" : "hyderabad", "primary" : true, "featured" : true },
 { "_id" : { "registrationId" : "26" }, "rank" : 26, "name" : "nashik", "primary" : false },
 { "_id" : { "registrationId" : "2" }, "rank" : 2, "name" : "delhi", "primary" : false }])
+
+
+db.developer.insertMany([
+{ "_id" : { "registrationId" : "100" }, "name" : "mahindra lifespaces", "featured" : true, "addresses" : [ { "type" : "HOME", "line1" : "ravet", "cityId" : {registrationId: "9"}, landmarkId: {registrationId: "3"}, "state" : "maharashtra", "postalCode" : "411035", "country" : "india" } ] },
+{ "_id" : { "registrationId" : "101" }, "name" : "matoshree infrastructure", "featured" : true, "addresses" : [ { "type" : "HOME", "line1" : "thane",  "cityId" : {registrationId: "1"}, landmarkId: {registrationId: "2"}, "state" : "maharashtra", "postalCode" : "422035", "country" : "india" } ] },
+{ "_id" : { "registrationId" : "102" }, "name" : "verizon lifespaces", "featured" : true, "addresses" : [ { "type" : "HOME", "line1" : "ravet",  "cityId" : {registrationId: "9"}, landmarkId: {registrationId: "4"}, "state" : "maharashtra", "postalCode" : "411035", "country" : "india" } ] }
+])
+
+
+db.property.insertMany([
+{ "_id" : { "registrationId" : "200" }, "name" : "ekadanta sankul", "description" : "Largest and only backward integrated real estate player in the country, a big name in the construction industry ...", "developerId" : { "registrationId" : "100" }, "addresses" : [ { "type" : "HOME", "line1" : "thane", "cityId" : {registrationId: "1"}, "state" : "maharashtra", "postalCode" : "422035", "country" : "india", "landmarkId": {registrationId: "3"} } ], "featured" : true },
+
+{ "_id" : { "registrationId" : "201" }, "name" : "shiva sankul", "description" : "Largest and only backward integrated real estate player in the country, a big name in the construction industry ...", "developerId" : { "registrationId" : "100" }, "addresses" : [ { "type" : "HOME", "line1" : "thane", "cityId" : {registrationId: "1"}, "state" : "maharashtra", "postalCode" : "422035", "country" : "india" , "landmarkId": {registrationId: "4"}} ], "featured" : true },
+
+{ "_id" : { "registrationId" : "222" }, "name" : "nature paradise", "description" : "Largest and only backward integrated real estate player in the country, a big name in the construction industry ...", "developerId" : { "registrationId" : "101" }, "addresses" : [ { "type" : "HOME", "line1" : "ravet", "cityId" : {registrationId: "9"}, "state" : "maharashtra", "postalCode" : "411035", "country" : "india" , "landmarkId": {registrationId: "1"}} ], "featured" : true },
+
+{ "_id" : { "registrationId" : "223" }, "name" : "tularam sankul", "description" : "Largest and only backward integrated real estate player in the country, a big name in the construction industry ...", "developerId" : { "registrationId" : "101" }, "addresses" : [ { "type" : "HOME", "line1" : "ravet", "cityId" : {registrationId: "9"}, "state" : "maharashtra", "postalCode" : "411035", "country" : "india", "landmarkId": {registrationId: "2"} } ], "featured" : true }
+])
+
+
+db.landmark.insertMany([
+{ "_id" : { "registrationId" : "1" }, "rank" : 1, "name" : "akurdi", cityId: {registrationId: "9"}, "featured" : true },
+
+{"_id" : { "registrationId" : "2" }, "rank" : 2, "name" : "ravet", cityId: {registrationId: "9"}, "featured" : true },
+
+{ "_id" : { "registrationId" : "3" }, "rank" : 3, "name" : "kharghar", cityId: {registrationId: "1"}, "featured" : true },
+
+{"_id" : { "registrationId" : "4" }, "rank" : 4, "name" : "lower parel", cityId: {
+registrationId: "1"}, "featured" : true }
+])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Unit]
+Description=Umber Service
+
+[Service]
+User=nobody
+# The configuration file application.properties should be here:
+WorkingDirectory=/data 
+ExecStart=/usr/bin/java -Xmx2048m -Dserver.compression.enabled=true -DDserver.compression.mime-types=application/javascript,application/json,application/xml,text/html,text/xml,text/plainumber -jar /opt/umberworld/umber/build/libs/gs-accessing-data-mongodb-0.1.0.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+
+db.property.find().forEach(function(doc) {
+db.property.update(
+   { _id: doc._id},
+   { $set : { 'name' : doc.name.toLowerCase() } },
+   { multi: true }
+)
+});
+
+db.developer.find().forEach(function(doc) {
+db.developer.update(
+   { _id: doc._id},
+   { $set : { 'name' : doc.name.toLowerCase() } },
+   { multi: true }
+)
+});
+
+db.landmark.find().forEach(function(doc) {
+db.landmark.update(
+   { _id: doc._id},
+   { $set : { 'name' : doc.name.toLowerCase() } },
+   { multi: true }
+)
+});
+
+db.city.find().forEach(function(doc) {
+db.city.update(
+   { _id: doc._id},
+   { $set : { 'name' : doc.name.toLowerCase() } },
+   { multi: true }
+)
+});

@@ -21,11 +21,15 @@ export var ResultListComponent = (function () {
     __decorate([
         Input(), 
         __metadata('design:type', Array)
-    ], ResultListComponent.prototype, "locations", void 0);
+    ], ResultListComponent.prototype, "landmarks", void 0);
     __decorate([
         Input(), 
         __metadata('design:type', Array)
     ], ResultListComponent.prototype, "developers", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', String)
+    ], ResultListComponent.prototype, "searchString", void 0);
     ResultListComponent = __decorate([
         Component({
             selector: 'result-list',

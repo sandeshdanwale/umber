@@ -12,7 +12,7 @@ import { PropertyService } from '../../../../services/property.service';
 export var PropertyCardCarouselComponent = (function () {
     function PropertyCardCarouselComponent(propertyService) {
         this.propertyService = propertyService;
-        this.featuredProperties = this.propertyService.property;
+        this.defaultProperties = this.propertyService.defaultProperty;
     }
     PropertyCardCarouselComponent.prototype.ngOnInit = function () {
     };

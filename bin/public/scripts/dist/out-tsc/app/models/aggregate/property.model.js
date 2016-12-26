@@ -6,6 +6,7 @@ export var Property = (function () {
         this.name = data.name;
         this.description = data.description;
         this.featured = data.featured;
+        this.developerName = data.developerName;
         for (var address in data.addresses) {
             this.addresses.push(new Address(address));
         }

@@ -7,29 +7,51 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UiService } from '../../../../services/ui.service';
 import { PropertyService } from '../../../../services/property.service';
-import { LocationService } from '../../../../services/location.service';
+import { LandmarkService } from '../../../../services/landmark.service';
 import { DeveloperService } from '../../../../services/developer.service';
+import * as _ from 'lodash';
 export var ResultContainerComponent = (function () {
-    function ResultContainerComponent(propertyService, locationService, developerService, uiService) {
+    function ResultContainerComponent(propertyService, landmarkService, developerService, uiService) {
         this.propertyService = propertyService;
-        this.locationService = locationService;
+        this.landmarkService = landmarkService;
         this.developerService = developerService;
         this.uiService = uiService;
+        this.isResultDetailListActive = false;
         this.properties = this.propertyService.property;
-        this.locations = this.locationService.location;
+        this.landmarks = this.landmarkService.landmark;
         this.developers = this.developerService.developer;
         this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
+        this.isResultDetailListActive = this.isResultDetailListOpen();
     }
+    ResultContainerComponent.prototype.ngOnChanges = function () {
+        this.properties = this.propertyService.property;
+        this.landmarks = this.landmarkService.landmark;
+        this.developers = this.developerService.developer;
+        this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
+        this.isResultDetailListActive = this.isResultDetailListOpen();
+    };
+    ResultContainerComponent.prototype.isResultDetailListOpen = function () {
+        var detailList = _.head(_.filter(this.activePanels, function (p) { return p.name === 'searchDetailList'; }));
+        return detailList && detailList.name;
+    };
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], ResultContainerComponent.prototype, "activePanels", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', String)
+    ], ResultContainerComponent.prototype, "searchString", void 0);
     ResultContainerComponent = __decorate([
         Component({
             selector: 'result-container',
             templateUrl: 'resultContainer.component.html',
             styleUrls: ['resultContainer.component.scss']
         }), 
-        __metadata('design:paramtypes', [PropertyService, LocationService, DeveloperService, UiService])
+        __metadata('design:paramtypes', [PropertyService, LandmarkService, DeveloperService, UiService])
     ], ResultContainerComponent);
     return ResultContainerComponent;
 }());

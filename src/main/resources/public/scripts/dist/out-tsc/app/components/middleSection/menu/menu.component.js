@@ -13,7 +13,7 @@ export var MenuComponent = (function () {
     function MenuComponent(cacheService) {
         this.cacheService = cacheService;
         this.actions = [];
-        this.actions = ["Buy", "Sell", "Rent"];
+        this.actions = ["Buy", "Rent"];
     }
     MenuComponent.prototype.ngOnInit = function () {
     };

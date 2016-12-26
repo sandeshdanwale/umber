@@ -1,5 +1,5 @@
 <div class="home-page-banner">
-	<navbar></navbar>
+	<navbar [cities]="cities | async" [user]="user | async"></navbar>
 	<menu-bar></menu-bar>
 	<search-place-holder></search-place-holder>
 	<featured-heading></featured-heading>

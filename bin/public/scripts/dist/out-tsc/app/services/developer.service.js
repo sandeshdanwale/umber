@@ -20,6 +20,11 @@ export var DeveloperService = (function () {
         this.BASE_URL = location.hostname === 'localhost' ? '' : '';
         this.developer = store.let(fromRoot.getDeveloperEntities);
     }
+    DeveloperService.prototype.getDevelopers = function (searchString) {
+        var url = this.BASE_URL + "/developer/search/9/" + searchString;
+        return this.http.get(url)
+            .map(this.extractData);
+    };
     DeveloperService.prototype.getDeveloperDetails = function (id) {
         var url = this.BASE_URL + "/developer/details/" + id;
         return this.http.get(url)

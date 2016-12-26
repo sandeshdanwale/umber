@@ -3,14 +3,20 @@ import { Store } from '@ngrx/store';
 import { HttpService } from './http.service'
 import { PropertyService } from './property.service';
 import { DeveloperService } from './developer.service';
-import { LocationService } from './location.service';
+import { LandmarkService } from './landmark.service';
+import { CityService } from './city.service';
 import { Http, URLSearchParams } from '@angular/http';
 import * as fromRoot from '../reducers';
 import * as ui from '../actions/ui.action';
 import * as property from '../actions/property.action';
+import * as developer from '../actions/developer.action';
+import * as landmark from '../actions/landmark.action';
 import { Panel,SearchDetailPanel } from '../models/aggregate/ui.model';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
+import { Developer } from '../models/aggregate/developer.model';
+import { Property } from '../models/aggregate/property.model';
+import { Landmark } from '../models/aggregate/landmark.model';
 
 @Injectable()
 export class UiService {
@@ -21,23 +27,24 @@ export class UiService {
     constructor(
         private http: HttpService,
         private propertyService: PropertyService,
-        private developerService: DeveloperService,
-        private locationService: LocationService,
+        private developerService:DeveloperService,
+        private landmarkService: LandmarkService,
+        private cityService: CityService,
         private store: Store<fromRoot.State>
     ) {
         this.activePanels = store.let(fromRoot.getActivePanels);
         this.activeSearchDetailPanel = store.let(fromRoot.getActiveSearchDetailPanel);
     }
 
-    public serachDetailObservable(id: string, context: string) {
+    public serachDetailObservable(id: string, context: string): any {
         if (context === 'property') {
             return this.propertyService.getPropertyDetails(id);
         }
         if (context === 'developer') {
             return this.developerService.getDeveloperDetails(id);
         }
-        if (context === 'location') {
-            return this.locationService.getLocationDetails(id);
+        if (context === 'landmark') {
+            return this.landmarkService.getLandmarkDetails(id);
         }
     }
 
@@ -45,15 +52,17 @@ export class UiService {
         if (data && data.id) {
             if (context === 'property') {
                 let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('property', data.id.registrationId); 
-                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
                 this.store.dispatch(new property.UpdatePropertyDetail(data));
+                this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
             }
             if (context === 'developer') {
                 let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId); 
+                this.store.dispatch(new developer.UpdateDeveloperDetail(data));
                 this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
             }
-            if (context === 'location') {
-                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('location', data.id.registrationId); 
+            if (context === 'landmark') {
+                let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('landmark', data.id.registrationId); 
+                this.store.dispatch(new landmark.UpdateLandmarkDetail(data));
                 this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
             }
         }
@@ -75,9 +84,33 @@ export class UiService {
         this.store.dispatch(new ui.LoadSuccessAction(activePanels));
     }
 
+    public loadSearchDetailList() {
+        let activePanels: Array<Panel> = [];
+        activePanels.push(new Panel('main'));
+        activePanels.push(new Panel('searchOverlay'));
+        activePanels.push(new Panel('searchDetailList'));
+        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    }
+
+    public closeSearchDetailList() {
+        let activePanels: Array<Panel> = [];
+        activePanels.push(new Panel('main'));
+        activePanels.push(new Panel('searchOverlay'));
+        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    }
+
     public closeSearchOverlay() {
         let activePanels: Array<Panel> = [];
         activePanels.push(new Panel('main'));
         this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    }
+
+    public capitalize(str: string): string {
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()});
+    }
+
+    public format(str: string): string {
+        let formattedStr = this.capitalize(str);
+        return formattedStr.charAt(0).toLowerCase() + formattedStr.slice(1);
     }
 }

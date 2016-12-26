@@ -2,7 +2,8 @@ import { type } from '../util';
 export var ActionTypes = {
     LOAD_SUCCESS: type('[Developer] Load Success'),
     LOAD: type('[Developer] Load'),
-    COMMAND: type('[Developer] Command')
+    COMMAND: type('[Developer] Command'),
+    UPDATE_DEVELOPER_DETAIL: type('[Developer] Update Developer Detail')
 };
 export var LoadSuccessAction = (function () {
     function LoadSuccessAction(payload) {
@@ -10,6 +11,13 @@ export var LoadSuccessAction = (function () {
         this.type = ActionTypes.LOAD_SUCCESS;
     }
     return LoadSuccessAction;
+}());
+export var UpdateDeveloperDetail = (function () {
+    function UpdateDeveloperDetail(payload) {
+        this.payload = payload;
+        this.type = ActionTypes.UPDATE_DEVELOPER_DETAIL;
+    }
+    return UpdateDeveloperDetail;
 }());
 export var LoadAction = (function () {
     function LoadAction(payload) {

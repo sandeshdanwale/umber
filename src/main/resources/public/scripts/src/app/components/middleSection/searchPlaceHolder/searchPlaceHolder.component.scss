@@ -1,17 +1,34 @@
 .search-place-holder {
 	.controls {
 		display: inline-block;
-		position: relative;
-		margin-top: 20px;
-		height: 45px;
-		width: 600px;
+    	position: relative;
+    	@media screen and (max-device-width: 780px) {
+	      .input-group {
+	        width: 77vw;
+	      }
+	    }
+	    @media screen and (min-device-width: 780px) {
+	      .input-group {
+	        width: 50vw;
+	      }
+	    }
+	    @media screen and (max-device-width: 780px) {
+	    	input {
+	    		font-size: 2vw;
+	    	}
+	    }
+	    @media screen and (min-device-width: 780px) {
+	    	input {
+	    		font-size: 14px;
+	    	}
+	    }
 		.input-group {
 			.form-control {
 				height: 45px;
 			}
 			.input-group-addon {
 				color: #fff;
-			    background: rgba(0, 116, 228, 0.75);
+			    background: rgba(255, 126, 66, 0.65);
 			    border: solid #fff;
 			    border-width: 1px;
 			}

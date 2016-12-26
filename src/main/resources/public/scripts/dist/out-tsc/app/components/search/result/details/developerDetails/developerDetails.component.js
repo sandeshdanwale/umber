@@ -15,18 +15,22 @@ export var DeveloperDetailsComponent = (function () {
     }
     DeveloperDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(this.developers);
-        this.developer = _.head(_.filter(this.developers, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+        //onsole.log(this.developers)
+        this.developer = this.developers ? _.head(_.filter(this.developers, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; })) : null;
+        this.setProperties = this.properties ? this.properties.slice(0, 2) : null;
     };
     DeveloperDetailsComponent.prototype.ngOnChanges = function () {
-        var _this = this;
         console.log('changes');
-        this.developer = _.head(_.filter(this.developers, function (p) { return p.id.registrationId === _this.activeSearchDetailPanel.entityId; }));
+        //this.developer = _.head(_.filter(this.developers, (p) => p.id.registrationId === this.activeSearchDetailPanel.entityId));
     };
     __decorate([
         Input(), 
         __metadata('design:type', Array)
     ], DeveloperDetailsComponent.prototype, "developers", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', Array)
+    ], DeveloperDetailsComponent.prototype, "properties", void 0);
     __decorate([
         Input(), 
         __metadata('design:type', SearchDetailPanel)

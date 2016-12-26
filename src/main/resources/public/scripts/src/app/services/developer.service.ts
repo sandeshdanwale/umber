@@ -1,10 +1,10 @@
-import {Injectable, Component} from '@angular/core'
-import {HttpService} from './http.service'
-import {Observable} from 'rxjs/Observable';
+import { Injectable, Component } from '@angular/core'
+import { HttpService } from './http.service'
+import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
-import {Developer} from '../models/aggregate/developer.model';
-import {Response} from '@angular/http';
+import { Developer } from '../models/aggregate/developer.model';
+import { Response } from '@angular/http';
 
 @Injectable()
 export class DeveloperService {
@@ -18,19 +18,22 @@ export class DeveloperService {
         this.developer = store.let(fromRoot.getDeveloperEntities);
     }
 
-    public getDevelopers(searchString: string): Observable<any> {
-        let url: string = `${this.BASE_URL}/developer/search/${searchString}`; 
+    public getDevelopers(cityId: string, searchString: string): Observable<Developer[]> {
+        if (!searchString) {
+            return this.getFeaturedDevelopers(cityId);
+        }
+        let url: string = `${this.BASE_URL}/developer/search/${cityId}/${searchString}`; 
         return this.http.get(url)
                 .map(this.extractData)
     }
 
-    public getDeveloperDetails(id: string): Observable<any> {
+    public getDeveloperDetails(id: string): Observable<Developer> {
         let url: string = `${this.BASE_URL}/developer/details/${id}`; 
         return this.http.get(url)
                 .map(this.extractData)
     }
 
-    public getTopDevelopers(): Observable<any> {
+    public getTopDevelopers(): Observable<Developer[]> {
 
 
         let url: string = `${this.BASE_URL}/developer/topDevelopers`;
@@ -39,10 +42,10 @@ export class DeveloperService {
                 .catch(this.handleError);
     }
 
-    public getFeaturedDevelopers(): Observable<any> {
+    public getFeaturedDevelopers(cityId: string): Observable<Developer[]> {
 
 
-        let url: string = `${this.BASE_URL}/developer/featuredDevelopers`;
+        let url: string = `${this.BASE_URL}/developer/featuredDevelopersByCity?cityId=${cityId}`;
         return this.http.get(url)
                 .map(this.extractData)
                 .catch(this.handleError);

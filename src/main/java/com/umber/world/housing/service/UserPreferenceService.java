@@ -6,6 +6,6 @@ import rx.Single;
 
 public interface UserPreferenceService {
 
-    Single<UmberPreference> findUserPreferenceById (String userId);
-    
+    Single<UmberPreference> findUserPreferenceByUserId (String userId);
+    Single<UmberPreference> updteCity(String userId, String cityId);
 }

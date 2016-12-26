@@ -8,11 +8,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { UserService } from '../services/user.service';
 import { UiService } from '../services/ui.service';
 export var ModalsComponent = (function () {
-    function ModalsComponent(uiService) {
+    function ModalsComponent(uiService, userService) {
         this.uiService = uiService;
+        this.userService = userService;
         this.activePanels = this.uiService.activePanels;
+        this.user = this.userService.user;
     }
     ModalsComponent = __decorate([
         Component({
@@ -20,7 +23,7 @@ export var ModalsComponent = (function () {
             templateUrl: 'modals.component.html',
             styleUrls: ['modals.component.scss']
         }), 
-        __metadata('design:paramtypes', [UiService])
+        __metadata('design:paramtypes', [UiService, UserService])
     ], ModalsComponent);
     return ModalsComponent;
 }());
