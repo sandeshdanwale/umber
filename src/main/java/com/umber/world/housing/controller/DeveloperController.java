@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
+import com.umber.world.housing.jackson.LandmarkId;
 import com.umber.world.housing.model.UmberDeveloper;
 import com.umber.world.housing.service.DeveloperService;
 
@@ -33,7 +34,7 @@ public class DeveloperController {
 	
 	@RequestMapping(value={"/featuredDevelopersByCity"})
     public Single<List<UmberDeveloper>> featuredPropertiesByCity(@RequestParam(value="cityId", required=true) String cityId) {
-		return developerService.findByFeaturedAndCity(true, new CityId(cityId))
+		return developerService.findByFeaturedAndCityId(true, new CityId(cityId))
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Developer Query Service API {} failed :: {} ");
                     return null;
@@ -51,7 +52,22 @@ public class DeveloperController {
 	
 	@RequestMapping(value={"/search/{id}/{name}"})
     public Single<List<UmberDeveloper>> findByCityAndByNameStartsWith(@PathVariable String id, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
 		return developerService.findByCityAndByNameStartsWith(new CityId(id), name)
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/byLandmark/{landmarkId}/{cityId}/{name}"})
+    public Single<List<UmberDeveloper>> findByCityLandmarkAndByNameStartsWith(@PathVariable String cityId, @PathVariable String landmarkId, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
+		return developerService.findByCityLandmarkAndByNameStartsWith(new CityId(cityId), name, new LandmarkId(landmarkId))
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

@@ -106,7 +106,7 @@ export class PropertyCardMediumComponent {
           lines = !address.line2 ? lines : lines ? lines + ', ' + address.line2 : address.line2;
           lines = !address.line3 ? lines : lines ? lines + ', ' + address.line3 : address.line3;
 
-          let txt = lines + ', ' + address.city + ', ' + address.state;
+          let txt = lines + ', ' + this.property.cityName + ', ' + address.state;
           return txt.length > 35 ? txt.slice(0, 35) + ' ...' : txt;
         }
       }

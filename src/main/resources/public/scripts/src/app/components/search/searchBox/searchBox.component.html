@@ -1,11 +1,16 @@
 <div class="search-box">
 	<div class="controls">
 		<div class="input-group">
-		    <input #searchInput type="text" class="form-control" placeholder="Enter Locality, Developer, Landmark or Project" aria-describedby="basic-addon2">
+		    <input #searchInput type="text" class="search form-control" placeholder="Enter Locality, Developer, Landmark or Project" aria-describedby="basic-addon2">
 		    <span (click)="openSearchDetailList($event)" (keydown.Enter)="openSearchDetailList($event)" class="input-group-addon" id="basic-addon2">
 		    	<i class="fa fa-search" aria-hidden="true"></i>
 		    	<span>Search</span>
 		    </span>
+		</div>
+		<div class="tags">
+		    <div *ngFor="let tag of tags" class="tag">
+				<selected-tag [tag]="tag" [len]="tags.length"></selected-tag>
+			</div>
 		</div>
     </div>
 </div>

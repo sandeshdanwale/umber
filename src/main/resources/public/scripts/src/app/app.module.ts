@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -20,12 +21,12 @@ import { PropertyCardMediumComponent } from './components/shared/propertyCardMed
 import { DeveloperCardSmallComponent } from './components/shared/developerCardSmall/developerCardSmall.component';
 import { PropertyCardVsmallComponent } from './components/shared/propertyCardVsmall/propertyCardVsmall.component';
 import { PropertyCardHorizontalComponent } from './components/shared/propertyCardHorizontal/propertyCardHorizontal.component';
-
+import { SelectedTagComponent } from './components/search/selectedTag/selectedTag.component'
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
 import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component'
 import { SearchOverlayComponent } from './components/search/searchOverlay/searchOverlay.component'
-import { SearchBoxComponent } from './components/search/searchBox/searchBox.component'
+import { SearchBoxComponent } from './components/search/searchBox/searchBox.component';
 import { ModalsComponent } from './modals/modals.component';
 import { ResultContainerComponent } from './components/search/result/resultContainer/resultContainer.component';
 import { ResultDetailsComponent } from './components/search/result/details/resultDetails/resultDetails.component';
@@ -52,7 +53,9 @@ import { CityService } from './services/city.service';
 import { UiService } from './services/ui.service';
 import { LandmarkService } from './services/landmark.service';
 import { AggregationService } from './services/aggregation.service';
+import { TagService } from './services/tag.service';
 import { CacheService } from './services/cache.service';
+import { UtilService } from './services/util.service';
 
 @NgModule({
   declarations: [
@@ -89,6 +92,7 @@ import { CacheService } from './services/cache.service';
     PropertyCardMediumComponent,
     PropertyCardVsmallComponent,
     PropertyCardHorizontalComponent,
+    SelectedTagComponent, 
     OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe
   ],
   imports: [
@@ -96,10 +100,11 @@ import { CacheService } from './services/cache.service';
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    StoreModule.provideStore(reducer)
+    StoreModule.provideStore(reducer),
+    InfiniteScrollModule
   ],
   providers: [HttpService, UserService, DeveloperService, CityService, LandmarkService, 
-  AggregationService, CacheService, PropertyService, UiService],
+  AggregationService, CacheService, PropertyService, UiService, TagService, UtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

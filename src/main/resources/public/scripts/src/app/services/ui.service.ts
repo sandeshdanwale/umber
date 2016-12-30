@@ -52,17 +52,20 @@ export class UiService {
         if (data && data.id) {
             if (context === 'property') {
                 let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('property', data.id.registrationId); 
-                this.store.dispatch(new property.UpdatePropertyDetail(data));
+                let updatedProperty = new Property(data);
+                this.store.dispatch(new property.UpdatePropertyDetail(updatedProperty));
                 this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
             }
             if (context === 'developer') {
                 let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('developer', data.id.registrationId); 
-                this.store.dispatch(new developer.UpdateDeveloperDetail(data));
+                let updatedDeveloper = new Developer(data);
+                this.store.dispatch(new developer.UpdateDeveloperDetail(updatedDeveloper));
                 this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
             }
             if (context === 'landmark') {
                 let searchDetailPanel:SearchDetailPanel = new SearchDetailPanel('landmark', data.id.registrationId); 
-                this.store.dispatch(new landmark.UpdateLandmarkDetail(data));
+                let updatedLandmark = new Landmark(data);
+                this.store.dispatch(new landmark.UpdateLandmarkDetail(updatedLandmark));
                 this.store.dispatch(new ui.UpdateSearchDetail(searchDetailPanel));
             }
         }

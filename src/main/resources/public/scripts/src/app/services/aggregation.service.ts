@@ -18,7 +18,11 @@ import { Panel } from '../models/aggregate/ui.model';
 import { User } from '../models/aggregate/user.model';
 import { Preference } from '../models/aggregate/preference.model';
 import { City } from '../models/aggregate/city.model';
+import { Developer } from '../models/aggregate/developer.model';
+import { Property } from '../models/aggregate/property.model';
+import { Landmark } from '../models/aggregate/landmark.model';
 import { UserId } from '../models/aggregate/aggregate.model';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AggregationService {
@@ -58,11 +62,30 @@ export class AggregationService {
             this.developerService.getFeaturedDevelopers(cityId),
             this.propertyService.getFeaturedProperties(cityId),
             this.landmarkService.getFeaturedLandmarks(cityId)
-          ).subscribe(data => {
+          ).subscribe(/*data => {
             this.store.dispatch(new developer.LoadSuccessAction(data[0].slice(0, 13)));
             this.store.dispatch(new property.LoadSuccessAction(data[1].slice(0, 13)));
             this.store.dispatch(new defaultProperty.LoadSuccessAction(data[1].slice(0, 4)));
             this.store.dispatch(new landmark.LoadSuccessAction(data[2].slice(0, 13)));
+            this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+          }*/
+          ([developers, properties, landmarks]) => {
+            let _developers = _.slice(
+                                  _.map(developers, (d) => d && new Developer(d)),
+                                  0, 13);
+            let _properties = _.slice(
+                                  _.map(properties, (d) => d && new Property(d)),
+                                  0, 13);
+            let _defaultProperties = _.slice(
+                                  _.map(properties, (d) => d && new Property(d)),
+                                  0, 4);
+            let _landmarks = _.slice(
+                                  _.map(landmarks, (d) => d && new Landmark(d)),
+                                  0, 13);
+            this.store.dispatch(new developer.LoadSuccessAction(_developers));
+            this.store.dispatch(new property.LoadSuccessAction(_properties));
+            this.store.dispatch(new defaultProperty.LoadSuccessAction(_defaultProperties));
+            this.store.dispatch(new landmark.LoadSuccessAction(_landmarks));
             this.store.dispatch(new ui.LoadSuccessAction(activePanels));
           });
         })

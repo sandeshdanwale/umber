@@ -9,10 +9,12 @@ import * as fromDefaultProperty from './defaultProperty.reducer';
 import * as fromDetail from './detail.reducer';
 import * as fromUi from './ui.reducer';
 import * as fromUser from './user.reducer';
+import * as fromTag from './tag.reducer';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { City } from '../models/aggregate/city.model';
 import { Developer } from '../models/aggregate/developer.model';
+import { Tag } from '../models/aggregate/tag.model';
 import { Property } from '../models/aggregate/property.model';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
@@ -23,6 +25,7 @@ export interface State {
   property: fromProperty.State,
   defaultProperty: fromDefaultProperty.State,
   detail: fromDetail.State,
+  tag: fromTag.State,
   ui: fromUi.State,
   user: fromUser.State
 };
@@ -34,6 +37,7 @@ const reducers = {
   property: fromProperty.reducer,
   defaultProperty: fromDefaultProperty.reducer,
   detail: fromDetail.reducer,
+  tag: fromTag.reducer,
   ui: fromUi.reducer,
   user: fromUser.reducer
 };
@@ -69,6 +73,10 @@ export function getDefaultPropertyState(state$: Observable<State>) {
   return state$.select(state => state.defaultProperty);
 }
 
+export function getTagState(state$: Observable<State>) {
+  return state$.select(state => state.tag);
+}
+
 export function getUiState(state$: Observable<State>) {
   return state$.select(state => state.ui);
 }
@@ -84,17 +92,5 @@ export const getCityEntities = compose(fromCity.getCityEntities, getCityState);
 export const getLandmarkEntities = compose(fromLandmark.getLandmarkEntities, getLandmarkState);
 export const getUserEntities = compose(fromUser.getUserEntities, getUserState);
 export const getActivePanels = compose(fromUi.getActivePanels, getUiState);
+export const getTagEntities = compose(fromTag.getTagEntities, getTagState);
 export const getActiveSearchDetailPanel = compose(fromUi.getActiveSearchDetailPanel, getUiState);
-/*
-export const getEquipmentSnapshots = compose(fromEquipment.getEquipmentSnapshots, getEquipmentState);
-export const getEquipmentLoaded = compose(fromEquipment.getLoaded, getEquipmentState);
-
-export const getTaskEntities = compose(fromTask.getTaskEntities, getTaskState);
-export const getTaskSnapshots = compose(fromTask.getTaskSnapshots, getTaskState);
-
-export const getReferenceEntities = compose(fromReferenceData.getReferenceDataEntities, getReferenceDataState);
-
-export const getUser = compose(fromUser.getUser, getUserState);
-
-export const getUILoaded = compose(fromUI.getLoaded, getUIState);
-*/

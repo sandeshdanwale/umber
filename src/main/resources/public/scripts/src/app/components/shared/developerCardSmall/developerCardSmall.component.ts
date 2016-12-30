@@ -9,26 +9,20 @@ import { Developer } from '../../../models/aggregate/developer.model';
 export class DeveloperCardSmallComponent {
 
 	@Input() developer: Developer;
-	displayDeveloperName: string;
 	style: any;
 	constructor(
   	) {
   	}
 
   	ngOnInit() {
-  		this.initDisplayContent();
+      this.style = 'url(/assets/images/developerlogo.jpg)';
   	}
 
   	ngOnChanges() {
-  		this.initDisplayContent();
+      this.style = 'url(/assets/images/developerlogo.jpg)';
   	}
 
-    private initDisplayContent() {
-      	this.displayDeveloperName = this.getDisplayDeveloperName();
-      	this.style = 'url(/assets/images/developerlogo.jpg)';
-    }
-
-    private getDisplayDeveloperName(): string{
-      	return this.developer ? this.developer.name : '';
+    get displayDeveloperName(): any {
+      return this.developer ? this.developer.name : '';
     }
 }

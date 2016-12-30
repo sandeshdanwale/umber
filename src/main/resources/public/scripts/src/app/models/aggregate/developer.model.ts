@@ -1,4 +1,5 @@
 import { DeveloperId, AggregateRoot, Address } from './aggregate.model';
+import * as _ from 'lodash';
 
 export class Developer implements AggregateRoot<DeveloperId> {
    	
@@ -9,13 +10,12 @@ export class Developer implements AggregateRoot<DeveloperId> {
     addresses: Array<Address>
   
 	constructor(data: any) {
-	    this.id = new DeveloperId(data.id);
+	    this.id = new DeveloperId(data.id.registrationId);
 	    this.name = data.name;
 	    this.description = data.description;
 	    this.featured = data.featured;
-	    for (let address in data.addresses) {
-	    	this.addresses.push(new Address(address));
-	    }
+	    this.addresses = [];
+	    _.each(data.addresses, (address) => this.addresses.push(new Address(address)));
 	    
     }
 

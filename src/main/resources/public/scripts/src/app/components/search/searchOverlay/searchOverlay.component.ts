@@ -1,8 +1,10 @@
 import {Component, Input, ChangeDetectionStrategy, HostListener } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import { UiService } from '../../../services/ui.service';
+import { TagService } from '../../../services/tag.service';
 import { Panel } from '../../../models/aggregate/ui.model';
 import { User } from '../../../models/aggregate/user.model';
+import { Tag } from '../../../models/aggregate/tag.model';
 import { City } from '../../../models/aggregate/city.model';
 import * as _ from 'lodash';
 
@@ -17,11 +19,14 @@ export class SearchOverlayComponent {
   @Input() activePanels: Panel[];
   @Input() user: User;
 
+  tags: Observable<Tag[]>;
   searchStr: string;
   
 	constructor(
-    private uiService: UiService
+    private uiService: UiService,
+    private tagService: TagService
     ) {
+      this.tags = this.tagService.tag;
     }
 
     ngOnInit() {

@@ -13,7 +13,6 @@ export class NavSmallComponent {
 
   @Input() cities: City[];
   @Input() user: User;
-  @Output() userCity = new EventEmitter();
 
 	private otherCities: City[];
   private selectedCity: City;

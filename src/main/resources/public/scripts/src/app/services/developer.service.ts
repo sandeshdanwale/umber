@@ -1,5 +1,6 @@
 import { Injectable, Component } from '@angular/core'
-import { HttpService } from './http.service'
+import { HttpService } from './http.service';
+import { UtilService } from './util.service';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
@@ -13,16 +14,26 @@ export class DeveloperService {
     developer: Observable<Developer[]>;
     constructor(
         private http: HttpService,
+        private utilService: UtilService,
         private store: Store<fromRoot.State>
     ) {
         this.developer = store.let(fromRoot.getDeveloperEntities);
     }
 
-    public getDevelopers(cityId: string, searchString: string): Observable<Developer[]> {
-        if (!searchString) {
+    public getDevelopers(cityId: string = '9', searchString: string): Observable<Developer[]> {
+        if (this.utilService.isNull(searchString)) {
             return this.getFeaturedDevelopers(cityId);
         }
         let url: string = `${this.BASE_URL}/developer/search/${cityId}/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
+    public getDevelopersByLandmarkId(cityId: string, searchString: string, landmarkId: string): Observable<Developer[]> {
+        if (this.utilService.isNull(searchString)) {
+            searchString = 'XXXXX';
+        }
+        let url: string = `${this.BASE_URL}/developer/search/byLandmark/${landmarkId}/${cityId}/${searchString}`; 
         return this.http.get(url)
                 .map(this.extractData)
     }
@@ -54,9 +65,22 @@ export class DeveloperService {
     private extractData(res: Response) {
         let data;
         try {
-    	    data = res.json();
-            return data;
+            //if (!res._body) {
+                //return data;
+            //}
+            let _data = res.json();
+            return _data;
+            /*if (!_data || typeof _data == 'undefined' || (Object.prototype.toString.call(_data) === '[object Array]' && !_data.length)) {
+                return data;
+            }
+            if (_data.length > 0) {
+                data = _.map(_data, (p) => new Developer(p));
+            } else {
+                data = new Developer(_data);
+            }
+            return data;*/
         } catch (e) {
+            console.log(e)
             return [{
                     developerName: "shiv"
                 }, {

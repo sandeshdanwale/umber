@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../../services/user.service';
 import { CityService } from '../../services/city.service';
@@ -12,15 +12,13 @@ import { User } from '../../models/aggregate/user.model';
 })
 export class BannerComponent {
 
-	user: Observable<User>;
 	cities: Observable<City[]>;
+	@Input() user: User;
 
 	constructor(
-		private userService: UserService,
     	private cityService: CityService
   ) {
   	this.cities = this.cityService.city; 
-  	this.user = this.userService.user; 
   }
 
   	public ngOnInit() {

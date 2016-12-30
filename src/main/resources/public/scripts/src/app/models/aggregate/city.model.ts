@@ -9,11 +9,12 @@ export class City implements AggregateRoot<CityId> {
 	featured: boolean;
   
 	constructor(data: any) {
-	    this.id = new CityId(data.id || data.cityId.registrationId);
+		let id = data.id ? data.id.registrationId : data.cityId.registrationId
+	    this.id = new CityId(id);
 	    this.name = data.name;
 	    this.rank = data.rank;
 	    this.featured = data.featured;
-	    
+	    this.primary = data.primary;
     }
 
 }

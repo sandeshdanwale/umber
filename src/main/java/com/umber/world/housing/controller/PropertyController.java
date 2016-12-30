@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.umber.world.housing.jackson.CityId;
+import com.umber.world.housing.jackson.DeveloperId;
+import com.umber.world.housing.jackson.LandmarkId;
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
 import com.umber.world.housing.service.PropertyService;
@@ -33,7 +35,7 @@ public class PropertyController {
 	
 	@RequestMapping(value={"/featuredPropertiesByCity"})
     public Single<List<UmberProperty>> featuredPropertiesByCity(@RequestParam(value="cityId", required=true) String cityId) {
-		return propertyService.findByFeaturedAndCity(true, new CityId(cityId))
+		return propertyService.findByFeaturedAndCityId(true, new CityId(cityId))
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;
@@ -60,7 +62,46 @@ public class PropertyController {
 	
 	@RequestMapping(value={"/search/{id}/{name}"})
     public Single<List<UmberProperty>> findByIdStartsWith(@PathVariable String id, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
 		return propertyService.findByCityAndByNameStartsWith(new CityId(id), name)
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/byLandmark/{landmarkId}/{cityId}/{name}"})
+    public Single<List<UmberProperty>> findByLandmarkAndIdStartsWith(@PathVariable String cityId, @PathVariable String landmarkId, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
+		return propertyService.findByCityLandmarkAndByNameStartsWith(new CityId(cityId), name, new LandmarkId(landmarkId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/byDeveloper/{developerId}/{cityId}/{name}"})
+    public Single<List<UmberProperty>> findByDeveloperAndIdStartsWith(@PathVariable String cityId, @PathVariable String developerId, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
+		return propertyService.findByCityDeveloperAndByNameStartsWith(new CityId(cityId), name, new DeveloperId(developerId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/byLandmarkAndDeveloper/{landmarkId}/{developerId}/{cityId}/{name}"})
+    public Single<List<UmberProperty>> findByLandmarkDeveloperAndIdStartsWith(@PathVariable String cityId, @PathVariable String landmarkId, @PathVariable String developerId, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
+		return propertyService.findByCityLandmarkDeveloperAndByNameStartsWith(new CityId(cityId), name, new LandmarkId(landmarkId), new DeveloperId(developerId))
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

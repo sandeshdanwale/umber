@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
+import com.umber.world.housing.jackson.LandmarkId;
 import com.umber.world.housing.model.UmberDeveloper;
 import com.umber.world.housing.repository.DeveloperRepository;
 
@@ -51,8 +52,8 @@ public class DeveloperServiceImpl implements DeveloperService {
 	}
 	
 	@Override
-	public Single<List<UmberDeveloper>> findByFeaturedAndCity(Boolean featured, CityId cityId) {
-		Single<List<UmberDeveloper>> umberDevelopers = Single.just(developerRepository.findByFeatured(featured)
+	public Single<List<UmberDeveloper>> findByFeaturedAndCityId(Boolean featured, CityId cityId) {
+		Single<List<UmberDeveloper>> umberDevelopers = Single.just(developerRepository.findByFeaturedAndCityId(featured, cityId)
 				.stream().map(d -> new UmberDeveloper(d))
 						.collect(Collectors.toList()));
 		return umberDevelopers.subscribeOn(Schedulers.io());
@@ -61,6 +62,15 @@ public class DeveloperServiceImpl implements DeveloperService {
 	@Override
 	public Single<List<UmberDeveloper>> findByCityAndByNameStartsWith(CityId cityId, String name) {
 		Single<List<UmberDeveloper>> umberDeveloper = Single.just(developerRepository.findByCityAndByNameStartsWith(cityId, name)
+				.stream().map(d -> new UmberDeveloper(d))
+						.collect(Collectors.toList()));
+		return umberDeveloper.subscribeOn(Schedulers.io());
+				
+	}
+	
+	@Override
+	public Single<List<UmberDeveloper>> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId) {
+		Single<List<UmberDeveloper>> umberDeveloper = Single.just(developerRepository.findByCityLandmarkAndByNameStartsWith(cityId, name, landmarkId)
 				.stream().map(d -> new UmberDeveloper(d))
 						.collect(Collectors.toList()));
 		return umberDeveloper.subscribeOn(Schedulers.io());

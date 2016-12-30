@@ -9,7 +9,8 @@ export class Landmark implements AggregateRoot<LandmarkId> {
 	featured: boolean;
   
 	constructor(data: any) {
-	    this.id = new LandmarkId(data.id || data.landmarkId.registrationId);
+		let id = data.id ? data.id.registrationId : data.landmarkId.registrationId;
+	    this.id = new LandmarkId(id);
 	    this.name = data.name;
 	    this.rank = data.rank;
 	    this.featured = data.featured;

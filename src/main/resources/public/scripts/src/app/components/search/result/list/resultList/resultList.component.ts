@@ -4,6 +4,7 @@ import { Property } from '../../../../../models/aggregate/property.model';
 import { City } from '../../../../../models/aggregate/city.model';
 import { Landmark } from '../../../../../models/aggregate/landmark.model';
 import { Developer } from '../../../../../models/aggregate/developer.model';
+import { Tag } from '../../../../../models/aggregate/tag.model';
 
 @Component({
 	selector: 'result-list',
@@ -16,6 +17,9 @@ export class ResultListComponent {
 	@Input() landmarks: Landmark[];
 	@Input() developers: Developer[];
 	@Input() searchString: string;
+	@Input() isDetailsListActive: boolean;
+	@Input() tags: Tag[];
+
 	constructor(
   	) {
   	}
@@ -23,4 +27,6 @@ export class ResultListComponent {
   	public ngOnInit() {
   		console.log('list')
   	}
+
+
 }

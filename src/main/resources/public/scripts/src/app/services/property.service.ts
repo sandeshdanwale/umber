@@ -1,11 +1,13 @@
 import { Injectable, Component } from '@angular/core'
 import { Store } from '@ngrx/store';
-import { HttpService } from './http.service'
+import { HttpService } from './http.service';
+import { UtilService } from './util.service';
 import { Http, URLSearchParams } from '@angular/http';
 import * as fromRoot from '../reducers';
 import { Property } from '../models/aggregate/property.model';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
+import * as _ from 'lodash';
 
 @Injectable()
 export class PropertyService {
@@ -15,17 +17,45 @@ export class PropertyService {
     defaultProperty: Observable<Property[]>;
     constructor(
         private http: HttpService,
+        private utilService: UtilService,
         private store: Store<fromRoot.State>
     ) {
         this.property = store.let(fromRoot.getPropertyEntities);
         this.defaultProperty = store.let(fromRoot.getDefaultPropertyEntities);
     }
 
-    public getProperties(cityId: string, searchString: string): Observable<Property[]> {
-        if (!searchString) {
+    public getProperties(cityId: string = '9', searchString: string): Observable<Property[]> {
+        if (this.utilService.isNull(searchString)) {
             return this.getFeaturedProperties(cityId);
         }
         let url: string = `${this.BASE_URL}/property/search/${cityId}/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
+    public getPropertiesByLandmark(cityId: string, searchString: string, landmarkId: string): Observable<Property[]> {
+        if (this.utilService.isNull(searchString)) {
+            searchString = 'XXXXX';
+        }
+        let url: string = `${this.BASE_URL}/property/search/byLandmark/${landmarkId}/${cityId}/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
+    public getPropertiesByDeveloper(cityId: string, searchString: string, developerId: string): Observable<Property[]> {
+        if (this.utilService.isNull(searchString)) {
+            searchString = 'XXXXX';
+        }
+        let url: string = `${this.BASE_URL}/property/search/byDeveloper/${developerId}/${cityId}/${searchString}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
+    public getPropertiesByLandmarkAndDeveloper(cityId: string, searchString: string, landmarkId: string, developerId: string): Observable<Property[]> {
+        if (this.utilService.isNull(searchString)) {
+            searchString = 'XXXXX';
+        }
+        let url: string = `${this.BASE_URL}/property/search/byLandmarkAndDeveloper/${landmarkId}/${developerId}/${cityId}/${searchString}`; 
         return this.http.get(url)
                 .map(this.extractData)
     }
@@ -48,8 +78,20 @@ export class PropertyService {
     private extractData(res: Response) {
         let data;
         try {
-    	    data = res.json();
-            return data;
+            //if (!res._body) {
+                //return data;
+            //}
+    	    let _data = res.json();
+            return _data;
+            /*if (!_data || typeof _data == 'undefined' || (Object.prototype.toString.call(_data) === '[object Array]' && !_data.length)) {
+                return data;
+            }
+            if (_data.length > 0) {
+                data = _.map(_data, (p) => new Property(p));
+            } else {
+                data = new Property(_data);
+            }
+            return data;*/
         } catch (e) {
             return [{
                     propertyName: "shiv",

@@ -1,5 +1,8 @@
-<div class="property-detail-list">
+<div class="property-detail-list" *ngIf="properties && properties.length">
 	<div *ngFor="let property of properties">
 		<property-card-horizontal [property]="property"></property-card-horizontal>
 	</div>
+</div>
+<div class="property-empty-list" *ngIf="!properties || !properties.length">
+	<span class="not-found">No Properties Found</span>
 </div>

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { UiService } from '../../../../../services/ui.service';
+import { TagService } from '../../../../../services/tag.service';
 import { Landmark } from '../../../../../models/aggregate/landmark.model';
+import { Tag } from '../../../../../models/aggregate/tag.model';
 
 @Component({
 	selector: 'landmark-list',
@@ -11,11 +13,13 @@ export class LandmarkListComponent implements OnInit, OnChanges {
 
 	@Input() landmarks: Landmark[];
   @Input() searchString: string;
-  
+  @Input() tags: Tag[];
+
 	header: string;
 	context: string;
 	constructor(
-		private uiService: UiService
+		private uiService: UiService,
+    private tagService: TagService
   	) {
   		this.header = "Popular Landmarks";
   		this.context = 'landmark';
@@ -28,10 +32,24 @@ export class LandmarkListComponent implements OnInit, OnChanges {
       console.log(changes)
     }
 
-  	public updateLandmarkDetailPanel(landmark: Landmark) {
+  	public updateLandmarkDetailPanel(event: Event, landmark: Landmark) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
       if (landmark) {
   		  this.uiService.updateSearchDetailPanel(landmark.id.registrationId, this.context);
   	  }
+    }
+
+    public addTag(event: Event, landmark: Landmark) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      if (landmark && (!this.tags || this.tags.length < 3)) {
+        this.tagService.addTag(new Tag({type: 'landmark', name: landmark.name, id: landmark.id.registrationId}));
+      }
     }
 
     public getHighlightText(landmark: Landmark): string {

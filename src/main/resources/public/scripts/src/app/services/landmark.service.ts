@@ -1,6 +1,7 @@
 import { Injectable, Component } from '@angular/core'
 import { Store } from '@ngrx/store';
-import { HttpService } from './http.service'
+import { HttpService } from './http.service';
+import { UtilService } from './util.service';
 import { Http, URLSearchParams } from '@angular/http';
 import * as fromRoot from '../reducers';
 import { Landmark } from '../models/aggregate/landmark.model';
@@ -14,13 +15,14 @@ export class LandmarkService {
     landmark: Observable<Landmark[]>;
     constructor(
         private http: HttpService,
+        private utilService: UtilService,
         private store: Store<fromRoot.State>
     ) {
         this.landmark = store.let(fromRoot.getLandmarkEntities);
     }
 
-    public getLandmarks(cityId: string, searchString: string): Observable<Landmark[]> {
-        if (!searchString) {
+    public getLandmarks(cityId: string = '9', searchString: string): Observable<Landmark[]> {
+        if (this.utilService.isNull(searchString)) {
             return this.getFeaturedLandmarks(cityId);
         }
         let url: string = `${this.BASE_URL}/landmark/search/${cityId}/${searchString}`; 
@@ -46,8 +48,20 @@ export class LandmarkService {
     private extractData(res: Response) {
         let data;
         try {
-    	    data = res.json();
-            return data;
+            //if (!res._body) {
+                //return data;
+            //}
+    	    let _data = res.json();
+            return _data;
+            // if (!_data || typeof _data == 'undefined' || (Object.prototype.toString.call(_data) === '[object Array]' && !_data.length)) {
+            //     return data;
+            // }
+            // if (_data.length > 0) {
+            //     data = _.map(_data, (p) => new Landmark(p));
+            // } else {
+            //     data = new Landmark(_data);
+            // }
+            // return data;
         } catch (e) {
             return [{"locationId":{"registrationId":"1"},"rank":1,"name":"mumbai","primary":true,"featured":true},{"locationId":{"registrationId":"9"},"rank":9,"name":"pune","primary":true,"featured":true},{"locationId":{"registrationId":"3"},"rank":3,"name":"bangalore","primary":true,"featured":true},{"locationId":{"registrationId":"5"},"rank":5,"name":"hyderabad","primary":true,"featured":true}]
         }

@@ -49,8 +49,20 @@ export class CityService {
     private extractData(res: Response) {
         let data;
         try {
-    	    data = res.json();
-            return data;
+            //if (!res._body) {
+                //return data;
+            //}
+    	    let _data = res.json();
+            return _data;
+            /*if (!_data || typeof _data == 'undefined' || (Object.prototype.toString.call(_data) === '[object Array]' && !_data.length)) {
+                return data;
+            }
+            if (_data.length > 0) {
+                data = _.map(_data, (p) => new City(p));
+            } else {
+                data = new City(_data);
+            }
+            return data;*/
         } catch (e) {
             return [{"locationId":{"registrationId":"1"},"rank":1,"name":"mumbai","primary":true,"featured":true},{"locationId":{"registrationId":"9"},"rank":9,"name":"pune","primary":true,"featured":true},{"locationId":{"registrationId":"3"},"rank":3,"name":"bangalore","primary":true,"featured":true},{"locationId":{"registrationId":"5"},"rank":5,"name":"hyderabad","primary":true,"featured":true}]
         }

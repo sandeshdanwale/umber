@@ -1,5 +1,9 @@
-<div class="result-list">
-	<landmark-list [searchString]="searchString" [landmarks]="landmarks"></landmark-list>
-	<developer-list [searchString]="searchString" [developers]="developers"></developer-list>
-	<property-list [searchString]="searchString" [properties]="properties"></property-list>
+<div class="result-list" *ngIf="!isDetailsListActive">
+	<landmark-list [searchString]="searchString" [landmarks]="landmarks | orderBy" [tags]="tags"></landmark-list>
+	<developer-list [searchString]="searchString" [developers]="developers | orderBy" [tags]="tags"></developer-list>
+	<property-list [searchString]="searchString" [properties]="properties | orderBy" [tags]="tags"></property-list>
+</div>
+<div class="result-list-detail" *ngIf="isDetailsListActive && searchString">
+	<developer-list [ngClass]="{'short': isDetailsListActive}" [searchString]="searchString" [developers]="developers | orderBy"></developer-list>
+	<property-list [ngClass]="{'short': isDetailsListActive}" [searchString]="searchString" [properties]="properties | orderBy"></property-list>
 </div>
