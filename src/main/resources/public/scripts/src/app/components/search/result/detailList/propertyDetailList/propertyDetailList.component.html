@@ -1,5 +1,5 @@
 <div class="property-detail-list" *ngIf="properties && properties.length">
-	<div *ngFor="let property of properties">
+	<div *ngFor="let property of properties | displayViewport: displayPort">
 		<property-card-horizontal [property]="property"></property-card-horizontal>
 	</div>
 </div>

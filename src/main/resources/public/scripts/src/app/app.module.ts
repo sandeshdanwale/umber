@@ -14,6 +14,9 @@ import { BannerComponent } from './components/banner/banner.component';
 import { OverlappingSectionComponent } from './components/bottomSection/overlappingSection/overlappingSection.component';
 import { DeveloperCardCarouselComponent } from './components/bottomSection/developer/developerCardCarousel/developerCardCarousel.component';
 import { DeveloperCardComponent } from './components/shared/developerCard/developerCard.component';
+import { InfiniteScroll } from './components/shared/infinite-scroll/infinite-scroll';
+import { PositionResolverFactory } from './components/shared/infinite-scroll/position-resolver';
+import { AxisResolverFactory } from './components/shared/infinite-scroll/axis-resolver';
 import { PropertyCardCarouselComponent } from './components/bottomSection/property/propertyCardCarousel/propertyCardCarousel.component';
 import { PropertyCardComponent } from './components/shared/propertyCard/propertyCard.component';
 import { PropertyCardSmallComponent } from './components/shared/propertyCardSmall/propertyCardSmall.component';
@@ -42,7 +45,7 @@ import { ResultDetailListComponent } from './components/search/result/detailList
 import { PropertyDetailListComponent } from './components/search/result/detailList/propertyDetailList/propertyDetailList.component';
 import { LandmarkDetailsComponent } from './components/search/result/details/landmarkDetails/landmarkDetails.component';
 
-import { OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe } from './pipes/generic.pipe';
+import { OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe, DisplayViewport } from './pipes/generic.pipe';
 
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
@@ -93,18 +96,20 @@ import { UtilService } from './services/util.service';
     PropertyCardVsmallComponent,
     PropertyCardHorizontalComponent,
     SelectedTagComponent, 
-    OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe
+    OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe, DisplayViewport,
+    InfiniteScroll
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    StoreModule.provideStore(reducer),
-    InfiniteScrollModule
+    StoreModule.provideStore(reducer)/*,
+    InfiniteScrollModule*/
   ],
   providers: [HttpService, UserService, DeveloperService, CityService, LandmarkService, 
-  AggregationService, CacheService, PropertyService, UiService, TagService, UtilService],
+  AggregationService, CacheService, PropertyService, UiService, TagService, UtilService, 
+  PositionResolverFactory, AxisResolverFactory],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

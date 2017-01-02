@@ -13,17 +13,20 @@ export class PropertyDetailListComponent {
 	@Input() properties: Property[];
 	header: string;
   context: string;
+  displayPort: number;
+
 	constructor(
     private uiService: UiService
   ) {
   		this.header = "Featured Properties";
       this.context = 'property';
+      this.displayPort = 3;
   }
 
   	public ngOnInit() {
   	}
 
-  	public updatePropertyDetailPanel(property: Property) {
-  		this.uiService.updateSearchDetailPanel(property.id.registrationId, this.context);
-  	}
+    public searchMore() {
+      this.displayPort += 3;
+    }
 }

@@ -47,3 +47,12 @@ export class ActivePropertyPipe {
     return _.head(_.filter(properties, (p) => p.id.registrationId === activeSearchDetailPanel.entityId));
   }
 }
+
+@Pipe({
+  name: "displayViewport"
+})
+export class DisplayViewport {
+  transform(properties: Array<Property>, viewPort: number): Property[] {
+    return _.slice(properties, 0, viewPort);
+  }
+}
