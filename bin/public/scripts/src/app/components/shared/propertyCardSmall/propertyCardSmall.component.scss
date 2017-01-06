@@ -1,0 +1,29 @@
+.property-img {
+    width: 100%;
+    height: 150px;
+}
+.property-title {
+    margin-top: 10px;
+    font-weight: 600;
+    margin-top: 5px;
+    width: 100%;
+    font-size: 18px;
+    text-align: left;
+    text-transform: uppercase;
+}
+.property-info-left {
+    float: left;
+    width: 60%;
+    .property-city, .property-developer, .developer-name, .property-configs {
+        margin-top: 10px;
+        color: grey;
+        font-size: 14px;
+        text-align: left;
+        text-transform: capitalize;
+    }
+}
+.property-info-right {
+    float: right;
+    width: 40%;
+    margin-top: 10px;
+}

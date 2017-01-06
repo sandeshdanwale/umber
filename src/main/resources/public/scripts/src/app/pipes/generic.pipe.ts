@@ -1,6 +1,7 @@
 import { Pipe } from '@angular/core';
 import { Property } from '../models/aggregate/property.model';
 import { Developer } from '../models/aggregate/developer.model';
+import { Config } from '../models/aggregate/config.model';
 import { SearchDetailPanel } from '../models/aggregate/ui.model';
 import { Landmark } from '../models/aggregate/landmark.model';
 import * as _ from 'lodash';
@@ -54,5 +55,14 @@ export class ActivePropertyPipe {
 export class DisplayViewport {
   transform(properties: Array<Property>, viewPort: number): Property[] {
     return _.slice(properties, 0, viewPort);
+  }
+}
+
+@Pipe({
+  name: "displayConfig"
+})
+export class DisplayConfig {
+  transform(config: Config): any {
+    return config;
   }
 }

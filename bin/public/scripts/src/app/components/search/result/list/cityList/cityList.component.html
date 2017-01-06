@@ -1,0 +1,6 @@
+<div class="city-list">
+	<div class="category-header">{{header}}</div>
+	<div class="list">
+		<div class="list-item" *ngFor="let city of cities" (mouseover)="updateCityDetailPanel(city)" (click)="updateCityDetailPanel(city)">{{city && city.name}}</div>
+	</div>
+</div>

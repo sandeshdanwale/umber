@@ -23,7 +23,7 @@ export class Property implements AggregateRoot<PropertyId> {
 	    this.cityName = data.cityName;
 	    this.addresses = [];
 	    _.each(data.addresses, (address) => this.addresses.push(new Address(address)));
-	    this.configs = new Configs(data);
+	    this.configs = data.configs ? new Configs(data.configs) : null;
     }
 
 }

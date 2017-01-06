@@ -27,6 +27,5 @@ export class TagService {
 
     public addTag(newTag: Tag) {
         this.store.dispatch(new tag.AddTagAction(newTag));
-        this.uiService.loadSearchDetailList();
     }
 }

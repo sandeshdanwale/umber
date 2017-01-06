@@ -6,7 +6,6 @@ import * as fromLandmark from './landmark.reducer';
 import * as fromDeveloper from './developer.reducer';
 import * as fromProperty from './property.reducer';
 import * as fromDefaultProperty from './defaultProperty.reducer';
-import * as fromDetail from './detail.reducer';
 import * as fromUi from './ui.reducer';
 import * as fromUser from './user.reducer';
 import * as fromTag from './tag.reducer';
@@ -24,7 +23,6 @@ export interface State {
   developer: fromDeveloper.State,
   property: fromProperty.State,
   defaultProperty: fromDefaultProperty.State,
-  detail: fromDetail.State,
   tag: fromTag.State,
   ui: fromUi.State,
   user: fromUser.State
@@ -36,7 +34,7 @@ const reducers = {
   developer: fromDeveloper.reducer,
   property: fromProperty.reducer,
   defaultProperty: fromDefaultProperty.reducer,
-  detail: fromDetail.reducer,
+  
   tag: fromTag.reducer,
   ui: fromUi.reducer,
   user: fromUser.reducer
@@ -94,3 +92,4 @@ export const getUserEntities = compose(fromUser.getUserEntities, getUserState);
 export const getActivePanels = compose(fromUi.getActivePanels, getUiState);
 export const getTagEntities = compose(fromTag.getTagEntities, getTagState);
 export const getActiveSearchDetailPanel = compose(fromUi.getActiveSearchDetailPanel, getUiState);
+export const getSearchDetailListLoader = compose(fromUi.getSearchDetailListLoader, getUiState);

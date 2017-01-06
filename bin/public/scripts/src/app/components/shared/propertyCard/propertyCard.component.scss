@@ -1,0 +1,62 @@
+.property-card {
+    background-color: #fff;
+    width: 220px;;
+    height: 210px;
+    margin-right: 20px;
+    border-radius: 2px;
+    padding: 0 24px;
+    position: relative;
+    will-change: transform;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    transition: .2s;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+    box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+    box-sizing: border-box;
+    &:hover {
+        transform: scale(1.1);
+    }
+    .left-section {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        .property-info {
+            text-align: left;
+            margin-top: 7px;
+            color: #7f7f7f;
+            margin-right: 3px;
+            font-size: 13px;
+        }
+    }
+    .right-section {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        float: right;
+        .top {
+            position: relative;
+            width: 100%;
+            height: 50%;
+            background-image: url(/assets/images/logo.jpg);
+            background-position: center;
+            background-size: cover;
+            display: block;
+            top: 5%;
+        }
+        .bottom {
+            width: 100%;
+            height: 50%;
+            display: block;
+            text-align: center;
+            padding-top: 20%;
+            .property-name {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+                margin-top: 10px;
+                text-transform: uppercase;
+                color: rgba(255, 126, 66, 1);
+            }
+        }
+    }
+}

@@ -35,14 +35,14 @@ export class PropertyCardHorizontalComponent {
       return displayProperty;
     }
 
-    private mapToCurrencyString(price: number|string): string {
+    public mapToCurrencyString(price: number|string): string {
       let displayPrice = ''
       let min = _.round((Number(price)/100000), 1);
       if (min > 100) {
         min = _.round(min/100, 1);
-        displayPrice += min + 'Cr'
+        displayPrice += min + 'Crs'
       } else {
-        displayPrice += min + 'L'
+        displayPrice += min + 'Lakhs'
       }
       return displayPrice;
     }

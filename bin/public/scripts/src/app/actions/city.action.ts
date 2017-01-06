@@ -1,17 +1,17 @@
 import { Action } from '@ngrx/store';
-import { Detail } from '../models/aggregate/detail.model';
+import { City } from '../models/aggregate/city.model';
 import { type } from '../util';
 
 export const ActionTypes = {
-  LOAD_SUCCESS: type('[Detail] Load Success'),
-  LOAD: type('[Detail] Load'),
-  COMMAND: type('[Detail] Command')
+  LOAD_SUCCESS: type('[City] Load Success'),
+  LOAD: type('[City] Load'),
+  COMMAND: type('[City] Command')
 };
 
 export class LoadSuccessAction implements Action {
   type = ActionTypes.LOAD_SUCCESS;
 
-  constructor(public payload: Detail[]) {
+  constructor(public payload: City[]) {
 
   }
 }
@@ -19,7 +19,7 @@ export class LoadSuccessAction implements Action {
 export class LoadAction implements Action {
   type = ActionTypes.LOAD;
 
-  constructor(public payload: Detail[]) {
+  constructor(public payload: City[]) {
 
   }
 }
@@ -27,7 +27,7 @@ export class LoadAction implements Action {
 export class CommandAction implements Action {
   type = ActionTypes.COMMAND;
 
-  constructor(public payload: Detail[]) {
+  constructor(public payload: City[]) {
 
   }
 }

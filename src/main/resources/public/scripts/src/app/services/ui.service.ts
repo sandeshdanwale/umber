@@ -17,13 +17,15 @@ import { Response } from '@angular/http';
 import { Developer } from '../models/aggregate/developer.model';
 import { Property } from '../models/aggregate/property.model';
 import { Landmark } from '../models/aggregate/landmark.model';
+import * as _ from 'lodash';
 
 @Injectable()
 export class UiService {
 
 	BASE_URL: string = location.hostname === 'localhost' ? '' : '';
     activePanels: Observable<Panel[]>;
-    activeSearchDetailPanel: Observable<SearchDetailPanel>
+    activeSearchDetailPanel: Observable<SearchDetailPanel>;
+    searchDetailListLoader: Observable<boolean>;
     constructor(
         private http: HttpService,
         private propertyService: PropertyService,
@@ -34,6 +36,7 @@ export class UiService {
     ) {
         this.activePanels = store.let(fromRoot.getActivePanels);
         this.activeSearchDetailPanel = store.let(fromRoot.getActiveSearchDetailPanel);
+        this.searchDetailListLoader = store.let(fromRoot.getSearchDetailListLoader);
     }
 
     public serachDetailObservable(id: string, context: string): any {
@@ -78,7 +81,21 @@ export class UiService {
         })
     }
 
-    
+    public updateProperties(ids: string[]) {
+        this.showSearchDetailListLoader();
+        let caller = [];
+        _.forEach(ids, id => caller.push(this.propertyService.getPropertyDetails(id)));
+
+        Observable.forkJoin(
+            caller
+        ).subscribe(data => {
+            _.forEach(data, p => {
+                let updatedProperty = new Property(p);
+                this.store.dispatch(new property.UpdatePropertyDetail(updatedProperty));
+            })
+            this.hideSearchDetailListLoader();
+        })
+    }
 
     public loadSearchOverlay() {
         let activePanels: Array<Panel> = [];
@@ -100,6 +117,16 @@ export class UiService {
         activePanels.push(new Panel('main'));
         activePanels.push(new Panel('searchOverlay'));
         this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+    }
+
+    public showSearchDetailListLoader() {
+        this.store.dispatch(new ui.ShowSearchDetailListLoader(true));
+    }
+
+    public hideSearchDetailListLoader() {
+        setTimeout(() => {
+            this.store.dispatch(new ui.ShowSearchDetailListLoader(false));
+        }, 5000);
     }
 
     public closeSearchOverlay() {

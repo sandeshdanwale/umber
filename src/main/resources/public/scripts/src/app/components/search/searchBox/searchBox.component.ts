@@ -114,15 +114,23 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
        	let _developers = _.slice(
                               _.map(developers, (d) => d && new Developer(d)),
                               0, 13);
-        let _properties = _.slice(
+       	let _properties;
+       	if(this.tagsToConsider && this.tagsToConsider.length) {
+       		_properties = _.map(properties, (d) => d && new Property(d));
+       	} else {
+            _properties = _.slice(
                               _.map(properties, (d) => d && new Property(d)),
                               0, 13);
+       	}
         let _landmarks = _.slice(
                               _.map(landmarks, (d) => d && new Landmark(d)),
                               0, 13);
         this.store.dispatch(new developer.LoadSuccessAction(_developers));
     	this.store.dispatch(new property.LoadSuccessAction(_properties));
     	this.store.dispatch(new landmark.LoadSuccessAction(_landmarks));
+    	if(this.tagsToConsider && this.tagsToConsider.length) {
+    		this.uiService.loadSearchDetailList();
+    	}
     	this.searchString.emit(this._searchString);
 	}
 

@@ -5,7 +5,6 @@ import { type } from '../util';
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Landmark] Load Success'),
   LOAD: type('[Landmark] Load'),
-  COMMAND: type('[Landmark] Command'),
   UPDATE_LANDAMRK_DETAIL: type('[Landmark] Update Landmark Detail')
 };
 
@@ -33,12 +32,4 @@ export class LoadAction implements Action {
   }
 }
 
-export class CommandAction implements Action {
-  type = ActionTypes.COMMAND;
-
-  constructor(public payload: Landmark[]) {
-
-  }
-}
-
-export type Actions = LoadSuccessAction | LoadAction | CommandAction | UpdateLandmarkDetail;
+export type Actions = LoadSuccessAction | LoadAction | UpdateLandmarkDetail;

@@ -5,7 +5,6 @@ import { type } from '../util';
 export const ActionTypes = {
   LOAD_SUCCESS: type('[City] Load Success'),
   LOAD: type('[City] Load'),
-  COMMAND: type('[City] Command')
 };
 
 export class LoadSuccessAction implements Action {
@@ -24,12 +23,4 @@ export class LoadAction implements Action {
   }
 }
 
-export class CommandAction implements Action {
-  type = ActionTypes.COMMAND;
-
-  constructor(public payload: City[]) {
-
-  }
-}
-
-export type Actions = LoadSuccessAction | LoadAction | CommandAction;
+export type Actions = LoadSuccessAction | LoadAction;

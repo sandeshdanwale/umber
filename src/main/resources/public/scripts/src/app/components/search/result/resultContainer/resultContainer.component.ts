@@ -6,6 +6,7 @@ import { Property } from '../../../../models/aggregate/property.model';
 import { Landmark } from '../../../../models/aggregate/landmark.model';
 import { Developer } from '../../../../models/aggregate/developer.model';
 import { Tag } from '../../../../models/aggregate/tag.model';
+import { User } from '../../../../models/aggregate/user.model';
 import { PropertyService } from '../../../../services/property.service';
 import { LandmarkService } from '../../../../services/landmark.service';
 import { DeveloperService } from '../../../../services/developer.service';
@@ -22,8 +23,10 @@ export class ResultContainerComponent implements OnChanges{
 
 	@Input() activePanels: Panel[];
   @Input() searchString: string;
+  @Input() user: User;
 
 	activeSearchDetailPanel: Observable<SearchDetailPanel>;
+  searchDetailListLoader: Observable<boolean>;
 	properties: Observable<Property[]>;
 	landmarks: Observable<Landmark[]>;
 	developers: Observable<Developer[]>;
@@ -41,6 +44,7 @@ export class ResultContainerComponent implements OnChanges{
   		this.landmarks = this.landmarkService.landmark;
   		this.developers = this.developerService.developer;
   		this.activeSearchDetailPanel = this.uiService.activeSearchDetailPanel;
+      this.searchDetailListLoader = this.uiService.searchDetailListLoader;
       this.tags = this.tagService.tag;
   		this.isResultDetailListActive = this.isResultDetailListOpen();
   	}

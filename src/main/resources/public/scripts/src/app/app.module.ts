@@ -45,7 +45,8 @@ import { ResultDetailListComponent } from './components/search/result/detailList
 import { PropertyDetailListComponent } from './components/search/result/detailList/propertyDetailList/propertyDetailList.component';
 import { LandmarkDetailsComponent } from './components/search/result/details/landmarkDetails/landmarkDetails.component';
 
-import { OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe, DisplayViewport } from './pipes/generic.pipe';
+import { OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe, 
+    DisplayViewport, DisplayConfig } from './pipes/generic.pipe';
 
 import { reducer } from './reducers';
 import { HttpService } from './services/http.service';
@@ -96,7 +97,8 @@ import { UtilService } from './services/util.service';
     PropertyCardVsmallComponent,
     PropertyCardHorizontalComponent,
     SelectedTagComponent, 
-    OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe, DisplayViewport,
+    OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe, 
+    DisplayViewport, DisplayConfig,
     InfiniteScroll
   ],
   imports: [

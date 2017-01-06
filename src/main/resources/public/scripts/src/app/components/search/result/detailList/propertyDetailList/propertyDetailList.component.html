@@ -1,7 +1,14 @@
-<div class="property-detail-list" *ngIf="properties && properties.length">
-	<div *ngFor="let property of properties | displayViewport: displayPort">
+<div *ngIf="properties && properties.length && tags && tags.length" class="property-detail-list infinite-list"
+	infinite-scroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="100"
+    [scrollWindow]="false"
+    (scrolled)="searchMore()">
+	<div *ngFor="let property of properties | displayViewport: displayPort; let i = index;">
 		<property-card-horizontal [property]="property"></property-card-horizontal>
 	</div>
+	<div [ngClass]="{'loader': searchDetailListLoader}"></div>
+	
 </div>
 <div class="property-empty-list" *ngIf="!properties || !properties.length">
 	<span class="not-found">No Properties Found</span>

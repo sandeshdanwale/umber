@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     height: 175px;
     .property-img {
-        width: 30%;
+        width: 25%;
         height: 150px;
     }
     .property-title {
@@ -16,7 +16,7 @@
         text-transform: uppercase;
     }
     .property-info-left {
-        width: 30%;
+        width: 25%;
         .property-city, .property-developer, .developer-name, .property-configs {
             margin-top: 10px;
             color: grey;
@@ -26,7 +26,28 @@
         }
     }
     .property-info-right {
-        width: 30%;
+        width: 46%;
         margin-left: 25px;
+        .property-configs {
+            margin-top: 5px;
+            color: #2D0073;
+            width: 70%;
+            .config {
+                padding-bottom: 10px;
+                .type {
+                    width: 25%;
+                }
+                .sqft, .price {
+                    width: 35%;
+                }
+                .type, .sqft, .price {
+                    display: inline-block;
+                    height: 70%;
+                }
+                .type, .sqft {
+                    border-right: 2px solid #2D0073;
+                }
+            }
+        }
     }
 }
