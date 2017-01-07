@@ -60,18 +60,17 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
   		let self = this;
 	    this.input = this.searchInput.nativeElement;
 	    let keyup = Observable.fromEvent(this.input, 'keyup')
-	      .map(function (e: any) {
-	        return e.target.value;
-	      })
-	      .filter(function (text) {
-	        return true; //text.length >= 1;
-	      })
-	      .debounce(function (x) { return Observable.timer(10); })
+	      .filter((e: any) => e.keyCode != 13) 
+	      .map((e: any) => 
+	      	e.target.value
+	       )
+	      //.filter((text) => text.length >= 1 && text.trim().length >= 1)
+	      .debounce((x) => Observable.timer(10))
 	      .distinctUntilChanged();
 //check keyup arguments what all args gets passed
 	    let searcher = keyup.switchMap((searchString) => self.searchUmber.call(self, searchString, null));
 	    searcher.subscribe(
-       		this.handleChange.bind(this),
+       		this.formatAndDispatch.bind(this),
         function (error) {
         	console.log(error)
         });
@@ -143,11 +142,11 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
 	}
 
 	private searchUmber(searchString: string): Observable<[Developer[], Property[], Landmark[]]> {
-		this._searchString = searchString;
+		this._searchString = searchString.toLowerCase().replace(/ /g, '');
 		return Observable.combineLatest(
-	      	this.getDevelopers(searchString),
-        	this.getProperties(searchString),
-        	this.getLandmarks(searchString)
+	      	this.getDevelopers(this._searchString),
+        	this.getProperties(this._searchString),
+        	this.getLandmarks(this._searchString)
 	    )
 	}
 

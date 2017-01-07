@@ -3,7 +3,7 @@
 	<developer-list [searchString]="searchString" [developers]="developers | orderBy" [tags]="tags"></developer-list>
 	<property-list [searchString]="searchString" [properties]="properties | orderBy" [tags]="tags"></property-list>
 </div>
-<div class="result-list-detail" *ngIf="isDetailsListActive && searchString">
+<div class="result-list-detail" *ngIf="isDetailsListActive && searchString && ((developers && developers.length) || (properties && properties.length))">
 	<developer-list [ngClass]="{'short': isDetailsListActive}" [searchString]="searchString" [developers]="developers | orderBy"></developer-list>
 	<property-list [ngClass]="{'short': isDetailsListActive}" [searchString]="searchString" [properties]="properties | orderBy"></property-list>
 </div>

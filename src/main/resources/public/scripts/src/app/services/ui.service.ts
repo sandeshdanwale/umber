@@ -76,6 +76,9 @@ export class UiService {
 
     public updateSearchDetailPanel(id: string, context: string) {
         this.serachDetailObservable(id, context)
+        .catch(function (e) {
+            console.log(e)
+        })
         .subscribe(data => {
             this.updateEntityPanel(id, context, data);
         })
