@@ -24,7 +24,7 @@ public class LandmarkRepositoryImpl implements LandmarkRepositoryCustom {
 		} else {
 			List<Landmark> landmarks = mongoTemplate.find(
 	        		new Query(new Criteria().andOperator(
-	        				Criteria.where("name").regex("^" + name),
+	        				Criteria.where("searchName").regex("^" + name),
 	        				Criteria.where("cityId").is(cityId)
 	        		)), Landmark.class
 	        	);

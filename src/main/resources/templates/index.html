@@ -27,5 +27,9 @@
 </head>
 <body style="text-align: center">
   <app-root>Loading...</app-root>
-<script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/inline.bundle.js')}}"></script><script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/main.bundle.js')}}"></script></body>
+<script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/inline.bundle.js')}}"></script>
+<script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/styles.bundle.js')}}"></script>
+<script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/scripts.bundle.js')}}"></script>
+<script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/main.bundle.js')}}"></script>
+</body>
 </html>

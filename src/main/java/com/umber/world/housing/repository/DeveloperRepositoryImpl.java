@@ -23,7 +23,7 @@ public class DeveloperRepositoryImpl implements DeveloperRepositoryCustom {
     public List<Developer> findByCityAndByNameStartsWith(CityId cityId, String name) {
         List<Developer> developers = mongoTemplate.find(
         		new Query(new Criteria().andOperator(
-        				Criteria.where("name").regex("^" + name),
+        				Criteria.where("searchName").regex("^" + name),
         				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
         				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId))
         		)), Developer.class
@@ -47,7 +47,7 @@ public class DeveloperRepositoryImpl implements DeveloperRepositoryCustom {
     public List<Developer> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId) {
         List<Developer> developers = mongoTemplate.find(
         		new Query(new Criteria().andOperator(
-        				Criteria.where("name").regex("^" + name),
+        				Criteria.where("searchName").regex("^" + name),
         				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
         				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId)),
         				Criteria.where("addresses").elemMatch(Criteria.where("landmarkId").is(landmarkId))
