@@ -7,7 +7,8 @@ export const ActionTypes = {
   LOAD: type('[Ui] Load'),
   COMMAND: type('[Ui] Command'),
   PANEL: type('[UI] Panel'),
-  UPDATE_SEARCH_DETAIL: type('[UI] Update Search Detail')
+  UPDATE_SEARCH_DETAIL: type('[UI] Update Search Detail'),
+  SHOW_SEARCH_DETAIL_LIST_LOADER: type('[UI] Show Search Detail List Loader')
 };
 
 export class LoadSuccessAction implements Action {
@@ -26,16 +27,16 @@ export class UpdateSearchDetail implements Action {
   }
 }
 
-export class LoadAction implements Action {
-  type = ActionTypes.LOAD;
+export class ShowSearchDetailListLoader implements Action {
+  type = ActionTypes.SHOW_SEARCH_DETAIL_LIST_LOADER;
 
-  constructor(public payload: Array<Panel>) {
+  constructor(public payload: boolean) {
 
   }
 }
 
-export class CommandAction implements Action {
-  type = ActionTypes.COMMAND;
+export class LoadAction implements Action {
+  type = ActionTypes.LOAD;
 
   constructor(public payload: Array<Panel>) {
 
@@ -50,4 +51,5 @@ export class PanelAction implements Action {
   }
 }
 
-export type Actions = LoadSuccessAction | LoadAction | CommandAction | PanelAction | UpdateSearchDetail;
+export type Actions = LoadSuccessAction | LoadAction | PanelAction | 
+UpdateSearchDetail | ShowSearchDetailListLoader;

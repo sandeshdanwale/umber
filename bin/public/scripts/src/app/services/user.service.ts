@@ -4,7 +4,9 @@ import { HttpService } from './http.service';
 import { Observable } from 'rxjs/Observable';
 import * as fromRoot from '../reducers';
 import { User } from '../models/aggregate/user.model';
+import * as user from '../actions/user.action';
 import { City } from '../models/aggregate/city.model';
+import { Preference } from '../models/aggregate/preference.model';
 import { Response } from '@angular/http';
 
 @Injectable()
@@ -32,10 +34,21 @@ export class UserService {
         
         let userId = user.id.registrationId;
         let cityId = city.id.registrationId;
-        let url: string = `${this.BASE_URL}/userPreference?userId=${userId}&city=${cityId}`;
+        let url: string = `${this.BASE_URL}/userPreference/updateCity?userId=${userId}&cityId=${cityId}`;
         return this.http.post(url, null)
-                .map(this.extractData);
+                .map(this.extractData)
                 //.catch(this.handleError);
+    }
+
+    public updateUserPreference(serverPreference: any): void {
+        let preference = new Preference({city :
+            new City(serverPreference.city)
+        });
+        let serverUser = new User({
+          id: serverPreference.userId.registrationId,
+          preference: preference
+        })
+        this.store.dispatch(new user.LoadSuccessAction(serverUser));
     }
 
     private extractData(res: Response) {

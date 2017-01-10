@@ -2,4 +2,9 @@
 	div {
 		display: inline-block;
 	}
+	@media screen and (max-device-width: 780px) {
+      .index3 {
+        display: none;
+      }
+    }
 }

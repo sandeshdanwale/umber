@@ -1,0 +1,28 @@
+.selected-tag {
+    .tag {
+        max-width: 200px;
+        margin: 2px;
+        padding: 0 15px;
+        color: #fff;
+        border-radius: 30px;
+        height: 40px;
+        padding: 10px;
+        background-color: #2D0073;
+        display: flex;
+        .tag-label {
+            max-width: 150px;
+            display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-transform: capitalize;
+        }
+        i {
+            margin-top: 3px;
+            margin-left: 5px;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

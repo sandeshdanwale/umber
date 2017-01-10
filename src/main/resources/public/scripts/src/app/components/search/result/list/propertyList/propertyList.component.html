@@ -1,9 +1,8 @@
 <div *ngIf="properties && properties.length" class="property-list">
 	<div class="category-header">{{header}}</div>
 	<div class="list">
-		<div class="list-item" *ngFor="let property of properties" (mouseover)="updatePropertyDetailPanel(event, property)" (mouseup)="addTag(event, property)">
-			<span class="highlight">{{getHighlightText(property)}}</span>
-			<span>{{getNormalText(property)}}</span>
+		<div class="list-item" *ngFor="let property of properties" (mouseover)="updatePropertyDetailPanel(event, property)" (mouseup)="addTag(event, property)">	
+			<div [innerHTML]="getName(property)"></div>
 		</div>
 	</div>
 </div>

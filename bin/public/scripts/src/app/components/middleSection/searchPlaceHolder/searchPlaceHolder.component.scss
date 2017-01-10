@@ -1,10 +1,27 @@
 .search-place-holder {
 	.controls {
 		display: inline-block;
-		position: relative;
-		margin-top: 20px;
-		height: 45px;
-		width: 600px;
+    	position: relative;
+    	@media screen and (max-device-width: 780px) {
+	      .input-group {
+	        width: 77vw;
+	      }
+	    }
+	    @media screen and (min-device-width: 780px) {
+	      .input-group {
+	        width: 50vw;
+	      }
+	    }
+	    @media screen and (max-device-width: 780px) {
+	    	input {
+	    		font-size: 2vw;
+	    	}
+	    }
+	    @media screen and (min-device-width: 780px) {
+	    	input {
+	    		font-size: 14px;
+	    	}
+	    }
 		.input-group {
 			.form-control {
 				height: 45px;

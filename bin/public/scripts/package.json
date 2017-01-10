@@ -24,6 +24,7 @@
     "@ngrx/db": "2.0.1",
     "@ngrx/effects": "2.0.0",
     "@ngrx/store": "2.2.1",
+    "angular2-infinite-scroll": "^0.2.8",
     "bootstrap": "4.0.0-alpha.5",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",

@@ -2,8 +2,7 @@
 	<div class="category-header">{{header}}</div>
 	<div class="list">
 		<div class="list-item" *ngFor="let landmark of landmarks" (mouseover)="updateLandmarkDetailPanel(event, landmark)" (click)="addTag(event, landmark)">
-			<span class="highlight">{{getHighlightText(landmark)}}</span>
-			<span>{{getNormalText(landmark)}}</span>
+			<div [innerHTML]="getName(landmark)"></div>
 		</div>
 	</div>
 </div>

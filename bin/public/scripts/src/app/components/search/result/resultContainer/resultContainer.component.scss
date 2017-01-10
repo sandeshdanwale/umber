@@ -1,15 +1,28 @@
 .result-container {
 	padding-top: 50px;
 	.search-result-list {
-		width: 60%;
 		display: flex;
 		flex-wrap: wrap;
 		float: left;
 	}	
+	@media screen and (max-device-width: 540px) {
+		.search-result-details {
+			display: none;
+		}
+		.search-result-list {
+			width: 100%;
+		}
+	}
+	@media screen and (min-device-width: 540px) {
+		.search-result-details {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.search-result-list {
+			width: 60%;
+		}
+	}
 	.search-result-details {
-		display: flex;
-		flex-wrap: wrap;
-    	width: 40%;
-    	margin-left: 2%;
+    	margin-left: 1%;
 	}
 }

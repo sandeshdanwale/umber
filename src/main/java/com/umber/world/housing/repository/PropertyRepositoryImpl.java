@@ -23,7 +23,7 @@ public class PropertyRepositoryImpl implements PropertyRepositoryCustom {
     public List<Property> findByCityAndByNameStartsWith(CityId cityId, String name) {
         List<Property> properties =  mongoTemplate.find(
         		new Query(new Criteria().andOperator(
-        				Criteria.where("searchName").regex("^" + name),
+        				Criteria.where("searchName").regex(name),
         				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
         				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId))
         		)), Property.class
@@ -47,7 +47,7 @@ public class PropertyRepositoryImpl implements PropertyRepositoryCustom {
     public List<Property> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId) { 
         List<Property> properties =  mongoTemplate.find(
         		new Query(new Criteria().andOperator(
-        				Criteria.where("searchName").regex("^" + name),
+        				Criteria.where("searchName").regex(name),
         				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
         				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId)),
         				Criteria.where("addresses").elemMatch(Criteria.where("landmarkId").is(landmarkId))
@@ -60,7 +60,7 @@ public class PropertyRepositoryImpl implements PropertyRepositoryCustom {
     public List<Property> findByCityLandmarkDeveloperAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId, DeveloperId developerId) { 
         List<Property> properties =  mongoTemplate.find(
         		new Query(new Criteria().andOperator(
-        				Criteria.where("searchName").regex("^" + name),
+        				Criteria.where("searchName").regex(name),
         				Criteria.where("developerId").is(developerId),
         				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
         				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId)),
@@ -74,7 +74,7 @@ public class PropertyRepositoryImpl implements PropertyRepositoryCustom {
     public List<Property> findByCityDeveloperAndByNameStartsWith(CityId cityId, String name, DeveloperId developerId) { 
         List<Property> properties =  mongoTemplate.find(
         		new Query(new Criteria().andOperator(
-        				Criteria.where("searchName").regex("^" + name),
+        				Criteria.where("searchName").regex(name),
         				Criteria.where("developerId").is(developerId),
         				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
         				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId))

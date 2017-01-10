@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { City } from '../../models/aggregate/city.model';
 import { User } from '../../models/aggregate/user.model';
@@ -18,6 +18,7 @@ export class NavComponent {
   private secondaryCities: City[];
   private selectedCity: City;
   private isOpen: boolean = false;
+
 	constructor(
 		  private userService: UserService
   	) {
@@ -25,18 +26,18 @@ export class NavComponent {
   	}
 
   	public ngOnInit() {
-      if (this.user) {
+      if (this.user && this.cities && this.cities.length) {
         this.primaryCities = 
-          _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, (city) => city.primary)), (city) => city.name), 0, 4);
+          _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, (city) => city && city.primary)), (city) => city && city.name), 0, 4);
         this.secondaryCities = _.difference(this.cities, this.primaryCities);
         this.selectedCity = this.user.preference.city;
       }
   	}
 
     public ngOnChanges() {
-      if (this.user) {
+      if (this.user && this.cities && this.cities.length) {
         this.primaryCities = 
-          _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, (city) => city.primary)), (city) => city.name), 0, 4);
+          _.slice(_.uniqBy(_.union([this.user.preference.city], _.filter(this.cities, (city) => city && city.primary)), (city) => city && city.name), 0, 4);
         this.secondaryCities = _.difference(this.cities, this.primaryCities);
         this.selectedCity = this.user.preference.city;
       }
@@ -49,7 +50,10 @@ export class NavComponent {
     }
 
     private setCity($event: MouseEvent, city: City): void {
-      this.userService.setCity(this.user, city);
+      this.userService.setCity(this.user, city)
+        .subscribe(data => {
+          this.userService.updateUserPreference(data);
+        })
     }
 
 }

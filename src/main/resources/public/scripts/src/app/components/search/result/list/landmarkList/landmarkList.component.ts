@@ -52,15 +52,9 @@ export class LandmarkListComponent implements OnInit, OnChanges {
       }
     }
 
-    public getHighlightText(landmark: Landmark): string {
-      if (!landmark || !landmark.name || !this.searchString) return '';
-      return landmark.name.slice(0, this.searchString.length);
-    }
-
-    public getNormalText(landmark: Landmark): string {
+    public getName(landmark: Landmark): string {
       if (!landmark || !landmark.name) return '';
-      if (!this.searchString) return this.uiService.capitalize(landmark.name);
-      let str = landmark.name.slice(this.searchString.length, landmark.name.length);
-      return this.uiService.format(str);
+      if (!this.searchString) return landmark.name;
+      return landmark.name.replace(new RegExp(this.searchString, 'ig'), '<span class="highlight">' + this.searchString + '</span>');
     }
 }

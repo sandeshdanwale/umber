@@ -11,9 +11,20 @@
 	</div>
 	<div class="property-img" [style.background-image]="style"></div>
 	<div class="property-info-right">
-		<div class="property-price">
-			<i class="fa fa-inr" aria-hidden="true"></i>
-			<span class="price">{{displayProperty.price}}</span>
+		<div class="property-configs" *ngIf="property.configs && property.configs.configs">
+			<div *ngFor="let config of property.configs.configs" class="config">
+				<div class="type">
+					<span>{{config.type}}</span>
+				</div>
+				<div class="sqft">
+					<span>{{config.sqft}} sq.ft</span>
+				</div>
+				<div class="price">
+					<i class="fa fa-inr" aria-hidden="true"></i>
+					<span>{{mapToCurrencyString(config.basePrice)}}</span>
+				</div>
+			</div>
+			
 		</div> 
 	</div>
 </div>

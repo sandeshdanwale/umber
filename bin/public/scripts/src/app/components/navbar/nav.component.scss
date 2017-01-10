@@ -17,10 +17,18 @@
     }
   }
   .navbar-nav {
+  @media screen and (min-device-width: 780px) and (max-device-width: 1124px) {
+    &.center-menu {
+      left: 5%;
+      position: relative;
+    }
+  }
+  @media screen and (min-device-width: 1124px) {
     &.center-menu {
       left: 15%;
       position: relative;
     }
+  }
     li {
       &:hover {
         color: rgba(255, 126, 66, 1);
@@ -31,6 +39,11 @@
         &:hover, &:focus, &.selected {
           background-color: transparent;
           color: rgba(255, 126, 66, 1);
+        }
+        @media screen and (max-device-width: 540px) {
+          .other {
+            display: hidden;
+          }
         }
       }
     }

@@ -1,6 +1,9 @@
 import { Component, HostListener } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import './rxjs-operators';
 import { AggregationService } from './services/aggregation.service';
+import { UserService } from './services/user.service';
+import { User } from './models/aggregate/user.model';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +13,12 @@ import { AggregationService } from './services/aggregation.service';
 })
 export class AppComponent {
 
+	user: Observable<User>;
 	constructor(
-		private aggregationService: AggregationService
+		private aggregationService: AggregationService,
+		private userService: UserService
 	) {
-
+      	this.user = this.userService.user;
 	}
 
 	public ngOnInit() {

@@ -2,8 +2,7 @@
 	<div class="category-header">{{header}}</div>
 	<div class="list">
 		<div class="list-item"  *ngFor="let developer of developers" (mouseover)="updateDeveloperDetailPanel(event, developer)" (click)="addTag(event, developer)">
-			<span class="highlight">{{getHighlightText(developer)}}</span>
-			<span>{{getNormalText(developer)}}</span>
+			<div [innerHTML]="getName(developer)"></div>
 		</div>
 	</div>
 </div>

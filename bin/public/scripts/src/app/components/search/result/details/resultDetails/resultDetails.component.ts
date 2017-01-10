@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SearchDetailPanel } from '../../../../../models/aggregate/ui.model';
 import { Property } from '../../../../../models/aggregate/property.model';
-import { City } from '../../../../../models/aggregate/city.model';
+import { Landmark } from '../../../../../models/aggregate/landmark.model';
 import { Developer } from '../../../../../models/aggregate/developer.model';
 
 @Component({
@@ -13,7 +13,7 @@ export class ResultDetailsComponent {
 
 	@Input() activeSearchDetailPanel: SearchDetailPanel;
 	@Input() properties: Property[];
-	@Input() cities: City[];
+	@Input() landmarks: Landmark[];
 	@Input() developers: Developer[];
 	constructor(
   	) {

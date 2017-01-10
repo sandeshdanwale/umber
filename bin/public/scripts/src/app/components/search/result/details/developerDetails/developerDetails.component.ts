@@ -11,24 +11,31 @@ import * as _ from 'lodash';
 })
 export class DeveloperDetailsComponent {
 
-	@Input() developers: Developer[];
+	@Input() developer: Developer;
   @Input() properties: Property[];
-	@Input() activeSearchDetailPanel: SearchDetailPanel;
-	developer: any;
   setProperties: any;
   
 	constructor(
   	) {
   	}
 
-  	ngOnInit() {
-  	//onsole.log(this.developers)
-  		this.developer = this.developers ? _.head(_.filter(this.developers, (p) => p.id.registrationId === this.activeSearchDetailPanel.entityId)) : null;
-      this.setProperties = this.properties ? this.properties.slice(0, 2) : null;
-  	}
+  	ngOnInit() {}
 
   	ngOnChanges() {
-  		console.log('changes')
-  		//this.developer = _.head(_.filter(this.developers, (p) => p.id.registrationId === this.activeSearchDetailPanel.entityId));
-  	}
+    }
+
+    get displayPropeties(): any {
+      return this.properties ? this.properties.slice(0, 2) : null;
+    }
+
+    get displayDeveloper(): any {
+      let displayDeveloper: {name: string} = 
+        {
+          name: ''
+        };
+      if (this.developer) {
+        displayDeveloper.name = this.developer.name;
+      }
+      return displayDeveloper;
+    }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { UiService } from '../../../services/ui.service';
 import { Panel } from '../../../models/aggregate/ui.model';
 

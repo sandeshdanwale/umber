@@ -1,5 +1,7 @@
 <div class="property-card-carousel">
-	<div *ngFor="let property of featuredProperties | async">
-		<property-card [property]="property"></property-card>
+	<div *ngFor="let property of defaultProperties | async; let i = index;">
+		<div class="index{{i}}">
+			<property-card [property]="property"></property-card>
+		</div>
 	</div>
 </div>

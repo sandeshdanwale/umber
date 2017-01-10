@@ -11,22 +11,19 @@ import * as _ from 'lodash';
 export class PropertyCardComponent {
 
 	@Input() property: Property;
-	private displayProperty: DisplayProperty = null;
 
 	constructor(
   	) {
   	}
 
   	public ngOnInit() {
-      this.initDisplayProperty();
   	}
 
-  	private initDisplayProperty() {
-      if (!this.displayProperty) {
-        this.displayProperty = new DisplayProperty();
-      }
-      this.displayProperty.name = this.getDisplayPropertyName();
-      this.displayProperty.description = this.getDisplayPropertyDescription();
+  	get displayProperty(): any {
+      let displayProperty = new DisplayProperty();
+      displayProperty.name = this.getDisplayPropertyName();
+      displayProperty.description = this.getDisplayPropertyDescription();
+      return displayProperty;
     }
 
 

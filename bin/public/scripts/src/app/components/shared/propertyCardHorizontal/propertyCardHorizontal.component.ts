@@ -11,7 +11,6 @@ import * as _ from 'lodash';
 export class PropertyCardHorizontalComponent {
 
 	@Input() property: Property;
-	private displayProperty: DisplayProperty;
   private style: any;
 
 	constructor(
@@ -19,34 +18,31 @@ export class PropertyCardHorizontalComponent {
   	}
 
   	ngOnInit() {
-      this.initDisplayProperty();
       this.style = 'url(/assets/images/logo.jpg)';
     }
 
     ngOnChanges() {
-      this.initDisplayProperty();
       this.style = 'url(/assets/images/logo.jpg)';
     }
 
-  	private initDisplayProperty() {
-      if (!this.displayProperty) {
-        this.displayProperty = new DisplayProperty();
-      }
-      this.displayProperty.address = this.getDisplayAddress();
-      this.displayProperty.configs = this.getDisplayConfigs();
-      this.displayProperty.price = this.getDisplayPrice();
-      this.displayProperty.name = this.getDisplayPropertyName();
-      this.displayProperty.developerName = this.getDisplayDeveloperName();
+    get displayProperty(): any {
+      let displayProperty: DisplayProperty = new DisplayProperty();
+      displayProperty.address = this.getDisplayAddress();
+      displayProperty.configs = this.getDisplayConfigs();
+      displayProperty.price = this.getDisplayPrice();
+      displayProperty.name = this.getDisplayPropertyName();
+      displayProperty.developerName = this.getDisplayDeveloperName();
+      return displayProperty;
     }
 
-    private mapToCurrencyString(price: number|string): string {
+    public mapToCurrencyString(price: number|string): string {
       let displayPrice = ''
       let min = _.round((Number(price)/100000), 1);
       if (min > 100) {
         min = _.round(min/100, 1);
-        displayPrice += min + 'Cr'
+        displayPrice += min + 'Crs'
       } else {
-        displayPrice += min + 'L'
+        displayPrice += min + 'Lakhs'
       }
       return displayPrice;
     }
@@ -109,7 +105,7 @@ export class PropertyCardHorizontalComponent {
         lines = !address.line2 ? lines : lines ? lines + ', ' + address.line2 : address.line2;
         lines = !address.line3 ? lines : lines ? lines + ', ' + address.line3 : address.line3;
 
-        let txt = lines + ', ' + address.city + ', ' + address.state;
+        let txt = lines + ', ' + this.property.cityName + ', ' + address.state;
         return txt.length > 35 ? txt.slice(0, 35) + ' ...' : txt;
       }
       return '';

@@ -19,7 +19,7 @@ public class CityRepositoryImpl implements CityRepositoryCustom {
 	@Override
     public List<City> findByNameStartsWith(String name) {
         List<City> city = mongoTemplate.find(
-        		new Query(Criteria.where("searchName").regex("^" + name)), City.class);
+        		new Query(Criteria.where("searchName").regex(name)), City.class);
         return city;
     }
 

@@ -11,7 +11,6 @@ import * as _ from 'lodash';
 export class PropertyCardMediumComponent {
 
 	@Input() property: Property;
-	private displayProperty: DisplayProperty;
   private style: any;
 
 	constructor(
@@ -19,24 +18,21 @@ export class PropertyCardMediumComponent {
   	}
 
   	ngOnInit() {
-      this.initDisplayProperty();
       this.style = 'url(/assets/images/logo.jpg)';
     }
 
     ngOnChanges() {
-      this.initDisplayProperty();
       this.style = 'url(/assets/images/logo.jpg)';
     }
 
-  	private initDisplayProperty() {
-      if (!this.displayProperty) {
-        this.displayProperty = new DisplayProperty();
-      }
-      this.displayProperty.address = this.getDisplayAddress();
-      this.displayProperty.configs = this.getDisplayConfigs();
-      this.displayProperty.price = this.getDisplayPrice();
-      this.displayProperty.name = this.getDisplayPropertyName();
-      this.displayProperty.developerName = this.getDisplayDeveloperName();
+  	get displayProperty(): any {
+      let displayProperty = new DisplayProperty();
+      displayProperty.address = this.getDisplayAddress();
+      displayProperty.configs = this.getDisplayConfigs();
+      displayProperty.price = this.getDisplayPrice();
+      displayProperty.name = this.getDisplayPropertyName();
+      displayProperty.developerName = this.getDisplayDeveloperName();
+      return displayProperty;
     }
 
     private mapToCurrencyString(price: number|string): string {
@@ -102,15 +98,17 @@ export class PropertyCardMediumComponent {
 
 
     private getDisplayAddress(): string {
-      let address = _.head(_.filter(this.property.addresses, (p) => p.type.toString() === 'HOME'));
-      if (address) {
-        let lines = '';
-        lines = !address.line1 ? lines : lines ? lines + ', ' + address.line1 : address.line1;
-        lines = !address.line2 ? lines : lines ? lines + ', ' + address.line2 : address.line2;
-        lines = !address.line3 ? lines : lines ? lines + ', ' + address.line3 : address.line3;
+      if (this.property) {
+        let address = _.head(_.filter(this.property.addresses, (p) => p.type.toString() === 'HOME'));
+        if (address) {
+          let lines = '';
+          lines = !address.line1 ? lines : lines ? lines + ', ' + address.line1 : address.line1;
+          lines = !address.line2 ? lines : lines ? lines + ', ' + address.line2 : address.line2;
+          lines = !address.line3 ? lines : lines ? lines + ', ' + address.line3 : address.line3;
 
-        let txt = lines + ', ' + address.city + ', ' + address.state;
-        return txt.length > 35 ? txt.slice(0, 35) + ' ...' : txt;
+          let txt = lines + ', ' + this.property.cityName + ', ' + address.state;
+          return txt.length > 35 ? txt.slice(0, 35) + ' ...' : txt;
+        }
       }
       return '';
     }

@@ -6,7 +6,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	property-list {
-		width: 35%;
 		&:before {
 			content: '';
 		    border-right: 1px solid #E6E6E6;
@@ -16,8 +15,29 @@
 		    top: 23%;
 		}
 	}
+	@media screen and (max-device-width: 780px) {
+      property-list {
+        width: 45%;;
+      }
+      landmark-list {
+        width: 25%;;
+      }
+      developer-list {
+        width: 30%;;
+      }
+    }
+    @media screen and (min-device-width: 780px) {
+      property-list {
+        width: 40%;;
+      }
+      landmark-list {
+        width: 25%;;
+      }
+      developer-list {
+        width: 35%;;
+      }
+    }
 	developer-list {
-		width: 35%;
 		&:before {
 			content: '';
 		    border-right: 1px solid #E6E6E6;
@@ -45,7 +65,99 @@
 		    position: relative;
 		    color: #7f7f7f;
 		    font-size: 14px;
-		    text-transform: capitalize;
+		    .highlight {
+		    	font-weight: 800;
+		    	zoom: 1.2;
+		    	text-transform: capitalize;
+		    	margin-right: -3px;
+		    }
 	    }
 	} 	
 }
+
+@media screen and (max-device-width: 540px) {
+	.result-list-detail {
+		width: 82%;
+	    top: 110px;
+	    left: 10px;
+	}
+}
+
+@media screen and (min-device-width: 1124px) {
+	.result-list-detail {
+		width: 82%;
+	    top: 132px;
+	    left: 71px;
+	}
+}
+
+@media screen and (min-device-width: 540px) and (max-device-width: 1124px) {
+	.result-list-detail {
+		width: 78%;
+	    top: 122px;
+	    left: 51px;
+	}
+}
+
+.result-list-detail {
+	height: 200px;
+	text-align: left;
+	left-margin: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	position: fixed;
+    z-index: 20;
+    background-color: rgba(255,255,255, 0.9);
+    overflow-y: scroll;
+	background-blend-mode: multiply;
+	box-shadow: 0px 0px 10px 2px #000;
+	property-list {
+		width: 50%;
+		&:before {
+			content: '';
+		    border-right: 1px solid #E6E6E6;
+		    height: 67%;
+		    margin-left: -5px;
+		    position: absolute;
+		    top: 23%;
+		}
+	}
+	developer-list {
+		width: 50%;
+		&:before {
+			content: '';
+		    border-right: 1px solid #E6E6E6;
+		    margin-left: -5px;
+		    position: absolute;
+		    top: 23%;
+		}
+	}
+	/deep/ {
+		.category-header {
+			position: relative;
+		    overflow: hidden;
+		    padding: 7px 0;
+		    letter-spacing: 1px;
+		    font-weight: 500;
+		    text-transform: uppercase;
+		    color: rgba(255, 126, 66, 0.65);
+		}
+		.list-item {
+	    	line-height: 20px;
+		    cursor: pointer;
+		    padding: 7px 10px;
+		    position: relative;
+		    color: #7f7f7f;
+		    font-size: 14px;
+		    .highlight {
+		    	font-weight: 800;
+		    	zoom: 1.2;
+		    	text-transform: capitalize;
+		    	margin-right: -3px;
+		    }
+	    }
+	} 	
+}
+
+
+

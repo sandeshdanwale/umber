@@ -23,9 +23,16 @@ export function reducer(state = initialState, action: property.Actions): State {
       };
     case property.ActionTypes.UPDATE_PROPERTY_DETAIL:
       console.log('STORE:umber.property/UPDATE_PROPERTY_DETAIL');
+      let entities = _.map(state.entities, (e) => {
+          if (e.id.registrationId === action.payload.id.registrationId) {
+            return _.merge(action.payload, e);
+          }
+          return e;
+        })
+      //_.differenceBy(state.entities, [action.payload], (p) => p.id.registrationId).concat(action.payload)
       return {
         loaded: true,
-        entities: _.differenceBy(state.entities, [action.payload], (p) => p.id.registrationId).concat(action.payload)
+        entities: entities
       };
     default:
       return state;
