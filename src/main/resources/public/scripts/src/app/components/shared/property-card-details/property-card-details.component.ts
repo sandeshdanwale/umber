@@ -3,16 +3,17 @@ import { Property } from '../../../models/aggregate/property.model';
 import { Panel } from '../../../models/aggregate/ui.model';
 import { DisplayProperty } from '../../../models/displayProperty.model';
 import { UiService } from '../../../services/ui.service';
+import { SebmGoogleMap } from 'angular2-google-maps/core';
 import * as _ from 'lodash';
 
 @Component({
-	selector: 'property-card-horizontal',
-	templateUrl: 'propertyCardHorizontal.component.html',
-	styleUrls: ['propertyCardHorizontal.component.scss']
+  selector: 'property-card-details',
+  templateUrl: './property-card-details.component.html',
+  styleUrls: ['./property-card-details.component.scss']
 })
-export class PropertyCardHorizontalComponent {
+export class PropertyCardDetailsComponent {
 
-	@Input() property: Property;
+  @Input() property: Property;
   private style: any;
 
 	constructor(

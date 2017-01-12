@@ -1,0 +1,22 @@
+.property-detail-overlay {
+	position: fixed;
+    top: 50px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    display: flex;
+    background-color: rgba(255,255,255,1);
+    .close-search-overlay {
+        float: right;
+        margin-top: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    .property-detail-container {
+        width: 100%;
+    }
+}
+.displayNone {
+    display: none;
+}

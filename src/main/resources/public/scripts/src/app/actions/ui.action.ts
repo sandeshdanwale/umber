@@ -1,12 +1,15 @@
 import { Action } from '@ngrx/store';
 import { Panel, SearchDetailPanel } from '../models/aggregate/ui.model';
+import { Property } from '../models/aggregate/property.model';
 import { type } from '../util';
 
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Ui] Load Success'),
   LOAD: type('[Ui] Load'),
-  COMMAND: type('[Ui] Command'),
-  PANEL: type('[UI] Panel'),
+  OPEN_PANEL: type('[UI] Open Panel'),
+  CLOSE_PANEL: type('[UI] Close Panel'),
+  OPEN_PROPERTY_DETAIL_OVERLAY: type('[UI] Open Property Detail'),
+  CLOSE_PROPERTY_DETAIL_OVERLAY: type('[UI] Close Property Detail'),
   UPDATE_SEARCH_DETAIL: type('[UI] Update Search Detail'),
   SHOW_SEARCH_DETAIL_LIST_LOADER: type('[UI] Show Search Detail List Loader')
 };
@@ -43,13 +46,38 @@ export class LoadAction implements Action {
   }
 }
 
-export class PanelAction implements Action {
-  type = ActionTypes.PANEL;
+export class OpenPropertyDetailOverlayAction implements Action {
+  type = ActionTypes.OPEN_PROPERTY_DETAIL_OVERLAY;
 
-  constructor(public payload: Array<Panel>) {
+  constructor(public payload: Property) {
 
   }
 }
 
-export type Actions = LoadSuccessAction | LoadAction | PanelAction | 
-UpdateSearchDetail | ShowSearchDetailListLoader;
+export class ClosePropertyDetailOverlayAction implements Action {
+  type = ActionTypes.CLOSE_PROPERTY_DETAIL_OVERLAY;
+
+  constructor() {
+
+  }
+}
+
+export class OpenPanelAction implements Action {
+  type = ActionTypes.OPEN_PANEL;
+
+  constructor(public payload: Panel) {
+
+  }
+}
+
+export class ClosePanelAction implements Action {
+  type = ActionTypes.CLOSE_PANEL;
+
+  constructor(public payload: Panel) {
+
+  }
+}
+
+export type Actions = LoadSuccessAction | LoadAction | OpenPanelAction | ClosePanelAction | 
+UpdateSearchDetail | ShowSearchDetailListLoader | OpenPropertyDetailOverlayAction | 
+ClosePropertyDetailOverlayAction;

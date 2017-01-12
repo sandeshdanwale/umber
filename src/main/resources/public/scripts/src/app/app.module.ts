@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { DBModule, Database } from '@ngrx/db';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/navbar/nav.component';
@@ -27,8 +29,9 @@ import { PropertyCardHorizontalComponent } from './components/shared/propertyCar
 import { SelectedTagComponent } from './components/search/selectedTag/selectedTag.component'
 import { MenuComponent } from './components/middleSection/menu/menu.component';
 import { SearchPlaceHolderComponent } from './components/middleSection/searchPlaceHolder/searchPlaceHolder.component';
-import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component'
-import { SearchOverlayComponent } from './components/search/searchOverlay/searchOverlay.component'
+import { FeaturedHeadingComponent } from './components/middleSection/featuredHeading/featuredHeading.component';
+import { SearchOverlayComponent } from './components/search/searchOverlay/searchOverlay.component';
+import { PropertyDetailOverlayComponent } from './components/search/propertyDetailOverlay/propertyDetailOverlay.component'
 import { SearchBoxComponent } from './components/search/searchBox/searchBox.component';
 import { ModalsComponent } from './modals/modals.component';
 import { ResultContainerComponent } from './components/search/result/resultContainer/resultContainer.component';
@@ -60,6 +63,8 @@ import { AggregationService } from './services/aggregation.service';
 import { TagService } from './services/tag.service';
 import { CacheService } from './services/cache.service';
 import { UtilService } from './services/util.service';
+import { PropertyCardDetailsComponent } from './components/shared/property-card-details/property-card-details.component';
+import { MapComponent } from './components/shared/map/map.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +81,7 @@ import { UtilService } from './services/util.service';
     SearchPlaceHolderComponent,
     FeaturedHeadingComponent,
     SearchOverlayComponent,
+    PropertyDetailOverlayComponent,
     SearchBoxComponent,
     ModalsComponent,
     ResultContainerComponent,
@@ -99,13 +105,16 @@ import { UtilService } from './services/util.service';
     SelectedTagComponent, 
     OrderByPipe, ActiveLandmarkPipe, ActiveDeveloperPipe, ActivePropertyPipe, 
     DisplayViewport, DisplayConfig,
-    InfiniteScroll
+    InfiniteScroll,
+    PropertyCardDetailsComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
+    AgmCoreModule.forRoot(),
     StoreModule.provideStore(reducer)/*,
     InfiniteScrollModule*/
   ],

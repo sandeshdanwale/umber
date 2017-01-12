@@ -17,6 +17,7 @@ export class PropertyDetailListComponent implements OnInit, OnChanges {
   @Input() searchDetailListLoader: boolean;
   @Input() tags: Tag[];
   @Input() user: User;
+  
 	header: string;
   context: string;
   displayPort: number;
@@ -53,4 +54,5 @@ export class PropertyDetailListComponent implements OnInit, OnChanges {
       let ids = _.map(properties, p => p.id.registrationId);
       this.uiService.updateProperties(ids);
     }
+
 }

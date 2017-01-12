@@ -26,6 +26,7 @@ export class UiService {
     activePanels: Observable<Panel[]>;
     activeSearchDetailPanel: Observable<SearchDetailPanel>;
     searchDetailListLoader: Observable<boolean>;
+    selectedProperty: Observable<Property>;
     constructor(
         private http: HttpService,
         private propertyService: PropertyService,
@@ -37,6 +38,7 @@ export class UiService {
         this.activePanels = store.let(fromRoot.getActivePanels);
         this.activeSearchDetailPanel = store.let(fromRoot.getActiveSearchDetailPanel);
         this.searchDetailListLoader = store.let(fromRoot.getSearchDetailListLoader);
+        this.selectedProperty = store.let(fromRoot.getSelectedProperty);
     }
 
     public serachDetailObservable(id: string, context: string): any {
@@ -100,26 +102,26 @@ export class UiService {
         })
     }
 
+
+
     public loadSearchOverlay() {
-        let activePanels: Array<Panel> = [];
-        activePanels.push(new Panel('main'));
-        activePanels.push(new Panel('searchOverlay'));
-        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+        this.store.dispatch(new ui.OpenPanelAction(new Panel('searchOverlay')));
     }
 
     public loadSearchDetailList() {
-        let activePanels: Array<Panel> = [];
-        activePanels.push(new Panel('main'));
-        activePanels.push(new Panel('searchOverlay'));
-        activePanels.push(new Panel('searchDetailList'));
-        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+        this.store.dispatch(new ui.OpenPanelAction(new Panel('searchDetailList')));
     }
 
     public closeSearchDetailList() {
-        let activePanels: Array<Panel> = [];
-        activePanels.push(new Panel('main'));
-        activePanels.push(new Panel('searchOverlay'));
-        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+        this.store.dispatch(new ui.ClosePanelAction(new Panel('searchDetailList')));
+    }
+
+    public loadPropertyDetailOverlay(property: Property) {
+        this.store.dispatch(new ui.OpenPropertyDetailOverlayAction(property));
+    }
+
+    public closePropertyDetailOverlay() {
+        this.store.dispatch(new ui.ClosePropertyDetailOverlayAction());
     }
 
     public showSearchDetailListLoader() {
@@ -133,9 +135,7 @@ export class UiService {
     }
 
     public closeSearchOverlay() {
-        let activePanels: Array<Panel> = [];
-        activePanels.push(new Panel('main'));
-        this.store.dispatch(new ui.LoadSuccessAction(activePanels));
+        this.store.dispatch(new ui.ClosePanelAction(new Panel('searchOverlay')))
     }
 
     public capitalize(str: string): string {

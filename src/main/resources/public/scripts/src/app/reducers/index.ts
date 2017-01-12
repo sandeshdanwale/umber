@@ -93,3 +93,4 @@ export const getActivePanels = compose(fromUi.getActivePanels, getUiState);
 export const getTagEntities = compose(fromTag.getTagEntities, getTagState);
 export const getActiveSearchDetailPanel = compose(fromUi.getActiveSearchDetailPanel, getUiState);
 export const getSearchDetailListLoader = compose(fromUi.getSearchDetailListLoader, getUiState);
+export const getSelectedProperty = compose(fromUi.getSelectedProperty, getUiState);

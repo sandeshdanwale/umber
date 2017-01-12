@@ -1,0 +1,105 @@
+
+.property-card {
+    .property-info-left {
+        min-width: 350px;
+        width: 30%;
+        .property-img {
+            width: 350px;
+        }
+    }
+    .property-info-center {
+        width: 4    0%;
+        min-width: 300px;
+        flex: 1 1 auto;
+    }
+    .property-info-right {
+        width: 20%;
+        flex: 1 1 auto;
+    }
+    height: 500px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.property-card {
+    .property-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .property-img {
+        height: 250px;
+        text-align: right;
+        .left {
+            float: left;
+            margin-top: 50%;
+        }
+        .right {
+            float: right;
+            margin-top: 50%;
+        }
+        i {
+            color: white;
+        }
+    }
+    .property-title {
+        margin-top: 10px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        width: 100%;
+        font-size: 18px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .property-info-left {
+        .property-city, .property-developer, .developer-name, .property-configs {
+            margin-top: 10px;
+            color: grey;
+            font-size: 14px;
+            text-align: left;
+            text-transform: capitalize;
+        }
+    }
+    .property-info-center {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        .property-configs {
+            margin-top: 5px;
+            color: #2D0073;
+            width: 100%;
+            flex: 1;
+            .config {
+                padding-bottom: 10px;
+                .type {
+                    width: 34%;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    color: #ff7e42;
+                }
+                .control {
+                    color: #ff7e42;
+                }
+                .sqft, .price {
+                    width: 25%;
+                }
+                .type, .sqft, .price, .control {
+                    display: inline-block;
+                    height: 70%;
+                }
+                .type, .sqft {
+                    border-right: 2px solid #2D0073;
+                }
+            }
+        }
+        .property-developer, .property-city {
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    .property-info-right {
+        color: #ff7e42;
+        margin-top: 50%;
+    }
+}

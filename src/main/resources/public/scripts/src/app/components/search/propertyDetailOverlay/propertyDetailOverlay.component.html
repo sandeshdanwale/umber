@@ -1,0 +1,6 @@
+<div *ngIf="property" class="property-detail-overlay" [ngClass]="{'displayNone': !isPropertyDetailOverlayOpen()}">
+	<i class="fa fa-times fa-lg close-search-overlay" (click)="closePropertyDetailOverlay()" aria-hidden="true"></i>
+	<div class="property-detail-container">
+	  	<property-card-details [property]="property"></property-card-details>
+	</div>
+</div>
