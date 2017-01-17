@@ -2,6 +2,9 @@ package com.umber.world.housing.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
+import com.umber.world.housing.domain.Property;
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.jackson.LandmarkId;
@@ -22,6 +25,6 @@ public interface PropertyService {
     Single<List<UmberProperty>> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId);
     Single<List<UmberProperty>> findByCityDeveloperAndByNameStartsWith(CityId cityId, String name, DeveloperId developerId);
     Single<List<UmberProperty>> findByCityLandmarkDeveloperAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId, DeveloperId developerId);
-    
+    Single<List<UmberProperty>> findNearByPtoperties(LandmarkId landmarkId, CityId cityId, Pageable pageable);
 }
 

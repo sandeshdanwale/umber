@@ -8,6 +8,7 @@ export const ActionTypes = {
   LOAD: type('[Ui] Load'),
   OPEN_PANEL: type('[UI] Open Panel'),
   CLOSE_PANEL: type('[UI] Close Panel'),
+  UPDATE_NEAR_BY_PROPERTIES: type('[UI] Update Near By Properties'),
   OPEN_PROPERTY_DETAIL_OVERLAY: type('[UI] Open Property Detail'),
   CLOSE_PROPERTY_DETAIL_OVERLAY: type('[UI] Close Property Detail'),
   UPDATE_SEARCH_DETAIL: type('[UI] Update Search Detail'),
@@ -54,6 +55,14 @@ export class OpenPropertyDetailOverlayAction implements Action {
   }
 }
 
+export class UpdateNearByPropertiesAction implements Action {
+  type = ActionTypes.UPDATE_NEAR_BY_PROPERTIES;
+
+  constructor(public payload: Property[]) {
+
+  }
+}
+
 export class ClosePropertyDetailOverlayAction implements Action {
   type = ActionTypes.CLOSE_PROPERTY_DETAIL_OVERLAY;
 
@@ -80,4 +89,4 @@ export class ClosePanelAction implements Action {
 
 export type Actions = LoadSuccessAction | LoadAction | OpenPanelAction | ClosePanelAction | 
 UpdateSearchDetail | ShowSearchDetailListLoader | OpenPropertyDetailOverlayAction | 
-ClosePropertyDetailOverlayAction;
+ClosePropertyDetailOverlayAction | UpdateNearByPropertiesAction;

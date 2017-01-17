@@ -1,0 +1,49 @@
+<div *ngIf="property" class="property-card">
+	<div class="property-info">
+		<div class="property-title">{{displayProperty.name}}</div>		
+	</div>
+	<div class="property-container">
+		<div class="property-info-left">
+			<div class="property-img">
+				<img src="/assets/images/mumbai-sandu.jpg" [ngClass]="{'inactive': displayedSlide !== 1}"/>
+				<img src="/assets/images/logo.jpg" [ngClass]="{'inactive': displayedSlide !== 2}"/>
+				<i class="fa fa-lg fa-chevron-left" aria-hidden="true" (click)="prev()"></i>
+				<i class="fa fa-lg fa-chevron-right" aria-hidden="true" (click)="next()"></i>
+			</div>
+		</div>
+		<div class="property-info-center">
+			<div class="property-configs" *ngIf="property.configs && property.configs.configs">
+				<div *ngFor="let config of property.configs.configs" class="config">
+					<div class="type">
+						<span>{{config.type}}</span>
+					</div>
+					<div class="sqft">
+						<span>{{config.sqft}} sq.ft</span>
+					</div>
+					<div class="price">
+						<i class="fa fa-inr" aria-hidden="true"></i>
+						<span>{{mapToCurrencyString(config.basePrice)}}</span>
+					</div>
+					<div class="control">
+						<i class="fa fa-lg fa-empire" aria-hidden="true"></i>
+					</div>
+				</div>
+				<property-map></property-map>
+				
+			</div> 
+			<div class="developer-info">
+				<div class="property-developer">
+					<span>{{"By "}} {{displayProperty.developerName}}</span>
+				</div>
+				<div class="property-city">{{displayProperty.address}}</div>
+				<div class="contact-info">
+					<i class="fa fa-lg fa-phone-square" aria-hidden="true"></i>
+				</div>
+			</div>
+		</div>
+		<div class="property-info-right">
+			MAPS
+			<property-map></property-map>
+		</div>
+	</div>
+</div>

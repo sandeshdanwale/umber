@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Property } from '../../../models/aggregate/property.model';
+import { User } from '../../../models/aggregate/user.model';
 import { DisplayProperty } from '../../../models/displayProperty.model';
+import { UiService } from '../../../services/ui.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -11,11 +13,13 @@ import * as _ from 'lodash';
 export class PropertyCardMediumComponent {
 
 	@Input() property: Property;
+  @Input() user: User;
   private style: any;
 
 	constructor(
-  	) {
-  	}
+    private uiService: UiService
+  ) {
+  }
 
   	ngOnInit() {
       this.style = 'url(/assets/images/logo.jpg)';
@@ -23,6 +27,10 @@ export class PropertyCardMediumComponent {
 
     ngOnChanges() {
       this.style = 'url(/assets/images/logo.jpg)';
+    }
+
+    public loadPropertyDetailOverlay() {
+      this.uiService.loadPropertyDetailOverlay(this.property, this.user);
     }
 
   	get displayProperty(): any {

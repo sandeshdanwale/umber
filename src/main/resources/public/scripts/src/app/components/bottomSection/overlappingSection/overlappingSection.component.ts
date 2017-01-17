@@ -1,6 +1,7 @@
 import { Component , Input } from '@angular/core';
 import { User } from '../../../models/aggregate/user.model';
 import { City } from '../../../models/aggregate/city.model';
+import { Property } from '../../../models/aggregate/property.model';
 import { PropertyService } from '../../../services/property.service';
 import * as defaultProperty from '../../../actions/defaultProperty.action';
 import * as fromRoot from '../../../reducers';
@@ -14,12 +15,13 @@ import { Observable } from 'rxjs';
 })
 export class OverlappingSectionComponent {
 
+	defaultProperties: Observable<Property[]>;
 	@Input() user: User;
 	constructor(
 		private propertyService: PropertyService,
 		private store: Store<fromRoot.State>
   	) {
-  		
+  		this.defaultProperties = this.propertyService.defaultProperty;
   	}
 
   	public ngOnInit() {

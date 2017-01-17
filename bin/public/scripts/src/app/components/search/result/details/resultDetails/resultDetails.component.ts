@@ -3,6 +3,8 @@ import { SearchDetailPanel } from '../../../../../models/aggregate/ui.model';
 import { Property } from '../../../../../models/aggregate/property.model';
 import { Landmark } from '../../../../../models/aggregate/landmark.model';
 import { Developer } from '../../../../../models/aggregate/developer.model';
+import { User } from '../../../../../models/aggregate/user.model';
+import { Panel } from '../../../../../models/aggregate/ui.model';
 
 @Component({
 	selector: 'result-details',
@@ -15,6 +17,7 @@ export class ResultDetailsComponent {
 	@Input() properties: Property[];
 	@Input() landmarks: Landmark[];
 	@Input() developers: Developer[];
+	@Input() user: User;
 	constructor(
   	) {
   		

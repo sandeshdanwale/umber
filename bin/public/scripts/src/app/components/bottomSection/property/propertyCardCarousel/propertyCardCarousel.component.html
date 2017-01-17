@@ -1,5 +1,5 @@
 <div class="property-card-carousel">
-	<div *ngFor="let property of defaultProperties | async; let i = index;">
+	<div *ngFor="let property of properties; let i = index;">
 		<div class="index{{i}}">
 			<property-card [property]="property"></property-card>
 		</div>

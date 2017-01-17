@@ -18,7 +18,7 @@ export class SearchOverlayComponent {
 
   @Input() activePanels: Panel[];
   @Input() user: User;
-
+  @Input() panelInFocus: Panel;
   tags: Observable<Tag[]>;
   searchStr: string;
   

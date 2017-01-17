@@ -15,11 +15,6 @@ export class DeveloperCardSmallComponent {
   	}
 
   	ngOnInit() {
-      this.style = 'url(/assets/images/developerlogo.jpg)';
-  	}
-
-  	ngOnChanges() {
-      this.style = 'url(/assets/images/developerlogo.jpg)';
   	}
 
     get displayDeveloperName(): any {

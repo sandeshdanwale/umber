@@ -1,6 +1,24 @@
 <div *ngIf="property" class="property-detail-overlay" [ngClass]="{'displayNone': !isPropertyDetailOverlayOpen()}">
-	<i class="fa fa-times fa-lg close-search-overlay" (click)="closePropertyDetailOverlay()" aria-hidden="true"></i>
+	<i class="fa fa-times fa-lg close-overlay" (click)="closePropertyDetailOverlay()" aria-hidden="true"></i>
 	<div class="property-detail-container">
 	  	<property-card-details [property]="property"></property-card-details>
+	</div>
+	<div class="near-by-properties">
+		<div class="header">
+			<span>Near By Properties</span>
+		</div>
+		<div class="property-card-carousel">
+			<div class="left" [ngClass]="{'inactive': indexOfHead === 1}">
+				<i aria-hidden="true" class="fa fa-2x fa-chevron-left" (click)="backward()"></i>
+			</div>
+			<div *ngFor="let property of nearByProperties; let i = index;" [style.transform]="translate(i)">
+				<div class="index{{i}}">
+					<property-card [property]="property">index{{i}}</property-card>
+				</div>
+			</div>
+			<div class="right" [ngClass]="{'inactive': indexOfHead === 5}">
+				<i aria-hidden="true" class="fa fa-2x fa-chevron-right" (click)="forward()"></i>
+			</div>
+		</div>
 	</div>
 </div>

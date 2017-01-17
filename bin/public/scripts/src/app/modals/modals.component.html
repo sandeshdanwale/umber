@@ -1,3 +1,4 @@
 <div class="modals">
-	<search-overlay [activePanels]="activePanels | async" [user]="user"></search-overlay>
+	<search-overlay [activePanels]="activePanels | async" [user]="user" [panelInFocus]="panelInFocus | async"></search-overlay>
+	<property-detail-overlay [activePanels]="activePanels | async" [user]="user" [property]="selectedProperty | async" [nearByProperties]="nearByProperties | async"></property-detail-overlay>
 </div>

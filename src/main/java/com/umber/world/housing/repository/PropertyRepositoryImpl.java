@@ -3,6 +3,7 @@ package com.umber.world.housing.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -82,5 +83,18 @@ public class PropertyRepositoryImpl implements PropertyRepositoryCustom {
         	);
         return properties;
     }
+	
+	@Override
+	public List<Property> findNearByPtoperties(LandmarkId landmarkId, CityId cityId, Pageable pageable) { 
+		List<Property> properties =  mongoTemplate.find(
+        		new Query(new Criteria().andOperator(
+        				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
+        				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId)),
+        				Criteria.where("addresses").elemMatch(Criteria.where("landmarkId").is(landmarkId))
+        		))
+        		.with(pageable), Property.class
+        	);
+        return properties;
+	}
 
 }

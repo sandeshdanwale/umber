@@ -24,6 +24,7 @@ export class ResultContainerComponent implements OnChanges{
 	@Input() activePanels: Panel[];
   @Input() searchString: string;
   @Input() user: User;
+  @Input() panelInFocus: Panel;
 
 	activeSearchDetailPanel: Observable<SearchDetailPanel>;
   searchDetailListLoader: Observable<boolean>;

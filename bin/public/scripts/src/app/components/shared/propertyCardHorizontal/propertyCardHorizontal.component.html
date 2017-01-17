@@ -1,4 +1,4 @@
-<div *ngIf="property" class="property-card">
+<div *ngIf="property" class="property-card" (click)="loadPropertyDetailOverlay()">
 	<div class="property-info-left">
 		<div class="property-title">{{displayProperty.name}}</div>
 		<div class="property-developer">
@@ -9,7 +9,9 @@
 		</div>
 		<div class="property-city">{{displayProperty.address}}</div>
 	</div>
-	<div class="property-img" [style.background-image]="style"></div>
+	<div class="property-img">
+		<img src="/assets/images/logo.jpg" />
+	</div>
 	<div class="property-info-right">
 		<div class="property-configs" *ngIf="property.configs && property.configs.configs">
 			<div *ngFor="let config of property.configs.configs" class="config">

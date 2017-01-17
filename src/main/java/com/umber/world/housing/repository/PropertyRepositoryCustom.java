@@ -2,6 +2,8 @@ package com.umber.world.housing.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.umber.world.housing.domain.Property;
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
@@ -14,5 +16,6 @@ public interface PropertyRepositoryCustom {
 	List<Property> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId);
 	List<Property> findByCityLandmarkDeveloperAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId, DeveloperId developerId);
 	List<Property> findByCityDeveloperAndByNameStartsWith(CityId cityId, String name, DeveloperId developerId);
-    
+	List<Property> findNearByPtoperties(LandmarkId landmarkId, CityId cityId, Pageable pageable);
+	
 }

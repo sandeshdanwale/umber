@@ -50,16 +50,9 @@ export class DeveloperListComponent {
       }
     }
 
-    public getHighlightText(developer: Developer): string {
-      console.log('getHighlightText')
-      if (!developer || !developer.name || !this.searchString) return '';
-      return developer.name.slice(0, this.searchString.length);
-    }
-
-    public getNormalText(developer: Developer): string {
+    public getName(developer: Developer): string {
       if (!developer || !developer.name) return '';
-      if (!this.searchString) return this.uiService.capitalize(developer.name);
-      let str = developer.name.slice(this.searchString.length, developer.name.length);
-      return this.uiService.format(str);
+      if (!this.searchString) return developer.name;
+      return developer.name.replace(new RegExp(this.searchString, 'ig'), '<span class="highlight">' + this.searchString + '</span>');
     }
 }

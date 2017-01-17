@@ -2,6 +2,6 @@
 	<i class="fa fa-times fa-lg close-search-overlay" (click)="closeSearchOverlay()" aria-hidden="true"></i>
 	<div class="search-container">
 		<search-box (searchString)="searchString($event, srcString)" [user]="user" [tags]="tags | async"></search-box>
-		<result-container [searchString]="searchStr" [activePanels]="activePanels" [user]="user"></result-container>
+		<result-container [searchString]="searchStr" [activePanels]="activePanels" [user]="user" [panelInFocus]="panelInFocus"></result-container>
 	</div>
 </div>

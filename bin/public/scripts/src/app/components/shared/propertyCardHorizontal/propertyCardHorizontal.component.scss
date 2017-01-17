@@ -31,9 +31,12 @@
 .property-card {
     display: flex;
     flex-wrap: wrap;
-    
+    cursor: pointer;
     .property-img {
-        height: 150px;
+        img {
+            height: 150px;
+            width: 100%;
+        }
     }
     .property-title {
         margin-top: 10px;

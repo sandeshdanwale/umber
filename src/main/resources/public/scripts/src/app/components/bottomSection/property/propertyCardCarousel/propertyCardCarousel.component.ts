@@ -10,12 +10,10 @@ import { Property } from '../../../../models/aggregate/property.model';
 })
 export class PropertyCardCarouselComponent {
 
-	defaultProperties: Observable<Property[]>;
-
+	@Input() properties: Property[];
 	constructor(
-		private propertyService: PropertyService
   	) {
-  		this.defaultProperties = this.propertyService.defaultProperty;
+  		
   	}
 
   	public ngOnInit() {

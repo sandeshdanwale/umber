@@ -1,6 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Property } from '../../../models/aggregate/property.model';
+import { User } from '../../../models/aggregate/user.model';
+import { Panel } from '../../../models/aggregate/ui.model';
 import { DisplayProperty } from '../../../models/displayProperty.model';
+import { AddressType, CityId, LandmarkId } from '../../../models/aggregate/aggregate.model';
+import { UiService } from '../../../services/ui.service';
+import { PropertyService } from '../../../services/property.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -11,18 +16,23 @@ import * as _ from 'lodash';
 export class PropertyCardHorizontalComponent {
 
 	@Input() property: Property;
+  @Input() user: User;
   private style: any;
 
 	constructor(
+      private uiService: UiService,
+      private propertyService: PropertyService
   	) {
   	}
 
   	ngOnInit() {
-      this.style = 'url(/assets/images/logo.jpg)';
     }
 
     ngOnChanges() {
-      this.style = 'url(/assets/images/logo.jpg)';
+    }
+
+    public loadPropertyDetailOverlay() {
+      this.uiService.loadPropertyDetailOverlay(this.property, this.user);
     }
 
     get displayProperty(): any {

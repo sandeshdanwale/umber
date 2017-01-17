@@ -3,6 +3,7 @@ package com.umber.world.housing.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -78,6 +79,15 @@ public class PropertyController {
 			name = "";
 		}
 		return propertyService.findByCityLandmarkAndByNameStartsWith(new CityId(cityId), name, new LandmarkId(landmarkId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/nearByProperties/{landmarkId}/{cityId}"})
+    public Single<List<UmberProperty>> findNearByPtoperties(@PathVariable String cityId, @PathVariable String landmarkId, Pageable pageable) {
+		return propertyService.findNearByPtoperties(new LandmarkId(landmarkId), new CityId(cityId), pageable)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

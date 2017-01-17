@@ -66,7 +66,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Appl
 	            List<HandlerMethodArgumentResolver> argumentResolvers) {
 
 	        PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
-	        resolver.setFallbackPageable(new PageRequest(0, 10));
+	        resolver.setFallbackPageable(new PageRequest(0, 8));
 
 	        argumentResolvers.add(resolver);
 	    }

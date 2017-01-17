@@ -76,8 +76,8 @@ export class DeveloperId implements AggregateId {
   }
 }
 
-export const enum AddressType {
-    HOME
+export const AddressType = {
+  HOME: 'HOME'
 }
 
 export interface IAddress {
@@ -85,10 +85,11 @@ export interface IAddress {
     line2: string;
     line3: string;
     city: string;
+    landmarkId: LandmarkId;
     state: string;
     postalCode: string;
     country: string;
-    type: AddressType;
+    type: string;
 }
 
 export class Address implements IAddress {
@@ -97,16 +98,18 @@ export class Address implements IAddress {
     line2: string;
     line3: string;
     city: string;
+    landmarkId: LandmarkId;
     state: string;
     postalCode: string;
     country: string;
-    type: AddressType;
+    type: string;
 
     constructor(address: any) {
         this.line1 = address.line1;
         this.line2 = address.line2;
         this.line3 = address.line3;
         this.city = address.city;
+        this.landmarkId = address.landmarkId;
         this.state = address.state;
         this.postalCode = address.postalCode;
         this.country = address.country;

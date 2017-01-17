@@ -5,7 +5,7 @@
     [scrollWindow]="false"
     (scrolled)="searchMore()">
 	<div *ngFor="let property of properties | displayViewport: displayPort; let i = index;">
-		<property-card-horizontal [property]="property"></property-card-horizontal>
+		<property-card-horizontal [property]="property" [user]="user"></property-card-horizontal>
 	</div>
 	<div [ngClass]="{'loader': searchDetailListLoader}"></div>
 	

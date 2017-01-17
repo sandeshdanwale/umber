@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.umber.world.housing.model.UmberConfigs;
@@ -129,6 +130,14 @@ public class PropertyServiceImpl implements PropertyService {
 						.collect(Collectors.toList()));
 		return umberProperty.subscribeOn(Schedulers.io());
 				
+	}
+	
+	@Override
+	public Single<List<UmberProperty>> findNearByPtoperties(LandmarkId landmarkId, CityId cityId, Pageable pageable) {
+		Single<List<UmberProperty>> umberProperty = Single.just(propertyRepository.findNearByPtoperties(landmarkId, cityId, pageable)
+				.stream().map(d -> new UmberProperty(d))
+						.collect(Collectors.toList()));
+		return umberProperty.subscribeOn(Schedulers.io());
 	}
 	
 	/*

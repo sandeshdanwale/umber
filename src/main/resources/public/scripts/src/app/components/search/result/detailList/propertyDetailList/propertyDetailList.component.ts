@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, AfterViewInit, SimpleChanges, OnChanges, AfterViewChecked } from '@angular/core';
 import { UiService } from '../../../../../services/ui.service';
 import { Property } from '../../../../../models/aggregate/property.model';
+import { Panel } from '../../../../../models/aggregate/ui.model';
 import { Tag } from '../../../../../models/aggregate/tag.model';
 import { User } from '../../../../../models/aggregate/user.model';
 import { OrderByPipe } from '../../../../../pipes/generic.pipe';
@@ -17,7 +18,7 @@ export class PropertyDetailListComponent implements OnInit, OnChanges {
   @Input() searchDetailListLoader: boolean;
   @Input() tags: Tag[];
   @Input() user: User;
-  
+  @Input() panelInFocus: Panel;
 	header: string;
   context: string;
   displayPort: number;
@@ -37,7 +38,7 @@ export class PropertyDetailListComponent implements OnInit, OnChanges {
   	}
 
     ngOnChanges(changes) {
-      if (changes.properties && _.has(changes, 'properties.previousValue.length')
+      if (this.panelInFocus && this.panelInFocus.name === 'searchDetailList' && changes.properties && _.has(changes, 'properties.previousValue.length')
         && changes.properties.previousValue.length != changes.properties.currentValue.length) {
         this.displayPort = 6;
         this.updateProperties(0, this.displayPort);

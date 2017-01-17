@@ -60,6 +60,12 @@ export class PropertyService {
                 .map(this.extractData)
     }
 
+    public getNearByProperties(cityId: string, landmarkId: string): Observable<Property[]> {
+        let url: string = `${this.BASE_URL}/property/search/nearByProperties/${landmarkId}/${cityId}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
     public getPropertyDetails(id: string): Observable<Property> {
         let url: string = `${this.BASE_URL}/property/details/${id}`; 
         return this.http.get(url)

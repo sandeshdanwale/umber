@@ -3,10 +3,10 @@ import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+//import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { DBModule, Database } from '@ngrx/db';
-import { AgmCoreModule } from 'angular2-google-maps/core';
+//import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 import { AppComponent } from './app.component';
@@ -65,6 +65,7 @@ import { CacheService } from './services/cache.service';
 import { UtilService } from './services/util.service';
 import { PropertyCardDetailsComponent } from './components/shared/property-card-details/property-card-details.component';
 import { MapComponent } from './components/shared/map/map.component';
+import { ImageOverlayComponent } from './components/search/image-overlay/image-overlay.component';
 
 @NgModule({
   declarations: [
@@ -107,14 +108,15 @@ import { MapComponent } from './components/shared/map/map.component';
     DisplayViewport, DisplayConfig,
     InfiniteScroll,
     PropertyCardDetailsComponent,
-    MapComponent
+    MapComponent,
+    ImageOverlayComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot(),
-    AgmCoreModule.forRoot(),
+    //MaterialModule.forRoot(),
+    //AgmCoreModule.forRoot(),
     StoreModule.provideStore(reducer)/*,
     InfiniteScrollModule*/
   ],

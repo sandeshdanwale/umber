@@ -50,15 +50,9 @@ export class PropertyListComponent {
       }
     }
 
-    public getHighlightText(property: Property): string {
-      if (!property || !property.name || !this.searchString) return '';
-      return property.name.slice(0, this.searchString.length);
-    }
-
-    public getNormalText(property: Property): string {
+    public getName(property: Property): string {
       if (!property || !property.name) return '';
-      if (!this.searchString) return this.uiService.capitalize(property.name);
-      let str = property.name.slice(this.searchString.length, property.name.length);
-      return this.uiService.format(str);
+      if (!this.searchString) return property.name;
+      return property.name.replace(new RegExp(this.searchString, 'ig'), '<span class="highlight">' + this.searchString + '</span>');
     }
 }

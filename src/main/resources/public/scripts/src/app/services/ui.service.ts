@@ -11,12 +11,14 @@ import * as ui from '../actions/ui.action';
 import * as property from '../actions/property.action';
 import * as developer from '../actions/developer.action';
 import * as landmark from '../actions/landmark.action';
-import { Panel,SearchDetailPanel } from '../models/aggregate/ui.model';
+import { Panel, SearchDetailPanel } from '../models/aggregate/ui.model';
+import { AddressType, CityId, LandmarkId } from '../models/aggregate/aggregate.model';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import { Developer } from '../models/aggregate/developer.model';
 import { Property } from '../models/aggregate/property.model';
 import { Landmark } from '../models/aggregate/landmark.model';
+import { User } from '../models/aggregate/user.model';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -27,6 +29,8 @@ export class UiService {
     activeSearchDetailPanel: Observable<SearchDetailPanel>;
     searchDetailListLoader: Observable<boolean>;
     selectedProperty: Observable<Property>;
+    nearByProperties: Observable<Property[]>;
+    panelInFocus: Observable<Panel>;
     constructor(
         private http: HttpService,
         private propertyService: PropertyService,
@@ -39,6 +43,8 @@ export class UiService {
         this.activeSearchDetailPanel = store.let(fromRoot.getActiveSearchDetailPanel);
         this.searchDetailListLoader = store.let(fromRoot.getSearchDetailListLoader);
         this.selectedProperty = store.let(fromRoot.getSelectedProperty);
+        this.nearByProperties = store.let(fromRoot.getNearByProperties);
+        this.panelInFocus = store.let(fromRoot.getPanelInFocus);
     }
 
     public serachDetailObservable(id: string, context: string): any {
@@ -116,7 +122,22 @@ export class UiService {
         this.store.dispatch(new ui.ClosePanelAction(new Panel('searchDetailList')));
     }
 
-    public loadPropertyDetailOverlay(property: Property) {
+    public updateNearByProperties(properties: Property[]) {
+        this.store.dispatch(new ui.UpdateNearByPropertiesAction(properties));
+    }
+
+    public loadPropertyDetailOverlay(property: Property, user: User) {
+        let cityId: CityId = user && user.preference && user.preference.city
+         ? user.preference.city.id : null;
+      let landmarkId: LandmarkId;
+      if (property) {
+        landmarkId = _.head(_.map(_.filter(property.addresses, (a) => a.type == AddressType.HOME), (a) => a.landmarkId));
+      }
+      this.propertyService.getNearByProperties(cityId.registrationId, landmarkId.registrationId)
+        .subscribe((properties: Property[]) => {
+          this.updateNearByProperties(properties);
+        })
+
         this.store.dispatch(new ui.OpenPropertyDetailOverlayAction(property));
     }
 
@@ -131,7 +152,7 @@ export class UiService {
     public hideSearchDetailListLoader() {
         setTimeout(() => {
             this.store.dispatch(new ui.ShowSearchDetailListLoader(false));
-        }, 5000);
+        }, 0);
     }
 
     public closeSearchOverlay() {
