@@ -20,6 +20,7 @@
     .property-detail-container {
         width: 100%;
         height: 53%;
+        margin-top: -25px;
     }
     .near-by-properties {
         text-align: left;
@@ -41,6 +42,11 @@
             display: flex;
             > div {
                 text-align: center;
+                &:not(.left) {
+                    &:not(.right) {
+                        //box-shadow: 0 2px 13px 6px #b5b8bb;
+                    }
+                }
                 div {
                     width: 100%;
                 }

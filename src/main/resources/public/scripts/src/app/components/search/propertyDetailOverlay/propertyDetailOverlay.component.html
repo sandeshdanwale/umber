@@ -1,7 +1,7 @@
 <div *ngIf="property" class="property-detail-overlay" [ngClass]="{'displayNone': !isPropertyDetailOverlayOpen()}">
 	<i class="fa fa-times fa-lg close-overlay" (click)="closePropertyDetailOverlay()" aria-hidden="true"></i>
 	<div class="property-detail-container">
-	  	<property-card-details [property]="property"></property-card-details>
+	  	<property-card-details [property]="property" (asset)="asset($event)"></property-card-details>
 	</div>
 	<div class="near-by-properties">
 		<div class="header">
@@ -11,8 +11,8 @@
 			<div class="left" [ngClass]="{'inactive': indexOfHead === 1}">
 				<i aria-hidden="true" class="fa fa-2x fa-chevron-left" (click)="backward()"></i>
 			</div>
-			<div *ngFor="let property of nearByProperties; let i = index;" [style.transform]="translate(i)">
-				<div class="index{{i}}">
+			<div *ngFor="let property of nearByProperties; let i = index;" >
+				<div class="index{{i}}" [style.transform]="translate(i)">
 					<property-card [property]="property">index{{i}}</property-card>
 				</div>
 			</div>
@@ -22,3 +22,5 @@
 		</div>
 	</div>
 </div>
+
+<!-- [style.transform]="translate(i)" -->

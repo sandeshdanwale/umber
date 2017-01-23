@@ -20,6 +20,7 @@ public interface PropertyService {
     Single<UmberProperty> findByPropertyId(PropertyId propertyId);
     Single<UmberProperty> findDetailsByPropertyId(PropertyId propertyId);
     Single<List<UmberProperty>> findByFeatured(Boolean featured);
+    Single<List<UmberProperty>> findByGlobalFeatured(Boolean globalFeatured);
     Single<List<UmberProperty>> findByFeaturedAndCityId(Boolean featured, CityId cityId);
     Single<List<UmberProperty>> findByCityAndByNameStartsWith(CityId cityId, String name);
     Single<List<UmberProperty>> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId);

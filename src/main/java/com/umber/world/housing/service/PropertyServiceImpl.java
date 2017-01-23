@@ -87,6 +87,14 @@ public class PropertyServiceImpl implements PropertyService {
 						.collect(Collectors.toList()));
 		return umberProperties.subscribeOn(Schedulers.io());
 	}
+
+	@Override
+	public Single<List<UmberProperty>> findByGlobalFeatured(Boolean globalFeatured) {
+		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByGlobalFeatured(globalFeatured)
+				.stream().map(d -> new UmberProperty(d))
+						.collect(Collectors.toList()));
+		return umberProperties.subscribeOn(Schedulers.io());
+	}
 	
 	@Override
 	public Single<List<UmberProperty>> findByFeaturedAndCityId(Boolean featured, CityId cityId) {

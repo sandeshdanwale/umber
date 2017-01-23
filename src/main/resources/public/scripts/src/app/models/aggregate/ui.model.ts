@@ -37,6 +37,9 @@ export const PanelRankData = [
 	}, {
 		name: 'propertyDetailOverlay',
 		rank: 4
+	}, {
+		name: 'imageOverlay',
+		rank: 5
 	}
 ]
 

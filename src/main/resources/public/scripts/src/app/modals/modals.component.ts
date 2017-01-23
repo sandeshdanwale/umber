@@ -13,17 +13,21 @@ import { City } from '../models/aggregate/city.model';
 })
 export class ModalsComponent {
 
-	activePanels: Observable<Panel[]>;
 	selectedProperty: Observable<Property>;
 	nearByProperties: Observable<Property[]>;
 	panelInFocus: Observable<Panel>;
 	@Input() user: User;
+	@Input() activePanels: Panel[];
+	private asset: string = '';
 	constructor(
     	private uiService: UiService
     ) {
-      	this.activePanels = this.uiService.activePanels;
       	this.selectedProperty = this.uiService.selectedProperty;
       	this.nearByProperties = this.uiService.nearByProperties;
       	this.panelInFocus = this.uiService.panelInFocus;
+    }
+
+    assetType(type: string) {
+    	this.asset = type;
     }
 }

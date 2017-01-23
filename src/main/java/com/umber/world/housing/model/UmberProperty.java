@@ -44,6 +44,9 @@ public final class UmberProperty implements  Serializable {
     private Boolean featured;
     
     @JsonView(View.Details.class)
+    private Boolean globalFeatured;
+    
+    @JsonView(View.Details.class)
     private UmberConfigs configs;
     
     @JsonView(View.Details.class)
@@ -57,6 +60,7 @@ public final class UmberProperty implements  Serializable {
     	this.addresses = property.addresses;
     	this.developerId = property.developerId;
     	this.featured = property.featured;
+    	this.globalFeatured = property.globalFeatured;
     	
     }
    
@@ -68,6 +72,7 @@ public final class UmberProperty implements  Serializable {
     	this.addresses = property.addresses;
     	this.developerId = property.developerId;
     	this.featured = property.featured;
+    	this.globalFeatured = property.globalFeatured;
     	this.configs = configs;
     	this.amenities = amenities;
     	
@@ -81,6 +86,7 @@ public final class UmberProperty implements  Serializable {
     	this.addresses = property.addresses;
     	this.developerId = property.developerId;
     	this.featured = property.featured;
+    	this.globalFeatured = property.globalFeatured;
     	this.developerName = developerName;
     	this.configs = configs;
     	this.amenities = amenities;
@@ -95,6 +101,7 @@ public final class UmberProperty implements  Serializable {
     	this.addresses = property.addresses;
     	this.developerId = property.developerId;
     	this.featured = property.featured;
+    	this.globalFeatured = property.globalFeatured;
     	this.developerName = developerName;
     	this.cityName = cityName;
     	this.configs = configs;

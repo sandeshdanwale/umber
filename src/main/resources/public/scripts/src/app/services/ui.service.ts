@@ -122,6 +122,14 @@ export class UiService {
         this.store.dispatch(new ui.ClosePanelAction(new Panel('searchDetailList')));
     }
 
+    public loadImageOverlay() {
+        this.store.dispatch(new ui.OpenPanelAction(new Panel('imageOverlay')));
+    }
+
+    public closeImageOverlay() {
+        this.store.dispatch(new ui.ClosePanelAction(new Panel('imageOverlay')));
+    }
+
     public updateNearByProperties(properties: Property[]) {
         this.store.dispatch(new ui.UpdateNearByPropertiesAction(properties));
     }

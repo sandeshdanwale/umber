@@ -25,7 +25,7 @@ public class PropertyController {
 	@Autowired
 	private PropertyService propertyService;
 	
-	@RequestMapping(value={"/", "", "/featuredProperties"})
+	@RequestMapping(value={"/", "", "/allFeaturedProperties"})
     public Single<List<UmberProperty>> featuredProperties() {
 		return propertyService.findByFeatured(true)
 				.onErrorReturn(error -> {
@@ -37,6 +37,15 @@ public class PropertyController {
 	@RequestMapping(value={"/featuredPropertiesByCity"})
     public Single<List<UmberProperty>> featuredPropertiesByCity(@RequestParam(value="cityId", required=true) String cityId) {
 		return propertyService.findByFeaturedAndCityId(true, new CityId(cityId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/globalFeaturedProperties"})
+    public Single<List<UmberProperty>> globalfeaturedProperties() {
+		return propertyService.findByGlobalFeatured(true)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

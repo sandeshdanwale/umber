@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Property } from '../../../models/aggregate/property.model';
 import { User } from '../../../models/aggregate/user.model';
 import { Panel } from '../../../models/aggregate/ui.model';
@@ -15,6 +15,7 @@ export class PropertyCardDetailsComponent {
 
   @Input() property: Property;
   @Input() user: User;
+  @Output() asset = new EventEmitter<string>();
   private style: any;
   private displayedSlide: number = 1;
   private imgLength = 2;
@@ -30,18 +31,31 @@ export class PropertyCardDetailsComponent {
       this.uiService.loadPropertyDetailOverlay(this.property, this.user);
     }
 
-    prev() {
+    prev(event: Event) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
       if (this.displayedSlide - 1 < 1) {
         return;
       }
       this.displayedSlide -= 1;
     }
 
-    next() {
+    next(event: Event) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
       if (this.displayedSlide + 1 > this.imgLength) {
         return;
       }
       this.displayedSlide += 1;
+    }
+
+    public openImageOverlay(type: string) {
+      this.asset.emit(type);
+      this.uiService.loadImageOverlay();
     }
 
     get displayProperty(): any {

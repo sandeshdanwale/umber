@@ -1,0 +1,36 @@
+.property-card-carousel {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    > div {
+        text-align: center;
+        &:not(.left) {
+            &:not(.right) {
+                //box-shadow: 0 2px 13px 6px #b5b8bb;
+            }
+        }
+        div {
+            width: 100%;
+        }
+        &.left {
+            width: 5%;
+            text-align: left;
+            transform: translateX(50px);
+            cursor: pointer;
+            margin-top: 5%;
+            &.inactive {
+                opacity: 0;
+            }
+        }
+        &.right {
+            width: 5%;
+            text-align: right;
+            transform: translateX(-600px);
+            cursor: pointer;
+            margin-top: 5%;
+            &.inactive {
+                opacity: 0;
+            }
+        }
+    }
+}

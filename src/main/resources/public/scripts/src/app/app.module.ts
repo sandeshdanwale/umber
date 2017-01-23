@@ -66,6 +66,10 @@ import { UtilService } from './services/util.service';
 import { PropertyCardDetailsComponent } from './components/shared/property-card-details/property-card-details.component';
 import { MapComponent } from './components/shared/map/map.component';
 import { ImageOverlayComponent } from './components/search/image-overlay/image-overlay.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { PropertyGalleryComponent } from './components/bottomSection/property/property-gallery/property-gallery.component';
+import { PropertyCarouselComponent } from './components/bottomSection/property/property-gallery/property-carousel/property-carousel.component';
+import { FeaturedSectionComponent } from './components/bottomSection/featured-section/featured-section.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +113,11 @@ import { ImageOverlayComponent } from './components/search/image-overlay/image-o
     InfiniteScroll,
     PropertyCardDetailsComponent,
     MapComponent,
-    ImageOverlayComponent
+    ImageOverlayComponent,
+    FooterComponent,
+    PropertyGalleryComponent,
+    PropertyCarouselComponent,
+    FeaturedSectionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, ChangeDetectionStrategy, HostListener } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Component, Input, Output, OnInit, ChangeDetectionStrategy, HostListener, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { UiService } from '../../../services/ui.service';
 import { TagService } from '../../../services/tag.service';
 import { Panel } from '../../../models/aggregate/ui.model';
@@ -20,6 +20,7 @@ export class PropertyDetailOverlayComponent implements OnInit {
   @Input() activePanels: Panel[];
   @Input() user: User;
   @Input() nearByProperties: Property[];
+  @Output() assetType = new EventEmitter<string>();
   indexOfHead: number = 1;
 	constructor(
     private uiService: UiService
@@ -37,7 +38,11 @@ export class PropertyDetailOverlayComponent implements OnInit {
 		this.uiService.closePropertyDetailOverlay();
 	}
 
-  translate(index: number): void {
+  asset(type: string) {
+    this.assetType.emit(type);
+  }
+
+  translate(index: number): string {
     let pos1 = [150, 200, 250, 300, 2000, 2000, 2000, 2000];
     let pos2 = [-2000, -90, -40, 10, 60, 2000, 2000, 2000];
     let pos3 = [-2000, -2000, -330, -280, -230, -180, 2000, 2000];

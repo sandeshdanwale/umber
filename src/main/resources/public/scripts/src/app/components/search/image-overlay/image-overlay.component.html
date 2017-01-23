@@ -1,3 +1,23 @@
-<p>
-  image-overlay works!
-</p>
+<div *ngIf="property" class="image-overlay" [ngClass]="{'displayNone': !isImageOverlayOpen()}">
+	<div class="mainLeft">
+		<i class="fa fa-times fa-lg close-overlay" (click)="closeImageOverlay()" aria-hidden="true" style="color: white;"></i>
+	</div>
+	<div class="mainRight">
+		<div class="top">
+			<div class="left">
+				<img src="{{imageUrl}}"/>
+			</div>
+			<div class="right">
+				<img src="{{asset1Url}}"/>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="left">
+				<img src="{{asset2Url}}"/>
+			</div>
+			<div class="right">
+				<img src="{{asset3Url}}"/>
+			</div>
+		</div>
+	</div>
+</div>

@@ -944,3 +944,11 @@ db.developer.update(
 )
 });
 
+db.property.find().forEach(function(doc) {
+db.property.update(
+   { _id: doc._id},
+   { $set : { 'globalFeatured' : false} },
+   { multi: true }
+)
+});
+

@@ -45,7 +45,7 @@ export function reducer(state = initialState, action: ui.Actions): State {
         activePanels: _.filter(state.activePanels, (p) => p.name !== action.payload.name),
         searchDetailListLoader: false,
         activeSearchDetailPanel: state.activeSearchDetailPanel,
-        selectedProperty: null,
+        selectedProperty: state.selectedProperty,
         panelInFocus: _.head(_.filter(PanelRankData, (p) => p.rank === action.payload.rank - 1)),
         nearByProperties: state.nearByProperties
       }

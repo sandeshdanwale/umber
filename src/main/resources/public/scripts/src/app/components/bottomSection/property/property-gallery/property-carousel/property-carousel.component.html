@@ -1,0 +1,13 @@
+<div class="property-card-carousel">
+	<div class="left" [ngClass]="{'inactive': indexOfHead === 1}">
+		<i aria-hidden="true" class="fa fa-2x fa-chevron-left" (click)="backward()"></i>
+	</div>
+	<div *ngFor="let property of properties; let i = index;" [style.transform]="translate(i)">
+		<div class="index{{i}}">
+			<property-card-very-small [property]="property">index{{i}}</property-card-very-small>
+		</div>
+	</div>
+	<div class="right" [ngClass]="{'inactive': indexOfHead === 5}">
+		<i aria-hidden="true" class="fa fa-2x fa-chevron-right" (click)="forward()"></i>
+	</div>
+</div>
