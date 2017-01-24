@@ -8,16 +8,16 @@
 			<span>Near By Properties</span>
 		</div>
 		<div class="property-card-carousel">
-			<div class="left" [ngClass]="{'inactive': indexOfHead === 1}">
-				<i aria-hidden="true" class="fa fa-2x fa-chevron-left" (click)="backward()"></i>
+			<div class="left" [ngClass]="{'inactive': indexOfHead >= nearByProperties.length - 4}">
+				<i aria-hidden="true" class="fa fa-lg fa-chevron-left" (click)="backward()"></i>
 			</div>
-			<div *ngFor="let property of nearByProperties; let i = index;" >
-				<div class="index{{i}}" [style.transform]="translate(i)">
+			<div [style.transform]="translate()" class="property-slider" style="">
+				<div *ngFor="let property of nearByProperties; let i = index;" [style.opacity]="i >= indexOfHead && i < indexOfHead + 4 ? 1 : 0.3">
 					<property-card [property]="property">index{{i}}</property-card>
 				</div>
 			</div>
-			<div class="right" [ngClass]="{'inactive': indexOfHead === 5}">
-				<i aria-hidden="true" class="fa fa-2x fa-chevron-right" (click)="forward()"></i>
+			<div class="right" [ngClass]="{'inactive': indexOfHead === 0}">
+				<i aria-hidden="true" class="fa fa-lg fa-chevron-right" (click)="forward()"></i>
 			</div>
 		</div>
 	</div>

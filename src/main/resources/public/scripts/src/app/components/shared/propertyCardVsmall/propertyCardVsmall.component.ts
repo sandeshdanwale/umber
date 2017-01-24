@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 export class PropertyCardVsmallComponent {
 
   @Input() property: Property;
+  @Input() index: number;
   imageUrl: string;
   private style: any;
 
@@ -19,11 +20,11 @@ export class PropertyCardVsmallComponent {
     }
 
     ngOnInit() {
-      this.imageUrl = '/assets/images/logo.jpg';
+      this.imageUrl = `/assets/images/prop${this.index}.jpg`;
     }
 
     ngOnChanges() {
-      this.imageUrl = '/assets/images/logo.jpg';
+      this.imageUrl = `/assets/images/prop${this.index}.jpg`;
     }
 
     get displayPropertyName(): string {

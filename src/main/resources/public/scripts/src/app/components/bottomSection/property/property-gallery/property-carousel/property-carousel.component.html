@@ -1,13 +1,13 @@
 <div class="property-card-carousel">
-	<div class="left" [ngClass]="{'inactive': indexOfHead === 1}">
-		<i aria-hidden="true" class="fa fa-2x fa-chevron-left" (click)="backward()"></i>
+	<div class="top" [ngClass]="{'inactive': indexOfHead === 0}" >
+		<i class="fa fa-chevron-circle-up fa-2x" aria-hidden="true" (click)="forward()"></i>
 	</div>
-	<div *ngFor="let property of properties; let i = index;" [style.transform]="translate(i)">
-		<div class="index{{i}}">
-			<property-card-very-small [property]="property">index{{i}}</property-card-very-small>
+	<div [style.transform]="translate()" class="property-slider" style="">
+		<div *ngFor="let property of properties; let i = index;" [style.opacity]="i >= indexOfHead && i < indexOfHead + 4 ? 1 : 0.5" [style.display]="i >= indexOfHead && i < indexOfHead + 4 ? 'inline-block' : 'none'">
+			<property-card-very-small [property]="property" [index]="i+1"></property-card-very-small>
 		</div>
 	</div>
-	<div class="right" [ngClass]="{'inactive': indexOfHead === 5}">
-		<i aria-hidden="true" class="fa fa-2x fa-chevron-right" (click)="forward()"></i>
+	<div class="bottom" [ngClass]="{'inactive': properties && indexOfHead >= properties.length - 4}">
+		<i class="fa fa-chevron-circle-down fa-2x" aria-hidden="true" (click)="backward()"></i>
 	</div>
 </div>

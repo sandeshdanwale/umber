@@ -21,7 +21,7 @@ export class PropertyDetailOverlayComponent implements OnInit {
   @Input() user: User;
   @Input() nearByProperties: Property[];
   @Output() assetType = new EventEmitter<string>();
-  indexOfHead: number = 1;
+  indexOfHead: number = 0;
 	constructor(
     private uiService: UiService
   ) {
@@ -42,35 +42,22 @@ export class PropertyDetailOverlayComponent implements OnInit {
     this.assetType.emit(type);
   }
 
-  translate(index: number): string {
-    let pos1 = [150, 200, 250, 300, 2000, 2000, 2000, 2000];
-    let pos2 = [-2000, -90, -40, 10, 60, 2000, 2000, 2000];
-    let pos3 = [-2000, -2000, -330, -280, -230, -180, 2000, 2000];
-    let pos4 = [-2000, -2000, -2000, -570, -520, -470, -420, 2000];
-    let pos: number;
-    switch(this.indexOfHead) {
-      case 1:
-        pos = pos1[index];
-        break;
-      case 2:
-        pos = pos2[index];
-        break;
-      case 3:
-        pos = pos3[index];
-        break;
-      case 4:
-        pos = pos4[index];
-        break;
-    }
+  translate(): string {
+    let seed = 230;
+    let pos = this.indexOfHead * -270 + seed;
     return `translateX(${pos}px)`;
   }
 
   forward(): void {
-    this.indexOfHead = this.indexOfHead > 4 ? 4 : this.indexOfHead + 1
+    if (this.indexOfHead > 0) {
+      this.indexOfHead -= 1;
+    }
   }
 
   backward(): void {
-    this.indexOfHead = this.indexOfHead < 2 ? 1 : this.indexOfHead - 1
+    if (this.indexOfHead < this.nearByProperties.length - 4) {
+      this.indexOfHead += 1;
+    }
   }
 
   @HostListener('document:keydown', ['$event'])
