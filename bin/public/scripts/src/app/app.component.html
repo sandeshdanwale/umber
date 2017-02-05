@@ -1,3 +1,5 @@
 <banner [user]="user | async"></banner>
-<overlappingSection [user]="user | async"></overlappingSection>
-<modals-container [user]="user | async"></modals-container>
+<overlappingSection [user]="user | async" [activePanels]="activePanels | async"></overlappingSection>
+<featured-section [activePanels]="activePanels | async"></featured-section>
+<umber-footer></umber-footer>
+<modals-container [user]="user | async" [activePanels]="activePanels | async"></modals-container>

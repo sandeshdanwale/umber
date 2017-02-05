@@ -1,0 +1,13 @@
+<div class="developer-card-carousel">
+	<div class="top">
+		<i class="fa fa-chevron-circle-left fa-2x left" aria-hidden="true" (click)="forward()" [ngClass]="{'inactive': indexOfHead === 0}" ></i>
+		<i class="fa fa-chevron-circle-right fa-2x right" aria-hidden="true" (click)="backward()" [ngClass]="{'inactive': developers && indexOfHead >= developers?.length}"></i>
+	</div>
+	<div class="bottom">
+		<div class="developer-slider">
+			<div *ngFor="let developer of developers; let i = index;" [ngClass]="{'notFocused': i !== indexOfHead}" (click)="select(i)">
+				<developer-card-very-small [developer]="developer"></developer-card-very-small>
+			</div>
+		</div>
+	</div>
+</div>

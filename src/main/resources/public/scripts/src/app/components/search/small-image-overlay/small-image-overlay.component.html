@@ -1,0 +1,41 @@
+<div *ngIf="property" class="small-image-overlay" [ngClass]="{'displayNone': !isImageOverlayOpen()}">
+	<div class="mainLeft">
+		<i class="fa fa-times fa-lg close-overlay" (click)="closeImageOverlay()" aria-hidden="true" style="color: white;"></i>
+	</div>
+	<div class="property-config-carousel">
+		<div class="leftArrow" [ngClass]="{'inactive': indexOfHead >= configs.length - 1}" (click)="backward()">
+			<i aria-hidden="true" class="fa fa-lg fa-chevron-left"></i>
+		</div>
+		<div class="rightArrow" [ngClass]="{'inactive': indexOfHead === 0}" (click)="forward()">
+			<i aria-hidden="true" class="fa fa-lg fa-chevron-right"></i>
+		</div>
+		<div class="header">
+			<div *ngFor="let config of configs; let i = index;" class="type" [ngClass]="{'inactive': i !== indexOfHead}" (click)="setHead(i)">
+				<span>{{config.type}}</span>
+			</div>
+		</div>
+		<div class="property-slider">
+			<div *ngFor="let config of configs; let i = index;" [style.display]="i === indexOfHead ? 'block' : 'none'">
+				<div class="mainRight">
+					<div class="top">
+						<div class="left">
+							<img src="{{getImageUrl(config.type)}}"/>
+						</div>
+						<div class="right">
+							<img src="{{getAsset1Url(config.type)}}"/>
+						</div>
+					</div>
+					<div class="bottom">
+						<div class="left">
+							<img src="{{getAsset2Url(config.type)}}"/>
+						</div>
+						<div class="right">
+							<img src="{{getAsset3Url(config.type)}}"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>

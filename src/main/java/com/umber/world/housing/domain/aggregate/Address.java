@@ -23,6 +23,8 @@ public class Address implements Serializable {
     private String state;
     private String postalCode;
     private String country;
+    private String latitude;
+    private String longitude;
     private AddressType type;
 
 }

@@ -1,49 +1,181 @@
 <div *ngIf="property" class="property-card">
 	<div class="property-info">
-		<div class="property-title">{{displayProperty.name}}</div>		
+		<div class="info">
+			<div class="property-title">{{name}}</div>
+		</div>		
 	</div>
 	<div class="property-container">
-		<div class="property-info-left">
-			<div class="property-img" (click)="openImageOverlay('property')">
-				<img src="/assets/images/mumbai-sandu.jpg" [ngClass]="{'inactive': displayedSlide !== 1}"/>
-				<img src="/assets/images/logo.jpg" [ngClass]="{'inactive': displayedSlide !== 2}"/>
-				<i class="fa fa-lg fa-chevron-left" aria-hidden="true" (click)="prev($event)" [ngClass]="{'inactive': displayedSlide === 1}"></i>
-				<i class="fa fa-lg fa-chevron-right" aria-hidden="true" (click)="next($event)" [ngClass]="{'inactive': displayedSlide === 2}"></i>
+		<div class="container">
+			<div class="property-info-left">
+				<div class="info-left">
+					<div class="property-img" (click)="openImageOverlay('property')">
+						<i class="fa fa-lg fa-chevron-left" aria-hidden="true" (click)="prev($event)" [ngClass]="{'inactive': displayedSlide === 1}"></i>
+						<i class="fa fa-lg fa-chevron-right" aria-hidden="true" (click)="next($event)" [ngClass]="{'inactive': displayedSlide === 4}"></i>
+						<img src="{{image1Url}}" [ngClass]="{'inactive': displayedSlide !== 1}"/>
+						<img src="{{image2Url}}" [ngClass]="{'inactive': displayedSlide !== 2}"/>
+						<img src="{{image3Url}}" [ngClass]="{'inactive': displayedSlide !== 3}"/>
+						<img src="{{image4Url}}" [ngClass]="{'inactive': displayedSlide !== 4}"/>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="property-info-center">
-			<div class="property-configs" *ngIf="property.configs && property.configs.configs">
-				<div *ngFor="let config of property.configs.configs" class="config">
-					<div class="type" (click)="openImageOverlay(config.type)">
-						<span>{{config.type}}</span>
+			<div class="property-info-center">
+				<div class="info-center">
+					<div class="property-configs">
+						<div class="configs">
+							<div class="header">
+								<span>Unit Type</span>
+							</div>
+							<div *ngFor="let config of property.configs.configs" class="config">
+								<div class="config-items">
+									<div class="type" (click)="openImageOverlay(config.type)">
+										<span>{{config.type}}</span>
+									</div>
+									<div class="sqft">
+										<span>{{config.sqft}} sq.ft</span>
+									</div>
+									<div class="price">
+										<i class="fa fa-inr" aria-hidden="true"></i>
+										<span>{{mapToCurrencyString(config.basePrice)}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="sqft">
-						<span>{{config.sqft}} sq.ft</span>
+					<div class="property-amenities">
+						<div class="amenities">
+							<div class="header">
+								<span>Amenities</span>
+							</div>
+							<div *ngFor="let amenity of property.amenities.amenities" class="amenity">
+								<div class="amenity-items">
+									<div class="amenity-item type">
+										<span>{{amenity.type}}</span>
+									</div>
+									<div class="amenity-item">
+										<div class="features">
+											<div *ngFor="let feature of amenity.features; let i = last;" class="feature">
+												<span>{{feature.entity}}
+													<span *ngIf="!i">{{','}}</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="price">
-						<i class="fa fa-inr" aria-hidden="true"></i>
-						<span>{{mapToCurrencyString(config.basePrice)}}</span>
+					<div class="property-contacts">
+						<div class="contact">
+							<div class="contact-action">
+								<span>Contact Us</span>
+							</div>
+						</div>
 					</div>
-					<div class="control" (click)="openImageOverlay(config.type)">
-						<i class="fa fa-lg fa-empire" aria-hidden="true"></i>
+				</div>
+			</div>
+			<div class="property-info-right">
+				<div class="info-right">
+					<div class="property-description">
+						<div class="description">
+							<div class="header">
+								<span>About Project</span>
+							</div>
+							<div class="content">
+								{{property.description}}
+							</div>
+						</div>
+					</div>
+					<div class="property-by">
+						<div class="by">
+							<div class="header">
+								<span>Project By</span>
+							</div>
+							<div class="content">
+								{{developerName}}
+							</div>
+						</div>
+					</div>
+					<div class="property-address">
+						<div class="address">
+							<div class="header">
+								<span>Address</span>
+							</div>
+							<div class="content">
+								{{address}}
+							</div>
+						</div>
+					</div>
+					<div class="property-maps">
+						<div class="maps">
+							<div class="header">
+								<span>Map</span>
+							</div>
+							<property-map [property]="property"></property-map>
+						</div>
 					</div>
 				</div>
 				<property-map></property-map>
-				
-			</div> 
-			<div class="developer-info">
-				<div class="property-developer">
-					<span>{{"By "}} {{displayProperty.developerName}}</span>
-				</div>
-				<div class="property-city">{{displayProperty.address}}</div>
-				<div class="contact-info">
-					<i class="fa fa-lg fa-phone-square" aria-hidden="true"></i>
-				</div>
 			</div>
-		</div>
-		<div class="property-info-right">
-			MAPS
-			<property-map></property-map>
 		</div>
 	</div>
 </div>
+<!-- <div *ngIf="property" class="property-card">
+	<div class="property-info">
+		<div class="info">
+			<div class="property-title">{{displayProperty.name}}</div>
+		</div>		
+	</div>
+	<div class="property-container">
+		<div class="container">
+			<div class="property-info-left">
+				<div class="info-left">
+					<div class="property-img" (click)="openImageOverlay('property')">
+						<img src="{{image1Url}}" [ngClass]="{'inactive': displayedSlide !== 1}"/>
+						<img src="{{image2Url}}" [ngClass]="{'inactive': displayedSlide !== 2}"/>
+						<img src="{{image3Url}}" [ngClass]="{'inactive': displayedSlide !== 3}"/>
+						<img src="{{image4Url}}" [ngClass]="{'inactive': displayedSlide !== 4}"/>
+						<i class="fa fa-lg fa-chevron-left" aria-hidden="true" (click)="prev($event)" [ngClass]="{'inactive': displayedSlide === 1}"></i>
+						<i class="fa fa-lg fa-chevron-right" aria-hidden="true" (click)="next($event)" [ngClass]="{'inactive': displayedSlide === 4}"></i>
+					</div>
+				</div>
+			</div>
+			<div class="property-info-center">
+				<div class="info-center">
+					<div class="property-configs">
+						<div class="configs" *ngIf="property.configs && property.configs.configs">
+							<div *ngFor="let config of property.configs.configs" class="config">
+								<div class="type" (click)="openImageOverlay(config.type)">
+									<span>{{config.type}}</span>
+								</div>
+								<div class="sqft">
+									<span>{{config.sqft}} sq.ft</span>
+								</div>
+								<div class="price">
+									<i class="fa fa-inr" aria-hidden="true"></i>
+									<span>{{mapToCurrencyString(config.basePrice)}}</span>
+								</div>
+							</div>
+							<property-map></property-map>
+							
+						</div>
+					</div>
+					<div class="developer-info">
+						<div class="info">
+							<div class="property-developer">
+								<span>{{"By "}} {{displayProperty.developerName}}</span>
+							</div>
+							<div class="property-city">{{displayProperty.address}}</div>
+							<div class="contact-info">
+								<i class="fa fa-lg fa-phone-square" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="property-info-right">
+				MAPS
+				<property-map></property-map>
+			</div>
+		</div>
+	</div>
+</div> -->

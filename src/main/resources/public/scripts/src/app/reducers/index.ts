@@ -7,6 +7,7 @@ import * as fromDeveloper from './developer.reducer';
 import * as fromProperty from './property.reducer';
 import * as fromDefaultProperty from './defaultProperty.reducer';
 import * as fromGlobalProperty from './globalProperty.reducer';
+import * as fromGlobalDeveloper from './globalDeveloper.reducer';
 import * as fromUi from './ui.reducer';
 import * as fromUser from './user.reducer';
 import * as fromTag from './tag.reducer';
@@ -25,6 +26,7 @@ export interface State {
   property: fromProperty.State,
   defaultProperty: fromDefaultProperty.State,
   globalProperty: fromGlobalProperty.State,
+  globalDeveloper: fromGlobalDeveloper.State,
   tag: fromTag.State,
   ui: fromUi.State,
   user: fromUser.State
@@ -37,6 +39,7 @@ const reducers = {
   property: fromProperty.reducer,
   defaultProperty: fromDefaultProperty.reducer,
   globalProperty: fromGlobalProperty.reducer,
+  globalDeveloper: fromGlobalDeveloper.reducer,
   tag: fromTag.reducer,
   ui: fromUi.reducer,
   user: fromUser.reducer
@@ -77,6 +80,10 @@ export function getGlobalPropertyState(state$: Observable<State>) {
   return state$.select(state => state.globalProperty);
 }
 
+export function getGlobalDeveloperState(state$: Observable<State>) {
+  return state$.select(state => state.globalDeveloper);
+}
+
 export function getTagState(state$: Observable<State>) {
   return state$.select(state => state.tag);
 }
@@ -93,6 +100,7 @@ export const getDeveloperEntities = compose(fromDeveloper.getDeveloperEntities, 
 export const getPropertyEntities = compose(fromProperty.getPropertyEntities, getPropertyState);
 export const getDefaultPropertyEntities = compose(fromDefaultProperty.getDefaultPropertyEntities, getDefaultPropertyState);
 export const getGlobalPropertyEntities = compose(fromGlobalProperty.getGlobalPropertyEntities, getGlobalPropertyState);
+export const getGlobalDeveloperEntities = compose(fromGlobalDeveloper.getGlobalDeveloperEntities, getGlobalDeveloperState);
 export const getCityEntities = compose(fromCity.getCityEntities, getCityState);
 export const getLandmarkEntities = compose(fromLandmark.getLandmarkEntities, getLandmarkState);
 export const getUserEntities = compose(fromUser.getUserEntities, getUserState);

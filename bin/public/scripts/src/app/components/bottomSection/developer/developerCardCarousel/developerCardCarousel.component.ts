@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {DeveloperService} from '../../../../services/developer.service'
+import { Component } from '@angular/core';
+import { DeveloperService } from '../../../../services/developer.service';
 
 @Component({
 	selector: 'developerCardCarousel',

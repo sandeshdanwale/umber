@@ -17,7 +17,7 @@ export class ImageOverlayComponent implements OnInit {
   @Input() activePanels: Panel[];
   @Input() user: User;
   @Input() asset: string;
-
+  indexOfHead: number = 0;
   constructor(
   	private uiService: UiService
   ) { 
@@ -30,6 +30,16 @@ export class ImageOverlayComponent implements OnInit {
 		this.uiService.closeImageOverlay();
   }
 
+  get id(): string {
+    return '3601';//this.property.id.registrationId;
+  }
+
+  translate(): string {
+    let seed = 125;
+    let pos = this.indexOfHead * -1300 + seed;
+    return `translateX(${pos}px)`;
+  }
+
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(kbdEvent: KeyboardEvent) { 
     if (kbdEvent.key === 'Escape') {
@@ -37,31 +47,55 @@ export class ImageOverlayComponent implements OnInit {
     }
   }
 
-  get imageUrl() {
-    return `/assets/images/property/prop${this.property.id.registrationId}/propertyImage1.jpg`;
-  }
-
-  get asset1Url() {
-    if (this.asset === 'property') {
-      return `/assets/images/property/prop${this.property.id.registrationId}/${this.asset}Image2.jpg`;
-    } else {
-      return `/assets/images/property/prop${this.property.id.registrationId}/${this.asset}Image1.jpg`;
+  forward(): void {
+    if (this.indexOfHead > 0) {
+      this.indexOfHead -= 1;
     }
   }
 
-  get asset2Url() {
-    if (this.asset === 'property') {
-      return `/assets/images/property/prop${this.property.id.registrationId}/${this.asset}Image3.jpg`;
-    } else {
-      return `/assets/images/property/prop${this.property.id.registrationId}/${this.asset}Image2.jpg`;
+  backward(): void {
+    if (this.indexOfHead < this.configs.length - 1 ) {
+      this.indexOfHead += 1;
     }
   }
 
-  get asset3Url() {
-    if (this.asset === 'property') {
-      return `/assets/images/property/prop${this.property.id.registrationId}/propertyImage4.jpg`;
+  setHead(index: number) {
+    this.indexOfHead = index;
+  }
+
+  get currentAsset() {
+    return this.configs[this.indexOfHead].type === this.asset ? this.asset : this.configs[this.indexOfHead].type
+  }
+
+  get configs() {
+    return _.union([{type: 'property'}], this.property.configs.configs);
+  }
+
+  getImageUrl(type: string) {
+    return `/assets/images/property/prop${this.id}/propertyImage1.jpg`;
+  }
+
+  getAsset1Url(type: string) {
+    if (this.currentAsset === 'property') {
+      return `/assets/images/property/prop${this.id}/${this.currentAsset}Image2.jpg`;
     } else {
-      return `/assets/images/property/prop${this.property.id.registrationId}/${this.asset}Image3.jpg`;
+      return `/assets/images/property/prop${this.id}/${this.currentAsset}Image1.jpg`;
+    }
+  }
+
+  getAsset2Url(type: string) {
+    if (this.currentAsset === 'property') {
+      return `/assets/images/property/prop${this.id}/${this.currentAsset}Image3.jpg`;
+    } else {
+      return `/assets/images/property/prop${this.id}/${this.currentAsset}Image2.jpg`;
+    }
+  }
+
+  getAsset3Url(type: string) {
+    if (this.currentAsset === 'property') {
+      return `/assets/images/property/prop${this.id}/propertyImage4.jpg`;
+    } else {
+      return `/assets/images/property/prop${this.id}/${this.currentAsset}Image3.jpg`;
     }
   }
 

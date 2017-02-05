@@ -15,6 +15,7 @@ export class PropertyService {
 	BASE_URL: string = location.hostname === 'localhost' ? '' : '';
     property: Observable<Property[]>;
     defaultProperty: Observable<Property[]>;
+    globalProperty: Observable<Property[]>;
     constructor(
         private http: HttpService,
         private utilService: UtilService,
@@ -22,6 +23,7 @@ export class PropertyService {
     ) {
         this.property = store.let(fromRoot.getPropertyEntities);
         this.defaultProperty = store.let(fromRoot.getDefaultPropertyEntities);
+        this.globalProperty = store.let(fromRoot.getGlobalPropertyEntities);
     }
 
     public getProperties(cityId: string = '9', searchString: string): Observable<Property[]> {
@@ -78,6 +80,15 @@ export class PropertyService {
         let url: string = `${this.BASE_URL}/property/featuredPropertiesByCity?cityId=${cityId}`; 
         return this.http.get(url)
         		.map(this.extractData)
+                //.catch(this.handleError);
+    }
+
+    public getGlobalFeaturedProperties(): Observable<Property[]> {
+
+
+        let url: string = `${this.BASE_URL}/property/globalFeaturedProperties`; 
+        return this.http.get(url)
+                .map(this.extractData)
                 //.catch(this.handleError);
     }
 

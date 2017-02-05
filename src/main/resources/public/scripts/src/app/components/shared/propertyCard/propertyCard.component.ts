@@ -13,25 +13,31 @@ export class PropertyCardComponent {
 	@Input() property: Property;
 
 	constructor(
-  	) {
-  	}
+  ) {
+  }
 
-  	public ngOnInit() {
-  	}
+	public ngOnInit() {
+	}
 
-  	get displayProperty(): any {
-      let displayProperty = new DisplayProperty();
-      displayProperty.name = this.getDisplayPropertyName();
-      displayProperty.description = this.getDisplayPropertyDescription();
-      return displayProperty;
-    }
+  get imageUrl() {
+    let id = '3601';//this.property.id.registrationId
+    return `/assets/images/property/prop${id}/propertyImage1.jpg`;
+  }
+
+	get displayProperty(): any {
+    let displayProperty = new DisplayProperty();
+    displayProperty.name = this.getDisplayPropertyName();
+    displayProperty.description = this.getDisplayPropertyDescription();
+    return displayProperty;
+  }
 
 
-    private getDisplayPropertyName(): string{
-      return this.property ? this.property.name : '';
-    }
+  private getDisplayPropertyName(): string{
+    return this.property ? this.property.name : '';
+  }
 
-    private getDisplayPropertyDescription(): string{
-      return this.property ? this.property.description : '';
-    }
+  private getDisplayPropertyDescription(): string{
+    return this.property ? this.property.description : '';
+  }
+  
 }

@@ -1,0 +1,32 @@
+.developer-card-carousel {
+    text-align: center;
+    .top {
+      margin-bottom: 10px;
+      i {
+        cursor: pointer;
+        &.inactive {
+          opacity: 0.3;
+          cursor: default;
+        }
+      }
+    }
+    .bottom {
+        .developer-slider {
+            display: block;
+            margin: auto;
+            > div {
+              margin-top: 15px;
+              display: inline-block;
+              margin: auto;
+              margin-left: 30px;
+              cursor: pointer;
+                &.notFocused {
+                    filter: grayscale(100%);
+                }
+            }
+        }
+    }
+}
+.displayNone {
+    display: none;
+}

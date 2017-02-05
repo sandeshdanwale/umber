@@ -12,12 +12,14 @@ export class DeveloperService {
 
 	BASE_URL: string = location.hostname === 'localhost' ? '' : '';
     developer: Observable<Developer[]>;
+    globalDeveloper: Observable<Developer[]>;
     constructor(
         private http: HttpService,
         private utilService: UtilService,
         private store: Store<fromRoot.State>
     ) {
         this.developer = store.let(fromRoot.getDeveloperEntities);
+        this.globalDeveloper = store.let(fromRoot.getGlobalDeveloperEntities);
     }
 
     public getDevelopers(cityId: string = '9', searchString: string): Observable<Developer[]> {
@@ -57,6 +59,15 @@ export class DeveloperService {
 
 
         let url: string = `${this.BASE_URL}/developer/featuredDevelopersByCity?cityId=${cityId}`;
+        return this.http.get(url)
+                .map(this.extractData)
+                .catch(this.handleError);
+    }
+
+    public getGlobalFeaturedDevelopers(): Observable<Developer[]> {
+
+
+        let url: string = `${this.BASE_URL}/developer/globalFeaturedDevelopers`;
         return this.http.get(url)
                 .map(this.extractData)
                 .catch(this.handleError);

@@ -31,6 +31,12 @@ public final class UmberAmenities implements  Serializable {
     	this.amenityId = amenities.id;
     	this.propertyId = amenities.propertyId;
     	this.amenities = amenities.amenities;
+    	//amenities.amenities.stream().forEach((Amenity a) -> {
+    		//this.amenities.add(new Amenity(a));
+    	//});
+    }
+    
+    public UmberAmenities() {
     }
 
 }

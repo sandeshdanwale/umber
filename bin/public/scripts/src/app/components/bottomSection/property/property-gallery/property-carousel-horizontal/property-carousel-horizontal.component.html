@@ -1,0 +1,13 @@
+<div class="property-card-carousel">
+	<div class="top">
+		<i class="fa fa-chevron-circle-left fa-2x left" aria-hidden="true" (click)="forward()" [ngClass]="{'inactive': indexOfHead === 0}" ></i>
+		<i class="fa fa-chevron-circle-right fa-2x right" aria-hidden="true" (click)="backward()" [ngClass]="{'inactive': properties && indexOfHead >= properties?.length}"></i>
+	</div>
+	<div class="bottom">
+		<div class="property-slider">
+			<div *ngFor="let property of properties; let i = index;" [ngClass]="{'notFocused': i !== indexOfHead}" (click)="select(i)">
+				<property-card-very-small [property]="property"></property-card-very-small>
+			</div>
+		</div>
+	</div>
+</div>

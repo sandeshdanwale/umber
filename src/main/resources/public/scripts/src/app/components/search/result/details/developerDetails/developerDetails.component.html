@@ -1,10 +1,22 @@
-<div class="developer-details">
-	<div class="developer-info">
-		<div class="developer-name">{{displayDeveloper && displayDeveloper.name}}</div>
-	</div>
-	<div class="properties">
-		<div *ngFor="let property of displayPropeties; let propertyIndex = index">
-			<property-card-very-small class="property-pos{{propertyIndex}}" [property]="property" style="display:block"></property-card-very-small>
+<div class="developer-card">
+	<div class="wrapper">
+		<div class="top">
+			<div class="left">
+				<div class="developer-name">{{developer?.name}}</div>
+				<div class="developer-description">{{developer?.description}}</div>
+			</div>
+			<div class="right">
+				<div class="developer-logo">
+					<img src="{{imageUrl}}"/>
+				</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="properties">
+				<div *ngFor="let property of displayPropeties; let propertyIndex = index">
+					<property-card-very-small [property]="property" style="display:block"></property-card-very-small>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

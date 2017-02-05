@@ -1,13 +1,13 @@
 <div class="property-card-carousel">
-	<div class="top" [ngClass]="{'inactive': indexOfHead === 0}" >
-		<i class="fa fa-chevron-circle-up fa-2x" aria-hidden="true" (click)="forward()"></i>
+	<div class="top" [ngClass]="{'inactive': indexOfHead === 0}" (click)="forward()">
+		<i class="fa fa-chevron-circle-up fa-2x" aria-hidden="true"></i>
 	</div>
 	<div [style.transform]="translate()" class="property-slider" style="">
 		<div *ngFor="let property of properties; let i = index;" [style.opacity]="i >= indexOfHead && i < indexOfHead + 4 ? 1 : 0.5" [style.display]="i >= indexOfHead && i < indexOfHead + 4 ? 'inline-block' : 'none'">
-			<property-card-very-small [property]="property" [index]="i+1"></property-card-very-small>
+			<property-card-very-small [property]="property"></property-card-very-small>
 		</div>
 	</div>
-	<div class="bottom" [ngClass]="{'inactive': properties && indexOfHead >= properties.length - 4}">
-		<i class="fa fa-chevron-circle-down fa-2x" aria-hidden="true" (click)="backward()"></i>
+	<div class="bottom" [ngClass]="{'inactive': properties && indexOfHead >= properties.length - 4}" (click)="backward()">
+		<i class="fa fa-chevron-circle-down fa-2x" aria-hidden="true"></i>
 	</div>
 </div>

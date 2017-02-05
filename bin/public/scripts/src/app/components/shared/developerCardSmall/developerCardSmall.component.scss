@@ -8,5 +8,8 @@
 	    background-size: cover;
 	    background-position: center;
 	    border: 1px solid rgba(0,0,0,.1);
+	    img {
+	    	max-height: 100%;
+	    }
 	}
 }

@@ -66,6 +66,19 @@ import { UtilService } from './services/util.service';
 import { PropertyCardDetailsComponent } from './components/shared/property-card-details/property-card-details.component';
 import { MapComponent } from './components/shared/map/map.component';
 import { ImageOverlayComponent } from './components/search/image-overlay/image-overlay.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { PropertyGalleryComponent } from './components/bottomSection/property/property-gallery/property-gallery.component';
+import { PropertyCarouselComponent } from './components/bottomSection/property/property-gallery/property-carousel/property-carousel.component';
+import { FeaturedSectionComponent } from './components/bottomSection/featured-section/featured-section.component';
+import { DeveloperGalleryComponent } from './components/bottomSection/developer/developer-gallery/developer-gallery.component';
+import { PropertyCarouselHorizontalComponent } from './components/bottomSection/property/property-gallery/property-carousel-horizontal/property-carousel-horizontal.component';
+import { PropertyCardGiantComponent } from './components/shared/property-card-giant/property-card-giant.component';
+import { PropertyCarouselGiantHorizontalComponent } from './components/bottomSection/property/property-gallery/property-carousel-giant-horizontal/property-carousel-giant-horizontal.component';
+import { DeveloperCarouselHorizontalComponent } from './components/bottomSection/developer/developer-gallery/developer-carousel-horizontal/developer-carousel-horizontal.component';
+import { DeveloperCarouselGiantHorizontalComponent } from './components/bottomSection/developer/developer-gallery/developer-carousel-giant-horizontal/developer-carousel-giant-horizontal.component';
+import { DeveloperCardVerySmallComponent } from './components/shared/developer-card-very-small/developer-card-very-small.component';
+import { DeveloperCardGiantComponent } from './components/shared/developer-card-giant/developer-card-giant.component';
+import { PropertyCardExtraSmallComponent } from './components/shared/property-card-extra-small/property-card-extra-small.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +122,20 @@ import { ImageOverlayComponent } from './components/search/image-overlay/image-o
     InfiniteScroll,
     PropertyCardDetailsComponent,
     MapComponent,
-    ImageOverlayComponent
+    ImageOverlayComponent,
+    FooterComponent,
+    PropertyGalleryComponent,
+    PropertyCarouselComponent,
+    FeaturedSectionComponent,
+    DeveloperGalleryComponent,
+    PropertyCarouselHorizontalComponent,
+    PropertyCardGiantComponent,
+    PropertyCarouselGiantHorizontalComponent,
+    DeveloperCarouselHorizontalComponent,
+    DeveloperCarouselGiantHorizontalComponent,
+    DeveloperCardVerySmallComponent,
+    DeveloperCardGiantComponent,
+    PropertyCardExtraSmallComponent
   ],
   imports: [
     BrowserModule,

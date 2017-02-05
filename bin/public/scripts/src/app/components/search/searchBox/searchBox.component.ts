@@ -90,7 +90,10 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
 		    	this.handleChange();
 		    }
 		}
-		if (changes.tags) {
+		let tagChanged = changes.tags && ((changes.tags.previousValue &&
+		changes.tags.previousValue.length) || (changes.tags.currentValue &&
+		changes.tags.currentValue.length));
+		if (tagChanged) {
 			this.searchInput.nativeElement.value = '';
 			this._searchString = '';
 			this.searchString.emit(this._searchString);

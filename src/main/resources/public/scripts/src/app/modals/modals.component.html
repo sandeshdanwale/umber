@@ -2,4 +2,5 @@
 	<search-overlay [activePanels]="activePanels" [user]="user" [panelInFocus]="panelInFocus | async"></search-overlay>
 	<property-detail-overlay [activePanels]="activePanels" [user]="user" [property]="selectedProperty | async" [nearByProperties]="nearByProperties | async" (assetType)="assetType($event)"></property-detail-overlay>
 	<image-overlay [activePanels]="activePanels" [user]="user" [property]="selectedProperty | async" [asset]="asset"></image-overlay>
+	<small-image-overlay [activePanels]="activePanels" [user]="user" [property]="selectedProperty | async" [asset]="asset"></small-image-overlay>
 </div>

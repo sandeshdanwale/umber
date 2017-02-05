@@ -141,12 +141,17 @@ export class UiService {
       if (property) {
         landmarkId = _.head(_.map(_.filter(property.addresses, (a) => a.type == AddressType.HOME), (a) => a.landmarkId));
       }
-      this.propertyService.getNearByProperties(cityId.registrationId, landmarkId.registrationId)
-        .subscribe((properties: Property[]) => {
+      Observable.forkJoin(
+        this.propertyService.getNearByProperties(cityId.registrationId, landmarkId.registrationId),
+        this.propertyService.getAllPropertyDetails(property.id.registrationId)
+        ).subscribe(([properties, selectedProperty]: [Property[], Property]) => {
           this.updateNearByProperties(properties);
-        })
-
-        this.store.dispatch(new ui.OpenPropertyDetailOverlayAction(property));
+          this.store.dispatch(new ui.OpenPropertyDetailOverlayAction(selectedProperty));
+        });
+        /*).subscribe((data) => {
+          this.updateNearByProperties(data[0]);
+          this.store.dispatch(new ui.OpenPropertyDetailOverlayAction(data[1]));
+        });*/
     }
 
     public closePropertyDetailOverlay() {

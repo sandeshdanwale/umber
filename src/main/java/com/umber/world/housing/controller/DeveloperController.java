@@ -12,6 +12,7 @@ import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.jackson.LandmarkId;
 import com.umber.world.housing.model.UmberDeveloper;
+import com.umber.world.housing.model.UmberProperty;
 import com.umber.world.housing.service.DeveloperService;
 
 import rx.Single;
@@ -35,6 +36,15 @@ public class DeveloperController {
 	@RequestMapping(value={"/featuredDevelopersByCity"})
     public Single<List<UmberDeveloper>> featuredPropertiesByCity(@RequestParam(value="cityId", required=true) String cityId) {
 		return developerService.findByFeaturedAndCityId(true, new CityId(cityId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Developer Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/globalFeaturedDevelopers"})
+    public Single<List<UmberDeveloper>> globalfeaturedProperties() {
+		return developerService.findByGlobalFeatured(true)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Developer Query Service API {} failed :: {} ");
                     return null;

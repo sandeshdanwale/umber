@@ -30,7 +30,7 @@ public class Developer implements Serializable {
 	public String description;
 	public Boolean featured;
 	public Set<Address> addresses;
-    
+	public Boolean globalFeatured;
 }
 
 

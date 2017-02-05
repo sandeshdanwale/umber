@@ -10,6 +10,7 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.umber.world.housing.domain.aggregate.Amenity;
+import com.umber.world.housing.domain.aggregate.Config;
 import com.umber.world.housing.jackson.PropertyId;
 
 import lombok.AllArgsConstructor;
@@ -24,8 +25,7 @@ import lombok.ToString;
 @ToString
 @Document
 public class Amenities implements Serializable {
-	
-	private static final long serialVersionUID = -3642919877081306402L;
+	private static final long serialVersionUID = 3621364604383695824L;
 
 	@Id
 	public String id;

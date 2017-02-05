@@ -13,11 +13,8 @@ public class Feature implements Serializable {
 	
 	private static final long serialVersionUID = 1784474261725532067L;
 	
-	private String type;
-	private Integer sqft;
-	private Integer quantity;
-	private LocalDateTime posession;
-	private Double BasePrice;
+	private String entity;
+	private String specification;
     
 }
 

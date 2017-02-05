@@ -52,6 +52,14 @@ public class DeveloperServiceImpl implements DeveloperService {
 	}
 	
 	@Override
+	public Single<List<UmberDeveloper>> findByGlobalFeatured(Boolean globalFeatured) {
+		Single<List<UmberDeveloper>> umberDevelopers = Single.just(developerRepository.findByGlobalFeatured(globalFeatured)
+				.stream().map(d -> new UmberDeveloper(d))
+						.collect(Collectors.toList()));
+		return umberDevelopers.subscribeOn(Schedulers.io());
+	}
+	
+	@Override
 	public Single<List<UmberDeveloper>> findByFeaturedAndCityId(Boolean featured, CityId cityId) {
 		Single<List<UmberDeveloper>> umberDevelopers = Single.just(developerRepository.findByFeaturedAndCityId(featured, cityId)
 				.stream().map(d -> new UmberDeveloper(d))

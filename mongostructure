@@ -101,7 +101,7 @@ Configs -
 Amenities - 
 {
 	"propertyId" : {
-		"registrationId" : "200"
+		"registrationId" : "3608"
 	},
 	amenities: [
 		{
@@ -952,3 +952,144 @@ db.property.update(
 )
 });
 
+db.property.find().forEach(function(e){var t=e.addresses;t.forEach(function(e){e.latitude='18.645135'; e.longitude='73.758119'});db.property.update({_id:e._id},{$set:{addresses:t}})})
+
+db.developer.find().forEach(function(doc) {
+db.developer.update(
+   { _id: doc._id},
+   { $set : { 'globalFeatured' : false} },
+   { multi: true }
+)
+});
+
+db.developer.update({"_id.registrationId": "3556"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.developer.update({"_id.registrationId": "3535"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.developer.update({"_id.registrationId": "3551"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.developer.update({"_id.registrationId": "3553"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+
+
+db.developer.find().forEach(function(doc) {
+db.developer.update(
+   { _id: doc._id},
+   { $set : { 'description' : "Largest and only backward integrated real estate player in the country, a big name in the construction industry."} },
+   { multi: true }
+)
+});
+
+db.property.find().forEach(function(doc) {
+db.amenities.insert(
+{
+  amenities: [
+    {
+      type: 'PROJECT',
+      features: [
+        {
+          entity: 'landscapedGarden',
+          specification: true
+        },
+        {
+          entity: 'lift',
+          specification: true
+        }
+      ]
+
+    },
+    {
+      type: 'FLAT',
+      features: [
+        {
+          entity: 'window',
+          specification: 'life size'
+        }
+      ]
+
+    },
+    {
+      type: 'FLORRINGS',
+      features: [
+        {
+          entity: 'balcony',
+          specification: 'standard'
+        },
+        {
+          entity: 'kitchen',
+          specification: 'vitrified tiles'
+        },
+        {
+          entity: 'living',
+          specification: 'vitrified tiles'
+        },
+        {
+          entity: 'dinning',
+          specification: 'vitrified tiles'
+        },
+        {
+          entity: 'masterBedroom',
+          specification: 'vitrified tiles'
+        },
+        {
+          entity: 'otherBedroom',
+          specification: 'vitrified tiles'
+        },
+        {
+          entity: 'toilet',
+          specification: 'anti skid tiles'
+        }
+      ]
+
+    },
+    {
+      type: 'FITTINGS',
+      features: [
+        {
+          entity: 'doors',
+          specification: 'laminated'
+        },
+        {
+          entity: 'electrical',
+          specification: 'standard'
+        },
+        {
+          entity: 'kitchen',
+          specification: 'granite'
+        },
+        {
+          entity: 'window',
+          specification: 'powder coat'
+        },
+        {
+          entity: 'toilet',
+          specification: 'cp'
+        },
+        {
+          entity: 'others',
+          specification: 'standard'
+        }
+      ]
+
+    },
+    {
+      type: 'WALLS',
+      features: [
+        {
+          entity: 'exterior',
+          specification: 'weather shield'
+        },
+        {
+          entity: 'interior',
+          specification: 'obd'
+        },
+        {
+          entity: 'kitchen',
+          specification: 'standard'
+        },
+        {
+          entity: 'toilet',
+          specification: 'standard'
+        }
+      ]
+
+    }
+  ], propertyId: doc._id}
+)
+});

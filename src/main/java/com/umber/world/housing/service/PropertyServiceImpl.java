@@ -1,6 +1,5 @@
 package com.umber.world.housing.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.umber.world.housing.model.UmberAmenities;
 import com.umber.world.housing.model.UmberConfigs;
 import com.umber.world.housing.model.UmberLandmark;
 import com.umber.world.housing.domain.Configs;
 import com.umber.world.housing.domain.Developer;
 import com.umber.world.housing.domain.Property;
+import com.umber.world.housing.domain.Amenities;
 import com.umber.world.housing.domain.City;
 import com.umber.world.housing.domain.aggregate.Address;
 import com.umber.world.housing.jackson.CityId;
@@ -20,12 +21,14 @@ import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.jackson.LandmarkId;
 import com.umber.world.housing.jackson.PropertyId;
 import com.umber.world.housing.model.UmberProperty;
+import com.umber.world.housing.repository.AmenitiesRepository;
 import com.umber.world.housing.repository.CityRepository;
 import com.umber.world.housing.repository.ConfigsRepository;
 import com.umber.world.housing.repository.DeveloperRepository;
 import com.umber.world.housing.repository.PropertyRepository;
 
 import lombok.AllArgsConstructor;
+import rx.Observable;
 import rx.Single;
 import rx.schedulers.Schedulers;
 
@@ -35,7 +38,7 @@ public class PropertyServiceImpl implements PropertyService {
 	
 	private PropertyRepository propertyRepository;
 	private ConfigsRepository configsRepository;
-	//private AmenitiesRepository amenitiesRepository;
+	private AmenitiesRepository amenitiesRepository;
 	private DeveloperRepository developerRepository;
 	private CityRepository cityRepository;
 
@@ -54,8 +57,89 @@ public class PropertyServiceImpl implements PropertyService {
 		Single<Property> property = Single.just(propertyRepository.findByPropertyId(propertyId));
 		Single<Configs> configs = Single.just(configsRepository.findByPropertyId(propertyId));
 		return Single.zip(property, configs, (p, c) -> {
+			UmberConfigs uc = null;
+			String cityName = "";
+			if (c != null) {
+				uc = new UmberConfigs(c);
+			}
+			
+			List<CityId> cityIds = p.getAddresses().stream().filter(ad -> {
+						return ad.getType().toString().equals("HOME");
+					})
+					.map(ad -> {
+						return ad.getCityId();
+					})
+					.collect(Collectors.toList());
+			Developer developer = developerRepository.findByDeveloperId(p.getDeveloperId());
+			if (!cityIds.isEmpty()) {
+				City city = cityRepository.findByCityId(new CityId(cityIds.get(0).getRegistrationId()));
+				cityName = city.getName();
+			}
+			return new UmberProperty(p, uc, null, developer.getName(), cityName);
+		}).subscribeOn(Schedulers.io());
+	}
+	
+	@Override
+	public Single<UmberProperty> findAllDetailsByPropertyId(PropertyId propertyId) {
+		Single<Property> property = Single.just(propertyRepository.findByPropertyId(propertyId));
+		Single<Configs> configs = Single.just(configsRepository.findByPropertyId(propertyId));
+		Single<Amenities> amenities = Single.just(amenitiesRepository.findByPropertyId(propertyId));
+		return Single.zip(property, configs, amenities, (p, c, a) -> {
+			UmberConfigs uc = null;
+			UmberAmenities ua = null;
+			String cityName = "";
+			if (c != null) {
+				uc = new UmberConfigs(c);
+			}
+			
+			if (a != null) {
+				ua = new UmberAmenities(a);
+			}
+			
+			List<CityId> cityIds = p.getAddresses().stream().filter(ad -> {
+						return ad.getType().toString().equals("HOME");
+					})
+					.map(ad -> {
+						return ad.getCityId();
+					})
+					.collect(Collectors.toList());
+			Developer developer = developerRepository.findByDeveloperId(p.getDeveloperId());
+			if (!cityIds.isEmpty()) {
+				City city = cityRepository.findByCityId(new CityId(cityIds.get(0).getRegistrationId()));
+				cityName = city.getName();
+			}
+			return new UmberProperty(p, uc, ua, developer.getName(), cityName);
+		}).subscribeOn(Schedulers.io());
+	}
+	
+	@Override
+	public Single<UmberProperty> findByPropertyId(PropertyId propertyId) {
+		return Single.just(new UmberProperty(propertyRepository.findByPropertyId(propertyId)));
+	}
+
+	@Override
+	public Single<List<UmberProperty>> findByFeatured(Boolean featured) {
+		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByFeatured(featured)
+				.stream().map(d -> new UmberProperty(d))
+						.collect(Collectors.toList()));
+		return umberProperties.subscribeOn(Schedulers.io());
+	}
+	/*
+	@Override
+	public Single<List<UmberProperty>> findByGlobalFeatured(Boolean featured) {
+		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByFeatured(featured)
+				.stream().map(d -> new UmberProperty(d))
+						.collect(Collectors.toList()));
+		return umberProperties.subscribeOn(Schedulers.io());
+	}
+*/
+	@Override
+	public Single<List<UmberProperty>> findByGlobalFeatured(Boolean globalFeatured) {
+		Single<List<UmberProperty>> UmberProperties = Single.just(propertyRepository.findByGlobalFeatured(globalFeatured)
+		.stream().map(p -> {
 			UmberConfigs u = null;
 			String cityName = "";
+			Configs c = configsRepository.findByPropertyId(p.propertyId);
 			if (c != null) {
 				u = new UmberConfigs(c);
 			}
@@ -72,28 +156,9 @@ public class PropertyServiceImpl implements PropertyService {
 				cityName = city.getName();
 			}
 			return new UmberProperty(p, u, null, developer.getName(), cityName);
-		}).subscribeOn(Schedulers.io());
-	}
-	
-	@Override
-	public Single<UmberProperty> findByPropertyId(PropertyId propertyId) {
-		return Single.just(new UmberProperty(propertyRepository.findByPropertyId(propertyId)));
-	}
-
-	@Override
-	public Single<List<UmberProperty>> findByFeatured(Boolean featured) {
-		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByFeatured(featured)
-				.stream().map(d -> new UmberProperty(d))
-						.collect(Collectors.toList()));
-		return umberProperties.subscribeOn(Schedulers.io());
-	}
-
-	@Override
-	public Single<List<UmberProperty>> findByGlobalFeatured(Boolean globalFeatured) {
-		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByGlobalFeatured(globalFeatured)
-				.stream().map(d -> new UmberProperty(d))
-						.collect(Collectors.toList()));
-		return umberProperties.subscribeOn(Schedulers.io());
+		})
+		.collect(Collectors.toList()));
+		return UmberProperties;
 	}
 	
 	@Override

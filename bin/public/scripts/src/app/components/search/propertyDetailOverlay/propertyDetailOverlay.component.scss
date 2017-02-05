@@ -5,9 +5,6 @@
     height: 100%;
     width: 100%;
     z-index: 20;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     background-color: rgba(255,255,255,1);
     .close-overlay {
         float: right;
@@ -19,7 +16,8 @@
     }
     .property-detail-container {
         width: 100%;
-        height: 53%;
+        height: 83%;
+        margin-top: -25px;
     }
     .near-by-properties {
         text-align: left;
@@ -38,21 +36,65 @@
         }
         .property-card-carousel {
             text-align: center;
-            margin-left: 20px;
+            .property-slider {
+                -webkit-transition: .5s transform;
+                -o-transition: .5s transform;
+                transition: .5s transform;
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+                display: flex;
+                margin-left: 50px;
+            }
             > div {
-                display: inline-block;
-                width: 20%;
                 text-align: center;
+                &:not(.left) {
+                    &:not(.right) {
+                        //box-shadow: 0 2px 13px 6px #b5b8bb;
+                    }
+                }
                 div {
-                    width: 100%;
+                    display: inline-block;
+                    margin-left: 30px;
                 }
                 &.left {
-                    width: 5%;
-                    text-align: left;
+                    position: absolute;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 50%;
+                    background-color: rgba(208,208,208,1);
+                    color: #000;
+                    box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+                    z-index: 50000;
+                    top: 68vh;
+                    left: 10vw;
+                    text-align: center;
+                    &.inactive {
+                        opacity: 0;
+                    }
+                    i {
+                        margin-top: 9px;
+                        margin-right: 2px;
+                    }
                 }
                 &.right {
-                    width: 5%;
-                    text-align: right
+                    position: absolute;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 50%;
+                    background-color: rgba(208,208,208,1);
+                    color: #000;
+                    box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+                    z-index: 50000;
+                    top: 68vh;
+                    left: 90vw;
+                    text-align: center;
+                    &.inactive {
+                        opacity: 0;
+                    }
+                    i {
+                        margin-top: 9px;
+                        margin-left: 2px;
+                    }
                 }
             }
 

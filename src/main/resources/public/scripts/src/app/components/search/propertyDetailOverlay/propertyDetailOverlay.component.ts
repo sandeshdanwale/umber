@@ -43,7 +43,7 @@ export class PropertyDetailOverlayComponent implements OnInit {
   }
 
   translate(): string {
-    let seed = 230;
+    let seed = 140;
     let pos = this.indexOfHead * -270 + seed;
     return `translateX(${pos}px)`;
   }

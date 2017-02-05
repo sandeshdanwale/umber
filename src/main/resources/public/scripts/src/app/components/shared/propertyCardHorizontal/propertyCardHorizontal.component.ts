@@ -35,6 +35,11 @@ export class PropertyCardHorizontalComponent {
       this.uiService.loadPropertyDetailOverlay(this.property, this.user);
     }
 
+    get imageUrl() {
+      let id = '3601';//this.property.id.registrationId
+      return `/assets/images/property/prop${id}/propertyImage1.jpg`;
+    }
+
     get displayProperty(): any {
       let displayProperty: DisplayProperty = new DisplayProperty();
       displayProperty.address = this.getDisplayAddress();

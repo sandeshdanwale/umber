@@ -21,12 +21,9 @@ export class PropertyCardMediumComponent {
   ) {
   }
 
-  	ngOnInit() {
-      this.style = 'url(/assets/images/logo.jpg)';
-    }
-
-    ngOnChanges() {
-      this.style = 'url(/assets/images/logo.jpg)';
+    get imageUrl() {
+      let id = '3601';//this.property.id.registrationId
+      return `/assets/images/property/prop${id}/propertyImage1.jpg`;
     }
 
     public loadPropertyDetailOverlay() {

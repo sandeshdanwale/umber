@@ -31,6 +31,9 @@ public final class UmberDeveloper implements  Serializable {
     private Boolean featured;
     
     @JsonView(View.Render.class)
+    private Boolean globalFeatured;
+    
+    @JsonView(View.Render.class)
     private Set<Address> addresses;
     
     public UmberDeveloper(Developer developer) {
@@ -38,6 +41,7 @@ public final class UmberDeveloper implements  Serializable {
     	this.name = developer.name;
     	this.description = developer.description;
     	this.featured = developer.featured;
+    	this.globalFeatured = developer.globalFeatured;
     	this.addresses = developer.addresses;
     }
 

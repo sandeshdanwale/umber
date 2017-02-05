@@ -70,6 +70,15 @@ public class PropertyController {
                 });
     }
 	
+	@RequestMapping(value={"/details/all/{id}"})
+    public Single<UmberProperty> getAllPropertyDetails(@PathVariable String id) {
+		return propertyService.findAllDetailsByPropertyId(new PropertyId(id))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
 	@RequestMapping(value={"/search/{id}/{name}"})
     public Single<List<UmberProperty>> findByIdStartsWith(@PathVariable String id, @PathVariable String name) {
 		if (name.equals("XXXXX")) {

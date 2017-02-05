@@ -8,11 +8,12 @@ import com.umber.world.housing.domain.Amenities;
 import com.umber.world.housing.jackson.PropertyId;
 
 /**
- * Location Repository.
+ * Amenities Repository
  */
+
 public interface AmenitiesRepository extends MongoRepository<Amenities, String> {
 
-    List<Amenities> findByPropertyId(PropertyId propertyId);
+    Amenities findByPropertyId(PropertyId propertyId);
     
 }
 

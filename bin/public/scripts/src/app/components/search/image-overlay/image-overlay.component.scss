@@ -1,0 +1,60 @@
+.image-overlay {
+	position: fixed;
+    top: 50px;
+    left: 0;
+    height: 90%;
+    width: 100%;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgba(0,0,0,0.9);
+    img {
+    	width: 100%;
+    	height: 100%;
+    	max-height: 100%;
+    }
+    .close-overlay {
+        float: left;
+        margin-top: 10px;
+        margin-left: 7px;
+        cursor: pointer;
+        height: 16px;
+        width: 16px;
+    }
+    .mainLeft {
+    	width: 4%;
+    }
+    .mainRight {
+    	display: flex;
+	    flex-direction: column;
+	    flex-wrap: wrap;
+	    height: 100%;
+	    width: 100%;
+		.top {
+			display: flex;
+			flex-direction: row;
+			width: 80%;
+	    	height: 50%;
+	    	margin-left: 6%;
+			.left, .right {
+				width: 50%;
+				height: 100%;
+			}
+		}
+		.bottom {
+			display: flex;
+			flex-direction: row;
+			width: 80%;
+	    	height: 50%;
+	    	margin-left: 6%;
+			.left, .right {
+				width: 50%;
+				height: 100%;
+			}
+		}
+	}
+}
+.displayNone {
+	display: none;
+}

@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 //import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { DBModule, Database } from '@ngrx/db';
-//import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 import { AppComponent } from './app.component';
@@ -70,6 +70,16 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { PropertyGalleryComponent } from './components/bottomSection/property/property-gallery/property-gallery.component';
 import { PropertyCarouselComponent } from './components/bottomSection/property/property-gallery/property-carousel/property-carousel.component';
 import { FeaturedSectionComponent } from './components/bottomSection/featured-section/featured-section.component';
+import { DeveloperGalleryComponent } from './components/bottomSection/developer/developer-gallery/developer-gallery.component';
+import { PropertyCarouselHorizontalComponent } from './components/bottomSection/property/property-gallery/property-carousel-horizontal/property-carousel-horizontal.component';
+import { PropertyCardGiantComponent } from './components/shared/property-card-giant/property-card-giant.component';
+import { PropertyCarouselGiantHorizontalComponent } from './components/bottomSection/property/property-gallery/property-carousel-giant-horizontal/property-carousel-giant-horizontal.component';
+import { DeveloperCarouselHorizontalComponent } from './components/bottomSection/developer/developer-gallery/developer-carousel-horizontal/developer-carousel-horizontal.component';
+import { DeveloperCarouselGiantHorizontalComponent } from './components/bottomSection/developer/developer-gallery/developer-carousel-giant-horizontal/developer-carousel-giant-horizontal.component';
+import { DeveloperCardVerySmallComponent } from './components/shared/developer-card-very-small/developer-card-very-small.component';
+import { DeveloperCardGiantComponent } from './components/shared/developer-card-giant/developer-card-giant.component';
+import { PropertyCardExtraSmallComponent } from './components/shared/property-card-extra-small/property-card-extra-small.component';
+import { SmallImageOverlayComponent } from './components/search/small-image-overlay/small-image-overlay.component';
 
 @NgModule({
   declarations: [
@@ -117,14 +127,26 @@ import { FeaturedSectionComponent } from './components/bottomSection/featured-se
     FooterComponent,
     PropertyGalleryComponent,
     PropertyCarouselComponent,
-    FeaturedSectionComponent
+    FeaturedSectionComponent,
+    DeveloperGalleryComponent,
+    PropertyCarouselHorizontalComponent,
+    PropertyCardGiantComponent,
+    PropertyCarouselGiantHorizontalComponent,
+    DeveloperCarouselHorizontalComponent,
+    DeveloperCarouselGiantHorizontalComponent,
+    DeveloperCardVerySmallComponent,
+    DeveloperCardGiantComponent,
+    PropertyCardExtraSmallComponent,
+    SmallImageOverlayComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     //MaterialModule.forRoot(),
-    //AgmCoreModule.forRoot(),
+    AgmCoreModule.forRoot({
+        'apiKey': 'AIzaSyA3HtauA1ix8F9UxgtpB-zteJxkZ9Ihs4I'
+    }),
     StoreModule.provideStore(reducer)/*,
     InfiniteScrollModule*/
   ],

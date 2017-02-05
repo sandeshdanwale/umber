@@ -1,8 +1,13 @@
+@media screen and (max-device-width: 780px) {
+	.image-overlay { 
+		display: none !important;
+	}
+}
 .image-overlay {
 	position: fixed;
     top: 50px;
     left: 0;
-    height: 90%;
+    height: 100%;
     width: 100%;
     z-index: 20;
     display: flex;
@@ -25,32 +30,104 @@
     .mainLeft {
     	width: 4%;
     }
-    .mainRight {
-    	display: flex;
-	    flex-direction: column;
-	    flex-wrap: wrap;
-	    height: 100%;
-	    width: 100%;
-		.top {
-			display: flex;
-			flex-direction: row;
-			width: 80%;
-	    	height: 50%;
-	    	margin-left: 6%;
-			.left, .right {
-				width: 50%;
-				height: 100%;
-			}
-		}
-		.bottom {
-			display: flex;
-			flex-direction: row;
-			width: 80%;
-	    	height: 50%;
-	    	margin-left: 6%;
-			.left, .right {
-				width: 50%;
-				height: 100%;
+    .property-config-carousel {
+    	.leftArrow {
+	        position: absolute;
+	        height: 30px;
+	        width: 30px;
+	        border-radius: 50%;
+	        background-color: rgba(208,208,208,1);
+	        color: #000;
+	        box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+	        z-index: 100;
+	        top: 350px;
+	        left: 30px;
+	        text-align: center;
+	        cursor: pointer;
+	        &.inactive {
+	            opacity: 0.3;
+	            cursor: default;
+	        }
+	        i {
+	            margin-top: 9px;
+	            margin-right: 2px;
+	        }
+	    }
+	    .rightArrow {
+	        position: absolute;
+	        height: 30px;
+	        width: 30px;
+	        border-radius: 50%;
+	        background-color: rgba(208,208,208,1);
+	        color: #000;
+	        box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+	        z-index: 100;
+	        top: 350px;
+	        left: 95vw;
+	        text-align: center;
+	        cursor: pointer;
+	        &.inactive {
+	            opacity: 0.3;
+	            cursor: default;
+	        }
+	        i {
+	            margin-top: 9px;
+	            margin-left: 2px;
+	        }
+	    }
+	    .header {
+	    	-webkit-transition: .5s transform;
+	        -o-transition: .5s transform;
+	        transition: .5s transform;
+	        -webkit-transform: translate3d(0,0,0);
+	        transform: translate3d(0,0,0);
+	        display: flex;
+	        width: 500px;
+	        margin-left: 200px;
+	    	.type {
+	            width: 34%;
+	            text-transform: uppercase;
+	            font-weight: 600;
+	            color: #ff7e42;
+	            cursor: pointer;
+	            display: inline-block;
+	            &.inactive {
+	            	filter: grayscale(100%);
+	            }
+	        }
+	    }
+    	.property-slider {
+    		-webkit-transition: .5s transform;
+	        -o-transition: .5s transform;
+	        transition: .5s transform;
+	        -webkit-transform: translate3d(0,0,0);
+	        transform: translate3d(0,0,0);
+	        display: flex;
+		    .mainRight {
+		    	width: 90vw;
+		    	height: 85vh;
+				.top {
+					display: flex;
+					flex-direction: row;
+					width: 80%;
+			    	height: 50%;
+			    	margin-left: 6%;
+					.left, .right {
+						width: 50%;
+						height: 100%;
+					}
+				}
+				.bottom {
+					display: flex;
+					flex-direction: row;
+					width: 80%;
+			    	height: 50%;
+			    	margin-left: 6%;
+					.left, .right {
+						width: 50%;
+						height: 100%;
+					}
+				}
 			}
 		}
 	}

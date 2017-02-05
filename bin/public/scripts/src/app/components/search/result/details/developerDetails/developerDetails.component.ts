@@ -28,6 +28,11 @@ export class DeveloperDetailsComponent {
       return this.properties ? this.properties.slice(0, 2) : null;
     }
 
+    get imageUrl() {
+      let id = '3500'; //this.developer.id.registrationId
+      return `/assets/images/developer/dev${id}/developerlogo.jpg`;
+    }
+
     get displayDeveloper(): any {
       let displayDeveloper: {name: string} = 
         {

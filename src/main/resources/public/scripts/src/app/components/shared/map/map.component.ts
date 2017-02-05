@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Property } from '../../../models/aggregate/property.model';
 
 @Component({
   selector: 'property-map',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-
+  
+  @Input() property: Property[];
   constructor() { }
 
   ngOnInit() {
