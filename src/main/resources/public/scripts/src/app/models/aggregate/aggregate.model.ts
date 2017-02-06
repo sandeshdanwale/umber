@@ -90,6 +90,8 @@ export interface IAddress {
     postalCode: string;
     country: string;
     type: string;
+    latitude: string;
+    longitude: string;
 }
 
 export class Address implements IAddress {
@@ -103,6 +105,8 @@ export class Address implements IAddress {
     postalCode: string;
     country: string;
     type: string;
+    latitude: string;
+    longitude: string;
 
     constructor(address: any) {
         this.line1 = address.line1;
@@ -114,6 +118,8 @@ export class Address implements IAddress {
         this.postalCode = address.postalCode;
         this.country = address.country;
         this.type = address.type;
+        this.latitude = address.latitude;
+        this.longitude = address.longitude;
     }
 
 }
