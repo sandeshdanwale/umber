@@ -11,13 +11,9 @@
         <li *ngFor="let city of primaryCities; let i = index;">
           <a *ngIf="city"  [ngClass]="{'selected': selectedCity && city.name === selectedCity.name, 'other': i !== 0}" href="#" (click)="setCity($event, city)">{{city.name}}</a>
         </li>
-        <li class="dropdown" [ngClass]="{'open': isOpen}" (click)="toggleDropdown($event)">
+        <li class="dropdown" (click)="toggleDropdown($event)">
           <a href="#" id="dropdownMenuButton" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select Another City <span class="caret"></span></a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li *ngFor="let city of secondaryCities">
-              <a *ngIf="city" href="#" (click)="setCity($event, city)">{{city.name}}</a>
-            </li>
-          </ul>
+          
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -37,4 +33,9 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
+  <ul class="dropdown-menu" [ngClass]="{'open': isOpen}" aria-labelledby="dropdownMenuButton">
+            <li *ngFor="let city of secondaryCities">
+              <a *ngIf="city" href="#" (click)="setCity($event, city)">{{city.name}}</a>
+            </li>
+          </ul>
 </nav>

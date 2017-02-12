@@ -3,7 +3,7 @@
 		<i aria-hidden="true" class="fa fa-lg fa-chevron-left"></i>
 	</div>
 	<div [style.transform]="translate()" class="property-giant-slider">
-		<div *ngFor="let property of properties; let i = index;" [style.opacity]="i == indexOfHead ? 1 : 0.3">
+		<div *ngFor="let property of properties; let i = index;" [style.opacity]="i == indexOfHead ? 1 : 0.1">
 			<property-card-giant [property]="property"></property-card-giant>
 		</div>
 	</div>
