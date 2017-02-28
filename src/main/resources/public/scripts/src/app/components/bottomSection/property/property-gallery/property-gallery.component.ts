@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Property } from '../../../../models/aggregate/property.model';
+import { User } from '../../../../models/aggregate/user.model';
 
 @Component({
   selector: 'property-gallery',
@@ -9,6 +10,7 @@ import { Property } from '../../../../models/aggregate/property.model';
 export class PropertyGalleryComponent implements OnInit {
   
   @Input() properties: Property[];
+  @Input() user: User;
   private index: number = 0;
   constructor() { }
 

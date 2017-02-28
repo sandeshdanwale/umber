@@ -868,11 +868,17 @@ Description=Umber Service
 User=nobody
 # The configuration file application.properties should be here:
 WorkingDirectory=/data 
-ExecStart=/usr/bin/java -Xmx2048m -Dserver.compression.enabled=true -Dserver.compression.mime-types=application/javascript,application/json,application/xml,text/html,text/xml,text/plainumber -jar /opt/umber/build/libs/gs-accessing-data-mongodb-0.1.0.jar
+ExecStart=/usr/bin/java -Xmx12288m -Dserver.compression.enabled=true -Dserver.compression.mime-types=application/javascript,application/json,application/xml,text/html,text/xml,text/plainumber -jar /opt/umber/build/libs/gs-accessing-data-mongodb-0.1.0.jar
 SuccessExitStatus=143
 
 [Install]
 WantedBy=multi-user.target
+
+
+/etc/systemd/system/umber.service
+systemctl daemon-reload
+systemctl enable my_systemd_script.service
+systemctl start my_systemd_script.service
 
 db.property.find().forEach(function(doc) {
 db.property.update(
@@ -886,6 +892,22 @@ db.developer.find().forEach(function(doc) {
 db.developer.update(
    { _id: doc._id},
    { $set : { 'name' : doc.name.toLowerCase() } },
+   { multi: true }
+)
+});
+
+db.developer.find().forEach(function(doc) {
+db.developer.update(
+   { _id: doc._id},
+   { $set : { 'email' : 'test@gmail.com' } },
+   { multi: true }
+)
+});
+
+db.developer.find().forEach(function(doc) {
+db.developer.update(
+   { _id: doc._id},
+   { $set : { 'phones' : [{'type': 'OFFICE', 'phoneNumber': '91234432234'}] } },
    { multi: true }
 )
 });
@@ -962,10 +984,23 @@ db.developer.update(
 )
 });
 
-db.developer.update({"_id.registrationId": "3556"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.property.update({"_id.registrationId": "3607"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.property.update({"_id.registrationId": "3610"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.property.update({"_id.registrationId": "3616"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.property.update({"_id.registrationId": "3618"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.property.update({"_id.registrationId": "3620"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.property.update({"_id.registrationId": "3682"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.property.update({"_id.registrationId": "3688"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+
+
+db.developer.update({"_id.registrationId": "3501"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.developer.update({"_id.registrationId": "3510"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.developer.update({"_id.registrationId": "3515"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.developer.update({"_id.registrationId": "3534"},{ $set : { 'globalFeatured' : true} }, {multi: true })
 db.developer.update({"_id.registrationId": "3535"},{ $set : { 'globalFeatured' : true} }, {multi: true })
 db.developer.update({"_id.registrationId": "3551"},{ $set : { 'globalFeatured' : true} }, {multi: true })
 db.developer.update({"_id.registrationId": "3553"},{ $set : { 'globalFeatured' : true} }, {multi: true })
+db.developer.update({"_id.registrationId": "3556"},{ $set : { 'globalFeatured' : true} }, {multi: true })
 
 
 db.developer.find().forEach(function(doc) {

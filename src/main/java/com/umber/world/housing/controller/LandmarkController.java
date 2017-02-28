@@ -3,6 +3,7 @@ package com.umber.world.housing.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,8 +52,8 @@ public class LandmarkController {
     }
 	
 	@RequestMapping(value={"/details/{id}"})
-    public Single<UmberLandmark> getCityDetails(@PathVariable String id) {
-		return landmarkService.findDetailsByLandmarkId(new LandmarkId(id))
+    public Single<UmberLandmark> getCityDetails(@PathVariable String id, Pageable pageable) {
+		return landmarkService.findDetailsByLandmarkId(new LandmarkId(id), pageable)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Landmark Service API {} failed :: {} ");
                     return null;

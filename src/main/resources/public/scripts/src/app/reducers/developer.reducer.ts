@@ -1,6 +1,7 @@
 import { Developer } from '../models/aggregate/developer.model';
 import * as developer from '../actions/developer.action';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash'; 
 
 export interface State {
   loaded: boolean;
@@ -19,6 +20,18 @@ export function reducer(state = initialState, action: developer.Actions): State 
       return {
         loaded: true,
         entities: action.payload
+      };
+    case developer.ActionTypes.UPDATE_DEVELOPER_DETAIL:
+      console.log('STORE:umber.developer/UPDATE_DEVELOPER_DETAIL');
+      let entities = _.map(state.entities, (d) => {
+          if (d.id.registrationId === action.payload.id.registrationId) {
+            return _.merge(action.payload, d);
+          }
+          return d;
+        });
+      return {
+        loaded: true,
+        entities: entities
       };
     case developer.ActionTypes.LOAD_SUCCESS:
       console.log('STORE:umber.developer/DEVELOPER_LOADED');

@@ -124,6 +124,31 @@ export class Address implements IAddress {
 
 }
 
+export const PhoneType = {
+  HOME: 'HOME',
+  OFFICE: 'OFFICE', 
+  CELL: 'CELL',
+  EMERGENCY: 'EMERGENCY',
+  HOMEPHONE: 'HOMEPHONE'
+}
+
+export interface IPhone {
+    type: string;
+    phoneNumber: string;
+}
+
+export class Phone implements IPhone {
+
+    type: string;
+    phoneNumber: string;
+
+    constructor(phone: any) {
+        this.type = phone.type;
+        this.phoneNumber = phone.phoneNumber;
+    }
+
+}
+
 export interface AggregateRoot<T extends AggregateId> {
   id: T;
 }

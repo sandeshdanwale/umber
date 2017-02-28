@@ -1,7 +1,6 @@
 package com.umber.world.housing.domain.aggregate;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 import lombok.AllArgsConstructor;

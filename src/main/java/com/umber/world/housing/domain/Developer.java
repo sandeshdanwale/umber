@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.umber.world.housing.domain.aggregate.Address;
+import com.umber.world.housing.domain.aggregate.Phone;
 import com.umber.world.housing.jackson.DeveloperId;
 
 import lombok.Data;
@@ -30,7 +31,10 @@ public class Developer implements Serializable {
 	public String description;
 	public Boolean featured;
 	public Set<Address> addresses;
+	public Set<Phone> phones;
+	public String email;
 	public Boolean globalFeatured;
+	public Long numberOfProjects;
 }
 
 

@@ -1,19 +1,51 @@
-<div class="developer-card">
+<div class="developer-card" *ngIf="developer">
 	<div class="wrapper">
-		<div class="top">
-			<div class="left">
-				<div class="developer-name">{{developer?.name}}</div>
-				<div class="developer-description">{{developer?.description}}</div>
+		<div class="left">
+			<div class="info">
+				<div class="header">
+					<span>{{developer.name}}</span>
+				</div>
+				<div class="developer-description">{{developer.description}}</div>
 			</div>
-			<div class="right">
-				<div class="developer-logo">
-					<img src="{{imageUrl}}"/>
+			<div class="cityInfo">
+				<div class="header">
+					<span>Presence In</span>
+				</div>
+				<div class="cities">
+					<div *ngFor="let city of developer.cities; let i = last;" class="city">
+						<span>{{city.name}}
+							<span *ngIf="!i">{{','}}</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="projects">
+				<div class="header">
+					<span>Projects Under Constructions</span>
+				</div>
+				<div class="count">
+					<span>{{developer.numberOfProjects}}</span>
+				</div>
+			</div>
+			<div class="contact">
+				<div class="header">
+					<span>Contact Us</span>
+				</div>
+				<div class="email">
+					<span>{{developer.email}}</span>
+				</div>
+				<div class="phones">
+					<div *ngFor="let phone of developer.phones; let i = last;" class="phone">
+						<span>{{phone.phoneNumber}}
+							<span *ngIf="!i">{{', '}}</span>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="bottom">
+		<div class="right">
 			<div class="properties">
-				<div *ngFor="let property of displayPropeties; let propertyIndex = index">
+				<div *ngFor="let property of displayPropeties; let propertyIndex = index" class="property">
 					<property-card-very-small [property]="property" style="display:block"></property-card-very-small>
 				</div>
 			</div>

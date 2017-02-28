@@ -1,5 +1,5 @@
 <div class="result-details">
-	<landmark-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'landmark'" [landmark]="landmarks | activeLandmarkPipe :activeSearchDetailPanel"[developers]="developers"></landmark-details>
+	<landmark-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'landmark'" [landmark]="landmarks | activeLandmarkPipe :activeSearchDetailPanel"></landmark-details>
 	<developer-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'developer'" [developer]="developers | activeDeveloperPipe :activeSearchDetailPanel" [properties]="properties"></developer-details>
 	<property-details *ngIf="activeSearchDetailPanel && activeSearchDetailPanel.name === 'property'" [property]="properties | activePropertyPipe :activeSearchDetailPanel" [user]="user"></property-details>
 </div>

@@ -12,30 +12,10 @@ import * as _ from 'lodash';
 export class LandmarkDetailsComponent {
 
 	@Input() landmark: Landmark;
-  @Input() developers: Developer[];
   topDevelopers: any;
 
 	constructor(
   	) {
   	}
 
-  	ngOnInit() {
-  	}
-
-  	ngOnChanges() {
-  	}
-
-    get displayLandmark(): any {
-      let displayLandmark: {name: string, propertyCount : number} = 
-        {
-          name: '', 
-          propertyCount: null
-        };
-      if (this.landmark) {
-        displayLandmark.name = this.landmark.name;
-        displayLandmark.propertyCount = 50//this.landmark.propertyCount;
-        this.topDevelopers = this.developers.slice(0, 5);
-      }
-      return displayLandmark;
-    }
 }

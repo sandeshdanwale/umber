@@ -4,7 +4,7 @@
 	</div>
 	<div [style.transform]="translate()" class="property-giant-slider">
 		<div *ngFor="let property of properties; let i = index;" [style.opacity]="i == indexOfHead ? 1 : 0.1">
-			<property-card-giant [property]="property"></property-card-giant>
+			<property-card-giant [property]="property" [user]="user"></property-card-giant>
 		</div>
 	</div>
 	<div class="right" [ngClass]="{'inactive': indexOfHead >= properties?.length}" (click)="backward()">

@@ -74,6 +74,12 @@ export class PropertyService {
                 .map(this.extractData)
     }
 
+    public getAllPropertyDetails(id: string): Observable<Property> {
+        let url: string = `${this.BASE_URL}/property/details/all/${id}`; 
+        return this.http.get(url)
+                .map(this.extractData)
+    }
+
     public getFeaturedProperties(cityId: string): Observable<Property[]> {
 
 

@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 //import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { DBModule, Database } from '@ngrx/db';
-//import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 import { AppComponent } from './app.component';
@@ -79,6 +79,7 @@ import { DeveloperCarouselGiantHorizontalComponent } from './components/bottomSe
 import { DeveloperCardVerySmallComponent } from './components/shared/developer-card-very-small/developer-card-very-small.component';
 import { DeveloperCardGiantComponent } from './components/shared/developer-card-giant/developer-card-giant.component';
 import { PropertyCardExtraSmallComponent } from './components/shared/property-card-extra-small/property-card-extra-small.component';
+import { SmallImageOverlayComponent } from './components/search/small-image-overlay/small-image-overlay.component';
 
 @NgModule({
   declarations: [
@@ -135,14 +136,17 @@ import { PropertyCardExtraSmallComponent } from './components/shared/property-ca
     DeveloperCarouselGiantHorizontalComponent,
     DeveloperCardVerySmallComponent,
     DeveloperCardGiantComponent,
-    PropertyCardExtraSmallComponent
+    PropertyCardExtraSmallComponent,
+    SmallImageOverlayComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     //MaterialModule.forRoot(),
-    //AgmCoreModule.forRoot(),
+    AgmCoreModule.forRoot({
+        'apiKey': 'AIzaSyA3HtauA1ix8F9UxgtpB-zteJxkZ9Ihs4I'
+    }),
     StoreModule.provideStore(reducer)/*,
     InfiniteScrollModule*/
   ],

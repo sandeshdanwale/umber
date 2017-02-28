@@ -17,5 +17,8 @@ public interface PropertyRepositoryCustom {
 	List<Property> findByCityLandmarkDeveloperAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId, DeveloperId developerId);
 	List<Property> findByCityDeveloperAndByNameStartsWith(CityId cityId, String name, DeveloperId developerId);
 	List<Property> findNearByPtoperties(LandmarkId landmarkId, CityId cityId, Pageable pageable);
-	
+	List<Property> findByDeveloperId(DeveloperId developerId, Pageable pageable);
+	List<CityId> findByDeveloperDistinctCity(DeveloperId developerId);
+	long findCountByDeveloper(DeveloperId developerId);
+	long findCountByLandmark(LandmarkId landmarkId);
 }

@@ -2,14 +2,11 @@ package com.umber.world.housing.domain.aggregate;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
 import org.springframework.data.annotation.PersistenceConstructor;
-
-import com.umber.world.housing.domain.Amenities;
 
 @Value
 @AllArgsConstructor(onConstructor=@__(@PersistenceConstructor))

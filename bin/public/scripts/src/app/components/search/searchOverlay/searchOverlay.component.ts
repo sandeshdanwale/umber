@@ -49,7 +49,8 @@ export class SearchOverlayComponent {
     }
 
     public isSearchOverlayOpen(): any {
+      let detailOverlay = _.head(_.filter(this.activePanels, (p) => p.name === 'propertyDetailOverlay'));
       let overlay = _.head(_.filter(this.activePanels, (p) => p.name === 'searchOverlay'));
-      return overlay && overlay.name;
+      return overlay && overlay.name && (!detailOverlay);
     }
 }

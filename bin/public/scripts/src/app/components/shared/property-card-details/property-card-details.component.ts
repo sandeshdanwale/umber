@@ -18,7 +18,7 @@ export class PropertyCardDetailsComponent {
   @Output() asset = new EventEmitter<string>();
   private style: any;
   private displayedSlide: number = 1;
-  private imgLength = 2;
+  private imgLength = 4;
 	constructor(
       private uiService: UiService
   	) {
@@ -27,8 +27,28 @@ export class PropertyCardDetailsComponent {
   	ngOnInit() {
     }
 
+    get id(): string {
+      return '3601';//this.property.id.registrationId;
+    }
+
     public loadPropertyDetailOverlay() {
       this.uiService.loadPropertyDetailOverlay(this.property, this.user);
+    }
+
+    get image1Url() {
+      return `/assets/images/property/prop${this.id}/propertyImage1.jpg`;
+    }
+
+    get image2Url() {
+      return `/assets/images/property/prop${this.id}/propertyImage2.jpg`;
+    }
+
+    get image3Url() {
+      return `/assets/images/property/prop${this.id}/propertyImage3.jpg`;
+    }
+
+    get image4Url() {
+      return `/assets/images/property/prop${this.id}/propertyImage4.jpg`;
     }
 
     prev(event: Event) {
@@ -58,7 +78,7 @@ export class PropertyCardDetailsComponent {
       this.uiService.loadImageOverlay();
     }
 
-    get displayProperty(): any {
+    /*get displayProperty(): any {
       let displayProperty: DisplayProperty = new DisplayProperty();
       displayProperty.address = this.getDisplayAddress();
       displayProperty.configs = this.getDisplayConfigs();
@@ -66,7 +86,7 @@ export class PropertyCardDetailsComponent {
       displayProperty.name = this.getDisplayPropertyName();
       displayProperty.developerName = this.getDisplayDeveloperName();
       return displayProperty;
-    }
+    }*/
 
     public mapToCurrencyString(price: number|string): string {
       let displayPrice = ''
@@ -80,7 +100,7 @@ export class PropertyCardDetailsComponent {
       return displayPrice;
     }
 
-    private getDisplayPrice(): string {
+    get price(): string {
       let displayPrice: string = '';
       if (this.property && this.property.configs) {
         let minVal = _.minBy(this.property.configs.configs, (c) => c.basePrice);
@@ -98,11 +118,11 @@ export class PropertyCardDetailsComponent {
       return displayPrice;
     }
 
-    private getDisplayPropertyName(): string{
+    get name(): string{
       return this.property ? this.property.name : '';
     }
 
-    private getDisplayDeveloperName(): string{
+    get developerName(): string{
       return this.property ? this.property.developerName : '';
     }
 
@@ -130,7 +150,7 @@ export class PropertyCardDetailsComponent {
 
 
 
-    private getDisplayAddress(): string {
+    get address(): string {
       let address = _.head(_.filter(this.property.addresses, (p) => p.type.toString() === 'HOME'));
       if (address) {
         let lines = '';

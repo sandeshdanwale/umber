@@ -3,6 +3,7 @@ package com.umber.world.housing.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,8 +44,8 @@ public class DeveloperController {
     }
 	
 	@RequestMapping(value={"/globalFeaturedDevelopers"})
-    public Single<List<UmberDeveloper>> globalfeaturedProperties() {
-		return developerService.findByGlobalFeatured(true)
+    public Single<List<UmberDeveloper>> globalfeaturedProperties(Pageable pageable) {
+		return developerService.findByGlobalFeatured(true, pageable)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Developer Query Service API {} failed :: {} ");
                     return null;
@@ -52,8 +53,8 @@ public class DeveloperController {
     }
 	
 	@RequestMapping(value={"/details/{id}"})
-    public Single<UmberDeveloper> getPropertyDetails(@PathVariable String id) {
-		return developerService.findDetailsByDeveloperId(new DeveloperId(id))
+    public Single<UmberDeveloper> getPropertyDetails(@PathVariable String id, Pageable pageable) {
+		return developerService.findDetailsByDeveloperId(new DeveloperId(id), pageable)
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

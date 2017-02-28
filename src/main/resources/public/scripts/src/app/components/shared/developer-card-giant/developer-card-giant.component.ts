@@ -24,7 +24,7 @@ export class DeveloperCardGiantComponent implements OnInit {
     }
 
     get displayPropeties(): any {
-      return this.properties ? this.properties.slice(0, 2) : null;
+      return _.take(this.developer.properties, 4);
     }
 
     get imageUrl() {

@@ -25,9 +25,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
 </head>
-<body style="text-align: center">
+<body style="text-align: center; overflow-x: hidden;">
   <app-root>Loading...</app-root>
 <script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/inline.bundle.js')}}"></script>
+<script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/vendor.bundle.js')}}"></script>
 <script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/styles.bundle.js')}}"></script>
 <script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/scripts.bundle.js')}}"></script>
 <script th:src="@{${beans.mvcResourceUrlProvider.getForLookupPath('/scripts/dist/main.bundle.js')}}"></script>

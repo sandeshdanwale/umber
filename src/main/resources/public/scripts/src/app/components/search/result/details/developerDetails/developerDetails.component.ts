@@ -25,7 +25,7 @@ export class DeveloperDetailsComponent {
     }
 
     get displayPropeties(): any {
-      return this.properties ? this.properties.slice(0, 2) : null;
+      return this.developer && this.developer.properties ? this.developer.properties.slice(0, 2) : null;
     }
 
     get imageUrl() {
