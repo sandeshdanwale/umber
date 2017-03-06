@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+//import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
