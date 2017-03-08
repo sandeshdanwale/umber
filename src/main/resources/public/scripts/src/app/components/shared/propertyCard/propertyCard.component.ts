@@ -24,7 +24,7 @@ export class PropertyCardComponent {
 	}
 
   get imageUrl() {
-    let id = '3601';//this.property.id.registrationId
+    let id = this.property.id.registrationId; //'3601';
     return `/assets/images/property/prop${id}/propertyImage1.jpg`;
   }
 
