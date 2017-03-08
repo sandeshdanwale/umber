@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DeveloperService } from '../../../../services/developer.service';
+import { User } from '../../../../models/aggregate/user.model';
 
 @Component({
 	selector: 'developerCardCarousel',
@@ -9,6 +10,7 @@ import { DeveloperService } from '../../../../services/developer.service';
 export class DeveloperCardCarouselComponent {
 
 	topDevelopers = [];
+  @Input() user: User;
 	constructor(
 		private developerService: DeveloperService
   	) {

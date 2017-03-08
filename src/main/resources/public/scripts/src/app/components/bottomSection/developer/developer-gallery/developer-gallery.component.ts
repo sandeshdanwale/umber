@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Developer } from '../../../../models/aggregate/developer.model';
 import { Property } from '../../../../models/aggregate/property.model';
+import { User } from '../../../../models/aggregate/user.model';
 
 @Component({
   selector: 'developer-gallery',
@@ -11,6 +12,7 @@ export class DeveloperGalleryComponent {
 
   @Input() developers: Developer[];
   @Input() properties: Property[];
+  @Input() user: User;
   private index: number = 0;
   constructor() { }
 

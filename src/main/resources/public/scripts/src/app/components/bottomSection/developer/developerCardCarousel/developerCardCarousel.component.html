@@ -1,5 +1,5 @@
 <div class="developer-card-carousel">
-	<div *ngFor="let developer of topDevelopers">
-		<developerCard></developerCard>
+	<div *ngFor="let developer of topDevelopers | async">
+		<developerCard [developer]="developer" [user]="user"></developerCard>
 	</div>
 </div>

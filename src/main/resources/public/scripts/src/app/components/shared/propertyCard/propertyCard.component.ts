@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Property } from '../../../models/aggregate/property.model';
 import { DisplayProperty } from '../../../models/displayProperty.model';
+import { UiService } from '../../../services/ui.service';
+import { User } from '../../../models/aggregate/user.model';
 import * as _ from 'lodash';
 
 @Component({
@@ -11,8 +13,10 @@ import * as _ from 'lodash';
 export class PropertyCardComponent {
 
 	@Input() property: Property;
+  @Input() user: User;
 
 	constructor(
+    private uiService: UiService
   ) {
   }
 
@@ -29,6 +33,10 @@ export class PropertyCardComponent {
     displayProperty.name = this.getDisplayPropertyName();
     displayProperty.description = this.getDisplayPropertyDescription();
     return displayProperty;
+  }
+
+  public loadPropertyDetailOverlay() {
+    this.uiService.loadPropertyDetailOverlay(this.property, this.user);
   }
 
 

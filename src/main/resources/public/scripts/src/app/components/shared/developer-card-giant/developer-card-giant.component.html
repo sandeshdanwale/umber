@@ -46,7 +46,7 @@
 		<div class="right">
 			<div class="properties">
 				<div *ngFor="let property of displayPropeties; let propertyIndex = index" class="property">
-					<property-card-very-small [property]="property" style="display:block"></property-card-very-small>
+					<property-card-very-small [property]="property"  [user]="user" style="display:block"></property-card-very-small>
 				</div>
 			</div>
 		</div>

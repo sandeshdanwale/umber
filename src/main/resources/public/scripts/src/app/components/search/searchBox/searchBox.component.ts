@@ -145,7 +145,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
 	}
 
 	private searchUmber(searchString: string): Observable<[Developer[], Property[], Landmark[]]> {
-		this._searchString = searchString.toLowerCase().replace(/ /g, '');
+		this._searchString = searchString ? searchString.toLowerCase().replace(/ /g, '') : '';
 		return Observable.combineLatest(
 	      	this.getDevelopers(this._searchString),
         	this.getProperties(this._searchString),
