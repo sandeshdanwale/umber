@@ -15,7 +15,7 @@ export class DeveloperCardVerySmallComponent {
   }
 
   get imageUrl() {
-    let id = '3500'; //this.developer.id.registrationId
+    let id = this.developer.id.registrationId; //'3500';
     return `/assets/images/developer/dev${id}/developerlogo.jpg`;
   }
 
