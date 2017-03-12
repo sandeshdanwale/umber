@@ -4,3 +4,17 @@
 .bottom {
     margin-top: 30px;
 }
+.bottom.small {
+	display: none;
+}
+@media screen and (max-device-width: 780px) {
+  .top {
+    display: none;
+  }
+  .bottom {
+  	display: none;
+  }
+  .bottom.small {
+		display: flex;
+	}
+}
