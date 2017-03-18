@@ -5,6 +5,7 @@ import { PropertyService } from './property.service';
 import { DeveloperService } from './developer.service';
 import { LandmarkService } from './landmark.service';
 import { TagService } from './tag.service';
+import { AggregationService } from './aggregation.service'; 
 import { CityService } from './city.service';
 import { Http, URLSearchParams } from '@angular/http';
 import * as fromRoot from '../reducers';
@@ -39,6 +40,7 @@ export class UiService {
         private landmarkService: LandmarkService,
         private cityService: CityService,
         private tagService: TagService,
+        private aggregationService: AggregationService,
         private store: Store<fromRoot.State>
     ) {
         this.activePanels = store.let(fromRoot.getActivePanels);
@@ -173,7 +175,8 @@ export class UiService {
 
     public closeSearchOverlay() {
         this.tagService.removeAllTags();
-        this.store.dispatch(new ui.ClosePanelAction(new Panel('searchOverlay')))
+        this.store.dispatch(new ui.ClosePanelAction(new Panel('searchOverlay')));
+        this.aggregationService.load();
     }
 
     public capitalize(str: string): string {
