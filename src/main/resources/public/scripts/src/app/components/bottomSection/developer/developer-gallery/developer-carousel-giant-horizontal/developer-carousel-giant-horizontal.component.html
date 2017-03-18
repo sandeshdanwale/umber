@@ -7,7 +7,7 @@
 			<developer-card-giant [developer]="developer" [properties]="properties" [user]="user"></developer-card-giant>
 		</div>
 	</div>
-	<div class="right" [ngClass]="{'inactive': indexOfHead >= developers?.length}" (click)="backward()">
+	<div class="right" [ngClass]="{'inactive': indexOfHead >= developers?.length - 1}" (click)="backward()">
 		<i aria-hidden="true" class="fa fa-lg fa-chevron-right"></i>
 	</div>
 </div>

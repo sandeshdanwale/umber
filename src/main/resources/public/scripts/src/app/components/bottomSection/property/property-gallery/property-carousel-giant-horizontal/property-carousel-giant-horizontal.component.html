@@ -7,7 +7,7 @@
 			<property-card-giant [property]="property" [user]="user"></property-card-giant>
 		</div>
 	</div>
-	<div class="right" [ngClass]="{'inactive': indexOfHead >= properties?.length}" (click)="backward()">
+	<div class="right" [ngClass]="{'inactive': indexOfHead >= properties?.length - 1}" (click)="backward()">
 		<i aria-hidden="true" class="fa fa-lg fa-chevron-right"></i>
 	</div>
 </div>

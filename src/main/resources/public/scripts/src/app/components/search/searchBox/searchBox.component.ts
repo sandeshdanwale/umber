@@ -230,7 +230,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy, OnChanges, AfterVi
 	}
 
 	private openSearchDetailList(): void {
-		this.uiService.loadSearchDetailList();
+		if (this._searchString) {
+			this.uiService.loadSearchDetailList();
+		}
 	}
 
 }

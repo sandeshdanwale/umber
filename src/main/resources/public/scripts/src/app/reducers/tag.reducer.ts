@@ -23,6 +23,11 @@ export function reducer(state = initialState, action: tag.Actions): State {
       return {
         entities: _.filter(state.entities, (e) => !(e.type === action.payload.type && e.name === action.payload.name))
       };
+    case tag.ActionTypes.REMOVE_ALL_TAG:
+      console.log('STORE:umber.tag/REMOVE_ALL_TAG');
+      return {
+        entities: null
+      };
     default:
       return state;
   }
