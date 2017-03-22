@@ -1,11 +1,11 @@
 
 .property-card {
     background-color: #fff;
-    width: 220px;;
-    height: 210px;
+    width: 180px;;
+    height: 180px;
     margin-right: 20px;
     border-radius: 2px;
-    padding: 0 24px;
+    padding: 0 8px;
     position: relative;
     cursor: pointer;
     will-change: transform;
@@ -18,27 +18,15 @@
     &:hover {
         transform: scale(1.1);
     }
-    .left-section {
-        display: inline-block;
-        width: 50%;
-        height: 100%;
-        .property-info {
-            text-align: left;
-            margin-top: 7px;
-            color: #7f7f7f;
-            margin-right: 3px;
-            font-size: 13px;
-        }
-    }
     .right-section {
         display: inline-block;
-        width: 50%;
+        width: 100%;
         height: 100%;
         float: right;
         .top {
             position: relative;
             width: 100%;
-            height: 50%;
+            height: 70%;
             display: block;
             top: 5%;
             img {
@@ -53,7 +41,7 @@
             height: 50%;
             display: block;
             text-align: center;
-            padding-top: 20%;
+            padding-top: 5%;
             .property-name {
                 font-weight: 500;
                 font-size: 14px;
