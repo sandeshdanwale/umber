@@ -1,15 +1,15 @@
-<div class="landmark-details">
+<div class="landmark-details" *ngIf="landmark">
 	<div class="landmark-info">
-			<div class="landmark-name">{{displayLandmark.name}}</div>
+			<div class="landmark-name">{{landmark.name}}</div>
 			<div class="landmark-properties">
-				<span class="count">{{displayLandmark.propertyCount}}</span>
+				<span class="count">{{landmark.propertyCount}}</span>
 				<span class="label">PROJECTS</span>
 			</div>
 	</div>
 	<div class="top-developers">
 		<div class="header">Top Developers</div>
 		<div class="developer-carousel">
-			<div *ngFor="let developer of topDevelopers">
+			<div *ngFor="let developer of landmark.developers">
 				<developerCardSmall [developer]="developer"></developerCardSmall>
 			</div>
 		</div>

@@ -1,6 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { Developer } from '../../../../../models/aggregate/developer.model';
 import { Property } from '../../../../../models/aggregate/property.model';
+import { User } from '../../../../../models/aggregate/user.model';
 
 @Component({
   selector: 'developer-carousel-giant-horizontal',
@@ -11,6 +12,7 @@ export class DeveloperCarouselGiantHorizontalComponent implements OnInit {
 
   @Input() developers: Developer[];
   @Input() properties: Property[];
+  @Input() user: User;
   @Input() indexOfHead: number;
   @Output() head = new EventEmitter<number>();
   constructor() { }

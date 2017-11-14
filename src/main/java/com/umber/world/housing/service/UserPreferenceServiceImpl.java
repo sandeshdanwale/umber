@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.UserId;
+import com.umber.world.housing.model.FilterSaveRequest;
 import com.umber.world.housing.model.UmberPreference;
 import com.umber.world.housing.repository.CityRepository;
 import com.umber.world.housing.repository.UserPreferenceRepository;
@@ -36,9 +37,22 @@ public class UserPreferenceServiceImpl implements UserPreferenceService {
     }
     
     @Override
-    public Single<UmberPreference> updteCity(String userId, String cityId) {
+    public Single<UmberPreference> updateCity(String userId, String cityId) {
 	  
 		return Single.just(userPreferenceRepository.updateCity(new UserId(userId), new CityId(cityId)))
+				.flatMap(userPreference -> {
+					String registrationId = userPreference.cityId.getRegistrationId();
+					CityId CityId = new CityId(registrationId);
+					return Single.just(CityRepository.findByCityId(CityId))
+							.map(city -> new UmberPreference(userPreference, city));
+				}).subscribeOn(Schedulers.io());
+		
+    }
+    
+    @Override
+    public Single<UmberPreference> updateFilter(String userId, FilterSaveRequest fileSaveRequest) {
+	  
+		return Single.just(userPreferenceRepository.updateFilter(new UserId(userId), fileSaveRequest))
 				.flatMap(userPreference -> {
 					String registrationId = userPreference.cityId.getRegistrationId();
 					CityId CityId = new CityId(registrationId);

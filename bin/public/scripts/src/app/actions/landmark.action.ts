@@ -5,7 +5,7 @@ import { type } from '../util';
 export const ActionTypes = {
   LOAD_SUCCESS: type('[Landmark] Load Success'),
   LOAD: type('[Landmark] Load'),
-  UPDATE_LANDAMRK_DETAIL: type('[Landmark] Update Landmark Detail')
+  UPDATE_LANDMRK_DETAIL: type('[Landmark] Update Landmark Detail')
 };
 
 export class LoadSuccessAction implements Action {
@@ -17,7 +17,7 @@ export class LoadSuccessAction implements Action {
 }
 
 export class UpdateLandmarkDetail implements Action {
-  type = ActionTypes.UPDATE_LANDAMRK_DETAIL;
+  type = ActionTypes.UPDATE_LANDMRK_DETAIL;
 
   constructor(public payload: Landmark) {
 

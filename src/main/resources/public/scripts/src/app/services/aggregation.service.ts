@@ -48,9 +48,9 @@ export class AggregationService {
           this.userService.getUserPreferences('1'),
           this.cityService.getAllCities()
         ).subscribe(data => {
-          let selectedCity = new City(data[0].city);
-          let cityId = selectedCity.id.registrationId;
-          cityId = cityId ? cityId : '9';
+          let cityData = data[0].city ? data[0].city : _.head(_.filter(data[1], (city) => city.id.registrationId === '9'));
+          let selectedCity = new City(cityData);
+          let cityId = selectedCity ? selectedCity.id.registrationId : '9';
           let preference = new Preference({city :
             selectedCity
           });

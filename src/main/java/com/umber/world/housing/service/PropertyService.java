@@ -25,8 +25,11 @@ public interface PropertyService {
     Single<List<UmberProperty>> findByFeaturedAndCityId(Boolean featured, CityId cityId);
     Single<List<UmberProperty>> findByCityAndByNameStartsWith(CityId cityId, String name);
     Single<List<UmberProperty>> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId);
+    Single<List<UmberProperty>> findByCityLandmarkAndByNameStartsWithWithDetails(CityId cityId, String name, LandmarkId landmarkId);
     Single<List<UmberProperty>> findByCityDeveloperAndByNameStartsWith(CityId cityId, String name, DeveloperId developerId);
+    Single<List<UmberProperty>> findByCityDeveloperAndByNameStartsWithWithDetails(CityId cityId, String name, DeveloperId developerId);
     Single<List<UmberProperty>> findByCityLandmarkDeveloperAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId, DeveloperId developerId);
     Single<List<UmberProperty>> findNearByPtoperties(LandmarkId landmarkId, CityId cityId, Pageable pageable);
+    Single<List<UmberProperty>> findByCityAndByNameStartsWithWithDetails(CityId cityId, String name);
 }
 

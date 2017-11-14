@@ -8,10 +8,13 @@ import com.umber.world.housing.domain.Property;
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.jackson.LandmarkId;
+import com.umber.world.housing.model.FilterSaveRequest;
 
 public interface PropertyRepositoryCustom {
 
 	List<Property> findByCityAndByNameStartsWith(CityId cityId, String name);
+	//List<Property> findByCityAndByNameStartsWithDetail(CityId cityId, String name);
+	List<Property> findByCityAndByNameStartsWithWithFilter(CityId cityId, String name, FilterSaveRequest filterSaveRequest);
 	List<Property> findByFeaturedAndCityId(Boolean featured, CityId cityId);
 	List<Property> findByCityLandmarkAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId);
 	List<Property> findByCityLandmarkDeveloperAndByNameStartsWith(CityId cityId, String name, LandmarkId landmarkId, DeveloperId developerId);

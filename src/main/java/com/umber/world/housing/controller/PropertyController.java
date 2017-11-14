@@ -91,6 +91,30 @@ public class PropertyController {
                 });
     }
 	
+	@RequestMapping(value={"/search/details/{id}/{name}"})
+    public Single<List<UmberProperty>> findByCityAndByNameStartsWithWithDetails(@PathVariable String id, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
+		return propertyService.findByCityAndByNameStartsWithWithDetails(new CityId(id), name)
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/byLandmark/details/{landmarkId}/{cityId}/{name}"})
+    public Single<List<UmberProperty>> findByLandmarkAndIdStartsWithWithDetails(@PathVariable String cityId, @PathVariable String landmarkId, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
+		return propertyService.findByCityLandmarkAndByNameStartsWithWithDetails(new CityId(cityId), name, new LandmarkId(landmarkId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
 	@RequestMapping(value={"/search/byLandmark/{landmarkId}/{cityId}/{name}"})
     public Single<List<UmberProperty>> findByLandmarkAndIdStartsWith(@PathVariable String cityId, @PathVariable String landmarkId, @PathVariable String name) {
 		if (name.equals("XXXXX")) {
@@ -118,6 +142,18 @@ public class PropertyController {
 			name = "";
 		}
 		return propertyService.findByCityDeveloperAndByNameStartsWith(new CityId(cityId), name, new DeveloperId(developerId))
+				.onErrorReturn(error -> {
+                    System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
+                    return null;
+                });
+    }
+	
+	@RequestMapping(value={"/search/byDeveloper/details/{developerId}/{cityId}/{name}"})
+    public Single<List<UmberProperty>> findByDeveloperAndIdStartsWithWithDetails(@PathVariable String cityId, @PathVariable String developerId, @PathVariable String name) {
+		if (name.equals("XXXXX")) {
+			name = "";
+		}
+		return propertyService.findByCityDeveloperAndByNameStartsWithWithDetails(new CityId(cityId), name, new DeveloperId(developerId))
 				.onErrorReturn(error -> {
                     System.out.println("OnError:: {} :: Personnel Query Service API {} failed :: {} ");
                     return null;

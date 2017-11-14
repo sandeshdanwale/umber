@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+//import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -80,6 +80,8 @@ import { DeveloperCardVerySmallComponent } from './components/shared/developer-c
 import { DeveloperCardGiantComponent } from './components/shared/developer-card-giant/developer-card-giant.component';
 import { PropertyCardExtraSmallComponent } from './components/shared/property-card-extra-small/property-card-extra-small.component';
 import { SmallImageOverlayComponent } from './components/search/small-image-overlay/small-image-overlay.component';
+import { PropertyCarouselGiantMobileHorizontalComponent } from './components/bottomSection/property/property-gallery/property-carousel-giant-mobile-horizontal/property-carousel-giant-mobile-horizontal.component';
+import { DeveloperCarouselGiantMobileHorizontalComponent } from './components/bottomSection/developer/developer-gallery/developer-carousel-giant-mobile-horizontal/developer-carousel-giant-mobile-horizontal.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +139,9 @@ import { SmallImageOverlayComponent } from './components/search/small-image-over
     DeveloperCardVerySmallComponent,
     DeveloperCardGiantComponent,
     PropertyCardExtraSmallComponent,
-    SmallImageOverlayComponent
+    SmallImageOverlayComponent,
+    PropertyCarouselGiantMobileHorizontalComponent,
+    DeveloperCarouselGiantMobileHorizontalComponent
   ],
   imports: [
     BrowserModule,

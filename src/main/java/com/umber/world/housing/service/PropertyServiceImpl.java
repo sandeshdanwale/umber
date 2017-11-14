@@ -162,6 +162,34 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 	
 	@Override
+	public Single<List<UmberProperty>> findByCityAndByNameStartsWithWithDetails(CityId cityId, String name) {
+		Single<List<UmberProperty>> UmberProperties = Single.just(propertyRepository.findByCityAndByNameStartsWith(cityId, name)
+		.stream().map(p -> {
+			UmberConfigs u = null;
+			String cityName = "";
+			Configs c = configsRepository.findByPropertyId(p.propertyId);
+			if (c != null) {
+				u = new UmberConfigs(c);
+			}
+			List<CityId> cityIds = p.getAddresses().stream().filter(a -> {
+						return a.getType().toString().equals("HOME");
+					})
+					.map(a -> {
+						return a.getCityId();
+					})
+					.collect(Collectors.toList());
+			Developer developer = developerRepository.findByDeveloperId(p.getDeveloperId());
+			if (!cityIds.isEmpty()) {
+				City city = cityRepository.findByCityId(new CityId(cityIds.get(0).getRegistrationId()));
+				cityName = city.getName();
+			}
+			return new UmberProperty(p, u, null, developer.getName(), cityName);
+		})
+		.collect(Collectors.toList()));
+		return UmberProperties;
+	}
+	
+	@Override
 	public Single<List<UmberProperty>> findByFeaturedAndCityId(Boolean featured, CityId cityId) {
 		Single<List<UmberProperty>> umberProperties = Single.just(propertyRepository.findByFeaturedAndCityId(featured, cityId)
 				.stream().map(d -> new UmberProperty(d))
@@ -188,7 +216,65 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 	
 	@Override
+	public Single<List<UmberProperty>> findByCityLandmarkAndByNameStartsWithWithDetails(CityId cityId, String name, LandmarkId landmarkId) {
+		Single<List<UmberProperty>> umberProperty = Single.just(propertyRepository.findByCityLandmarkAndByNameStartsWith(cityId, name, landmarkId)
+				.stream().map(p -> {
+					UmberConfigs u = null;
+					String cityName = "";
+					Configs c = configsRepository.findByPropertyId(p.propertyId);
+					if (c != null) {
+						u = new UmberConfigs(c);
+					}
+					List<CityId> cityIds = p.getAddresses().stream().filter(a -> {
+								return a.getType().toString().equals("HOME");
+							})
+							.map(a -> {
+								return a.getCityId();
+							})
+							.collect(Collectors.toList());
+					Developer developer = developerRepository.findByDeveloperId(p.getDeveloperId());
+					if (!cityIds.isEmpty()) {
+						City city = cityRepository.findByCityId(new CityId(cityIds.get(0).getRegistrationId()));
+						cityName = city.getName();
+					}
+					return new UmberProperty(p, u, null, developer.getName(), cityName);
+				})
+				.collect(Collectors.toList()));
+		return umberProperty.subscribeOn(Schedulers.io());
+				
+	}
+	
+	@Override
 	public Single<List<UmberProperty>> findByCityDeveloperAndByNameStartsWith(CityId cityId, String name, DeveloperId developerId) {
+		Single<List<UmberProperty>> umberProperty = Single.just(propertyRepository.findByCityDeveloperAndByNameStartsWith(cityId, name, developerId)
+				.stream().map(p -> {
+					UmberConfigs u = null;
+					String cityName = "";
+					Configs c = configsRepository.findByPropertyId(p.propertyId);
+					if (c != null) {
+						u = new UmberConfigs(c);
+					}
+					List<CityId> cityIds = p.getAddresses().stream().filter(a -> {
+								return a.getType().toString().equals("HOME");
+							})
+							.map(a -> {
+								return a.getCityId();
+							})
+							.collect(Collectors.toList());
+					Developer developer = developerRepository.findByDeveloperId(p.getDeveloperId());
+					if (!cityIds.isEmpty()) {
+						City city = cityRepository.findByCityId(new CityId(cityIds.get(0).getRegistrationId()));
+						cityName = city.getName();
+					}
+					return new UmberProperty(p, u, null, developer.getName(), cityName);
+				})
+				.collect(Collectors.toList()));
+		return umberProperty.subscribeOn(Schedulers.io());
+				
+	}
+	
+	@Override
+	public Single<List<UmberProperty>> findByCityDeveloperAndByNameStartsWithWithDetails(CityId cityId, String name, DeveloperId developerId) {
 		Single<List<UmberProperty>> umberProperty = Single.just(propertyRepository.findByCityDeveloperAndByNameStartsWith(cityId, name, developerId)
 				.stream().map(d -> new UmberProperty(d))
 						.collect(Collectors.toList()));

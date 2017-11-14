@@ -1,5 +1,6 @@
-<div *ngIf="property" class="property-card">
+<div *ngIf="property" class="property-card" (click)="loadPropertyDetailOverlay()">
 	<div class="property-img">
+		<span class="property-name">{{property?.name}}</span>
 		<img src="{{imageUrl}}"/>
 	</div>
 </div>

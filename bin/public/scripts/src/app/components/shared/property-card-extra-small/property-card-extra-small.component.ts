@@ -15,7 +15,7 @@ export class PropertyCardExtraSmallComponent {
   }
 
   get imageUrl() {
-    let id = '3601';//this.property.id.registrationId
+    let id = '3601'; //this.property.id.registrationId;
     return `/assets/images/property/prop${id}/propertyImage1.jpg`;
   }
 

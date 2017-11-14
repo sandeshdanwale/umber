@@ -1,4 +1,7 @@
 buildscript {
+	ext {
+    		springBootVersion = '1.5.1.RELEASE'
+    	}
     repositories {
     	jcenter()
         mavenLocal()
@@ -11,7 +14,7 @@ buildscript {
 		       
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
@@ -66,10 +69,10 @@ targetCompatibility = 1.8
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile("org.springframework.boot:spring-boot-devtools")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.data:spring-data-mongodb:${springBootVersion}")
     compile("org.apache.cxf:cxf-rt-frontend-jaxws:3.0.1")
     compile("org.apache.cxf:cxf-rt-transports-http:3.0.1")
     compile("com.xebia:jackson-lombok:1.0") //project lombok json support

@@ -34,6 +34,10 @@ export class NavComponent {
       }
   	}
 
+    public closeCityDropDown() {
+      this.isOpen = false;
+    }
+
     public ngOnChanges() {
       if (this.user && this.cities && this.cities.length) {
         this.primaryCities = 
@@ -54,6 +58,7 @@ export class NavComponent {
         .subscribe(data => {
           this.userService.updateUserPreference(data);
         })
+      this.isOpen = false;
     }
 
 }

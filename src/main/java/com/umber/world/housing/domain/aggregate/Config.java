@@ -20,4 +20,3 @@ public class Config implements Serializable {
 	private Double basePrice;
     
 }
-

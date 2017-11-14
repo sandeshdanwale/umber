@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.aggregation.*;
 
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -17,6 +19,7 @@ import com.umber.world.housing.domain.Property;
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.DeveloperId;
 import com.umber.world.housing.jackson.LandmarkId;
+import com.umber.world.housing.model.FilterSaveRequest;
 
 import lombok.AllArgsConstructor;
 
@@ -24,6 +27,7 @@ import lombok.AllArgsConstructor;
 public class PropertyRepositoryImpl implements PropertyRepositoryCustom {
 
 	private MongoTemplate mongoTemplate;
+	private final MongoOperations operations;
 	
 	private static final String COLLECTION = "property";
 	
@@ -39,9 +43,61 @@ public class PropertyRepositoryImpl implements PropertyRepositoryCustom {
         return properties;
     }
 	
+//	@Override
+//    public List<Property> findByCityAndByNameStartsWithDetail(CityId cityId, String name) {
+//		LookupOperation lookupOperation = LookupOperation.newLookup()
+//			    .from("city")
+//			    .localField("addresses.cityId.registrationId")
+//			    .foreignField("_id.registrationId")
+//			    .as("cities");
+//
+//		Aggregation agg = newAggregation(
+//			    match(Criteria.andOperator(
+//			        				Criteria.where("searchName").regex(name),
+//			        				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),
+//			        				Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId))
+//			    				)
+//			    		),
+//			    lookupOperation,
+//			    project("id", "items", "netAmount")
+//			);
+//
+//		AggregationResults aggregationResults = operations.aggregate(agg, "property", String.class);
+//		return (List<Property>) aggregationResults.getUniqueMappedResult();
+//    }
+//	
+	
+	@Override
+    public List<Property> findByCityAndByNameStartsWithWithFilter(CityId cityId, String name, FilterSaveRequest filterSaveRequest ) {
+		List<Criteria> andCriterias = new ArrayList<Criteria>();
+		andCriterias.add(Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")));
+		
+		if (name != null) {
+			andCriterias.add(Criteria.where("searchName").regex(name));
+		}
+		
+		if (cityId != null) {
+			andCriterias.add(Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId)));
+		}
+		
+		List<String> types = filterSaveRequest.getType();
+		for (String type: types) {
+			andCriterias.add(Criteria.where("searchName").regex(name));
+		}
+		/*if (type) {
+			andCriterias.add(Criteria.where("addresses").elemMatch(Criteria.where("cityId").is(cityId)));
+		}*/
+		List<Property> properties =  mongoTemplate.find(
+        		new Query(new Criteria().andOperator(
+        				andCriterias.toArray(new Criteria[andCriterias.size()])
+        				)), Property.class
+        	);
+        return properties;
+    }
+	
 	@Override
     public List<Property> findByFeaturedAndCityId(Boolean featured, CityId cityId) {
-        List<Property> properties =  mongoTemplate.find(
+		List<Property> properties =  mongoTemplate.find(
         		new Query(new Criteria().andOperator(
         				Criteria.where("featured").is(true),
         				Criteria.where("addresses").elemMatch(Criteria.where("type").is("HOME")),

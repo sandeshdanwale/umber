@@ -1,0 +1,13 @@
+<div class="property-giant-card-carousel small">
+	<div class="left" [ngClass]="{'inactive': indexOfHead === 0}" (click)="forward()">
+		<i aria-hidden="true" class="fa fa-lg fa-chevron-left"></i>
+	</div>
+	<div [style.transform]="translate()" class="property-giant-slider">
+		<div *ngFor="let property of properties; let i = index;" [style.opacity]="i == indexOfHead ? 1 : 0.1">
+			<property-card-giant [property]="property" [user]="user"></property-card-giant>
+		</div>
+	</div>
+	<div class="right {{indexOfHead}} {{properties?.length}}" [ngClass]="{'inactive': indexOfHead >= properties?.length - 1}" (click)="backward()">
+		<i aria-hidden="true" class="fa fa-lg fa-chevron-right"></i>
+	</div>
+</div>

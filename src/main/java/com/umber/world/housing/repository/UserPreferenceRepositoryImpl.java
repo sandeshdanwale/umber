@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import com.umber.world.housing.domain.UserPreference;
 import com.umber.world.housing.jackson.CityId;
 import com.umber.world.housing.jackson.UserId;
+import com.umber.world.housing.model.FilterSaveRequest;
 
 import lombok.AllArgsConstructor;
 
@@ -24,6 +25,24 @@ public class UserPreferenceRepositoryImpl implements UserPreferenceRepositoryCus
         
         Update update = new Update();
         update.set("cityId", cityId);
+
+        mongoTemplate.updateFirst(query, update, UserPreference.class);
+        UserPreference userPreference =  mongoTemplate.findOne(query, UserPreference.class);
+        return userPreference;
+        
+    }
+	
+	@Override
+    public UserPreference updateFilter(UserId userId, FilterSaveRequest filterSaveRequest) {
+		
+        Query query = new Query(Criteria.where("userId").is(userId));
+        
+        Update update = new Update();
+        update.set("type", filterSaveRequest.getType());
+        update.set("minSqft", filterSaveRequest.getMinSqft());
+        update.set("maxSqft", filterSaveRequest.getMaxSqft());
+        update.set("minPrice", filterSaveRequest.getMinPrice());
+        update.set("maxPrice", filterSaveRequest.getMaxPrice());
 
         mongoTemplate.updateFirst(query, update, UserPreference.class);
         UserPreference userPreference =  mongoTemplate.findOne(query, UserPreference.class);

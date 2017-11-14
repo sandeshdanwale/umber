@@ -15,7 +15,6 @@ export class TagService {
     tag: Observable<Tag[]>;
     constructor(
         private http: HttpService,
-        private uiService: UiService,
         private store: Store<fromRoot.State>
     ) {
         this.tag = store.let(fromRoot.getTagEntities);
@@ -23,6 +22,10 @@ export class TagService {
 
     public removeTag(oldTag: Tag) {
         this.store.dispatch(new tag.RemoveTagAction(oldTag));
+    }
+
+    public removeAllTags() {
+        this.store.dispatch(new tag.RemoveAllTagsAction());
     }
 
     public addTag(newTag: Tag) {

@@ -7,6 +7,7 @@ import { User } from '../models/aggregate/user.model';
 import * as user from '../actions/user.action';
 import { City } from '../models/aggregate/city.model';
 import { Preference } from '../models/aggregate/preference.model';
+import { FilterSaveRequest } from '../models/filter-save-request.model';
 import { Response } from '@angular/http';
 
 @Injectable()
@@ -36,6 +37,15 @@ export class UserService {
         let cityId = city.id.registrationId;
         let url: string = `${this.BASE_URL}/userPreference/updateCity?userId=${userId}&cityId=${cityId}`;
         return this.http.post(url, null)
+                .map(this.extractData)
+                //.catch(this.handleError);
+    }
+
+    public setFilter(user: User, filterSaveRequest: FilterSaveRequest): Observable<any> {
+        
+        const userId = user.id.registrationId;
+        const url: string = `${this.BASE_URL}/userPreference/updateFilter/${userId}`;
+        return this.http.post(url, filterSaveRequest)
                 .map(this.extractData)
                 //.catch(this.handleError);
     }

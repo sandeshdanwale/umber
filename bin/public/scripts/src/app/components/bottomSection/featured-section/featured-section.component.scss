@@ -1,3 +1,15 @@
+@media screen and (max-device-width: 780px) {
+	.featured-wrapper.small {
+		.featured {
+			.featured-property {
+				height: 550px;
+			}
+			.featured-developers {
+				height: 600px;
+			}
+		}
+	}
+}
 .displayNone {
 	display: none !important;
 }

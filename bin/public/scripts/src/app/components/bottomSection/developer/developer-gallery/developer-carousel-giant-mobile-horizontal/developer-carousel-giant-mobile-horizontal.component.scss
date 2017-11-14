@@ -1,0 +1,55 @@
+.developer-giant-card-carousel {
+    .left {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background-color: rgba(208,208,208,1);
+        color: #000;
+        box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+        z-index: 100;
+        top: 1400px;
+        left: 0vw;
+        text-align: center;
+        cursor: pointer;
+        &.inactive {
+            opacity: 0.1;
+            cursor: default;
+        }
+        i {
+            margin-top: 9px;
+            margin-right: 2px;
+        }
+    }
+    .right {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background-color: rgba(208,208,208,1);
+        color: #000;
+        box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+        z-index: 100;
+        top: 1400px;
+        left: 90vw;
+        text-align: center;
+        cursor: pointer;
+        &.inactive {
+            opacity: 0.1;
+            cursor: default;
+        }
+        i {
+            margin-top: 9px;
+            margin-left: 2px;
+        }
+    }
+    .developer-giant-slider {
+        -webkit-transition: .5s transform;
+        -o-transition: .5s transform;
+        transition: .5s transform;
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        display: flex;
+        margin-left: 10px;
+    }   
+}

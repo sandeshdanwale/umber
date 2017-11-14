@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Developer } from '../../../models/aggregate/developer.model';
 import { Property } from '../../../models/aggregate/property.model';
+import { User } from '../../../models/aggregate/user.model';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,6 +13,8 @@ export class DeveloperCardGiantComponent implements OnInit {
 
   @Input() developer: Developer;
   @Input() properties: Property[];
+  @Input() user: User;
+
   setProperties: any;
   
 	constructor(
@@ -24,7 +27,7 @@ export class DeveloperCardGiantComponent implements OnInit {
     }
 
     get displayPropeties(): any {
-      return this.properties ? this.properties.slice(0, 2) : null;
+      return _.take(this.developer.properties, 4);
     }
 
     get imageUrl() {

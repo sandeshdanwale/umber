@@ -1,7 +1,7 @@
 <div class="developer-list">
 	<div class="category-header">{{header}}</div>
 	<div class="list">
-		<div class="list-item"  *ngFor="let developer of developers" (mouseover)="updateDeveloperDetailPanel(event, developer)" (click)="addTag(event, developer)">
+		<div class="list-item"  *ngFor="let developer of developers" (mouseover)="updateDeveloperDetailPanel(event, developer)" (mouseup)="addTag(event, developer)">
 			<div [innerHTML]="getName(developer)"></div>
 		</div>
 	</div>
