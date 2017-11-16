@@ -1,25 +1,41 @@
 package com.umber.world.housing.config;
 
+//package com.umber.world.housing.config;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
+import com.mongodb.MongoClient;
 
-import com.mongodb.Mongo;
+@Configuration
+public class MongoConfiguration extends AbstractMongoConfiguration {
 
-class MongoConfiguration extends AbstractMongoConfiguration {
-
-  @Override
-  protected String getDatabaseName() {
-    return "test";
+  @Bean
+  public MongoClient mongoClient() {
+    return new MongoClient("localhost");
   }
 
   @Override
-  public Mongo mongo() throws Exception {
-    return new Mongo();
+  public String getDatabaseName() {
+    return "database";
   }
 
   @Override
-  protected String getMappingBasePackage() {
-    return "com.oreilly.springdata.mongodb";
+  public String getMappingBasePackage() {
+    return "com.bigbank.domain";
   }
+
+  // the following are optional
+
+
+  @Bean
+  @Override
+  public MongoCustomConversions customConversions() {
+//    List<Converter<?, ?>> converterList = new ArrayList<Converter<?, ?>>();
+//    converterList.add(new org.springframework.data.mongodb.test.PersonReadConverter());
+//    converterList.add(new org.springframework.data.mongodb.test.PersonWriteConverter());
+    return new MongoCustomConversions(null);
+  }
+
 }

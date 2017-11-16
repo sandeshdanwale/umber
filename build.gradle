@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-    		springBootVersion = '1.5.1.RELEASE'
+    		springBootVersion = '1.5.8.RELEASE'
     	}
     repositories {
     	jcenter()
@@ -72,7 +72,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    compile("org.springframework.data:spring-data-mongodb:${springBootVersion}")
+    compile("org.springframework.data:spring-data-mongodb:2.0.1.RELEASE")
     compile("org.apache.cxf:cxf-rt-frontend-jaxws:3.0.1")
     compile("org.apache.cxf:cxf-rt-transports-http:3.0.1")
     compile("com.xebia:jackson-lombok:1.0") //project lombok json support
